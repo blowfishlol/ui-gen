@@ -7,6 +7,7 @@ import DateBox from './DateBox';
 import DropDownBox from './DropDownBox';
 import ToggleBox from './ToggleBox';
 import NumberBox from './NumberBox';
+import CheckBox from './CheckBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
 
@@ -38,7 +39,7 @@ class App extends Component {
         </div>
       } else if(element.type === ComponentType.CHECKBOX) {
         return <div>
-          checkbox goes here
+          <CheckBox config={element}></CheckBox>
         </div>
       } else if(element.type === ComponentType.TOGGLE) {
         return <div className="k-form">
