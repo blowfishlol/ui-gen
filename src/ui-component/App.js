@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
 
-import TextBox from './ui-component/TextBox';
-import TextBox from './ui-component/DateBox';
-import MapInput from './ui-component/MapInput';
-import ArrayInput from './ui-component/ArrayInput';
+import TextBox from './TextBox';
+import DateBox from './DateBox';
+import MapInput from './MapInput';
+import ArrayInput from './ArrayInput';
 
-import ComponentType from "./ComponentType"
+import ComponentType from "../util/ComponentType"
 
 class App extends Component {
   render() {

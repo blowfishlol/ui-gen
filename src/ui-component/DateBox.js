@@ -1,6 +1,6 @@
 import React from "react";
 import { DateInput, Calendar } from '@progress/kendo-react-dateinputs';
-import { labelCheck, defaultCheck, placeholderCheck } from './InfoChecker';
+import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 
 export default class DateBox extends React.Component {
 
