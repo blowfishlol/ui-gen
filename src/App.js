@@ -3,7 +3,7 @@ import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
 
 import TextBox from './ui-component/TextBox';
-import TextBox from './ui-component/DateBox';
+import DateBox from './ui-component/DateBox';
 import MapInput from './ui-component/MapInput';
 import ArrayInput from './ui-component/ArrayInput';
 
