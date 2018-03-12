@@ -21,12 +21,24 @@ export default class UploadBox extends React.Component {
 
     }
     render() {
+        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone}/> ;
         return (
-            <div>
+            <div id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
-                <Upload async= {this.async}
-                    dropZone={this.dropZone}/>
+                {maboi}
+                <button onClick={() => {
+                        console.log(this.getAllMethods(maboi));
+                    }
+                }>jj</button>
             </div>
         );
+    }
+
+    getAllMethods(obj)
+    {
+        return Object.getOwnPropertyNames(obj)
+            .filter(function(prop) {
+                return typeof obj[prop] == 'function';
+            });
     }
 }
