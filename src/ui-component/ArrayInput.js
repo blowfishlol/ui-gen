@@ -20,6 +20,19 @@ export default class ArrayInput extends React.Component {
   }
 
   render() {
+    if(!this.props.hasOwnProperty("config")) {
+      return <div>
+        Error: Config is missing
+      </div>
+    } else if(!this.props.config.hasOwnProperty("child_content")) {
+      return <div>
+        Error: Content is missing
+      </div>
+    } else if(!this.props.config.child_content.hasOwnProperty("type")) {
+      return <div>
+        Error: Content type is missing
+      </div>
+    }
     var elements = this.state.childData.map(element => {
       return <App config={[{...this.props.config, label: "", type:this.props.config.child_content.type}]} />
     });

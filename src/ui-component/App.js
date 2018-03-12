@@ -11,7 +11,6 @@ import CheckBox from './CheckBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
 
-
 import ComponentType from "../util/ComponentType"
 
 class App extends Component {
@@ -74,7 +73,7 @@ class App extends Component {
       }
     })
 
-    if(elements.length == 0) {
+    if(elements.length === 0) {
       elements = "Form is empty";
     }
 
