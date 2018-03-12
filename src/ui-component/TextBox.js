@@ -1,6 +1,6 @@
 import React from "react";
 import '@progress/kendo-theme-material/dist/all.css';
-import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
+import { labelCheck, defaultCheck, placeholderCheck, requiredCheck } from '../util/InfoChecker';
 
 export default class TextBox extends React.Component {
 
@@ -9,7 +9,7 @@ export default class TextBox extends React.Component {
         this.state = {
             //label: this.props.config.label ? this.props.config.label : "Err: Label is empty.",
             label: labelCheck(this.props.config.label),
-            required: this.props.config.required ? "required" : "",
+            required: requiredCheck(this.props.config.required),
             path: this.props.config.path,
             default_value: defaultCheck(this.props.config.value),
             placeholder: placeholderCheck(this.props.config.value),

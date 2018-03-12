@@ -4,8 +4,10 @@ import './App.css'
 
 import TextBox from './TextBox';
 import DateBox from './DateBox';
+import DropDownBox from './DropDownBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
+
 
 import ComponentType from "../util/ComponentType"
 
@@ -26,7 +28,7 @@ class App extends Component {
         </div>
       } else if(element.type === ComponentType.DROPDOWN) {
         return <div>
-          dropdown
+          <DropDownBox config={element}></DropDownBox>
         </div>
       } else if(element.type === ComponentType.CHECKBOX) {
         return <div>

@@ -20,3 +20,7 @@ export function defaultCheck(value) {
 export function placeholderCheck(value) {
     return value ? (value.hasOwnProperty("placeholder") ? value.placeholder : "" ) : "";
 }
+
+export function requiredCheck(value) {
+    return value ? "required" : "";
+}
