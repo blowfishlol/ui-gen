@@ -30,11 +30,11 @@ var config = [
         "path": "appointment.activities",
         "required": true,
         "value": {
-            "default": "Check Up",
+            "default": "checkup",
             "contents": [
-                "Check Up",
-                "Operation",
-                "Blood Test"
+                { "text": "Check Up", "value": "checkup" },
+                { "text": "Operation", "value": "operation" },
+                { "text": "Blood Test", "value": "bloodtest" },
             ]
         }
     },
@@ -49,12 +49,12 @@ var config = [
         "path": "appointment.payment.method",
         "required": true,
         "value": {
-            "default": null,
+            "default": "credit",
             "contents": [
-                "Insurance",
-                "Credit Card",
-                "Debit Card",
-                "Cash"
+                { "text": "Insurance", "value": "insurance" },
+                { "text": "Credit Card", "value": "credit" },
+                { "text": "Debit Card", "value": "debit" },
+                { "text": "Cash", "value": "cash" },
             ]
         }
     },

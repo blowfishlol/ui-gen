@@ -11,7 +11,7 @@ export default class DropDownBox extends React.Component {
             required: requiredCheck(this.props.config.required),
             path: this.props.config.path,
             values: this.props.config.value.contents,
-            selected: 1 //TODO: JANGAN LUPA GANTI YAA!!!!!!!!
+            selected: this.props.config.value.default,//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
         }
     }
 
@@ -20,7 +20,7 @@ export default class DropDownBox extends React.Component {
         return(
             <div>
                 <div>{this.props.config.label}</div>
-                <DropDownList data={this.state.values} selected={this.state.selected}/>
+                <DropDownList data={this.state.values} textField={'text'} valueField={'value'}/*TODO FIX THIS ARGHG defaultItem={this.state.selected}*//>
             </div>
         )
 

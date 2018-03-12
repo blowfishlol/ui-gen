@@ -24,7 +24,7 @@ export default class TextBox extends React.Component {
             <div>
                 <label className="k-form-field">
                     <span>{this.state.label}</span>
-                    <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>
+                    <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.state.path}/>
                 </label>
             </div>
         )

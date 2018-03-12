@@ -1,5 +1,5 @@
 export function labelCheck(label) {
-    return label ? label : "Err: Label is empty."
+    return label ? label : ""
 }
 
 export function defaultCheck(value) {
