@@ -1,5 +1,5 @@
 export function labelCheck(label) {
-    return label ? label : "Err: Label is empty."
+    return label ? label : ""
 }
 
 export function defaultCheck(value) {
@@ -19,4 +19,8 @@ export function defaultCheck(value) {
 
 export function placeholderCheck(value) {
     return value ? (value.hasOwnProperty("placeholder") ? value.placeholder : "" ) : "";
+}
+
+export function requiredCheck(value) {
+    return value ? "required" : "";
 }

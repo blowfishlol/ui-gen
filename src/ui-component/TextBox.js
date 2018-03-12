@@ -1,6 +1,6 @@
 import React from "react";
 import '@progress/kendo-theme-material/dist/all.css';
-import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
+import { labelCheck, defaultCheck, placeholderCheck, requiredCheck } from '../util/InfoChecker';
 
 export default class TextBox extends React.Component {
 
