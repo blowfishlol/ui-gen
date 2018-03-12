@@ -4,6 +4,11 @@ import { labelCheck, defaultCheck, placeholderCheck } from './InfoChecker';
 
 export default class DropDownBox extends React.Component {
 
-    constructor
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        }
+    }
 
 }
