@@ -8,29 +8,27 @@ export default class MapInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemCount: 1
+      childData: ["uneeded data for now"]
     };
   }
 
   add() {
     this.setState({
-      itemCount: (this.state.itemCount + 1)
+      ...this.state,
+      childData: this.state.childData.concat(["uneeded data for now"])
     });
   }
 
   render() {
-    var childKagebunshin = [];
-    for(var i = 0; i < this.state.itemCount; i++) {
-      childKagebunshin[i] = this.props.config.child_content;
-    }
-    var elements = childKagebunshin.map(element => {
+    var elements = this.state.childData.map(element => {
       return <App config={this.props.config.child_content} />
     });
     return(
       <div>
-        <div>
+        <label className="k-form-field">
+          <span>{this.props.config.label}</span>
           {elements}
-        </div>
+        </label>
         <button onClick={() => this.add()}>ADD</button>
       </div>
     )
