@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 //import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
+//import textBox from './ui-templates';
 
 class App extends Component {
   render() {
