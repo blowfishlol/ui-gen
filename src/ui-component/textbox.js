@@ -1,12 +1,12 @@
 import React from "react";
-
+import '@progress/kendo-theme-material/dist/all.css';
 
 export default class TextBox extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            label: this.props.config.label,
+            label: this.props.config.label ? this.props.config.label : "Err: Label is empty.",
             required: this.props.config.required ? "required" : "",
             path: this.props.config.path,
             default_value: this.props.config.value ? (this.props.config.value.hasOwnProperty("default") ? this.props.config.value.default : "") : "",

@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
       if(element.type == ComponentType.TEXT) {
-        return <div>
+        return <div className="k-form">
           <TextBox config={element}></TextBox>
         </div>
       } else if(element.type == ComponentType.NUMBER) {
