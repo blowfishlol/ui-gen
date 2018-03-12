@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
-import TextBox from './ui-component/textbox';
+import TextBox from './ui-component/TextBox';
+import DateBox from './ui-component/DateBox';
 
 import ComponentType from "./ComponentType"
 
 class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
+      console.log("BABA",this.props.config);
       if(element.type == ComponentType.TEXT) {
         return <div className="k-form">
           <TextBox config={element}></TextBox>
@@ -34,7 +36,7 @@ class App extends Component {
         </div>
       } else if(element.type === ComponentType.DATE) {
         return <div>
-          date
+          <DateBox config={element}></DateBox>
         </div>
       } else if(element.type == ComponentType.TIME) {
         return <div>
