@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-//import '@progress/kendo-theme-material/dist/all.css';
+import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
-//import textBox from './ui-templates';
+import TextBox from './ui-component/textbox';
 
 import ComponentType from "./ComponentType"
 
@@ -10,7 +10,7 @@ class App extends Component {
     var elements = this.props.config.map(element => {
       if(element.type == ComponentType.TEXT) {
         return <div>
-          text
+          <TextBox config={element}></TextBox>
         </div>
       } else if(element.type == ComponentType.NUMBER) {
         return <div>

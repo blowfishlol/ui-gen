@@ -9,8 +9,8 @@ export default class TextBox extends React.Component {
             label: this.props.config.label,
             required: this.props.config.required ? "required" : "",
             path: this.props.config.path,
-            default: this.props.config.value ? (this.props.config.value.hasOwnProperty("default") ? this.props.config.value.default : "") : "",
-            placeholder: this.props.config.value ? (this.props.config.value.hasOwnProperty("placeholder") ? this.props.configvalue.placeholder : "" ) : "",
+            default_value: this.props.config.value ? (this.props.config.value.hasOwnProperty("default") ? this.props.config.value.default : "") : "",
+            placeholder: this.props.config.value ? (this.props.config.value.hasOwnProperty("placeholder") ? this.props.config.value.placeholder : "" ) : "",
         };
 
     }
@@ -20,8 +20,8 @@ export default class TextBox extends React.Component {
         return(
             <div>
                 <label className="k-form-field">
-                    <span>{this.props.config.label}</span>
-                    <input className="k-textbox" placeholder={placeholder} value={default} name={path} {required}/>
+                    <span>{this.state.label}</span>
+                    <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>
                 </label>
             </div>
         )
