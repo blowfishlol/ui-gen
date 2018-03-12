@@ -16,9 +16,11 @@ export default class CheckBox extends React.Component {
     render() {
 
         return(
-            <div className="k-form-field">
-                <input type="checkbox" className="k-checkbox" name={this.state.path} id={this.state.path}/>
-                <label className="k-checkbox-label" for={this.state.path}>{this.state.label}</label>
+            <div className="k-form">
+                <div className="k-form-field">
+                    <input type="checkbox" className="k-checkbox" name={this.state.path} id={this.state.path}/>
+                    <label className="k-checkbox-label" for={this.state.path}>{this.state.label}</label>
+                </div>
             </div>
         )
 

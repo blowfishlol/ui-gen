@@ -18,7 +18,8 @@ export default class NumberBox extends React.Component{
 
     render() {
         return(
-        <div>
+        <div className="k-form-field">
+            <div className="k-form">
             <label>
                 <p>{this.props.config.label}</p>
                 <NumericTextBox
@@ -27,6 +28,7 @@ export default class NumberBox extends React.Component{
                     name={this.state.path}
                 />
             </label>
+            </div>
         </div>
         )
     }

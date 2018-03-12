@@ -37,7 +37,7 @@ export default class ArrayInput extends React.Component {
       return <App config={[{...this.props.config, label: "", type:this.props.config.child_content.type}]} />
     });
     return(
-      <div>
+      <div className="k-form">
         <label className="k-form-field">
           <span>{this.props.config.label}</span>
           {elements}
