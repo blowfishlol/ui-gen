@@ -25,7 +25,6 @@ class App extends Component {
           <TextBox config={element}></TextBox>
         </div>
       } else if(element.type === ComponentType.NUMBER) {
-        console.log(element);
         return <div>
           <NumberBox config={element}></NumberBox>
         </div>
@@ -61,7 +60,6 @@ class App extends Component {
           </ArrayInput>
         </div>
       } else if(element.type === ComponentType.MAP) {
-        console.log(element);
         return <div>
           <MapInput config={element} />
         </div>
