@@ -6,6 +6,7 @@ import TextBox from './TextBox';
 import DateBox from './DateBox';
 import DropDownBox from './DropDownBox';
 import ToggleBox from './ToggleBox';
+import NumberBox from './NumberBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
 
@@ -26,7 +27,7 @@ class App extends Component {
       } else if(element.type === ComponentType.NUMBER) {
         console.log(element);
         return <div>
-          number
+          <NumberBox config={element}></NumberBox>
         </div>
       } else if(element.type === ComponentType.IMAGE) {
         return <div>

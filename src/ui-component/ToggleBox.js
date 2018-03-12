@@ -14,13 +14,11 @@ export default class CheckBox extends React.Component {
     }
 
     render() {
-        console.log("Enter ToggleBox");
+
         return(
             <div className="k-form-field">
-
-                    <span>{this.state.label}</span>
-                    <input type="checkbox" className="k-checkbox" name={this.state.path} />
-
+                <input type="checkbox" className="k-checkbox" name={this.state.path} id={this.state.path}/>
+                <label className="k-checkbox-label" for={this.state.path}>{this.state.label}</label>
             </div>
         )
 
