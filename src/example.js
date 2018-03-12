@@ -1,4 +1,4 @@
-[
+var config = [
     {
         "label": "name",
         "type": "text",
@@ -98,4 +98,6 @@
             }
         ]
     }
-]
+];
+
+export default(config);
