@@ -7,31 +7,31 @@ import ComponentType from "./ComponentType"
 class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
-      if(element.type == ComponentType.TEXT) {
+      if(element.type === ComponentType.TEXT) {
         return <div>
           text
         </div>
-      } else if(element.type == ComponentType.NUMBER) {
+      } else if(element.type === ComponentType.NUMBER) {
         return <div>
           number
         </div>
-      } else if(element.type == ComponentType.IMAGE) {
+      } else if(element.type === ComponentType.IMAGE) {
         return <div>
           image
         </div>
-      } else if(element.type == ComponentType.DROPDOWN) {
+      } else if(element.type === ComponentType.DROPDOWN) {
         return <div>
           dropdown
         </div>
-      } else if(element.type == ComponentType.CHECKBOX) {
+      } else if(element.type === ComponentType.CHECKBOX) {
         return <div>
           checkbox
         </div>
-      } else if(element.type == ComponentType.TOGGLE) {
+      } else if(element.type === ComponentType.TOGGLE) {
         return <div>
           toggle
         </div>
-      } else if(element.type == ComponentType.DATE) {
+      } else if(element.type === ComponentType.DATE) {
         return <div>
           date
         </div>
@@ -39,13 +39,14 @@ class App extends Component {
         return <div>
           time
         </div>
-      } else if(element.type == ComponentType.ARRAY) {
+      } else if(element.type === ComponentType.ARRAY) {
         return <div>
           array
         </div>
-      } else if(element.type == ComponentType.MAP) {
+      } else if(element.type === ComponentType.MAP) {
+        console.log(element);
         return <div>
-          map
+          <App config={element.child_content} />
         </div>
       } else {
         return <div>

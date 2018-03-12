@@ -8,6 +8,8 @@ import './index.css';
 import App from './App';
 import config from "./example";
 
+console.log(config);
+
 ReactDOM.render(<Provider store={storage}>
     <div>
       <App config={config} />

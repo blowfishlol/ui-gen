@@ -68,7 +68,7 @@ var config = [
         "label": "Phone Numbers",
         "type": "array",
         "path": "appointment.patient.phoneNumbers",
-        "child-content": {
+        "child_content": {
             "type": "number",
             "required": false,
         }
@@ -77,7 +77,7 @@ var config = [
         "label": "Cars Owned by Patient",
         "type": "map",
         "path": "appointment.patient.cars",
-        "child-content": [
+        "child_content": [
             {
                 "label": "Car Model",
                 "type": "text",
@@ -99,5 +99,5 @@ var config = [
         ]
     }
 ];
-
+//
 export default(config);
