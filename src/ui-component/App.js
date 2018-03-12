@@ -15,11 +15,17 @@ import ComponentType from "../util/ComponentType"
 class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
-      if(element.type === ComponentType.TEXT) {
+      if(!element.hasOwnProperty("type")) {
+        return <div>
+          Invalid config file format &quot;{element}&quot;<br />
+          type is missing
+        </div>
+      } else if(element.type === ComponentType.TEXT) {
         return <div className="k-form">
           <TextBox config={element}></TextBox>
         </div>
       } else if(element.type === ComponentType.NUMBER) {
+        console.log(element);
         return <div>
           number
         </div>
@@ -48,8 +54,11 @@ class App extends Component {
           time
         </div>
       } else if(element.type === ComponentType.ARRAY) {
+        var newConfig = [{...element, type: element.child_content.type}];
         return <div>
-          <ArrayInput config={element} />
+          <ArrayInput config={element}>
+            <App config={newConfig} />
+          </ArrayInput>
         </div>
       } else if(element.type === ComponentType.MAP) {
         console.log(element);
@@ -58,12 +67,14 @@ class App extends Component {
         </div>
       } else {
         return <div>
-          error
+          Unrecognized config type &quot;{element.type}&quot;
         </div>
       }
     })
 
-    console.log("hey!", typeof(elements), elements);
+    if(elements.length == 0) {
+      elements = "Form is empty";
+    }
 
     return (
       <div>

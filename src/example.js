@@ -69,7 +69,7 @@ var config = [
         "type": "array",
         "path": "appointment.patient.phoneNumbers",
         "child_content": {
-            "type": "number",
+            "type": "text",
             "required": false,
         }
     },
