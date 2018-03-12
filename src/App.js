@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import '@progress/kendo-theme-material/dist/all.css';
 import './App.css'
+
 import TextBox from './ui-component/textbox';
+import MapInput from './ui-component/MapInput';
+import ArrayInput from './ui-component/ArrayInput';
 
 import ComponentType from "./ComponentType"
 
 class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
-      if(element.type == ComponentType.TEXT) {
+      if(element.type === ComponentType.TEXT) {
         return <div className="k-form">
           <TextBox config={element}></TextBox>
         </div>
@@ -36,18 +39,18 @@ class App extends Component {
         return <div>
           date
         </div>
-      } else if(element.type == ComponentType.TIME) {
+      } else if(element.type === ComponentType.TIME) {
         return <div>
           time
         </div>
       } else if(element.type === ComponentType.ARRAY) {
         return <div>
-          array
+          <ArrayInput config={element} />
         </div>
       } else if(element.type === ComponentType.MAP) {
         console.log(element);
         return <div>
-          <App config={element.child_content} />
+          <MapInput config={element} />
         </div>
       } else {
         return <div>
@@ -55,6 +58,8 @@ class App extends Component {
         </div>
       }
     })
+
+    console.log("hey!", typeof(elements), elements);
 
     return (
       <div>
