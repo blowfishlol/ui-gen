@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { compose } from "recompose";
 import '@progress/kendo-theme-material/dist/all.css';
 // import './App.css'
-
+import ActionList from "./../reducer/actionList"
 import TextBox from './TextBox';
 import DateBox from './DateBox';
 import TimeBox from './TimeBox';
@@ -15,7 +17,7 @@ import ArrayInput from './ArrayInput';
 
 import ComponentType from "../util/ComponentType"
 
-class App extends Component {
+export default class App extends Component {
   render() {
       console.log("render app bois mamen");
     var elements = this.props.config.map(element => {
@@ -52,5 +54,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
