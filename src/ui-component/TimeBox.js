@@ -1,3 +1,5 @@
+import React from "react";
+import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper';
 
 export default class TimeBox extends React.Component {
@@ -18,7 +20,7 @@ export default class TimeBox extends React.Component {
             <div className='k-form'>
                 <div>
                     <p>{this.state.label}</p>
-                    <TimePicker value={this.state.value} format={"HH:mm:ss"}/>
+                    <TimePicker value={this.state.value}  dateInput={true} format={"HH:mm"}/>
                 </div>
             </div>
         );
