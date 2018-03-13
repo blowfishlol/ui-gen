@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import '@progress/kendo-theme-material/dist/all.css';
-<<<<<<< HEAD
-// import './App.css'
-import ActionList from "./../reducer/actionList"
-=======
 import './style.css'
 
->>>>>>> 24275b38b4a366f97f17b8e6c52204a540a59190
 import TextBox from './TextBox';
 import DateBox from './DateBox';
 import TimeBox from './TimeBox';
