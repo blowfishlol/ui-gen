@@ -41,10 +41,10 @@ function pathToObj(path, value, object) {
 }
 
 
-storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
+
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
-      <App config={storage.getState().config} />
+      <App config={config} />
     </div>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

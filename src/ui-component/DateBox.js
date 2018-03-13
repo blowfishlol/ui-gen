@@ -23,13 +23,17 @@ class DateBox extends React.Component {
   render() {
     return <div className="k-form-field">
       <p>{this.state.label}</p>
-      <DatePicker value={this.state.value} onChange={this.changeDate} />
+      <DatePicker value={this.state.value} change={this.changeDate} />
     </div>
   }
 
 
-  changeDate = ({ value }) => {
-    this.setState({ value });
+  changeDate = (event) => {
+    console.log(event.sender._value);
+    const date = event.sender._value;
+    this.state.value = date;
+    console.log("boi");
+    this.props.updateState(this.state.path, this.state.value);
   }
 }
 
