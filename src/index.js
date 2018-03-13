@@ -10,16 +10,16 @@ import './index.css';
 import App from './ui-component/App';
 import config from "./example";
 
-console.log(config);
-
-const testString = "appointment.patient.gender";
-const testValue = "male";
-var outputObject = {};
-
-pathToObj(testString, testValue, outputObject);
-pathToObj("appointment.patient.age", 25, outputObject);
-
-console.log(outputObject);
+// console.log(config);
+//
+// const testString = "appointment.patient.gender";
+// const testValue = "male";
+// var outputObject = {};
+//
+// pathToObj(testString, testValue, outputObject);
+// pathToObj("appointment.patient.age", 25, outputObject);
+//
+// console.log(outputObject);
 
 //Manipulates an object to put a new value depending on the path given.
 //example: path human.gender, with value male
@@ -30,7 +30,6 @@ function pathToObj(path, value, object) {
   while(part = parts.shift()){
     if( typeof object[part] != "object" ) {
       if(!parts[0]){
-        console.log("MASUKKKK!!")
         object[part]=value;
       } else {
         object[part]={};
@@ -40,6 +39,11 @@ function pathToObj(path, value, object) {
   }
 }
 
+var a = []
+
+a[10] = {age: 10}
+
+console.log("test", a);
 
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
 ReactDOM.render(<Provider store={storage}>
