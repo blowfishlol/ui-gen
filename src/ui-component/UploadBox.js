@@ -2,7 +2,7 @@ import React from "react";
 import '@progress/kendo-theme-material/dist/all.css';
 import { Upload } from '@progress/kendo-upload-react-wrapper';
 import "@progress/kendo-ui";
-import { labelCheck, defaultCheck, placeholderCheck, requiredCheck } from '../util/InfoChecker';
+import { labelCheck } from '../util/InfoChecker';
 
 export default class UploadBox extends React.Component {
 
@@ -23,7 +23,7 @@ export default class UploadBox extends React.Component {
     render() {
         const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone}/> ;
         return (
-            <div id="ba">
+            <div className="k-form-field" id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
                 {maboi}
             </div>

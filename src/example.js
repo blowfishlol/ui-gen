@@ -125,7 +125,7 @@ var config = [
               "child_content": [
                     {
                         "label": "Grandchild1",
-                        "type": "text",
+                        "type": "number",
                         "path": "model",
                         "required": "true",
                         "value": {

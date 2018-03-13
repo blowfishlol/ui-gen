@@ -1,6 +1,6 @@
 import React from "react";
 import '@progress/kendo-theme-material/dist/all.css';
-import { labelCheck, defaultCheck, placeholderCheck, requiredCheck } from '../util/InfoChecker';
+import { labelCheck, requiredCheck } from '../util/InfoChecker';
 
 export default class CheckBox extends React.Component {
 
@@ -14,11 +14,12 @@ export default class CheckBox extends React.Component {
   }
 
   render() {
-    return(
-      <div className="k-form-field">
+    return <label className="k-form-field">
+      <span>{this.state.label}</span>
+      <div>
         <input type="checkbox" className="k-checkbox" name={this.state.path} id={this.state.path}/>
-        <label className="k-checkbox-label" for={this.state.path}>{this.state.label}</label>
+        <label className="k-checkbox-label" for={this.state.path}>&nbsp;&nbsp;&nbsp;Yes</label>
       </div>
-    )
+    </label>
   }
 }
