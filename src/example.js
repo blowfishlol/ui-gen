@@ -1,6 +1,6 @@
 var config = [
     {
-        "label": "name",
+        "label": "Patient Name",
         "type": "text",
         "path": "appointment.patient.name",
         "required": true,
@@ -125,7 +125,7 @@ var config = [
               "child_content": [
                     {
                         "label": "Grandchild1",
-                        "type": "text",
+                        "type": "number",
                         "path": "model",
                         "required": "true",
                         "value": {

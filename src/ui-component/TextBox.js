@@ -1,6 +1,6 @@
 import React from "react";
 import '@progress/kendo-theme-material/dist/all.css';
-import { labelCheck, defaultCheck, placeholderCheck, requiredCheck } from '../util/InfoChecker';
+import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 
 export default class TextBox extends React.Component {
 
@@ -19,13 +19,9 @@ export default class TextBox extends React.Component {
   }
 
   render() {
-    return(
-      <div className="k-form">
-        <label className="k-form-field">
-          <span>{this.state.label}</span>
-          <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>
-        </label>
-      </div>
-    )
+    return <label className="k-form-field">
+      <span>{this.state.label}</span>
+      <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>
+    </label>
   }
 }
