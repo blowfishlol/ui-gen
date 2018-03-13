@@ -11,7 +11,6 @@ export default class CheckBox extends React.Component {
       required: requiredCheck(this.props.config.required),
       path: this.props.config.path,
       contents: this.props.config.value.contents,
-
     }
   }
 
