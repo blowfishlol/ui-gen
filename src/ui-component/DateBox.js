@@ -1,5 +1,6 @@
 import React from "react";
 import { DateInput, Calendar } from '@progress/kendo-react-dateinputs';
+import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 
 export default class DateBox extends React.Component {
@@ -20,10 +21,7 @@ export default class DateBox extends React.Component {
             <div className='k-form'>
                 <div>
                     <p>{this.state.label}</p>
-                    <DateInput value={this.state.value} onChange={this.changeDate} />
-                </div>
-                <div>
-                    <Calendar value={this.state.value} onChange={this.changeDate} />
+                    <DatePicker value={this.state.value} onChange={this.changeDate} />
                 </div>
             </div>
         );
