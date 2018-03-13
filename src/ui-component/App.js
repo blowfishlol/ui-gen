@@ -34,7 +34,7 @@ class App extends Component {
         case ComponentType.CHECKBOX: return <CheckBox config={element} />
         case ComponentType.TOGGLE:   return <ToggleBox config={element} />
         case ComponentType.DATE:     return <DateBox config={element} />
-        case ComponentType.TIME:     return <div>time</div>
+        case ComponentType.TIME:     return <TimeBox config={element} />
         case ComponentType.ARRAY:    return <ArrayInput config={element} />
         case ComponentType.MAP:      return <MapInput config={element} />
         default:                     return <div>Unrecognized config type &quot;{element.type}&quot;</div>
