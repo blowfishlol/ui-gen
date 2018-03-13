@@ -1,9 +1,6 @@
 import ActionList from "./actionList"
 
-export default function reducer(state={
-    dataRandom1: null,
-    dataRandom2: "nulljuga"
-  }, action) {
+export default function reducer(state={}, action) {
 
     if(action.type == ActionList.SET) {
       return {

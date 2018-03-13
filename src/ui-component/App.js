@@ -4,6 +4,7 @@ import './App.css'
 
 import TextBox from './TextBox';
 import DateBox from './DateBox';
+import TimeBox from './TimeBox';
 import DropDownBox from './DropDownBox';
 import ToggleBox from './ToggleBox';
 import NumberBox from './NumberBox';
@@ -16,6 +17,7 @@ import ComponentType from "../util/ComponentType"
 
 class App extends Component {
   render() {
+      console.log("render app bois mamen");
     var elements = this.props.config.map(element => {
       if(!element.hasOwnProperty("type")) {
         return <div>
@@ -52,7 +54,7 @@ class App extends Component {
         </div>
       } else if(element.type === ComponentType.TIME) {
         return <div>
-          time
+          <TimeBox config={element}></TimeBox>
         </div>
       } else if(element.type === ComponentType.ARRAY) {
         var newConfig = [{...element, type: element.child_content.type}];
