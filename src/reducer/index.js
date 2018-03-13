@@ -44,7 +44,11 @@ function f(path, value, storage) {
 export default function reducer(state={}, action) {
 
     if(action.type === ActionList.SET) {
-        f(action.payload.path, action.payload.value, state)
+      return {
+          ...state,
+          [action.payload.path] : action.payload.value
+      }
+      // f(action.payload.path, action.payload.value, state)
     } else if(action.type === ActionList.SET_CONFIG) {
         return {
             ...state,

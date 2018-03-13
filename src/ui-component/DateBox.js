@@ -1,11 +1,12 @@
 import React from "react";
 
+import  ActionList  from "./../reducer/actionList"
 import { connect } from "react-redux";
 import { compose } from "recompose";
+
 import { DateInput, Calendar } from '@progress/kendo-react-dateinputs';
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
-import  ActionList  from "./../reducer/actionList"
 
 class DateBox extends React.Component {
 
@@ -23,13 +24,17 @@ class DateBox extends React.Component {
   render() {
     return <div className="k-form-field">
       <p>{this.state.label}</p>
-      <DatePicker value={this.state.value} onChange={this.changeDate} />
+      <DatePicker value={this.state.value} change={this.changeDate} />
     </div>
   }
 
 
-  changeDate = ({ value }) => {
-    this.setState({ value });
+  changeDate = (event) => {
+    console.log(event.sender._value);
+    const date = event.sender._value;
+    this.state.value = date;
+    console.log("boi");
+    this.props.updateState(this.state.path, this.state.value);
   }
 }
 
@@ -40,7 +45,6 @@ const mapStateToProps = function(storage) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("whew",dispatch);
   return{
     updateState: (path,value) =>
       dispatch({

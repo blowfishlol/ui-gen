@@ -10,6 +10,7 @@ import './index.css';
 import App from './ui-component/App';
 import config from "./example";
 
+
 // console.log(config);
 //
 // const testString = "appointment.patient.gender";
@@ -20,10 +21,22 @@ import config from "./example";
 // pathToObj("appointment.patient.age", 25, outputObject);
 //
 // console.log(outputObject);
+console.log(config);
 
-//Manipulates an object to put a new value depending on the path given.
-//example: path human.gender, with value male
-//will try to put human : { gender : male }
+//bingung kalo di loop harus gimana, cara gabunginnya bingung
+function mapValueToPath(path, value) {
+  var p = path.split(".");
+  if(p.length == 1) {
+    return {
+      [p[0]]: value
+    }
+  }
+  return {
+    [p[0]]: mapValueToPath(path.slice(path.indexOf(".") + 1, path.length), value)
+  }
+}
+
+//manipulasi di dalem functionnya, gak return apa2
 function pathToObj(path, value, object) {
   var parts = path.split(".");
   var part;
@@ -38,17 +51,27 @@ function pathToObj(path, value, object) {
     object = object[part];
   }
 }
+function generateJSON(event) {
 
-var a = []
+  const stateNow = storage.getState();
+  var thing = {};
+  for( var key in stateNow ) {
+    console.log(key, stateNow[key]);
+    pathToObj(key, stateNow[key],thing);
+  }
 
-a[10] = {age: 10}
+  console.log(thing);
 
-console.log("test", a);
+}
 
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
       <App config={storage.getState().config} />
+      <button onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
+
+
+
 registerServiceWorker();

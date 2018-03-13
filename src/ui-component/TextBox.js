@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "recompose";
+import  ActionList  from "./../reducer/actionList"
 import '@progress/kendo-theme-material/dist/all.css';
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 
-export default class TextBox extends React.Component {
+class TextBox extends React.Component {
 
   constructor(props) {
     super(props);
@@ -21,7 +24,41 @@ export default class TextBox extends React.Component {
   render() {
     return <label className="k-form-field">
       <span>{this.state.label}</span>
-      <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>
+      <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath} onChange={(e) => this.handleChange(this.state.path, e)}/>
     </label>
   }
+
+  handleChange(path,event) {
+      console.log(path, event.target.value);
+      this.props.updateState(path,event.target.value);
+  }
 }
+
+const mapStateToProps = function(storage) {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    updateState: (path,value) =>
+      dispatch({
+        type: ActionList.SET,
+        payload: {
+          "path": path,
+          "value": value,
+        }
+      })
+
+
+  }
+
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )
+)(TextBox)

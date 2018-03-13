@@ -104,47 +104,7 @@ var config = [
             }
         ]
     },
-    {
-        "label": "Root",
-        "type": "map",
-        "path": "appointment.patient.cars",
-        "child_content": [
-            {
-                "label": "Child1",
-                "type": "array",
-                "path": "model",
-                "child_content": {
-                    "type": "date",
-                    "required": false,
-                }
-            },
-            {
-              "label": "Child2",
-              "type": "map",
-              "path": "appointment.patient.cars",
-              "child_content": [
-                    {
-                        "label": "Grandchild1",
-                        "type": "number",
-                        "path": "model",
-                        "required": "true",
-                        "value": {
-                            "placeholder": "Enter Car Model Here",
-                        }
-                    },
-                    {
-                        "label": "Grandchild2",
-                        "type": "text",
-                        "path": "plate",
-                        "required": "true",
-                        "value":{
-                            "placeholder": "Enter Car License Here"
-                        },
-                    }
-                ]
-            }
-        ]
-    },
+
 ];
 //
 export default(config);
