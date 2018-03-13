@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '@progress/kendo-theme-material/dist/all.css';
-import './App.css'
+// import './App.css'
 
 import TextBox from './TextBox';
 import DateBox from './DateBox';
@@ -24,53 +24,20 @@ class App extends Component {
           Invalid config file format &quot;{element}&quot;<br />
           type is missing
         </div>
-      } else if(element.type === ComponentType.TEXT) {
-        return <div>
-          <TextBox config={element}></TextBox>
-        </div>
-      } else if(element.type === ComponentType.NUMBER) {
-        return <div>
-          <NumberBox config={element}></NumberBox>
-        </div>
-      } else if(element.type === ComponentType.IMAGE) {
-        return <div>
-          <UploadBox config={element}></UploadBox>
-        </div>
-      } else if(element.type === ComponentType.DROPDOWN) {
-        return <div>
-          <DropDownBox config={element}></DropDownBox>
-        </div>
-      } else if(element.type === ComponentType.CHECKBOX) {
-        return <div>
-          <CheckBox config={element}></CheckBox>
-        </div>
-      } else if(element.type === ComponentType.TOGGLE) {
-        return <div >
-          <ToggleBox config={element}></ToggleBox>
-        </div>
-      } else if(element.type === ComponentType.DATE) {
-        return <div>
-          <DateBox config={element}></DateBox>
-        </div>
-      } else if(element.type === ComponentType.TIME) {
-        return <div>
-          <TimeBox config={element}></TimeBox>
-        </div>
-      } else if(element.type === ComponentType.ARRAY) {
-        var newConfig = [{...element, type: element.child_content.type}];
-        return <div>
-          <ArrayInput config={element}>
-            <App config={newConfig} />
-          </ArrayInput>
-        </div>
-      } else if(element.type === ComponentType.MAP) {
-        return <div>
-          <MapInput config={element} />
-        </div>
-      } else {
-        return <div>
-          Unrecognized config type &quot;{element.type}&quot;
-        </div>
+      }
+
+      switch(element.type) {
+        case ComponentType.TEXT:     return <TextBox config={element} />
+        case ComponentType.NUMBER:   return <NumberBox config={element} />
+        case ComponentType.IMAGE:    return <UploadBox config={element} />
+        case ComponentType.DROPDOWN: return <DropDownBox config={element} />
+        case ComponentType.CHECKBOX: return <CheckBox config={element} />
+        case ComponentType.TOGGLE:   return <ToggleBox config={element} />
+        case ComponentType.DATE:     return <DateBox config={element} />
+        case ComponentType.TIME:     return <div>time</div>
+        case ComponentType.ARRAY:    return <ArrayInput config={element} />
+        case ComponentType.MAP:      return <MapInput config={element} />
+        default:                     return <div>Unrecognized config type &quot;{element.type}&quot;</div>
       }
     })
 
