@@ -9,7 +9,8 @@ export default class ArrayInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["uneeded data for now"]
+      childData: ["uneeded data for now"],
+      key: 0,
     };
   }
 
@@ -28,7 +29,22 @@ export default class ArrayInput extends React.Component {
     } else if(!this.props.config.child_content.hasOwnProperty("type")) {
       return <ErrorBox message="Content type is missing" />
     }
+
+    //if this is the first element, then it just adds the key to the behind.
+    if(this.state.key==0){
+      this.props.config.path = this.props.config.path + "." + this.state.key;
+    }else{
+      //if it not the first, then throw the last part of the path and replace it with the new key
+      //this has to be done becose incoming prop will contain the previous key.
+      var previousPath = this.props.config.path;
+      var previousPathExploded  = previousPath.split(".");
+      previousPathExploded[previousPathExploded.length-1]  = this.state.key;
+      console.log(previousPathExploded,"BOOMMM!!!");
+      this.props.config.path = previousPathExploded.join(".");
+    }
+    this.state.key++;
     var elements = this.state.childData.map(element => {
+
       return <App config={[{...this.props.config, label: "", type:this.props.config.child_content.type}]} />
     });
     return <label>
