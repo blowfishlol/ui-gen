@@ -18,7 +18,7 @@ export default class DateBox extends React.Component {
     render() {
 
         return (
-            <div className='k-form'>
+            <div>
                 <div>
                     <p>{this.state.label}</p>
                     <DatePicker value={this.state.value} onChange={this.changeDate} />

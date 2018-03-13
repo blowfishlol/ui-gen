@@ -18,7 +18,7 @@ export default class DropDownBox extends React.Component {
     render() {
 
         return(
-            <div className="k-form">
+            <div>
                 <div className="k-form-field">
                     <div>{this.props.config.label}</div>
                     <DropDownList data={this.state.values} textField={'text'} valueField={'value'}/*TODO FIX THIS ARGHG defaultItem={this.state.selected}*//>

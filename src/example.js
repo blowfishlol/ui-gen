@@ -1,6 +1,6 @@
 var config = [
     {
-        "label": "name",
+        "label": "Patient Name",
         "type": "text",
         "path": "appointment.patient.name",
         "required": true,

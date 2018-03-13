@@ -27,7 +27,7 @@ export default class CheckBox extends React.Component {
         });
         console.log(checkboxes);
         return(
-            <div className="k-form">
+            <div>
                 <label className="k-form-field">
                     <span>{this.state.label}</span>
                     {checkboxes}

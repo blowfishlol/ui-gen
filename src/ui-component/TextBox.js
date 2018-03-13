@@ -20,7 +20,7 @@ export default class TextBox extends React.Component {
 
   render() {
     return(
-      <div className="k-form">
+      <div>
         <label className="k-form-field">
           <span>{this.state.label}</span>
           <input className="k-textbox" placeholder={this.state.placeholder} value={this.state.default_value} name={this.statepath}/>

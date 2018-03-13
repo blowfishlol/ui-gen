@@ -19,16 +19,14 @@ export default class NumberBox extends React.Component{
     render() {
         return(
         <div className="k-form-field">
-            <div className="k-form">
-            <label>
-                <p>{this.props.config.label}</p>
-                <NumericTextBox
-                    placeholder={this.state.placeholder}
-                    value={this.state.default_value}
-                    name={this.state.path}
-                />
-            </label>
-            </div>
+          <label>
+              <p>{this.props.config.label}</p>
+              <NumericTextBox
+                  placeholder={this.state.placeholder}
+                  value={this.state.default_value}
+                  name={this.state.path}
+              />
+          </label>
         </div>
         )
     }
