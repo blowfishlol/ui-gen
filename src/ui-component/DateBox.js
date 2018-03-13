@@ -11,7 +11,7 @@ export default class DateBox extends React.Component {
             label: labelCheck(this.props.config.label),
             required: this.props.config.required ? "required" : "",
             path: this.props.config.path,
-            value: new Date(null),
+            value: this.props.config.value.default,
         }
     }
 
