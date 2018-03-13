@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux"
+import '@progress/kendo-theme-material/dist/all.css';
 
 import registerServiceWorker from './registerServiceWorker';
 import storage from "./storage"
@@ -11,7 +12,7 @@ import config from "./example";
 console.log(config);
 
 ReactDOM.render(<Provider store={storage}>
-    <div>
+    <div className="row">
       <App config={config} />
     </div>
   </Provider>, document.getElementById('root'));
