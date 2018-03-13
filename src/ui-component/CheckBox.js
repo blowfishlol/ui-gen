@@ -17,11 +17,11 @@ export default class CheckBox extends React.Component {
 
     render() {
         console.log(this.state.contents);
-        const checkboxes = this.state.contents.map(content => {
+        const checkboxes = this.state.contents.map((content,i) => {
             return (
                 <div>
-                    <input type="checkbox" className="k-checkbox" name={this.state.path} id={content.value} value={content.value}/>
-                    <label className="k-checkbox-label" for={content.value}>{content.text}</label>
+                    <input type="checkbox" key={i} className="k-checkbox" name={this.state.path} id={content.value} value={content.value}/>
+                    <label className="k-checkbox-label" key={i} for={content.value}>{content.text}</label>
                 </div>
             )
         });
