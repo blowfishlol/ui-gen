@@ -12,18 +12,20 @@ import config from "./example";
 
 console.log(config);
 
-const testString = "appointment.patient.gender";
-const testValue = "male";
-var outputObject = {};
+//bingung kalo di loop harus gimana, cara gabunginnya bingung
+function mapValueToPath(path, value) {
+  var p = path.split(".");
+  if(p.length == 1) {
+    return {
+      [p[0]]: value
+    }
+  }
+  return {
+    [p[0]]: mapValueToPath(path.slice(path.indexOf(".") + 1, path.length), value)
+  }
+}
 
-pathToObj(testString, testValue, outputObject);
-pathToObj("appointment.patient.age", 25, outputObject);
-
-console.log(outputObject);
-
-//Manipulates an object to put a new value depending on the path given.
-//example: path human.gender, with value male
-//will try to put human : { gender : male }
+//manipulasi di dalem functionnya, gak return apa2
 function pathToObj(path, value, object) {
   var parts = path.split(".");
   var part;
@@ -40,11 +42,27 @@ function pathToObj(path, value, object) {
   }
 }
 
+function generateJSON(event) {
+
+  const stateNow = storage.getState();
+  var thing = {};
+  for( var key in stateNow ) {
+    console.log(key, stateNow[key]);
+    pathToObj(key, stateNow[key],thing);
+  }
+
+  console.log(thing);
+
+}
+
 
 
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
       <App config={config} />
+      <button onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
+
+
 registerServiceWorker();
