@@ -7,6 +7,7 @@ import DateBox from './DateBox';
 import DropDownBox from './DropDownBox';
 import ToggleBox from './ToggleBox';
 import NumberBox from './NumberBox';
+import UploadBox from './UploadBox';
 import CheckBox from './CheckBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
@@ -22,7 +23,7 @@ class App extends Component {
           type is missing
         </div>
       } else if(element.type === ComponentType.TEXT) {
-        return <div className="k-form">
+        return <div>
           <TextBox config={element}></TextBox>
         </div>
       } else if(element.type === ComponentType.NUMBER) {
@@ -31,7 +32,7 @@ class App extends Component {
         </div>
       } else if(element.type === ComponentType.IMAGE) {
         return <div>
-          image
+          <UploadBox config={element}></UploadBox>
         </div>
       } else if(element.type === ComponentType.DROPDOWN) {
         return <div>
@@ -42,7 +43,7 @@ class App extends Component {
           <CheckBox config={element}></CheckBox>
         </div>
       } else if(element.type === ComponentType.TOGGLE) {
-        return <div className="k-form">
+        return <div >
           <ToggleBox config={element}></ToggleBox>
         </div>
       } else if(element.type === ComponentType.DATE) {

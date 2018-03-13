@@ -33,7 +33,7 @@ export default class MapInput extends React.Component {
       return <App config={this.props.config.child_content} />
     });
     return(
-      <div>
+      <div className="k-form">
         <label className="k-form-field">
           <span>{this.props.config.label}</span>
           {elements}

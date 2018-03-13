@@ -15,7 +15,7 @@ var config = [
         "path": "appointment.patient.birthdate",
         "required": true,
         "value": {
-            "default": null
+            "default": "2000-01-01"
         }
     },
     {

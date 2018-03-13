@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@progress/kendo-dateinputs-react-wrapper": "^2018.1.221",
     "@progress/kendo-dropdowns-react-wrapper": "^2018.1.221",
     "@progress/kendo-grid-react-wrapper": "^2018.1.221",
     "@progress/kendo-inputs-react-wrapper": "^2018.1.221",
@@ -12,6 +13,7 @@
     "@progress/kendo-react-intl": "^0.3.0",
     "@progress/kendo-theme-material": "^0.4.1",
     "@progress/kendo-ui": "^2018.1.226",
+    "@progress/kendo-upload-react-wrapper": "^2018.1.221",
     "nodemon": "^1.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
