@@ -56,10 +56,10 @@ function generateJSON(event) {
 }
 
 
-
+storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
-      <App config={config} />
+      <App config={storage.getState().config} />
       <button onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
