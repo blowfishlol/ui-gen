@@ -39,6 +39,12 @@ var config = [
         }
     },
     {
+        "label": "Appointment Time",
+        "type": "time",
+        "path": "appointment.time",
+        "required": true,
+    },
+    {
         "label": "Need Further Examination?",
         "type": "toggle",
         "path": "appointment.furtherExamination",

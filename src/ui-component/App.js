@@ -4,6 +4,7 @@ import '@progress/kendo-theme-material/dist/all.css';
 
 import TextBox from './TextBox';
 import DateBox from './DateBox';
+import TimeBox from './TimeBox';
 import DropDownBox from './DropDownBox';
 import ToggleBox from './ToggleBox';
 import NumberBox from './NumberBox';
@@ -16,6 +17,7 @@ import ComponentType from "../util/ComponentType"
 
 class App extends Component {
   render() {
+      console.log("render app bois mamen");
     var elements = this.props.config.map(element => {
       if(!element.hasOwnProperty("type")) {
         return <div>
@@ -32,7 +34,7 @@ class App extends Component {
         case ComponentType.CHECKBOX: return <CheckBox config={element} />
         case ComponentType.TOGGLE:   return <ToggleBox config={element} />
         case ComponentType.DATE:     return <DateBox config={element} />
-        case ComponentType.TIME:     return <div>time</div>
+        case ComponentType.TIME:     return <TimeBox config={element} />
         case ComponentType.ARRAY:    return <ArrayInput config={element} />
         case ComponentType.MAP:      return <MapInput config={element} />
         default:                     return <div>Unrecognized config type &quot;{element.type}&quot;</div>
