@@ -12,7 +12,7 @@ import config from "./example";
 console.log(config);
 
 ReactDOM.render(<Provider store={storage}>
-    <div className="row">
+    <div className="k-form">
       <App config={config} />
     </div>
   </Provider>, document.getElementById('root'));

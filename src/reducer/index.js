@@ -5,7 +5,7 @@ export default function reducer(state={
     dataRandom2: "nulljuga"
   }, action) {
 
-    if(action.type == ActionList.SET) {
+    if(action.type === ActionList.SET) {
       return {
         ...state,
         [action.payload.prop_name]: action.payload.prop_value
