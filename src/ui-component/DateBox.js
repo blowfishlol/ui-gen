@@ -4,7 +4,6 @@ import  ActionList  from "./../reducer/actionList"
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import { DateInput, Calendar } from '@progress/kendo-react-dateinputs';
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 
@@ -32,6 +31,12 @@ class DateBox extends React.Component {
   changeDate = (event) => {
     console.log(event.sender.value());
     const date = event.sender.value();
+    if(!date){
+      console.log("NOT A DATE",event);
+      alert("Not a proper date format. (DD/MM/YYYY)");
+      return;
+    }
+    //flipped the format so YYYY-MM-DD so programs could accept.
     const dateFixed = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
     this.state.value = date;
     console.log("boi");
