@@ -43,6 +43,7 @@ export default class ArrayInput extends React.Component {
       this.props.config.path = previousPathExploded.join(".");
     }
     this.state.key++;
+    
     var elements = this.state.childData.map(element => {
 
       return <App config={[{...this.props.config, label: "", type:this.props.config.child_content.type}]} />
