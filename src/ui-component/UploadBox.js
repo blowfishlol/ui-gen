@@ -20,14 +20,29 @@ export default class UploadBox extends React.Component {
         }
 
     }
-    
+
     render() {
-        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone}/> ;
+        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone} select={this.uploadHandler} /> ;
         return (
             <div className="k-form-field" id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
                 {maboi}
+                <img id="image"/>
             </div>
         );
+    }
+
+    uploadHandler(event) {
+        var preview = document.getElementById('image');
+        var files = event.files;
+        var file = files[0].rawFile;
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+           preview.src = reader.result;
+         }, false);
+
+        reader.readAsDataURL(file);
+        console.log(reader);
     }
 }
