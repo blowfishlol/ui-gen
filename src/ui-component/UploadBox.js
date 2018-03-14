@@ -22,27 +22,54 @@ export default class UploadBox extends React.Component {
     }
 
     render() {
-        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone} select={this.uploadHandler} /> ;
+        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone} select={this.selectHandler} clear={this.clearHandler} remove={this.removeHandler}/> ;
         return (
             <div className="k-form-field" id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
                 {maboi}
-                <img id="image" alt="" style={{width:"400px", height:"400px"}}/>
+                <div id="imageCollection"></div>
             </div>
         );
     }
 
-    uploadHandler(event) {
-        var preview = document.getElementById('image');
+    selectHandler(event) {
         var files = event.files;
-        var file = files[0].rawFile;
-        var reader = new FileReader();
 
-        reader.addEventListener("load", function () {
-           preview.src = reader.result;
-         }, false);
+        files.forEach((file) => {
+            var preview = document.createElement("IMG");
+            var fileRaw = file.rawFile;
+            var reader = new FileReader();
+            preview.setAttribute("width", 100);
+            preview.setAttribute("height", 100);
+            preview.setAttribute("id", file.uid);
 
-        reader.readAsDataURL(file);
-        console.log(reader);
+            reader.addEventListener("load", function () {
+               preview.src = reader.result;
+             }, false);
+
+            reader.readAsDataURL(fileRaw);
+            document.getElementById("imageCollection").appendChild(preview);
+        });
+
     }
+
+    /**
+    *Clear means remove all upload from the list.
+    **/
+    clearHandler(event) {
+        var coll = document.getElementById("imageCollection");
+        while(coll.hasChildNodes()){
+            coll.removeChild(coll.firstChild);
+        }
+    }
+
+    removeHandler(event) {
+
+        console.log(event);
+        const uid = event.files[0].uid;
+        document.getElementById(uid).remove();
+    }
+
+
+
 }
