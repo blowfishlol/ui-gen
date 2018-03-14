@@ -18,7 +18,6 @@ class TextBox extends React.Component {
   }
 
   render() {
-    console.log(this.props.config.path)
     return <label className="k-form-field">
       <span>{this.state.label}</span>
       <input

@@ -39,7 +39,7 @@ export default class MapInput extends React.Component {
     var elements = this.state.childData.map((element, index) => {
       const childElement = this.clone(this.props.config.child_content)
       for(var i = 0; i < childElement.length; i++) {
-        childElement[i].path = this.props.config.path + "." + index + "." + childElement[i].path\
+        childElement[i].path = this.props.config.path + "." + index + "." + childElement[i].path
       }
       return <div key={this.props.config.path + "." + index} className="mapChild">
         <App config={childElement} />
