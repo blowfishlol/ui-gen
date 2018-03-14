@@ -37,6 +37,7 @@ function mapValueToPath(path, value) {
 }
 
 //manipulasi di dalem functionnya, gak return apa2
+//converts a path and its value to fill an object.
 function pathToObj(path, value, object) {
   var parts = path.split(".");
   var part;
@@ -51,6 +52,7 @@ function pathToObj(path, value, object) {
     object = object[part];
   }
 }
+//generates json by looping on the path and value array
 function generateJSON(event) {
 
   const stateNow = storage.getState();
@@ -61,6 +63,7 @@ function generateJSON(event) {
   }
 
   console.log(thing);
+  console.log(JSON.stringify(thing));
 
 }
 

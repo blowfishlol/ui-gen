@@ -30,11 +30,12 @@ class DateBox extends React.Component {
 
 
   changeDate = (event) => {
-    console.log(event.sender._value);
-    const date = event.sender._value;
+    console.log(event.sender.value());
+    const date = event.sender.value();
+    const dateFixed = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
     this.state.value = date;
     console.log("boi");
-    this.props.updateState(this.state.path, this.state.value);
+    this.props.updateState(this.state.path, dateFixed);
   }
 }
 
