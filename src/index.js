@@ -1,40 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux"
-import '@progress/kendo-theme-material/dist/all.css';
 import { compose } from "recompose"
-import ActionList from "./reducer/actionList"
-import registerServiceWorker from './registerServiceWorker';
+
+import '@progress/kendo-theme-material/dist/all.css';
+
 import storage from "./storage"
-import './index.css';
+import ActionList from "./reducer/actionList"
 import App from './ui-component/App';
 import config from "./example";
-
-
-// console.log(config);
-//
-// const testString = "appointment.patient.gender";
-// const testValue = "male";
-// var outputObject = {};
-//
-// pathToObj(testString, testValue, outputObject);
-// pathToObj("appointment.patient.age", 25, outputObject);
-//
-// console.log(outputObject);
-console.log(config);
-
-//bingung kalo di loop harus gimana, cara gabunginnya bingung
-function mapValueToPath(path, value) {
-  var p = path.split(".");
-  if(p.length == 1) {
-    return {
-      [p[0]]: value
-    }
-  }
-  return {
-    [p[0]]: mapValueToPath(path.slice(path.indexOf(".") + 1, path.length), value)
-  }
-}
+import registerServiceWorker from './registerServiceWorker';
 
 //manipulasi di dalem functionnya, gak return apa2
 //converts a path and its value to fill an object.
@@ -54,17 +29,12 @@ function pathToObj(path, value, object) {
 }
 //generates json by looping on the path and value array
 function generateJSON(event) {
-
   const stateNow = storage.getState();
   var thing = {};
   for( var key in stateNow ) {
     console.log(key, stateNow[key]);
     pathToObj(key, stateNow[key],thing);
   }
-
-  console.log(thing);
-  console.log(JSON.stringify(thing));
-
 }
 
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
@@ -76,7 +46,26 @@ ReactDOM.render(<Provider store={storage}>
       <button onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
-
-
-
 registerServiceWorker();
+
+
+storage.dispatch({type:ActionList.SET, payload: {
+  path: "appointment.id",
+  value: 10
+}});
+console.log("xxxx", storage.getState());
+storage.dispatch({type:ActionList.SET, payload: {
+  path: "appointment.time.start",
+  value: "10:20"
+}});
+console.log("xxxx", storage.getState());
+storage.dispatch({type:ActionList.SET, payload: {
+  path: "patient.time.start",
+  value: "10:20"
+}});
+console.log("xxxx", storage.getState());
+storage.dispatch({type:ActionList.SET, payload: {
+  path: "document",
+  value: null
+}});
+console.log("xxxx", storage.getState());
