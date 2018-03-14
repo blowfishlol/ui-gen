@@ -31,11 +31,8 @@ export default class ArrayInput extends React.Component {
     }
 
     //if this is the first element, then it just adds the key to the behind.
-<<<<<<< HEAD
-    if(this.state.key===0){
-=======
     if(this.state.key === 0){
->>>>>>> 2f5f224bd0839e3871f07494e7dd21f1a56e97b0
+
       this.props.config.path = this.props.config.path + "." + this.state.key;
     }else{
       //if it not the first, then throw the last part of the path and replace it with the new key

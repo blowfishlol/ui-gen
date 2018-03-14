@@ -32,11 +32,8 @@ export default class MapInput extends React.Component {
     const thisPath = this.state.path;
 
     //check if key has generated any child or not. if not, then the path of the parent must be appended to the child.
-<<<<<<< HEAD
-    if(this.state.key===0){
-=======
+
     if(this.state.key === 0) {
->>>>>>> 2f5f224bd0839e3871f07494e7dd21f1a56e97b0
       //this.state.key++;
       const thisKey = this.state.key;
       this.props.config.child_content.forEach(function(child){
