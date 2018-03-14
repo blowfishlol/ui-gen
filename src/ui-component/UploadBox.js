@@ -1,32 +1,67 @@
 import React from "react";
+
+import { connect } from "react-redux";
+import { compose } from "recompose";
+import  ActionList  from "./../reducer/actionList"
+
 import '@progress/kendo-theme-material/dist/all.css';
 import { Upload } from '@progress/kendo-upload-react-wrapper';
 import "@progress/kendo-ui";
 import { labelCheck } from '../util/InfoChecker';
 
-export default class UploadBox extends React.Component {
+class UploadBox extends React.Component {
 
     constructor(props) {
         super(props);
         this.async = {
-            saveUrl: "http://my-app.localhost/save",
-            removeUrl: "http://my-app.localhost/remove",
+            saveUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
+            removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
             autoUpload: false
         }
         this.dropZone = ".dropZoneElement"
         this.state = {
             label: labelCheck(this.props.config.label),
             path: this.props.config.path,
+            names: [],
         }
-
+        this.self=this;
     }
 
     render() {
-        const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone} select={this.selectHandler} clear={this.clearHandler} remove={this.removeHandler}/> ;
+
+        /**
+        *upload event means that each individual file is uploaded
+        *complete event means that All images are done uploading.
+        *In in case of upload, it will push the name of the uploaded file into the state containing the names collection
+        *If all files have completed the upload, complete event will trigger and will set the names of the uploadbox state to the app state.
+        **/
         return (
             <div className="k-form-field" id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
-                {maboi}
+                  <Upload
+                    className="upppp"
+                    id="up"
+                    async= {this.async}
+                    dropZone={this.dropZone}
+                    complete={(event) => {
+                        console.log(event);
+                        //console.log("NAMES",names);
+                        this.props.updateState(this.state.path, this.state.names);
+                    }}
+                    upload={(event) => {
+                        var files = event.files;
+                        console.log("files",files);
+                        var nameState = this.state.names;
+                        console.log(nameState);
+                        files.forEach((file) => {
+                            nameState.push(file.name)
+                            this.setState({names: nameState});
+                        });
+                    }}
+                    select={this.selectHandler}
+                    clear={this.clearHandler}
+                    remove={this.removeHandler}
+                  />
                 <div id="imageCollection"></div>
             </div>
         );
@@ -70,6 +105,42 @@ export default class UploadBox extends React.Component {
         document.getElementById(uid).remove();
     }
 
+    /**
+    *TODO: If API available, change the names into the ID that they get from the server.
+    **/
+    uploadHandler(event,self) {
+        var files = event.files;
 
+        var names = [];
+        files.forEach((file) => {
+            names.push(file.name);
+        });
+
+        self.props.updateState(this.state.path, names);
+    }
 
 }
+
+const mapStateToProps = function(storage) {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateState: (path,value) => dispatch({
+      type: ActionList.SET,
+      payload: {
+        "path": path,
+        "value": value,
+      }
+    })
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )
+)(UploadBox)
