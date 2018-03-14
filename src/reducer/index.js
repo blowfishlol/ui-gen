@@ -47,6 +47,8 @@ function set(path, value, ptr) {
  * [MOTI]
  * TODO
  * modify this clone function with a better way to clone an object
+ *[msg from wibi:]
+ *Ini udh bagus kok, daripada rempong dan ini performance wise optimal wkwk
  */
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj))

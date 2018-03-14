@@ -10,7 +10,7 @@ import ActionList from "./reducer/actionList"
 import App from './ui-component/App';
 import config from "./example";
 import registerServiceWorker from './registerServiceWorker';
-
+import "./index.css";
 //manipulasi di dalem functionnya, gak return apa2
 //converts a path and its value to fill an object.
 function pathToObj(path, value, object) {
