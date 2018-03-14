@@ -31,7 +31,7 @@ export default class ArrayInput extends React.Component {
     }
 
     //if this is the first element, then it just adds the key to the behind.
-    if(this.state.key==0){
+    if(this.state.key === 0){
       this.props.config.path = this.props.config.path + "." + this.state.key;
     }else{
       //if it not the first, then throw the last part of the path and replace it with the new key
@@ -43,7 +43,7 @@ export default class ArrayInput extends React.Component {
       this.props.config.path = previousPathExploded.join(".");
     }
     this.state.key++;
-    
+
     var elements = this.state.childData.map(element => {
 
       return <App config={[{...this.props.config, label: "", type:this.props.config.child_content.type}]} />

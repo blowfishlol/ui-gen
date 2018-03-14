@@ -36,7 +36,6 @@ class DropDownBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-
   }
 }
 
@@ -50,10 +49,7 @@ const mapDispatchToProps = (dispatch) => {
           "value": value,
         }
       })
-
-
   }
-
 }
 
 export default compose(

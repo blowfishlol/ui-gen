@@ -17,7 +17,6 @@ export default class MapInput extends React.Component {
 
   add() {
       console.log("Ma Boi",this.state);
-      var newState = {...this.state};
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["uneeded data for now"])
@@ -33,7 +32,7 @@ export default class MapInput extends React.Component {
     const thisPath = this.state.path;
 
     //check if key has generated any child or not. if not, then the path of the parent must be appended to the child.
-    if(this.state.key==0){
+    if(this.state.key === 0) {
       //this.state.key++;
       const thisKey = this.state.key;
       this.props.config.child_content.forEach(function(child){
@@ -43,7 +42,7 @@ export default class MapInput extends React.Component {
       this.state.init = true;
     }
     //If this is not the first child, then it will split the given path and then take the last part.
-    if(this.state.key>0) {
+    if(this.state.key > 0) {
       const thisKey = this.state.key;
       //for each child in the map
       this.props.config.child_content.forEach(function(child){
@@ -63,7 +62,7 @@ export default class MapInput extends React.Component {
     //  this.props.config.child_content[i].path = this.state.path + "." + this.props.config.child_content[i].path;
   }*/
     var elements = this.state.childData.map(element => {
-      return <div class="mapChild">
+      return <div className="mapChild">
         <App config={this.props.config.child_content} />
       </div>
     });

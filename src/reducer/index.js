@@ -1,28 +1,28 @@
 import ActionList from "./actionList"
 import storage from "../storage"
 
-function pathToObj(path, value, object) {
-  var parts = path.split(".");
-  var part;
-  while(part = parts.shift()){
-    if( typeof object[part] != "object" ) {
-      if(!parts[0]){
-        object[part]=value;
-      } else {
-        object[part]={};
-      }
-    }
-    object = object[part];
-  }
-}
-
-function generateJSON(event) {
-  const stateNow = storage.getState();
-  var thing = {};
-  for( var key in stateNow ) {
-    pathToObj(key, stateNow[key],thing);
-  }
-}
+// function pathToObj(path, value, object) {
+//   var parts = path.split(".");
+//   var part;
+//   while(part = parts.shift()){
+//     if( typeof object[part] != "object" ) {
+//       if(!parts[0]){
+//         object[part]=value;
+//       } else {
+//         object[part]={};
+//       }
+//     }
+//     object = object[part];
+//   }
+// }
+//
+// function generateJSON(event) {
+//   const stateNow = storage.getState();
+//   var thing = {};
+//   for( var key in stateNow ) {
+//     pathToObj(key, stateNow[key],thing);
+//   }
+// }
 
 /**
  * [MOTI]
@@ -32,7 +32,7 @@ function generateJSON(event) {
  * by returning new instance of state.data to overwrite the old one
  */
 function set(path, value, ptr) {
-  if(path.length == 1) {
+  if(path.length === 1) {
     ptr[path[0]] = value
     return ptr
   } else {

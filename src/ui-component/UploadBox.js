@@ -20,6 +20,7 @@ export default class UploadBox extends React.Component {
         }
 
     }
+    
     render() {
         const maboi = <Upload className="upppp" id="up" async= {this.async} dropZone={this.dropZone}/> ;
         return (
@@ -29,5 +30,4 @@ export default class UploadBox extends React.Component {
             </div>
         );
     }
-
 }

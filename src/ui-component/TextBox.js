@@ -50,10 +50,7 @@ const mapDispatchToProps = (dispatch) => {
                 "value": value,
             }
         })
-
-
     }
-
 }
 
 export default compose(
