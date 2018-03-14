@@ -27,7 +27,7 @@ function generateJSON(event) {
 /**
  * [MOTI]
  * function set
- * set the given value to this reducer state.set_data
+ * set the given value to this reducer state.data
  * in the given route by path
  * by returning new instance of state.data to overwrite the old one
  */
@@ -68,10 +68,6 @@ export default function reducer(state={
         ...state,
         config : action.payload
       }
-    } else if(action.type === ActionList.FLUSH) {
-        return {
-          ...state
-        }
   } else {
     return state;
   }
