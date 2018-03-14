@@ -5,8 +5,8 @@ import { compose } from "recompose";
 import  ActionList  from "./../reducer/actionList"
 
 import '@progress/kendo-theme-material/dist/all.css';
-import { Upload } from '@progress/kendo-upload-react-wrapper';
 import "@progress/kendo-ui";
+import { Upload } from '@progress/kendo-upload-react-wrapper';
 import { labelCheck } from '../util/InfoChecker';
 
 class UploadBox extends React.Component {
@@ -18,30 +18,29 @@ class UploadBox extends React.Component {
             removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
             autoUpload: false
         }
-        this.dropZone = ".dropZoneElement"
+        this.dropZone = ".dropZoneElement";
         this.state = {
             label: labelCheck(this.props.config.label),
             path: this.props.config.path,
             names: [],
-        }
-        this.self=this;
+        };
+
     }
 
     render() {
-
+        console.log(this.dropZone);
         /**
         *upload event means that each individual file is uploaded
         *complete event means that All images are done uploading.
         *In in case of upload, it will push the name of the uploaded file into the state containing the names collection
         *If all files have completed the upload, complete event will trigger and will set the names of the uploadbox state to the app state.
+        *TODO: Fix the styling of the drop box. currently not accurate and weird.
         **/
         return (
-            <div className="k-form-field" id="ba">
+            <div>
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
                   <Upload
-                    className="upppp"
-                    id="up"
-                    async= {this.async}
+                    async={this.async}
                     dropZone={this.dropZone}
                     complete={(event) => {
                         console.log(event);
