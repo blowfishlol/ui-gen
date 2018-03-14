@@ -21,12 +21,10 @@ class CheckBox extends React.Component {
     //Path for each checkbox is: path of object + value of each checkbox
       const checkboxes = this.state.contents.map(content => {
         this.props.updateState(this.state.path+"."+content.value, false);
-        return (
-          <div>
-            <input type="checkbox" className="k-checkbox" name={this.state.path} id={content.value} value={content.value} onClick={(e) => this.handleChange(this.state.path+"."+content.value,e)}/>
-            <label className="k-checkbox-label" htmlFor={content.value}>&nbsp;&nbsp;&nbsp;{content.text}</label>
-          </div>
-        )
+        return <div key={content.value}>
+          <input type="checkbox" className="k-checkbox" name={this.state.path} id={content.value} value={content.value} onClick={(e) => this.handleChange(this.state.path+"."+content.value,e)}/>
+          <label className="k-checkbox-label" htmlFor={content.value}>&nbsp;&nbsp;&nbsp;{content.text}</label>
+        </div>
     });
     return <label className="k-form-field">
       <span>{this.state.label}</span>

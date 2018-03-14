@@ -9,18 +9,24 @@ export default class MapInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["uneeded data for now"],
-      path: this.props.config.path,
-      key: 0, //to store the key of each element in the map.
+      childData: ["uneeded data for now"]
     };
   }
 
   add() {
-      console.log("Ma Boi",this.state);
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["uneeded data for now"])
     });
+  }
+
+  /**
+   * [MOTI]
+   * TODO
+   * modify this clone function with a better way to clone an object
+   */
+  clone(obj) {
+    return JSON.parse(JSON.stringify(obj))
   }
 
   render() {
@@ -29,43 +35,17 @@ export default class MapInput extends React.Component {
     } else if(!this.props.config.hasOwnProperty("child_content")) {
       return <ErrorBox message="Content is missing" />
     }
-    const thisPath = this.state.path;
 
-    //check if key has generated any child or not. if not, then the path of the parent must be appended to the child.
-    if(this.state.key === 0) {
-      //this.state.key++;
-      const thisKey = this.state.key;
-      this.props.config.child_content.forEach(function(child){
-        //console.log(child.path,thisPath);
-        child.path = thisPath + "." + thisKey + "." + child.path;
-      })
-      this.state.init = true;
-    }
-    //If this is not the first child, then it will split the given path and then take the last part.
-    if(this.state.key > 0) {
-      const thisKey = this.state.key;
-      //for each child in the map
-      this.props.config.child_content.forEach(function(child){
-        const previousPath = child.path;
-        //split the previous path from the parent because it will include all the path, not just the alst part
-        const previousPathExploded = previousPath.split(".");
-        //take the last element of the split path so it gets what it wants
-        const childPath = previousPathExploded[previousPathExploded.length-1];
-        console.log(thisPath + "." + thisKey + "." + childPath, "AFTER 0");
-        child.path = thisPath + "." + thisKey + "." + childPath;
-      });
-    }
-    this.state.key++;
-    console.log(this.state.key,"KEYT");
-    /*for(let i = 0 ; i < this.props.config.child_content.length ; i++){
-      console.log(this.props.config.child_content[i].path, this.state.path);
-    //  this.props.config.child_content[i].path = this.state.path + "." + this.props.config.child_content[i].path;
-  }*/
-    var elements = this.state.childData.map(element => {
-      return <div className="mapChild">
-        <App config={this.props.config.child_content} />
+    var elements = this.state.childData.map((element, index) => {
+      const childElement = this.clone(this.props.config.child_content)
+      for(var i = 0; i < childElement.length; i++) {
+        childElement[i].path = this.props.config.path + "." + index + "." + childElement[i].path\
+      }
+      return <div key={this.props.config.path + "." + index} className="mapChild">
+        <App config={childElement} />
       </div>
     });
+
     return <label className="k-form-field">
       <span>{this.props.config.label}</span>
       <div className="k-form">

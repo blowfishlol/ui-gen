@@ -1,11 +1,12 @@
 import React from "react";
 
-import  ActionList  from "./../reducer/actionList"
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck, defaultCheck } from '../util/InfoChecker';
+
+import  ActionList  from "./../reducer/actionList"
 
 class DateBox extends React.Component {
 
@@ -37,7 +38,10 @@ class DateBox extends React.Component {
     }
     //flipped the format so YYYY-MM-DD so programs could accept.
     const dateFixed = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-    this.state.value = date;
+    this.setState({
+      ...this.state,
+      value: date
+    })
     console.log("boi");
     this.props.updateState(this.state.path, dateFixed);
   }
@@ -50,14 +54,13 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) =>
-      dispatch({
-        type: ActionList.SET,
-        payload: {
-          "path": path,
-          "value": value,
-        }
-      })
+    updateState: (path,value) => dispatch({
+      type: ActionList.SET,
+      payload: {
+        "path": path,
+        "value": value,
+      }
+    })
   }
 }
 
