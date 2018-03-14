@@ -12,6 +12,12 @@ export default class MapInput extends React.Component {
     };
   }
 
+  /**
+   * [MOTI]
+   * the data inside array does not matter
+   * class only see the array length
+   * used to repliate same component in render
+   */
   add() {
     this.setState({
       ...this.state,
