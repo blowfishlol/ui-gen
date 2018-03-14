@@ -15,6 +15,12 @@ export default class ArrayInput extends React.Component {
   }
 
   add() {
+    /**
+     * [MOTI]
+     * the data inside array does not matter
+     * class only see the array length
+     * used to repliate same component in render
+     */
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["just to replicate child"])

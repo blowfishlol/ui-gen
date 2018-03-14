@@ -1,29 +1,6 @@
 import ActionList from "./actionList"
 import storage from "../storage"
 
-// function pathToObj(path, value, object) {
-//   var parts = path.split(".");
-//   var part;
-//   while(part = parts.shift()){
-//     if( typeof object[part] != "object" ) {
-//       if(!parts[0]){
-//         object[part]=value;
-//       } else {
-//         object[part]={};
-//       }
-//     }
-//     object = object[part];
-//   }
-// }
-//
-// function generateJSON(event) {
-//   const stateNow = storage.getState();
-//   var thing = {};
-//   for( var key in stateNow ) {
-//     pathToObj(key, stateNow[key],thing);
-//   }
-// }
-
 /**
  * [MOTI]
  * function set
@@ -59,6 +36,13 @@ export default function reducer(state={
 }, action) {
 
   if(action.type === ActionList.SET) {
+    /**
+     * [MOTI]
+     * action SET is used to set any kind of data from the view
+     * param required in payload:
+     *  path: where the data will be stored in data hierachy, ex: user.name.firstname
+     *  value: value that desired to be stored in designated path
+     */
     return {
       ...state,
       data: set(action.payload.path.split("."), action.payload.value, clone(storage.getState().data))
