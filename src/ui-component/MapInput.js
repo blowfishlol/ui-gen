@@ -1,5 +1,4 @@
 import React from "react";
-import '@progress/kendo-theme-material/dist/all.css';
 
 import App from './App';
 import ErrorBox from './ErrorBox';
