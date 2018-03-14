@@ -13,7 +13,7 @@ class TimeBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
-      required: this.props.config.required ? "required" : "",
+      // required: this.props.config.required ? "required" : "",
       path: this.props.config.path,
       value: defaultCheck(this.props.config.value),
     }
@@ -42,8 +42,7 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) =>
-    dispatch({
+    updateState: (path,value) => dispatch({
       type: ActionList.SET,
       payload: {
         "path": path,
