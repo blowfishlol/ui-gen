@@ -27,7 +27,7 @@ export default class UploadBox extends React.Component {
             <div className="k-form-field" id="ba">
                 <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
                 {maboi}
-                <img id="image"/>
+                <img id="image" alt="" style={{width:"400px", height:"400px"}}/>
             </div>
         );
     }

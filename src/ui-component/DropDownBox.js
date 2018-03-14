@@ -5,7 +5,7 @@ import  ActionList  from "./../reducer/actionList"
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import { labelCheck, requiredCheck } from '../util/InfoChecker';
+import { labelCheck } from '../util/InfoChecker';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 class DropDownBox extends React.Component {
@@ -14,7 +14,7 @@ class DropDownBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
-      required: requiredCheck(this.props.config.required),
+      // required: requiredCheck(this.props.config.required),
       path: this.props.config.path,
       values: this.props.config.value.contents,
       selected: this.props.config.value.default,//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
@@ -41,14 +41,13 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) =>
-      dispatch({
-        type: ActionList.SET,
-        payload: {
-          "path": path,
-          "value": value,
-        }
-      })
+    updateState: (path,value) => dispatch({
+      type: ActionList.SET,
+      payload: {
+        "path": path,
+        "value": value,
+      }
+    })
   }
 }
 
