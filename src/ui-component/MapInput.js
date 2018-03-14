@@ -50,7 +50,7 @@ export default class MapInput extends React.Component {
       <div className="k-form">
         {elements}
       </div>
-      <button onClick={() => this.add()}>ADD</button>
+      <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </label>
   }
 }

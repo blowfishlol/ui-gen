@@ -45,7 +45,7 @@ export default class ArrayInput extends React.Component {
     return <label>
       <span>{this.props.config.label}</span>
       {elements}
-      <button onClick={() => this.add()}>ADD</button>
+      <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </label>
   }
 }

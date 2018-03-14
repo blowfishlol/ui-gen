@@ -20,9 +20,7 @@ console.log(storage.getState());
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
       <App config={storage.getState().config} />
-      <button onClick={generateJSON}>Generate JSON</button>
+      <button className="k-button k-primary" onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
-
-// console.log(typeof(0), parseInt("pppp"), typeof(""))
