@@ -33,24 +33,24 @@ export default class UploadBox extends React.Component {
     }
 
     selectHandler(event) {
-        var preview = document.createElement("IMG");
         var files = event.files;
-        var file = files[0];
-        var fileRaw = file.rawFile;
-        var reader = new FileReader();
 
-        console.log(files[0]);
+        files.forEach((file) => {
+            var preview = document.createElement("IMG");
+            var fileRaw = file.rawFile;
+            var reader = new FileReader();
+            preview.setAttribute("width", 100);
+            preview.setAttribute("height", 100);
+            preview.setAttribute("id", file.uid);
 
-        preview.setAttribute("width", 100);
-        preview.setAttribute("height", 100);
-        preview.setAttribute("id", file.uid);
+            reader.addEventListener("load", function () {
+               preview.src = reader.result;
+             }, false);
 
-        reader.addEventListener("load", function () {
-           preview.src = reader.result;
-         }, false);
+            reader.readAsDataURL(fileRaw);
+            document.getElementById("imageCollection").appendChild(preview);
+        });
 
-        reader.readAsDataURL(fileRaw);
-        document.getElementById("imageCollection").appendChild(preview);
     }
 
     /**
