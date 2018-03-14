@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import  ActionList  from "./../reducer/actionList"
+
 import '@progress/kendo-theme-material/dist/all.css';
+
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
+import  ActionList  from "./../reducer/actionList"
 
 class TextBox extends React.Component {
 

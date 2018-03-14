@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
+
 import '@progress/kendo-theme-material/dist/all.css';
+
 import { labelCheck, requiredCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 

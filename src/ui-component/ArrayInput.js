@@ -10,14 +10,14 @@ export default class ArrayInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["uneeded data for now"]
+      childData: ["this data is just a filler"]
     };
   }
 
   add() {
     this.setState({
       ...this.state,
-      childData: this.state.childData.concat(["uneeded data for now"])
+      childData: this.state.childData.concat(["just to replicate child"])
     });
   }
 
