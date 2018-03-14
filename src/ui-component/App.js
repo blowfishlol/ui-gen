@@ -21,24 +21,21 @@ export default class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
       if(!element.hasOwnProperty("type")) {
-        var msg = 'Invalid config file format "' +
-                    JSON.stringify(element) +
-                    '". Type is missing'
-        return <ErrorBox message={msg} />
+        return <ErrorBox key={element.path} message={'Invalid config file format "' + JSON.stringify(element) + '". Type is missing'} />
       }
 
       switch(element.type) {
-        case ComponentType.TEXT:     return <TextBox config={element} />
-        case ComponentType.NUMBER:   return <NumberBox config={element} />
-        case ComponentType.IMAGE:    return <UploadBox config={element} />
-        case ComponentType.DROPDOWN: return <DropDownBox config={element} />
-        case ComponentType.CHECKBOX: return <CheckBox config={element} />
-        case ComponentType.TOGGLE:   return <ToggleBox config={element} />
-        case ComponentType.DATE:     return <DateBox config={element} />
-        case ComponentType.TIME:     return <TimeBox config={element} />
-        case ComponentType.ARRAY:    return <ArrayInput config={element} />
-        case ComponentType.MAP:      return <MapInput config={element} />
-        default:                     return <div>Unrecognized config type &quot;{element.type}&quot;</div>
+        case ComponentType.TEXT:     return <TextBox key={element.path} config={element} />
+        case ComponentType.NUMBER:   return <NumberBox key={element.path} config={element} />
+        case ComponentType.IMAGE:    return <UploadBox key={element.path} config={element} />
+        case ComponentType.DROPDOWN: return <DropDownBox key={element.path} config={element} />
+        case ComponentType.CHECKBOX: return <CheckBox key={element.path} config={element} />
+        case ComponentType.TOGGLE:   return <ToggleBox key={element.path} config={element} />
+        case ComponentType.DATE:     return <DateBox key={element.path} config={element} />
+        case ComponentType.TIME:     return <TimeBox key={element.path} config={element} />
+        case ComponentType.ARRAY:    return <ArrayInput key={element.path} config={element} />
+        case ComponentType.MAP:      return <MapInput key={element.path} config={element} />
+        default:                     return <ErrorBox key={element.path} message={'Unrecognized element type "' + element.type + '"'} />
       }
     })
 
