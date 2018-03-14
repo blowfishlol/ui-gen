@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import '@progress/kendo-theme-material/dist/all.css';
-
 import { NumericTextBox } from '@progress/kendo-react-inputs';
 
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';

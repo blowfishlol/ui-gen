@@ -1,5 +1,4 @@
 import React from "react";
-import '@progress/kendo-theme-material/dist/all.css';
 
 import App from './App';
 import ErrorBox from './ErrorBox';
@@ -51,7 +50,7 @@ export default class MapInput extends React.Component {
       <div className="k-form">
         {elements}
       </div>
-      <button onClick={() => this.add()}>ADD</button>
+      <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </label>
   }
 }

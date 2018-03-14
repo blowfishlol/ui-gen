@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import '@progress/kendo-theme-material/dist/all.css';
 import './style.css'
 
 import TextBox from './TextBox';

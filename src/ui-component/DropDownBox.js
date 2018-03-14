@@ -1,12 +1,11 @@
 import React from "react";
-// import { DateInput, Calendar } from '@progress/kendo-react-dateinputs';
-
-import  ActionList  from "./../reducer/actionList"
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import { labelCheck } from '../util/InfoChecker';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
+
+import { labelCheck } from '../util/InfoChecker';
+import  ActionList  from "./../reducer/actionList"
 
 class DropDownBox extends React.Component {
 
@@ -15,7 +14,6 @@ class DropDownBox extends React.Component {
     this.state = {
       label: labelCheck(this.props.config.label),
       // required: requiredCheck(this.props.config.required),
-      path: this.props.config.path,
       values: this.props.config.value.contents,
       selected: this.props.config.value.default,//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
     }
@@ -23,14 +21,13 @@ class DropDownBox extends React.Component {
 
   render() {
     return <div className="k-form-field">
-      <div>{this.props.config.label}</div>
-      <DropDownList data={this.state.values} textField={'text'} valueField={'value'} onChange={(event) => this.changeValue(event)}/>
+      <div>{this.state.label}</div>
+      <DropDownList
+        data={this.state.values}
+        textField={'text'}
+        valueField={'value'}
+        onChange={(evt) => this.props.updateState(this.props.config.path, evt.target.value)}/>
     </div>
-  }
-
-  changeValue = (event) => {
-    //console.log(event.target.value);
-    this.props.updateState(this.state.path, event.target.value);
   }
 }
 
