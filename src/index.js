@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux"
-import { compose } from "recompose"
 
 import '@progress/kendo-theme-material/dist/all.css';
 import "./index.css"

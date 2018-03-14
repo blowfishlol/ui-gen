@@ -5,7 +5,7 @@ function pathToObj(path, value, object) {
   var parts = path.split(".");
   var part;
   while(part = parts.shift()){
-    if( typeof object[part] != "object" ) {
+    if( typeof object[part] !== "object" ) {
       if(!parts[0]){
         object[part]=value;
       } else {
@@ -32,7 +32,7 @@ function generateJSON(event) {
  * by returning new instance of state.data to overwrite the old one
  */
 function set(path, value, ptr) {
-  if(path.length == 1) {
+  if(path.length === 1) {
     ptr[path[0]] = value
     return ptr
   } else {
