@@ -16,18 +16,22 @@ class CheckBox extends React.Component {
     }
   }
 
+  /**
+  * Each checkbox have different path because they are differed by the value.
+  * In render, the program automatically updates the state of the path into false, in case the user dont want to check because the actual value is false.
+  * In previous case, if it is not checked then the state will not be stored. Now it stores false by default because update state is called initially.
+  */
   render() {
     const checkboxes = this.state.contents.map(content => {
       const childPath = this.props.config.path + "." + content.value
       this.props.updateState(childPath, false)
-
       return <div key={childPath}>
         <input
           type="checkbox"
           className="k-checkbox"
           id={content.value}
           value={content.value}
-          onClick={(evt) => this.props.updateState(childPath, evt.target.checked)}/>
+          onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
         <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
       </div>
     });
