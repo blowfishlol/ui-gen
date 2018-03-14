@@ -22,7 +22,7 @@ class ToggleBox extends React.Component {
       <span>{this.state.label}</span>
       <div>
         <input type="checkbox" className="k-checkbox" name={this.state.path} id={this.state.path} onClick={(e) => this.handleChange(this.state.path,e)}/>
-        <label className="k-checkbox-label" for={this.state.path}>&nbsp;&nbsp;&nbsp;Yes</label>
+        <label className="k-checkbox-label" htmlFor={this.state.path}>&nbsp;&nbsp;&nbsp;Yes</label>
       </div>
     </label>
   }
@@ -48,10 +48,7 @@ const mapDispatchToProps = (dispatch) => {
           "value": value,
         }
       })
-
-
   }
-
 }
 
 export default compose(

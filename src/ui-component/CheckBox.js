@@ -24,7 +24,7 @@ class CheckBox extends React.Component {
         return (
           <div>
             <input type="checkbox" className="k-checkbox" name={this.state.path} id={content.value} value={content.value} onClick={(e) => this.handleChange(this.state.path+"."+content.value,e)}/>
-            <label className="k-checkbox-label" for={content.value}>&nbsp;&nbsp;&nbsp;{content.text}</label>
+            <label className="k-checkbox-label" htmlFor={content.value}>&nbsp;&nbsp;&nbsp;{content.text}</label>
           </div>
         )
     });
@@ -37,14 +37,10 @@ class CheckBox extends React.Component {
   handleChange(path,event) {
     this.props.updateState(path,event.target.checked);
   }
-
 }
-
-
 
 const mapStateToProps = function(storage) {
   return {
-
   }
 }
 
@@ -58,10 +54,7 @@ const mapDispatchToProps = (dispatch) => {
           "value": value,
         }
       })
-
-
   }
-
 }
 
 export default compose(

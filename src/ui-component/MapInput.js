@@ -32,7 +32,11 @@ export default class MapInput extends React.Component {
     const thisPath = this.state.path;
 
     //check if key has generated any child or not. if not, then the path of the parent must be appended to the child.
+<<<<<<< HEAD
     if(this.state.key===0){
+=======
+    if(this.state.key === 0) {
+>>>>>>> 2f5f224bd0839e3871f07494e7dd21f1a56e97b0
       //this.state.key++;
       const thisKey = this.state.key;
       this.props.config.child_content.forEach(function(child){
@@ -42,7 +46,7 @@ export default class MapInput extends React.Component {
       this.state.init = true;
     }
     //If this is not the first child, then it will split the given path and then take the last part.
-    if(this.state.key>0) {
+    if(this.state.key > 0) {
       const thisKey = this.state.key;
       //for each child in the map
       this.props.config.child_content.forEach(function(child){
@@ -58,7 +62,7 @@ export default class MapInput extends React.Component {
     this.state.key++;
 
     var elements = this.state.childData.map(element => {
-      return <div class="mapChild">
+      return <div className="mapChild">
         <App config={this.props.config.child_content} />
       </div>
     });

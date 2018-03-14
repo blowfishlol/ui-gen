@@ -35,14 +35,12 @@ class NumberBox extends React.Component{
   }
 
   changeNumber = (event) => {
-    //console.log(event);
     this.props.updateState(this.state.path, event.value);
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
-
   }
 }
 
@@ -56,10 +54,7 @@ const mapDispatchToProps = (dispatch) => {
           "value": value,
         }
       })
-
-
   }
-
 }
 
 export default compose(

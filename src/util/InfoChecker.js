@@ -13,7 +13,7 @@ export function defaultCheck(value) {
         }
     }
 
-    return null;
+    return "";
 
 }
 

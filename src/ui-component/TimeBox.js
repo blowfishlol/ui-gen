@@ -33,14 +33,10 @@ class TimeBox extends React.Component {
 
     this.props.updateState(path,time);
   }
-
-
 }
-
 
 const mapStateToProps = function(storage) {
   return {
-
   }
 }
 
@@ -54,10 +50,7 @@ const mapDispatchToProps = (dispatch) => {
         "value": value,
       }
     })
-
-
   }
-
 }
 
 export default compose(

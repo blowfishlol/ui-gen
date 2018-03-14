@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
-import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
+import { labelCheck, defaultCheck } from '../util/InfoChecker';
 
 class DateBox extends React.Component {
 
@@ -18,7 +18,6 @@ class DateBox extends React.Component {
       value: defaultCheck(this.props.config.value),
     }
   }
-
 
   render() {
     return <div className="k-form-field">
@@ -46,7 +45,6 @@ class DateBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-
   }
 }
 
@@ -60,10 +58,7 @@ const mapDispatchToProps = (dispatch) => {
           "value": value,
         }
       })
-
-
   }
-
 }
 
 export default compose(

@@ -1,10 +1,7 @@
 import React from "react";
 
-export default class ErrorBox extends React.Component {
-
-  render() {
-    return <div class="errorBox">
-      <strong>Error!</strong>&nbsp;{this.props.message}
-    </div>
-  }
+export default function ErrorBox(props) {
+  return <div class="errorBox">
+    <strong>Error!</strong>&nbsp;{props.message}
+  </div>
 }

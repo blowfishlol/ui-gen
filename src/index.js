@@ -16,7 +16,6 @@ function generateJSON(event) {
 }
 
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
-//storage.dispatch({type:ActionList.SET_CONFIG, payload: {name: "baba", id: "bubu"}});
 console.log(storage.getState());
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
