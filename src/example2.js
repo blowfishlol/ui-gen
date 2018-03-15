@@ -49,7 +49,7 @@ var page = [
                 "value": {
                     "default": "C:/Windows/System32"
                 },
-                "rendered": "installation.mode == \"custom\""
+                "rendered": "installation.mode == 'custom'"
             }
         ]
     }
