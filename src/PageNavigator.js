@@ -10,10 +10,6 @@ import ActionList from "./reducer/actionList"
 
 class PageNavigator extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
   }
