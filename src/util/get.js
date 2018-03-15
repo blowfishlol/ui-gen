@@ -10,7 +10,6 @@ export default function f(path, type) {
 }
 
 function set(path, type) {
-  console.log("set new")
   storage.dispatch({
     type: ActionList.SET,
     payload: {

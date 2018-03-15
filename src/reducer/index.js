@@ -32,7 +32,8 @@ function clone(obj) {
 }
 
 export default function reducer(state={
-  data: {}
+  data: [],
+  app_state: []
 }, action) {
 
   if(action.type === ActionList.SET) {
@@ -45,13 +46,26 @@ export default function reducer(state={
      */
     return {
       ...state,
-      data: set(action.payload.path.split("."), action.payload.value, clone(storage.getState().data))
+      data: this.state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(storage.getState().data)))
     }
   } else if(action.type === ActionList.SET_CONFIG) {
-      return {
-        ...state,
-        config : action.payload
-      }
+    return {
+      ...state,
+      config : action.payload
+    }
+  } else if(action.type === ActionList.PUSH_STACK) {
+    return {
+      ...state,
+      app_state : this.state.app_state.concat({
+        index: action.payload.index,
+        history: this.state.data.length
+      })
+    }
+  } else if(action.type === ActionList.POP_STACK) {
+    return {
+      ...state,
+      app_state : this.state.app_state.concat(action.payload.index)
+    }
   } else {
     return state;
   }
