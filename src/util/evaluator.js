@@ -12,6 +12,11 @@ export default function f(arg) {
 
 }
 
+/**
+ * Starting point of the validator.
+ * If found exclamation mark will go to isExcMark
+ * if not will check if it is the first value
+ **/
 function begin(arr) {
     if(arr[0] == "!"){
         return isExcMark(arr);
@@ -21,6 +26,9 @@ function begin(arr) {
     return "Expects exclamation or value, gets " + arr[0] + "instead"; //illegal beginning
 }
 
+/**
+ * Checks if the next value after ! is first value
+ **/
 function isExcMark(arr) {
 
     const str = arr.shift();
@@ -38,6 +46,9 @@ function isExcMark(arr) {
 
 }
 
+/**
+ * Check if it is the first value of the condition
+ **/
 function isValFirst(arr) {
 
     const str = arr.shift();
@@ -55,6 +66,9 @@ function isValFirst(arr) {
 
 }
 
+/**
+ * Checks if the token is an operator or not
+ **/
 function isOperator(arr) {
 
     const str = arr.shift();
@@ -78,6 +92,9 @@ function isOperator(arr) {
 
 }
 
+/**
+ * Check if the token is the second value
+ **/
 function isValSecond(arr) {
 
     const str = arr.shift();
@@ -91,6 +108,9 @@ function isValSecond(arr) {
     return "Value contains illegal character"; //Contains illegal character
 }
 
+/**
+ * Check if the token is a connector
+ **/
 function isConnector(arr) {
 
     const str = arr.shift();

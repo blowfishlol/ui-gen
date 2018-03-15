@@ -19,7 +19,7 @@ var page = [
                 "value": {
                     "default": false
                 },
-                "rendered": "installation.user.name==true"
+                "rendered": "installation.user.name == true"
             }
         ]
     },
