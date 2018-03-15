@@ -7,6 +7,7 @@ import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck, defaultCheck } from '../util/InfoChecker';
 
 import  ActionList  from "./../reducer/actionList"
+import get from '../util/get';
 
 class DateBox extends React.Component {
 
@@ -22,7 +23,7 @@ class DateBox extends React.Component {
     return <div className="k-form-field">
       <p>{this.state.label}</p>
       <DatePicker
-        format={"dd MMMM yyyy"} 
+        format={"dd MMMM yyyy"}
         value={defaultCheck(this.props.config.value)}
         change={this.changeDate} />
     </div>

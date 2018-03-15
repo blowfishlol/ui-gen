@@ -7,6 +7,8 @@ import { NumericTextBox } from '@progress/kendo-react-inputs';
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 
+import get from '../util/get';
+
 class NumberBox extends React.Component{
 
   constructor(props) {
