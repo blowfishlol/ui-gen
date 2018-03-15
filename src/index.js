@@ -20,6 +20,8 @@ function generateJSON(event) {
   alert(JSON.stringify(storage.getState().data));
 }
 
+
+
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
