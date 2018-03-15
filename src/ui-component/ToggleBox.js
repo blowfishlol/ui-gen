@@ -35,6 +35,7 @@ class ToggleBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+      data: storage.data
   }
 }
 

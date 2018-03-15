@@ -4,17 +4,23 @@ import { compose } from "recompose";
 
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
+import get from '../util/get';
+
 
 
 class TextBox extends React.Component {
 
   constructor(props) {
     super(props);
-    //this.props.updateState();
+    /**
+     * get the value inside the "result object" so when backtrack can get the value again.
+     **/
+    var stateValue = get(props.data, this.props.config.path, this.props.config.type);
     console.log(this.props.info);
+
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: defaultCheck(this.props.config.value),
+      default_value: defaultCheck(stateValue),
       placeholder: placeholderCheck(this.props.config.value)
     };
   }
@@ -32,14 +38,14 @@ class TextBox extends React.Component {
 }
 
 const mapStateToProps = function(storage) {
-  console.log("masuk mapstatetoprops nih", storage);
+  //console.log("masuk mapstatetoprops nih", storage);
   return {
-      info: storage.data
+      data: storage.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("masuk DISPATCH TO PROPS  nih");
+  //console.log("masuk DISPATCH TO PROPS  nih");
   return {
     updateState: (path, value) => dispatch({
       type: ActionList.SET,

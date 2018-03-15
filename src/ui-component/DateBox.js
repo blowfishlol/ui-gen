@@ -22,7 +22,7 @@ class DateBox extends React.Component {
     return <div className="k-form-field">
       <p>{this.state.label}</p>
       <DatePicker
-        format={"dd MMMM yyyy"} 
+        format={"dd MMMM yyyy"}
         value={defaultCheck(this.props.config.value)}
         change={this.changeDate} />
     </div>

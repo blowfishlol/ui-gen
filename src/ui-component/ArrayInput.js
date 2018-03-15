@@ -2,10 +2,15 @@ import React from "react";
 
 import '@progress/kendo-theme-material/dist/all.css';
 
+import { connect } from "react-redux";
+import { compose } from "recompose";
+
 import App from './App';
 import ErrorBox from './ErrorBox';
 
-export default class ArrayInput extends React.Component {
+import  ActionList  from "./../reducer/actionList"
+
+class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props);
@@ -55,3 +60,28 @@ export default class ArrayInput extends React.Component {
     </label>
   }
 }
+
+const mapStateToProps = function(storage) {
+  return {
+      data: storage.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    updateState: (path, value) => dispatch({
+      type: ActionList.SET,
+      payload: {
+        "path": path,
+        "value": value
+      }
+    })
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )
+)(ArrayInput)

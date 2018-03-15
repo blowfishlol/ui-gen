@@ -25,7 +25,7 @@ class CheckBox extends React.Component {
 
       const checkboxes = this.state.contents.map(content => {
           const childPath = this.props.config.path + "." + content.value
-          this.props.updateState(childPath, false)
+          //this.props.updateState(childPath, false)
           return <div key={childPath}>
             <input
               type="checkbox"
@@ -46,6 +46,7 @@ class CheckBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+      data: storage.data
   }
 }
 
