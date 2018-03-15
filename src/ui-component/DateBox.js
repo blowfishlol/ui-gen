@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
-import { labelCheck, defaultCheck } from '../util/InfoChecker';
+import { labelCheck } from '../util/InfoChecker';
 
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
