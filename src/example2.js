@@ -25,22 +25,17 @@ var page = [
     },
     {
         "pagename": "Options",
-        "rendered": "installation.user.accept == true",
         "config": [
             {
                 "label": "Please choose installation mode",
                 "type": "dropdown",
                 "path": "installation.mode",
-                "contents": [
-                    {
-                        "text": "Express",
-                        "value": "express"
-                    },
-                    {
-                        "text": "Custom",
-                        "value": "custom"
-                    }
-                ]
+                "value": {
+                    "contents": [
+                        { "text": "Express", "value": "express" },
+                        { "text": "Custom", "value": "custom" },
+                    ]
+                }
             },
             {
                 "label": "Please enter your desired directory",

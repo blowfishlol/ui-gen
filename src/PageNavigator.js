@@ -20,7 +20,6 @@ class PageNavigator extends Component {
 
   render() {
     const current = this.getCurrentPage()
-    const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
     const navBar = this.props.appState.map((state, index) => {
       if(index === this.props.appState.length - 1) {
         return <button key={index} className="k-button k-primary" disabled={true}>{this.props.page[state.index].pagename}</button>
@@ -28,8 +27,12 @@ class PageNavigator extends Component {
         return <button key={index} className="k-button" onClick={() => this.jumpButtonListener(index)}>{this.props.page[state.index].pagename}</button>
       }
     })
+    const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
+
     return <div>
-      {navBar}
+      <div className="k-form-field">
+        {navBar}
+      </div>
       <h1>{current.pagename}</h1>
       <App config={current.config} />
       <div className="k-form-field">
@@ -58,7 +61,12 @@ class PageNavigator extends Component {
 
   nextButtonListener() {
     for(var i = this.getLastAppState().index + 1; i < this.props.page.length; i++) {
-      if(evaluator(this.props.page[i].rendered)) {
+      if(this.props.page[i].hasOwnProperty("rendered")) {
+        if(evaluator(this.props.page[i].rendered)) {
+          this.props.pushState(i)
+          return
+        }
+      } else {
         this.props.pushState(i)
         return
       }
