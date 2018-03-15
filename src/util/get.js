@@ -10,6 +10,7 @@ export default function f(path, type) {
 }
 
 function set(path, type) {
+  console.log("set new")
   storage.dispatch({
     type: ActionList.SET,
     payload: {
@@ -35,9 +36,7 @@ function defaultValue(type) {
     case "text":     return "moti"
     case "date":     return "2000-01-01"
     case "image":    return ""
-    case "checkbox": return {
-      "checkup":true,
-    }
+    case "checkbox": return false
     case "time":     return "12:00"
     case "toggle":   return true
     case "dropdown": return ""
