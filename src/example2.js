@@ -1,4 +1,4 @@
-var boi = [
+var page = [
     {
         "pagename": "Initialize",
         "rendered": true,
@@ -54,3 +54,5 @@ var boi = [
         ]
     }
 ]
+
+export default(page);
