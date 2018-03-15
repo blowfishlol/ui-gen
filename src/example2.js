@@ -25,7 +25,7 @@ var page = [
     },
     {
         "pagename": "Options",
-        "rendered": "installation.user.accept==true",
+        "rendered": "installation.user.accept == true",
         "config": [
             {
                 "label": "Please choose installation mode",
