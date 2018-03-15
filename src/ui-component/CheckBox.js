@@ -27,13 +27,14 @@ class CheckBox extends React.Component {
 
       const checkboxes = this.state.contents.map(content => {
           const childPath = this.props.config.path + "." + content.value
-          //this.props.updateState(childPath, false)
+          content.checked = get(childPath, "toggle")
           return <div key={childPath}>
             <input
               type="checkbox"
               className="k-checkbox"
               id={content.value}
               value={content.value}
+              checked={content.checked}
               onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
             <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
           </div>
