@@ -9,7 +9,6 @@ import App from './App';
 import ErrorBox from './ErrorBox';
 
 import  ActionList  from "./../reducer/actionList"
-import get from '../util/get';
 
 class ArrayInput extends React.Component {
 

@@ -2,11 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
+import { labelCheck, placeholderCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
-
-
 
 class TextBox extends React.Component {
 
@@ -18,7 +16,7 @@ class TextBox extends React.Component {
      **/
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: defaultCheck(get(this.props.config.path, this.props.config.type)),
+      default_value: get(this.props.config.path, this.props.config.type),
       placeholder: placeholderCheck(this.props.config.value)
     };
   }
@@ -36,13 +34,11 @@ class TextBox extends React.Component {
 }
 
 const mapStateToProps = function(storage) {
-  //console.log("masuk mapstatetoprops nih", storage);
   return {
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  //console.log("masuk DISPATCH TO PROPS  nih");
   return {
     updateState: (path, value) => dispatch({
       type: ActionList.SET,
