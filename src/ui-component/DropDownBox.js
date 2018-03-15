@@ -27,6 +27,7 @@ class DropDownBox extends React.Component {
         data={this.state.values}
         textField={'text'}
         valueField={'value'}
+        value={this.state.selected}
         onChange={(evt) => this.props.updateState(this.props.config.path, evt.target.value)}/>
     </div>
   }

@@ -36,10 +36,10 @@ function defaultValue(type) {
     case "text":     return "moti"
     case "date":     return "2000-01-01"
     case "image":    return ""
-    case "checkbox": return false
+    case "checkbox": return {}
     case "time":     return "12:00"
     case "toggle":   return true
-    case "dropdown": return ""
+    case "dropdown": return "credit"
     case "number":   return 777
     case "array":    return []
     case "map":      return {}
