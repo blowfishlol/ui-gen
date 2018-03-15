@@ -40,15 +40,15 @@ class UploadBox extends React.Component {
         async={this.async}
         dropZone={this.dropZone}
         complete={(event) => {
-            this.props.updateState(this.state.path, this.state.names);
+          this.props.updateState(this.state.path, this.state.names);
         }}
         upload={(event) => {
-            var files = event.files;
-            var nameState = this.state.names;
-            files.forEach((file) => {
-                nameState.push(file.name)
-                this.setState({names: nameState});
-            });
+          var files = event.files;
+          var nameState = this.state.names;
+          files.forEach((file) => {
+            nameState.push(file.name)
+            this.setState({names: nameState});
+          });
         }}
         select={this.selectHandler}
         clear={this.clearHandler}
