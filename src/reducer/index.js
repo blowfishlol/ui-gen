@@ -1,5 +1,5 @@
 import ActionList from "./actionList"
-import storage from "../storage"
+// import storage from "../storage"
 
 /**
  * [MOTI]
@@ -28,11 +28,16 @@ function set(path, value, ptr) {
  *Ini udh bagus kok, daripada rempong dan ini performance wise optimal wkwk
  */
 function clone(obj) {
+  console.log(obj)
   return JSON.parse(JSON.stringify(obj))
 }
 
+function lastElement(obj) {
+  return obj[obj.length - 1]
+}
+
 export default function reducer(state={
-  data: [],
+  data: [{}],
   app_state: []
 }, action) {
 
@@ -46,25 +51,29 @@ export default function reducer(state={
      */
     return {
       ...state,
-      data: this.state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(storage.getState().data)))
+      data: state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(lastElement(state.data))))
     }
-  } else if(action.type === ActionList.SET_CONFIG) {
+  } else if(action.type === ActionList.SET_PAGE) {
     return {
       ...state,
-      config : action.payload
+      page : action.payload
     }
   } else if(action.type === ActionList.PUSH_STACK) {
     return {
       ...state,
-      app_state : this.state.app_state.concat({
+      app_state : state.app_state.concat({
         index: action.payload.index,
-        history: this.state.data.length
+        history: state.data.length - 1
       })
     }
   } else if(action.type === ActionList.POP_STACK) {
+    /**
+     * param: index
+     */
     return {
       ...state,
-      app_state : this.state.app_state.concat(action.payload.index)
+      app_state : state.app_state.slice(0, action.payload.index + 1),
+      data: state.data.slice(0, state.app_state[action.payload.index + 1].history + 1)
     }
   } else {
     return state;

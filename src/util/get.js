@@ -3,7 +3,8 @@ import ActionList from "./../reducer/actionList"
 
 export default function f(path, type) {
   try {
-    return get(storage.getState().data, path.split("."), type)
+    const data = storage.getState().data
+    return get(data[data.length-1], path.split("."), type)
   } catch(error) {
   }
   return set(path, type)
@@ -32,16 +33,21 @@ function get(ptr, path, type) {
 
 function defaultValue(type) {
   switch(type) {
-    case "text":     return "moti"
+    case "text":     return ""
     case "date":     return "2000-01-01"
     case "image":    return ""
     case "checkbox": return {}
     case "time":     return "12:00"
-    case "toggle":   return true
-    case "dropdown": return "credit"
-    case "number":   return 777
+    case "toggle":   return false
+    case "dropdown": return ""
+    case "number":   return 0
     case "array":    return []
     case "map":      return {}
     default:         return ""
   }
+}
+
+export function fetchAllData() {
+  const data = storage.getState().data
+  return data[data.length-1]
 }

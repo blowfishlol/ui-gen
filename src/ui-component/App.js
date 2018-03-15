@@ -15,10 +15,16 @@ import ArrayInput from './ArrayInput';
 import ErrorBox from './ErrorBox';
 
 import ComponentType from "../util/ComponentType"
+import evaluator from "../util/evaluator"
 
 export default class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
+      if(element.hasOwnProperty("rendered")) {
+        if(!evaluator(element.rendered)) {
+          return <div />
+        }
+      }
       if(!element.hasOwnProperty("type")) {
         return <ErrorBox key={element.path} message={'Invalid config file format "' + JSON.stringify(element) + '". Type is missing'} />
       }
