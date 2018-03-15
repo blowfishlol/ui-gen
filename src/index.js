@@ -21,8 +21,8 @@ function generateJSON(event) {
 }
 
 
-
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
+
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
       <PageNavigator config={storage.getState().config} />
