@@ -10,10 +10,6 @@ import ActionList from "./reducer/actionList"
 
 class PageNavigator extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
   }
@@ -24,9 +20,16 @@ class PageNavigator extends Component {
 
   render() {
     const current = this.getCurrentPage()
-    const prevBtn = this.props.appState.length > 1 ?
-      <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
+    const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
+    const navBar = this.props.appState.map((state, index) => {
+      if(index === this.props.appState.length - 1) {
+        return <button key={index} className="k-button k-primary" disabled={true}>{this.props.page[state.index].pagename}</button>
+      } else {
+        return <button key={index} className="k-button" onClick={() => this.jumpButtonListener(index)}>{this.props.page[state.index].pagename}</button>
+      }
+    })
     return <div>
+      {navBar}
       <h1>{current.pagename}</h1>
       <App config={current.config} />
       <div className="k-form-field">
@@ -34,6 +37,10 @@ class PageNavigator extends Component {
         <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>NEXT</button>
       </div>
     </div>
+  }
+
+  jumpButtonListener(index) {
+    this.props.popState(index)
   }
 
   prevButtonListener() {
