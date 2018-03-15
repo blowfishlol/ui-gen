@@ -8,7 +8,7 @@ import "./index.css"
 import storage from "./storage"
 import ActionList from "./reducer/actionList"
 import PageNavigator from './PageNavigator';
-import config from "./example2";
+import config from "./example";
 import registerServiceWorker from './registerServiceWorker';
 
 /**
