@@ -1,19 +1,74 @@
-export default function f(arg) {
+import { fetchAllData } from "./get"
 
+export default function f(arg) {
+    const root = fetchAllData();
+    console.log("ROOT VALUES", root);
     const splitarg = arg.split(" ");
     const result = begin(splitarg);
+
     if(result === true && typeof(result) === "boolean"){
+
+        const tokens = arg.split(" ");
+        for(let i = 0 ; i < tokens.length ; i++) {
+            tokens[i] = objectCheck(tokens[i]);
+        }
+        const dependency = tokens.join(' ');
+
+        console.log("TOKENS FILLING: " , tokens);
+
         try {
-            return eval(arg);
+
+            console.log("COMMAND IS:" ,dependency)
+            console.log("EVALCHECK:" ,eval(dependency))
+            return eval(dependency);
         } catch(err) {
             console.log("ERROR ON EVAL: ", err.message);
             return false;
         }
+
     }else{
+
         console.log("DEPENDENCY VALIDATION ERROR:", result);
         return false;
+
     }
 
+
+}
+
+/**
+ * Check if string refers to object
+ **/
+function objectCheck(str) {
+//==
+    //this means it is not a boolean or value (IS AN OBJECT)
+    if( !( str.indexOf("true") >= 0 ||str.indexOf("false") >= 0 )) {
+        if(isNaN(str)){
+            console.log("debug", symbolCheck(str))
+            if(symbolCheck(str) == false){
+                console.log("IM APPENDING root. TO ", str);
+                str = "root." + str;
+            }
+        }
+    }
+    return str;
+
+}
+
+/**
+ * Check if string is an symbol. IF IT IS RETURN TRUE
+ **/
+function symbolCheck(str) {
+
+    const symbolList = ["=", "<" , ">", "!", "&", "|"];
+    var flag = false;
+    symbolList.forEach((sym) => {
+        if(str.indexOf(sym) >= 0) {
+            console.log(str, "is a symbol");
+            flag = true;
+        }
+    });
+    return flag;
 
 }
 
@@ -28,7 +83,7 @@ function begin(arr) {
     }else{
         return isValFirst(arr);
     }
-    return "Expects exclamation or value, gets " + arr[0] + "instead"; //illegal beginning
+
 }
 
 /**

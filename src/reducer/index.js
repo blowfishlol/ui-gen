@@ -28,7 +28,6 @@ function set(path, value, ptr) {
  *Ini udh bagus kok, daripada rempong dan ini performance wise optimal wkwk
  */
 function clone(obj) {
-  console.log(obj)
   return JSON.parse(JSON.stringify(obj))
 }
 
@@ -38,7 +37,8 @@ function lastElement(obj) {
 
 export default function reducer(state={
   data: [{}],
-  app_state: []
+  app_state: [],
+  notifier: false
 }, action) {
 
   if(action.type === ActionList.SET) {
@@ -51,7 +51,8 @@ export default function reducer(state={
      */
     return {
       ...state,
-      data: state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(lastElement(state.data))))
+      data: state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(lastElement(state.data)))),
+      notifier: !state.notifier
     }
   } else if(action.type === ActionList.SET_PAGE) {
     return {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { compose } from "recompose";
 
 import './style.css'
 
@@ -17,7 +19,7 @@ import ErrorBox from './ErrorBox';
 import ComponentType from "../util/ComponentType"
 import evaluator from "../util/evaluator"
 
-export default class App extends Component {
+class App extends Component {
   render() {
     var elements = this.props.config.map(element => {
       if(element.hasOwnProperty("rendered")) {
@@ -53,3 +55,21 @@ export default class App extends Component {
     </div>
   }
 }
+
+const mapStateToProps = function(storage) {
+  return {
+    notifier: storage.notifier
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )
+)(App)

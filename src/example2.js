@@ -19,12 +19,13 @@ var page = [
                 "value": {
                     "default": false
                 },
-                "rendered": "installation.user.name == true"
+                "rendered": "installation.user.name.length > 0"
             }
         ]
     },
     {
         "pagename": "Options",
+        "rendered": "installation.user.accept == true",
         "config": [
             {
                 "label": "Please choose installation mode",
