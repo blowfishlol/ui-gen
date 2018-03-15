@@ -1,4 +1,5 @@
 var config = [
+
     {
         "label": "Patient Name",
         "type": "text",
@@ -48,6 +49,7 @@ var config = [
         "label": "Need Further Examination?",
         "type": "toggle",
         "path": "appointment.furtherExamination",
+
     },
     {
         "label": "Payment Method",
@@ -63,6 +65,9 @@ var config = [
                 { "text": "Cash", "value": "cash" },
             ]
         }
+        
+
+
     },
     {
         "label": "Payment Amount",

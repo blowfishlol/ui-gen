@@ -22,18 +22,19 @@ class CheckBox extends React.Component {
   * In previous case, if it is not checked then the state will not be stored. Now it stores false by default because update state is called initially.
   */
   render() {
-    const checkboxes = this.state.contents.map(content => {
-      const childPath = this.props.config.path + "." + content.value
-      this.props.updateState(childPath, false)
-      return <div key={childPath}>
-        <input
-          type="checkbox"
-          className="k-checkbox"
-          id={content.value}
-          value={content.value}
-          onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
-        <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
-      </div>
+
+      const checkboxes = this.state.contents.map(content => {
+          const childPath = this.props.config.path + "." + content.value
+          this.props.updateState(childPath, false)
+          return <div key={childPath}>
+            <input
+              type="checkbox"
+              className="k-checkbox"
+              id={content.value}
+              value={content.value}
+              onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
+            <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
+          </div>
     });
 
     return <label className="k-form-field">
