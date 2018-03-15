@@ -34,7 +34,7 @@ class CheckBox extends React.Component {
               className="k-checkbox"
               id={content.value}
               value={content.value}
-              checked={content.checked}
+              defaultChecked={content.checked}
               onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
             <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
           </div>
