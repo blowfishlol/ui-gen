@@ -5,10 +5,13 @@ import { compose } from "recompose";
 import { labelCheck, defaultCheck, placeholderCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 
+
 class TextBox extends React.Component {
 
   constructor(props) {
     super(props);
+    //this.props.updateState();
+    console.log(this.props.info);
     this.state = {
       label: labelCheck(this.props.config.label),
       default_value: defaultCheck(this.props.config.value),
@@ -29,11 +32,14 @@ class TextBox extends React.Component {
 }
 
 const mapStateToProps = function(storage) {
+  console.log("masuk mapstatetoprops nih", storage);
   return {
+      info: storage.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
+  console.log("masuk DISPATCH TO PROPS  nih");
   return {
     updateState: (path, value) => dispatch({
       type: ActionList.SET,
