@@ -12,15 +12,13 @@ class TextBox extends React.Component {
 
   constructor(props) {
     super(props);
+
     /**
      * get the value inside the "result object" so when backtrack can get the value again.
      **/
-    var stateValue = get(props.data, this.props.config.path, this.props.config.type);
-    console.log(this.props.info);
-
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: defaultCheck(stateValue),
+      default_value: defaultCheck(get(props.data, this.props.config.path, this.props.config.type)),
       placeholder: placeholderCheck(this.props.config.value)
     };
   }
@@ -40,7 +38,6 @@ class TextBox extends React.Component {
 const mapStateToProps = function(storage) {
   //console.log("masuk mapstatetoprops nih", storage);
   return {
-      data: storage.data
   }
 }
 

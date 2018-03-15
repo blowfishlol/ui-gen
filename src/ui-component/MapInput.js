@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import  ActionList  from "./../reducer/actionList"
 
+import get from '../util/get';
+
 class MapInput extends React.Component {
 
   constructor(props) {
@@ -68,7 +70,6 @@ class MapInput extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-      data: storage.data
   }
 }
 

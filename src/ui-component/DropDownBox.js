@@ -33,7 +33,6 @@ class DropDownBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-      data: storage.data
   }
 }
 

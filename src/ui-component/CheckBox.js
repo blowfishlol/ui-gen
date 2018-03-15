@@ -5,6 +5,8 @@ import { compose } from "recompose";
 import { labelCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 
+import get from '../util/get';
+
 class CheckBox extends React.Component {
 
   constructor(props) {
@@ -46,7 +48,6 @@ class CheckBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-      data: storage.data
   }
 }
 
