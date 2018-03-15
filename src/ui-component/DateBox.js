@@ -15,6 +15,7 @@ class DateBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
+      value: get(this.props.config.path, this.props.config.type)
       // required: this.props.config.required ? "required" : "",
     }
   }
@@ -24,7 +25,7 @@ class DateBox extends React.Component {
       <p>{this.state.label}</p>
       <DatePicker
         format={"dd MMMM yyyy"}
-        value={defaultCheck(this.props.config.value)}
+        value={defaultCheck(this.state.value)}
         change={this.changeDate} />
     </div>
   }

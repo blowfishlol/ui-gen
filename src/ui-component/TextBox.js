@@ -18,7 +18,7 @@ class TextBox extends React.Component {
      **/
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: defaultCheck(get(props.data, this.props.config.path, this.props.config.type)),
+      default_value: defaultCheck(get(this.props.config.path, this.props.config.type)),
       placeholder: placeholderCheck(this.props.config.value)
     };
   }

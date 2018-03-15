@@ -14,6 +14,7 @@ class TimeBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
+      default_value: get(this.props.config.path, this.props.config.type)
       // required: this.props.config.required ? "required" : "",
     }
   }

@@ -6,6 +6,7 @@ import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 import { labelCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
+import get from '../util/get';
 
 class DropDownBox extends React.Component {
 
@@ -15,7 +16,7 @@ class DropDownBox extends React.Component {
       label: labelCheck(this.props.config.label),
       // required: requiredCheck(this.props.config.required),
       values: this.props.config.value.contents,
-      selected: this.props.config.value.default,//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
+      selected: get(this.props.config.path, this.props.config.type),//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
     }
   }
 
