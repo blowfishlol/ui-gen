@@ -2,13 +2,8 @@ import React from "react";
 
 import '@progress/kendo-theme-material/dist/all.css';
 
-import { connect } from "react-redux";
-import { compose } from "recompose";
-
 import App from './App';
 import ErrorBox from './ErrorBox';
-
-import  ActionList  from "./../reducer/actionList"
 
 export default class ArrayInput extends React.Component {
 

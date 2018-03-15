@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import { labelCheck, defaultCheck } from '../util/InfoChecker';
+import { labelCheck } from '../util/InfoChecker';
 import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper';
 
 import  ActionList  from "./../reducer/actionList"

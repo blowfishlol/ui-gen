@@ -7,8 +7,8 @@ import "./index.css"
 
 import storage from "./storage"
 import ActionList from "./reducer/actionList"
-import App from './ui-component/App';
-import config from "./example";
+import PageNavigator from './PageNavigator';
+import config from "./example2";
 import registerServiceWorker from './registerServiceWorker';
 
 /**
@@ -23,7 +23,7 @@ function generateJSON(event) {
 storage.dispatch({type:ActionList.SET_CONFIG, payload: config});
 ReactDOM.render(<Provider store={storage}>
     <div className="k-form">
-      <App config={storage.getState().config} />
+      <PageNavigator config={storage.getState().config} />
       <button className="k-button k-primary" onClick={generateJSON}>Generate JSON</button>
     </div>
   </Provider>, document.getElementById('root'));
