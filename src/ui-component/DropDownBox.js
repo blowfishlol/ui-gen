@@ -21,6 +21,7 @@ class DropDownBox extends React.Component {
   }
 
   render() {
+    console.log("SELECTED",this.state.selected);
     return <div className="k-form-field">
       <div>{this.state.label}</div>
       <DropDownList
@@ -28,7 +29,14 @@ class DropDownBox extends React.Component {
         textField={'text'}
         valueField={'value'}
         value={this.state.selected}
-        onChange={(evt) => this.props.updateState(this.props.config.path, evt.target.value)}/>
+        onChange={(evt) => {
+          this.setState({
+            ...this.state,
+            selected: evt.target.value,
+          })
+          this.props.updateState(this.props.config.path, evt.target.value)
+          }
+        }/>
     </div>
   }
 }

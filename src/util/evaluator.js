@@ -2,7 +2,6 @@ import { fetchAllData } from "./get"
 
 export default function f(arg) {
     const root = fetchAllData();
-    console.log("ROOT VALUES", root);
     const splitarg = arg.split(" ");
     const result = begin(splitarg);
 
@@ -14,7 +13,6 @@ export default function f(arg) {
         }
         const dependency = tokens.join(' ');
 
-        console.log("TOKENS FILLING: " , tokens);
 
         try {
 
@@ -46,7 +44,7 @@ function objectCheck(str) {
         if(isNaN(str)){
             console.log("debug", symbolCheck(str))
             if(symbolCheck(str) == false){
-                console.log("IM APPENDING root. TO ", str);
+
                 str = "root." + str;
             }
         }
@@ -64,7 +62,7 @@ function symbolCheck(str) {
     var flag = false;
     symbolList.forEach((sym) => {
         if(str.indexOf(sym) >= 0) {
-            console.log(str, "is a symbol");
+
             flag = true;
         }
     });
@@ -113,7 +111,7 @@ function isValFirst(arr) {
 
     const str = arr.shift();
 
-    if( /^[a-zA-Z0-9\."]+$/.test(str) ) {
+    if( /^[a-zA-Z0-9\.\\\']+$/.test(str) ) {
 
         if(arr.length === 0) {
             return "Expects operator (==, <= , >, etc)" ; //Expected next token
@@ -159,7 +157,7 @@ function isValSecond(arr) {
 
     const str = arr.shift();
 
-    if( /^[a-zA-Z0-9\."]+$/.test(str) ) {
+    if( /^[a-zA-Z0-9\.\\\']+$/.test(str) ) {
         if(arr.length === 0) {
             return true; //No next token is ok
         }
