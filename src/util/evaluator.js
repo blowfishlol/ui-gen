@@ -3,7 +3,12 @@ export default function f(arg) {
     const splitarg = arg.split(" ");
     const result = begin(splitarg);
     if(result === true && typeof(result) === "boolean"){
-        return eval(arg);
+        try {
+            return eval(arg);
+        } catch(err) {
+            console.log("ERROR ON EVAL: ", err.message);
+            return false;
+        }
     }else{
         console.log("DEPENDENCY VALIDATION ERROR:", result);
         return false;
