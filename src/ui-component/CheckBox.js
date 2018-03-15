@@ -13,7 +13,7 @@ class CheckBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
-      // required: requiredCheck(this.props.config.required),
+      values: get(this.props.config.path, this.props.config.type),
       contents: this.props.config.value.contents,
     }
   }
@@ -33,7 +33,7 @@ class CheckBox extends React.Component {
               type="checkbox"
               className="k-checkbox"
               id={content.value}
-              value={content.value}
+              defaultChecked={this.state.values[content.value]}
               onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
             <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
           </div>

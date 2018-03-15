@@ -9,14 +9,13 @@ import App from './App';
 import ErrorBox from './ErrorBox';
 
 import  ActionList  from "./../reducer/actionList"
-import get from '../util/get';
 
-class ArrayInput extends React.Component {
+export default class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["this data is just a filler"]
+      childData: ["this data is just a filler"],
     };
   }
 
@@ -61,27 +60,3 @@ class ArrayInput extends React.Component {
     </label>
   }
 }
-
-const mapStateToProps = function(storage) {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return{
-    updateState: (path, value) => dispatch({
-      type: ActionList.SET,
-      payload: {
-        "path": path,
-        "value": value
-      }
-    })
-  }
-}
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )
-)(ArrayInput)

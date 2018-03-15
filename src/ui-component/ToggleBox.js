@@ -28,6 +28,7 @@ class ToggleBox extends React.Component {
           type="checkbox"
           className="k-checkbox"
           name={this.props.config.path}
+          defaultChecked={this.state.default_value}
           id={this.props.config.path}
           onClick={evt => this.props.updateState(this.props.config.path, evt.target.checked)} />
         <label className="k-checkbox-label" htmlFor={this.props.config.path}>Yes</label>

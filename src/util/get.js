@@ -33,14 +33,16 @@ function get(ptr, path, type) {
 
 function defaultValue(type) {
   switch(type) {
-    case "text":     return ""
+    case "text":     return "moti"
     case "date":     return "2000-01-01"
     case "image":    return ""
-    case "checkbox": return {}
+    case "checkbox": return {
+      "checkup":true,
+    }
     case "time":     return "12:00"
-    case "toggle":   return false
+    case "toggle":   return true
     case "dropdown": return ""
-    case "number":   return 0
+    case "number":   return 777
     case "array":    return []
     case "map":      return {}
     default:         return ""

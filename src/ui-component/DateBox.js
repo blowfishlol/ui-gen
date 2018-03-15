@@ -25,7 +25,7 @@ class DateBox extends React.Component {
       <p>{this.state.label}</p>
       <DatePicker
         format={"dd MMMM yyyy"}
-        value={defaultCheck(this.state.value)}
+        value={this.state.value}
         change={this.changeDate} />
     </div>
   }

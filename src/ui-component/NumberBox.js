@@ -16,7 +16,7 @@ class NumberBox extends React.Component{
     this.state = {
       label: labelCheck(this.props.config.label),
       // required: requiredCheck(this.props.config.required),
-      default_value: isNaN(defaultCheck(this.props.config.value)) ? 0 : this.props.config.value,
+      default_value: get(this.props.config.path, this.props.config.type),
       placeholder: placeholderCheck(this.props.config.value),
     }
   }
@@ -27,7 +27,7 @@ class NumberBox extends React.Component{
         <p>{this.props.config.label}</p>
         <NumericTextBox
           placeholder={this.state.placeholder}
-          default_value={this.state.default_value}
+          defaultValue={this.state.default_value}
           onChange={(evt) => {console.log("s"); return this.props.updateState(this.props.config.path, evt.target.value)}}/>
       </label>
     </div>

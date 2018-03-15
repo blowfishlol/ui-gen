@@ -16,9 +16,10 @@ class TextBox extends React.Component {
     /**
      * get the value inside the "result object" so when backtrack can get the value again.
      **/
+     //console.log("CALLING GET FUNTCION FOR TEXTBOX",get(this.props.config.path, this.props.config.type));
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: defaultCheck(get(this.props.config.path, this.props.config.type)),
+      default_value: get(this.props.config.path, this.props.config.type),
       placeholder: placeholderCheck(this.props.config.value)
     };
   }
@@ -29,7 +30,7 @@ class TextBox extends React.Component {
       <input
         className="k-textbox"
         placeholder={this.state.placeholder}
-        default_value={this.state.default_value}
+        defaultValue={this.state.default_value}
         onChange={evt => this.props.updateState(this.props.config.path, evt.target.value)} />
     </label>
   }

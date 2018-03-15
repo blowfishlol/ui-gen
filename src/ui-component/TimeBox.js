@@ -23,7 +23,7 @@ class TimeBox extends React.Component {
     return <div className="k-form-field">
     <p>{this.state.label}</p>
     <TimePicker
-      value={defaultCheck(this.props.config.value)}
+      value={this.state.default_value}
       dateInput={true}
       format={"HH:mm"}
       change={evt => this.props.updateState(this.props.config.path, this.timeFormat(evt))}/>
