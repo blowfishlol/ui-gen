@@ -60,7 +60,7 @@ function objectCheck(str) {
  **/
 function symbolCheck(str) {
 
-    const symbolList = ["=", "<" , ">", "!", "&", "|"];
+    const symbolList = ["=", "<" , ">", "!", "&", "|","'"];
     var flag = false;
     symbolList.forEach((sym) => {
         if(str.indexOf(sym) >= 0) {
