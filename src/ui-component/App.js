@@ -30,6 +30,7 @@ class App extends Component {
       if(!element.hasOwnProperty("type")) {
         return <ErrorBox key={element.path} message={'Invalid config file format "' + JSON.stringify(element) + '". Type is missing'} />
       }
+      var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
 
       switch(element.type) {
         case ComponentType.TEXT:     return <TextBox key={element.path} config={element} />
@@ -41,7 +42,7 @@ class App extends Component {
         case ComponentType.DATE:     return <DateBox key={element.path} config={element} />
         case ComponentType.TIME:     return <TimeBox key={element.path} config={element} />
         case ComponentType.ARRAY:    return <ArrayInput key={element.path} config={element} />
-        case ComponentType.MAP:      return <MapInput key={element.path} config={element} />
+        case ComponentType.MAP:      return <MapInput key={element.path} config={element} evenChild={isEvenChild}/>
         default:                     return <ErrorBox key={element.path} message={'Unrecognized element type "' + element.type + '"'} />
       }
     })

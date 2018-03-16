@@ -11,7 +11,7 @@ import PageNavigator from './PageNavigator';
 import page from "./example2";
 import registerServiceWorker from './registerServiceWorker';
 
-import evaluator from "./util/evaluator2"
+// import evaluator from "./util/evaluator2"
 
 storage.dispatch({type:ActionList.SET_PAGE, payload: page});
 storage.dispatch({type:ActionList.PUSH_STACK, payload: {"index": 0}});

@@ -39,15 +39,14 @@ class ArrayInput extends React.Component {
     }
 
     var elements = this.state.childData.map((element, index) => {
-      return <App
-        key={this.props.config.path + "." + index}
-        config={[
-          {
-            label: "",
-            type: this.props.config.child_content.type,
-            path: this.props.config.path + "." + index
-          }
-        ]} />
+      return <div key={this.props.config.path + "." + index}>
+        <App
+          config={[{
+              label: "",
+              type: this.props.config.child_content.type,
+              path: this.props.config.path + "." + index
+            }]} />
+      </div>
     });
 
     return <label>

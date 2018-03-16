@@ -7,7 +7,7 @@
   padding-left: 30px;
 }
 
-.k-form{
+.k-form {
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -17,9 +17,9 @@
   border: 0px solid;
 }
 
-.mapChild{
-  padding-top: 15px;
-  padding-bottom: 10px;
+.mapChild {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .errorBox {
@@ -28,4 +28,12 @@
   border: 1px solid #ebccd1;
   padding: 10px;
   margin: 5px;
+}
+
+.formHighlight1 {
+  background-color: #eff1fc;
+}
+
+.formHighlight2 {
+  background-color: #fcf0ef;
 }
