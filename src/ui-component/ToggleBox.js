@@ -16,8 +16,6 @@ class ToggleBox extends React.Component {
       // required: requiredCheck(this.props.config.required),
       default_value: get(this.props.config.path, this.props.config.type),
     }
-
-    this.props.updateState(this.props.config.path, false);
   }
 
   render() {

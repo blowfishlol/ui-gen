@@ -9,7 +9,7 @@ var page = [
                 "path": "installation.user.name",
                 "value": {
                     "default": null,
-                    "placeholder": "Kimi No Nawa"
+                    "placeholder": "Input Username"
                 }
             },
             {
@@ -20,6 +20,63 @@ var page = [
                     "default": false
                 },
                 "rendered": "installation.user.name.length > 0"
+            },
+            {
+                "label": "testing",
+                "type": "date",
+                "path": "testo",
+                "rendered": "false"
+            },
+            {
+                "label": "Root",
+                "type": "map",
+                "path": "root",
+                "child_content": [
+                    {
+                        "label": "Child 1",
+                        "type": "array",
+                        "path": "child1",
+                        "child_content": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "label": "Child 2",
+                        "type": "map",
+                        "path": "child2",
+                        "child_content": [
+                            {
+                                "label": "Grandchild 1",
+                                "type": "checkbox",
+                                "path": "grandchild1",
+                                "value": {
+                                    "default": "value1",
+                                    "contents": [
+                                        { "text": "Value", "value": "value1" },
+                                        { "text": "Eulav", "value": "value2" },
+                                        { "text": "Lueva", "value": "value3" },
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "Grandchild 2",
+                                "type": "image",
+                                "path": "grandchild2"
+                            },
+                            {
+                                "label": "Grandchild 3",
+                                "type": "time",
+                                "path": "grandchild3"
+                            },
+                            {
+                                "label": "Grandchild 4",
+                                "type": "number",
+                                "path": "grandchild4",
+                                "required": true,
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -45,7 +102,18 @@ var page = [
                 "value": {
                     "default": "C:/Windows/System32"
                 },
-                "rendered": "installation.mode == 'custom'"
+                "rendered": "installation.mode == custom"
+            }
+        ]
+    },
+    {
+        "pagename": "Finishing",
+        "rendered": "true == true",
+        "config": [
+            {
+                "label": "Are you statisfied?",
+                "type": "toggle",
+                "path": "installation.statisfied"
             }
         ]
     }

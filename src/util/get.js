@@ -4,7 +4,7 @@ import ActionList from "./../reducer/actionList"
 export default function f(path, type) {
   try {
     const data = storage.getState().data
-    return get(data[data.length-1], path.split("."), type)
+    return get(data[data.length-1], path.split("."))
   } catch(error) {
   }
   return set(path, type)
@@ -21,14 +21,14 @@ function set(path, type) {
   return f(path, type)
 }
 
-function get(ptr, path, type) {
+function get(ptr, path) {
   if(ptr[path[0]] === undefined) {
     throw new Error()
   }
   if(path.length === 1) {
     return ptr[path[0]]
   }
-  return get(ptr[path[0]], path.slice(1), type)
+  return get(ptr[path[0]], path.slice(1))
 }
 
 function defaultValue(type) {
@@ -50,4 +50,14 @@ function defaultValue(type) {
 export function fetchAllData() {
   const data = storage.getState().data
   return data[data.length-1]
+}
+
+export function check(path) {
+  try {
+    const data = storage.getState().data
+    get(data[data.length-1], path.split("."))
+    return true
+  } catch(error) {
+    return false
+  }
 }

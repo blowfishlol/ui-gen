@@ -4,7 +4,7 @@ import { compose } from "recompose";
 
 import App from './ui-component/App';
 
-import evaluator from "./util/evaluator"
+import evaluator from "./util/evaluator2"
 import { fetchAllData } from "./util/get"
 import ActionList from "./reducer/actionList"
 

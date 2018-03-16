@@ -1,16 +1,18 @@
 import React from "react";
-
-import '@progress/kendo-theme-material/dist/all.css';
+import { connect } from "react-redux";
+import { compose } from "recompose";
 
 import App from './App';
 import ErrorBox from './ErrorBox';
 
-export default class ArrayInput extends React.Component {
+import get from '../util/get';
+
+class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["this data is just a filler"],
+      childData: Array(get(this.props.config.path, this.props.config.type).length).fill("this data is just a filler")
     };
   }
 
@@ -50,8 +52,27 @@ export default class ArrayInput extends React.Component {
 
     return <label>
       <span>{this.props.config.label}</span>
-      {elements}
+      <div className="k-form">
+        {elements}
+      </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </label>
   }
 }
+
+const mapStateToProps = function(storage) {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )
+)(ArrayInput)

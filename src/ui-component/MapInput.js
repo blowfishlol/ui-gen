@@ -1,18 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "recompose";
 
 import App from './App';
 import ErrorBox from './ErrorBox';
-
-import { connect } from "react-redux";
-import { compose } from "recompose";
-import  ActionList  from "./../reducer/actionList"
+import get from '../util/get'
 
 class MapInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: ["this data is just a filler"]
+      childData: Array(Object.keys(get(this.props.config.path, this.props.config.type)).length).fill("this data is just a filler")
     };
   }
 
@@ -65,21 +64,13 @@ class MapInput extends React.Component {
   }
 }
 
-
 const mapStateToProps = function(storage) {
   return {
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
-    updateState: (path, value) => dispatch({
-      type: ActionList.SET,
-      payload: {
-        "path": path,
-        "value": value
-      }
-    })
+  return {
   }
 }
 

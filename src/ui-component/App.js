@@ -17,7 +17,7 @@ import ArrayInput from './ArrayInput';
 import ErrorBox from './ErrorBox';
 
 import ComponentType from "../util/ComponentType"
-import evaluator from "../util/evaluator"
+import evaluator from "../util/evaluator2"
 
 class App extends Component {
   render() {
