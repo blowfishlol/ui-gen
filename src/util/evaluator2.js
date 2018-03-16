@@ -2,6 +2,15 @@ import get, { check } from "./get"
 
 const INVALID_ARG_ERROR = "Invalid render argument thrown"
 
+/**
+ * this method accept a string (with a specific format) as parameter
+ * and evaluate the value of the string
+ * then return a boolean
+ * used to evaluate the truth value of rendered property
+ * thrown by PageNavigator when it's trying to render a page or
+ * thrown by App when it's trying to render one or more of it's element
+ * (return true meant to tell that the component should be rendered)
+ */
 export default function f(arg) {
   try {
     return evals(trim(arg.split(" ")))
@@ -132,6 +141,13 @@ function operate(args, index) {
   }
 }
 
+/**
+ * use a simple parsing algorithm
+ * take an array of string containing a sequence of arguments to be evaluated
+ * accepted arguments:
+ * string, number, boolean, variable(pointing to storage.data),
+ * binary operator and unary operator (not all)
+ */
 function evals(args) {
   if(args.length === 0) {
     throw new Error(INVALID_ARG_ERROR)
