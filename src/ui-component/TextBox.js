@@ -5,6 +5,7 @@ import { compose } from "recompose";
 import { labelCheck, placeholderCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor'
 
 class TextBox extends React.Component {
 
@@ -18,15 +19,17 @@ class TextBox extends React.Component {
     this.state = {
       label: labelCheck(this.props.config.label),
       default_value: get(this.props.config.path, this.props.config.type),
-      placeholder: placeholderCheck(this.props.config.value)
+      placeholder: placeholderCheck(this.props.config.value),
+      layout: getLayoutString(this.props.config.layout),
     };
   }
 
   render() {
-    return <label className="k-form-field">
+    console.log(this.state.layout);
+    return <label className={"k-form-field" + this.state.layout}>
       <span>{this.state.label}</span>
       <input
-        className="k-textbox"
+        className={"k-textbox"}
         placeholder={this.state.placeholder}
         defaultValue={this.state.default_value}
         onChange={evt => this.props.updateState(this.props.config.path, evt.target.value)} />

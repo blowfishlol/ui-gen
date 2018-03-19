@@ -28,7 +28,7 @@ class NumberBox extends React.Component{
         <NumericTextBox
           placeholder={this.state.placeholder}
           defaultValue={this.state.default_value}
-          onChange={(evt) => {console.log("s"); return this.props.updateState(this.props.config.path, evt.target.value)}}/>
+          onChange={(evt) => {return this.props.updateState(this.props.config.path, evt.target.value)}}/>
       </label>
     </div>
   }

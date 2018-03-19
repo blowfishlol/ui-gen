@@ -7,6 +7,7 @@ import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper';
 
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor';
 
 class TimeBox extends React.Component {
 
@@ -14,13 +15,14 @@ class TimeBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
-      default_value: get(this.props.config.path, this.props.config.type)
+      default_value: get(this.props.config.path, this.props.config.type),
       // required: this.props.config.required ? "required" : "",
+      layout: getLayoutString(this.props.config.layout),
     }
   }
 
   render() {
-    return <div className="k-form-field">
+    return <div className={"k-form-field " + this.state.layout}>
     <p>{this.state.label}</p>
     <TimePicker
       value={this.state.default_value}

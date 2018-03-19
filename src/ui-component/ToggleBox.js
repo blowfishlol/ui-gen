@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { labelCheck } from '../util/InfoChecker';
+import getLayoutString from '../util/LayoutProcessor';
 import  ActionList  from "./../reducer/actionList"
 
 import get from '../util/get';
@@ -15,11 +16,12 @@ class ToggleBox extends React.Component {
       label: labelCheck(this.props.config.label),
       // required: requiredCheck(this.props.config.required),
       default_value: get(this.props.config.path, this.props.config.type),
+      layout: getLayoutString(this.props.config.layout),
     }
   }
 
   render() {
-    return <label className="k-form-field">
+    return <label className={"k-form-field " + this.state.layout}>
       <span>{this.state.label}</span>
       <div>
         <input

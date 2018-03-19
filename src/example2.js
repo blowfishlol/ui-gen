@@ -10,6 +10,11 @@ var page = [
                 "value": {
                     "default": null,
                     "placeholder": "Input Username"
+                },
+                "layout": {
+                    "mobile": 12,
+                    "tablet": 4,
+                    "desktop": 3
                 }
             },
             {
@@ -18,6 +23,11 @@ var page = [
                 "path": "installation.user.accept",
                 "value": {
                     "default": false
+                },
+                "layout": {
+                    "mobile": 12,
+                    "tablet": 4,
+                    "desktop": 3
                 },
                 "rendered": "installation.user.name.length > 0"
             },
@@ -93,6 +103,11 @@ var page = [
                         { "text": "Express", "value": "express" },
                         { "text": "Custom", "value": "custom" },
                     ]
+                },
+                "layout": {
+                    "mobile": 12,
+                    "tablet": 4,
+                    "desktop": 3
                 }
             },
             {
@@ -102,7 +117,12 @@ var page = [
                 "value": {
                     "default": "C:/Windows/System32"
                 },
-                "rendered": "installation.mode == custom"
+                "rendered": "installation.mode == custom",
+                "layout": {
+                    "mobile": 12,
+                    "tablet": 4,
+                    "desktop": 3
+                }
             }
         ]
     },
@@ -114,6 +134,11 @@ var page = [
                 "label": "Are you statisfied?",
                 "type": "toggle",
                 "path": "installation.statisfied"
+            },
+            "layout": {
+                "mobile": 12,
+                "tablet": 4,
+                "desktop": 3
             }
         ]
     }

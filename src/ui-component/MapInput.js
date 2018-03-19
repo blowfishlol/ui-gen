@@ -5,13 +5,15 @@ import { compose } from "recompose";
 import App from './App';
 import ErrorBox from './ErrorBox';
 import get from '../util/get'
+import getLayoutString from '../util/LayoutProcessor';
 
 class MapInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: Array(Object.keys(get(this.props.config.path, this.props.config.type)).length).fill("this data is just a filler")
+      childData: Array(Object.keys(get(this.props.config.path, this.props.config.type)).length).fill("this data is just a filler"),
+      layout: getLayoutString(this.props.config.layout)
     };
   }
 

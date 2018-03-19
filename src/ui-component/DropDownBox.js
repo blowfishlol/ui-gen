@@ -7,6 +7,7 @@ import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { labelCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor';
 
 class DropDownBox extends React.Component {
 
@@ -17,11 +18,12 @@ class DropDownBox extends React.Component {
       // required: requiredCheck(this.props.config.required),
       values: this.props.config.value.contents,
       selected: get(this.props.config.path, this.props.config.type),//TODO: JANGAN LUPA GANTI YAA!!!!!!!!
+      layout: getLayoutString(this.props.config.layout),
     }
   }
 
   render() {
-    return <div className="k-form-field">
+    return <div className={"k-form-field " + this.state.layout}>
       <div>{this.state.label}</div>
       <DropDownList
         data={this.state.values}

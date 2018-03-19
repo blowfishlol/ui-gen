@@ -54,7 +54,7 @@ class App extends Component {
       elements = "Form is empty";
     }
 
-    return <div>
+    return <div className="k-form row">
       {elements}
     </div>
   }

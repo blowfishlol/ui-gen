@@ -6,6 +6,7 @@ import { labelCheck } from '../util/InfoChecker';
 import  ActionList  from "./../reducer/actionList"
 
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor';
 
 class CheckBox extends React.Component {
 
@@ -15,6 +16,7 @@ class CheckBox extends React.Component {
       label: labelCheck(this.props.config.label),
       values: get(this.props.config.path, this.props.config.type),
       contents: this.props.config.value.contents,
+      layout: getLayoutString(this.props.config.layout),
     }
   }
 
@@ -33,7 +35,7 @@ class CheckBox extends React.Component {
           return <div key={childPath}>
             <input
               type="checkbox"
-              className="k-checkbox"
+              className={"k-checkbox " + this.state.layout}
               id={childPath}
               defaultChecked={this.props.config.value.default === content.value}
               onClick={(event) => {

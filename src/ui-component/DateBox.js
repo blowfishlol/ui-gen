@@ -8,6 +8,7 @@ import { labelCheck } from '../util/InfoChecker';
 
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor';
 
 class DateBox extends React.Component {
 
@@ -15,18 +16,20 @@ class DateBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.config.label),
-      value: get(this.props.config.path, this.props.config.type)
+      value: get(this.props.config.path, this.props.config.type),
+      layout: getLayoutString(this.props.config.layout),
       // required: this.props.config.required ? "required" : "",
     }
   }
 
   render() {
-    return <div className="k-form-field">
+    return <div className={"k-form-field " + this.state.layout}>
       <p>{this.state.label}</p>
       <DatePicker
         format={"dd MMMM yyyy"}
         value={this.state.value}
-        change={this.changeDate} />
+        change={this.changeDate}
+        id={this.props.config.path} />
     </div>
   }
 

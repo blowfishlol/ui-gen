@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import  ActionList  from "./../reducer/actionList"
 
-import '@progress/kendo-theme-material/dist/all.css';
-
 import './UploadBox.css'
 import "@progress/kendo-ui";
 import { Upload } from '@progress/kendo-upload-react-wrapper';
@@ -39,8 +37,8 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div>
-      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <Upload
+        className="col-*-3"
         async={this.async}
         dropZone={this.dropZone}
         complete={(event) => {
@@ -57,12 +55,12 @@ class UploadBox extends React.Component {
         select={(event) => {this.selectHandler(this.boxId, event)}}
         clear={(event) => {this.clearHandler(this.boxId, event)}}
         remove={(event) => {this.removeHandler(this.boxId, event)}} />
-      <div id={this.boxId}></div>
+        <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div id={this.boxId} className="col-*-3"></div>
     </div>
   }
 
   selectHandler(boxId, event) {
-    var self = this;
     var files = event.files;
     files.forEach((file) => {
       var preview = document.createElement("IMG");
@@ -71,6 +69,7 @@ class UploadBox extends React.Component {
       preview.setAttribute("width", 100);
       preview.setAttribute("height", 100);
       preview.setAttribute("id", file.uid);
+      preview.setAttribute("class", "img-thumbnail")
 
       reader.addEventListener("load", function () {
          preview.src = reader.result;
