@@ -35,7 +35,7 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div>
-      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div className="k-dropzone">Drag and drop {this.state.label} here </div>
       <Upload
         async={this.async}
         dropZone={this.dropZone}

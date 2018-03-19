@@ -22,6 +22,7 @@ class CheckBox extends React.Component {
   * Each checkbox have different path because they are differed by the value.
   * In render, the program automatically updates the state of the path into false, in case the user dont want to check because the actual value is false.
   * In previous case, if it is not checked then the state will not be stored. Now it stores false by default because update state is called initially.
+  * The path for each checkbox is: checkboxpath.value where checkbox is the path stated in the config and value is the value in the config for ecah checkbox
   */
   render() {
 
