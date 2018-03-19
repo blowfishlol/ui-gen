@@ -149,6 +149,7 @@ function operate(args, index) {
  * binary operator and unary operator (not all)
  */
 function evals(args) {
+    console.log(args);
   if(args.length === 0) {
     throw new Error(INVALID_ARG_ERROR)
   } else if(args.length === 1) {
