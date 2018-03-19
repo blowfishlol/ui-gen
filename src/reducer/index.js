@@ -55,11 +55,17 @@ export default function reducer(state={
       notifier: !state.notifier
     }
   } else if(action.type === ActionList.SET_PAGE) {
+    /**
+     * param: page, put page directy inside payload
+     */
     return {
       ...state,
       page : action.payload
     }
   } else if(action.type === ActionList.PUSH_STACK) {
+    /**
+     * param: index
+     */
     return {
       ...state,
       app_state : state.app_state.concat({

@@ -22,4 +22,6 @@ ReactDOM.render(<Provider store={storage}>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
 
-console.log(evaluator("5 == 5 && 1 == 1"))
+var x =  "\"console.log(\"x\")"
+// console.log(eval(x))
+console.log(evaluator(x))
