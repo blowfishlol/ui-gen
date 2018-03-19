@@ -135,12 +135,12 @@ var page = [
                 "type": "toggle",
                 "path": "installation.statisfied"
             },
-            "layout": {
-                "mobile": 12,
-                "tablet": 4,
-                "desktop": 3
-            }
-        ]
+        ],
+        "layout": {
+            "mobile": 12,
+            "tablet": 4,
+            "desktop": 3
+        }
     }
 ]
 

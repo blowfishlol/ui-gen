@@ -23,6 +23,7 @@ class DateBox extends React.Component {
   }
 
   render() {
+    console.log(this.props.config.path);
     return <div className={"k-form-field " + this.state.layout}>
       <p>{this.state.label}</p>
       <DatePicker
