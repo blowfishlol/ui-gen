@@ -15,16 +15,36 @@ class PageNavigator extends Component {
   }
 
   getCurrentPage() {
-    return this.props.page[this.getLastAppState().index]
+    return this.props.page[this.getLastAppState()]
   }
 
   render() {
     const current = this.getCurrentPage()
-    const navBar = this.props.appState.map((state, index) => {
-      if(index === this.props.appState.length - 1) {
-        return <button key={index} className="k-button k-primary" disabled={true}>{this.props.page[state.index].pagename}</button>
+    const navBar = this.props.page.map((p, index) => {
+      if(index === this.getLastAppState()) {
+        return <button key={index} className="k-button k-primary" disabled={true}>{p.pagename}</button>
+      } else if(index >= this.getLastAppState()) {
+        if(p.hasOwnProperty("rendered")) {
+          if(!evaluator(p.rendered)) {
+            this.props.popState(index)
+            /**
+             * returns an empty element
+             */
+            return ""
+          }
+        }
+        return <button key={index} className="k-button" disabled={true}>{p.pagename}</button>
       } else {
-        return <button key={index} className="k-button" onClick={() => this.jumpButtonListener(index)}>{this.props.page[state.index].pagename}</button>
+        if(p.hasOwnProperty("rendered")) {
+          if(!evaluator(p.rendered)) {
+            this.props.popState(index)
+            /**
+             * returns an empty element
+             */
+            return ""
+          }
+        }
+        return <button key={index} className="k-button" onClick={() => this.jumpButtonListener(index)}>{p.pagename}</button>
       }
     })
     const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
@@ -43,11 +63,11 @@ class PageNavigator extends Component {
   }
 
   jumpButtonListener(index) {
-    this.props.popState(index)
+    this.props.pushState(index)
   }
 
   prevButtonListener() {
-    this.props.popState(this.props.appState.length - 2)
+    this.props.pushState(this.props.appState[this.props.appState.length - 2])
   }
 
   /**
@@ -60,7 +80,7 @@ class PageNavigator extends Component {
   }
 
   nextButtonListener() {
-    for(var i = this.getLastAppState().index + 1; i < this.props.page.length; i++) {
+    for(var i = this.getLastAppState() + 1; i < this.props.page.length; i++) {
       if(this.props.page[i].hasOwnProperty("rendered")) {
         if(evaluator(this.props.page[i].rendered)) {
           this.props.pushState(i)
@@ -77,6 +97,7 @@ class PageNavigator extends Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.notifier,
     appState: storage.app_state
   }
 }

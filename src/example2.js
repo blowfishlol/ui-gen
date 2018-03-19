@@ -1,7 +1,7 @@
 var page = [
     {
         "pagename": "Initialize",
-        "rendered": true,
+        "rendered": "true",
         "config": [
             {
                 "label": "Name",
@@ -117,7 +117,7 @@ var page = [
                 "value": {
                     "default": "C:/Windows/System32"
                 },
-                "rendered": "installation.mode == custom",
+                "rendered": "installation.mode == 'custom'",
                 "layout": {
                     "mobile": 12,
                     "tablet": 4,

@@ -36,7 +36,7 @@ function lastElement(obj) {
 }
 
 export default function reducer(state={
-  data: [{}],
+  data: [],
   app_state: [],
   notifier: false
 }, action) {
@@ -51,7 +51,11 @@ export default function reducer(state={
      */
     return {
       ...state,
-      data: state.data.concat(set(action.payload.path.split("."), action.payload.value, clone(lastElement(state.data)))),
+      data: state.data.map((d, index) => {
+        return index === lastElement(state.app_state) ?
+            set(action.payload.path.split("."), action.payload.value, clone(state.data[lastElement(state.app_state)])) :
+            d
+       }),
       notifier: !state.notifier
     }
   } else if(action.type === ActionList.SET_PAGE) {
@@ -60,7 +64,8 @@ export default function reducer(state={
      */
     return {
       ...state,
-      page : action.payload
+      page: action.payload,
+      data: Array(action.payload.length).fill({})
     }
   } else if(action.type === ActionList.PUSH_STACK) {
     /**
@@ -68,19 +73,19 @@ export default function reducer(state={
      */
     return {
       ...state,
-      app_state : state.app_state.concat({
-        index: action.payload.index,
-        history: state.data.length - 1
-      })
+      app_state: state.app_state.concat(action.payload.index)
     }
   } else if(action.type === ActionList.POP_STACK) {
     /**
      * param: index
+     * CHANGE!
+     * now instead used to rewind, use to remove value of a certain data index
      */
     return {
       ...state,
-      app_state : state.app_state.slice(0, action.payload.index + 1),
-      data: state.data.slice(0, state.app_state[action.payload.index + 1].history + 1)
+      data: state.data.map((d, index) => {
+        return index === action.payload.index ? {} : d
+      })
     }
   } else {
     return state;
