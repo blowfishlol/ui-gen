@@ -5,8 +5,8 @@ import { compose } from "recompose";
 import  ActionList  from "./../reducer/actionList"
 
 import '@progress/kendo-theme-material/dist/all.css';
-import style from '@progress/kendo-theme-material/dist/all.css';
 
+import './UploadBox.css'
 import "@progress/kendo-ui";
 import { Upload } from '@progress/kendo-upload-react-wrapper';
 import { labelCheck } from '../util/InfoChecker';
@@ -39,7 +39,7 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div>
-      <div className={style.dropZoneElement}>Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <Upload
         async={this.async}
         dropZone={this.dropZone}
