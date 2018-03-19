@@ -29,7 +29,7 @@ class CheckBox extends React.Component {
       const checkboxes = this.state.contents.map(content => {
           const childPath = this.props.config.path + "." + content.value
           content.checked = get(childPath, "toggle")
-          console.log("CREATING CHECKBOX", childPath, "INPUT CONFIG IS: ", this.props.config.path);
+
           return <div key={childPath}>
             <input
               type="checkbox"
@@ -37,7 +37,6 @@ class CheckBox extends React.Component {
               id={childPath}
               defaultChecked={this.props.config.value.default === content.value}
               onClick={(event) => {
-                  console.log(childPath, event.target.checked, content.value);
                   this.props.updateState(childPath, event.target.checked)
                 }
               }/>

@@ -5,6 +5,8 @@ import { compose } from "recompose";
 import  ActionList  from "./../reducer/actionList"
 
 import '@progress/kendo-theme-material/dist/all.css';
+import style from '@progress/kendo-theme-material/dist/all.css';
+
 import "@progress/kendo-ui";
 import { Upload } from '@progress/kendo-upload-react-wrapper';
 import { labelCheck } from '../util/InfoChecker';
@@ -24,6 +26,7 @@ class UploadBox extends React.Component {
       path: this.props.config.path,
       names: [],
     };
+    this.boxId ="imageCollection"+Math.floor(Math.random() * Math.floor(50000));
   }
 
   render() {
@@ -36,7 +39,7 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div>
-      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div className={style.dropZoneElement}>Drag and drop {this.state.label} here </div>
       <Upload
         async={this.async}
         dropZone={this.dropZone}
@@ -51,14 +54,15 @@ class UploadBox extends React.Component {
             this.setState({names: nameState});
           });
         }}
-        select={this.selectHandler}
-        clear={this.clearHandler}
-        remove={this.removeHandler} />
-      <div id="imageCollection"></div>
+        select={(event) => {this.selectHandler(this.boxId, event)}}
+        clear={(event) => {this.clearHandler(this.boxId, event)}}
+        remove={(event) => {this.removeHandler(this.boxId, event)}} />
+      <div id={this.boxId}></div>
     </div>
   }
 
-  selectHandler(event) {
+  selectHandler(boxId, event) {
+    var self = this;
     var files = event.files;
     files.forEach((file) => {
       var preview = document.createElement("IMG");
@@ -73,21 +77,21 @@ class UploadBox extends React.Component {
        }, false);
 
       reader.readAsDataURL(fileRaw);
-      document.getElementById("imageCollection").appendChild(preview);
+      document.getElementById(boxId).appendChild(preview);
     });
   }
 
   /**
   *Clear means remove all upload from the list.
   **/
-  clearHandler(event) {
-    var coll = document.getElementById("imageCollection");
+  clearHandler(boxId,event) {
+    var coll = document.getElementById(boxId);
     while(coll.hasChildNodes()){
       coll.removeChild(coll.firstChild);
     }
   }
 
-  removeHandler(event) {
+  removeHandler(boxId,event) {
     const uid = event.files[0].uid;
     document.getElementById(uid).remove();
   }
