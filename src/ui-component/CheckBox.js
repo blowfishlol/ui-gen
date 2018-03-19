@@ -29,22 +29,26 @@ class CheckBox extends React.Component {
       const checkboxes = this.state.contents.map(content => {
           const childPath = this.props.config.path + "." + content.value
           content.checked = get(childPath, "toggle")
+          console.log("CREATING CHECKBOX", childPath, "INPUT CONFIG IS: ", this.props.config.path);
           return <div key={childPath}>
             <input
               type="checkbox"
               className="k-checkbox"
-              id={content.value}
-              value={content.value}
-              defaultChecked={content.checked}
-              onClick={(event) => this.props.updateState(childPath, event.target.checked)}/>
-            <label className="k-checkbox-label" htmlFor={content.value}>{content.text}</label>
+              id={childPath}
+              defaultChecked={this.props.config.value.default === content.value}
+              onClick={(event) => {
+                  console.log(childPath, event.target.checked, content.value);
+                  this.props.updateState(childPath, event.target.checked)
+                }
+              }/>
+            <label className="k-checkbox-label" htmlFor={childPath}>{content.text}</label>
           </div>
     });
 
-    return <label className="k-form-field">
+    return <div className="k-form-field">
       <span>{this.state.label}</span>
       {checkboxes}
-    </label>
+    </div>
   }
 }
 

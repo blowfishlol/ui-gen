@@ -28,6 +28,7 @@ class UploadBox extends React.Component {
 
   render() {
     /**
+     * [Wibi]
      * upload event means that each individual file is uploaded
      * complete event means that All images are done uploading.
      * In in case of upload, it will push the name of the uploaded file into the state containing the names collection
@@ -35,6 +36,7 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div>
+      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <Upload
         async={this.async}
         dropZone={this.dropZone}
@@ -52,7 +54,6 @@ class UploadBox extends React.Component {
         select={this.selectHandler}
         clear={this.clearHandler}
         remove={this.removeHandler} />
-        <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <div id="imageCollection"></div>
     </div>
   }
