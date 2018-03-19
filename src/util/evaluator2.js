@@ -75,7 +75,11 @@ function isAndOp(arg) {
 
 function isOp(arg) {
   return isEqualOp(arg) || isNegation(arg) || isNotEqualOp(arg) || isMoreOp(arg) || isMoreEqualOp(arg) ||
-    isLessOp(arg) || isLessEqualOp(arg) || isOrOp(arg) || isAndOp(arg)
+    isLessOp(arg) || isLessEqualOp(arg)
+}
+
+function isLogicGate(arg) {
+  return isOrOp(arg) || isAndOp(arg)
 }
 
 function isNegated(arg) {
@@ -149,14 +153,18 @@ function operate(args, index) {
  * binary operator and unary operator (not all)
  */
 function evals(args) {
+  console.log(args)
   if(args.length === 0) {
     throw new Error(INVALID_ARG_ERROR)
   } else if(args.length === 1) {
     return evaluate(args[0])
   }
-  var i = find(args, isOp)
+  var i = find(args, isLogicGate)
   if(i === -1) {
-    throw new Error(INVALID_ARG_ERROR)
+    i = find(args, isOp)
+    if(i === -1) {
+      throw new Error(INVALID_ARG_ERROR)
+    }
   }
   return operate(args, i)
 }
