@@ -1,6 +1,7 @@
 import storage from "./../storage"
 import ActionList from "./../reducer/actionList"
 import ComponentType from "./ComponentType"
+
 /**
  * param: string, ComponentType
  * return: var (according to ComponentType param)
@@ -10,8 +11,7 @@ import ComponentType from "./ComponentType"
  */
 export default function f(path, type) {
   try {
-    const data = storage.getState().data
-    return get(data[data.length-1], path.split("."))
+    return get(fetchAllData(), path.split("."))
   } catch(error) {
   }
   return set(path, type)
@@ -25,7 +25,7 @@ function set(path, type) {
       "value": defaultValue(type)
     }
   })
-  return f(path, type)
+  return defaultValue(type)
 }
 
 function get(ptr, path) {
@@ -50,13 +50,44 @@ function defaultValue(type) {
     case ComponentType.NUMBER:   return 0
     case ComponentType.ARRAY:    return []
     case ComponentType.MAP:      return {}
-    default:         return ""
+    default:                     return ""
   }
+}
+
+function isObject(obj) {
+  return (obj && typeof obj === 'object' && !Array.isArray(obj));
+}
+
+function mergeDeep(obj1, obj2) {
+  var output = {...obj1}
+  Object.keys(obj2).forEach(key => {
+    if(isObject(obj2[key])) {
+      if(!(key in obj1)) {
+        output = {
+          ...output,
+          [key]: obj2[key]
+        }
+      } else {
+        output[key] = mergeDeep(obj1[key], obj2[key])
+      }
+    } else {
+      output = {
+        ...output,
+        [key]: obj2[key]
+      }
+    }
+  })
+  return output;
 }
 
 export function fetchAllData() {
   const data = storage.getState().data
-  return data[data.length-1]
+  // return data[data.length-1]
+  var merged = {}
+  data.forEach(element => {
+    merged = mergeDeep(merged, element)
+  })
+  return merged
 }
 
 /**
@@ -68,8 +99,7 @@ export function fetchAllData() {
  */
 export function check(path) {
   try {
-    const data = storage.getState().data
-    get(data[data.length-1], path.split("."))
+    get(fetchAllData(), path.split("."))
     return true
   } catch(error) {
     return false

@@ -1,6 +1,7 @@
 import get, { check } from "./get"
 
 const INVALID_ARG_ERROR = "Invalid render argument thrown"
+const PATH_NOT_FOUND_ERROR = "no_path"
 
 /**
  * this method accept a string (with a specific format) as parameter
@@ -15,6 +16,9 @@ export default function f(arg) {
   try {
     return evals(trim(arg.split(" ")))
   } catch(error) {
+    if(error.message === PATH_NOT_FOUND_ERROR) {
+      return false
+    }
     alert("Error: " + error.message + ": '" + arg + "'")
   }
   return false
@@ -90,16 +94,20 @@ function isStringLength(arg) {
   return arg.substring(arg.length-7, arg.length) === ".length"
 }
 
-function isAPath(arg) {
-  return check(arg)
-}
-
 function isNumber(arg) {
   return !isNaN(parseFloat(arg)) && parseFloat(arg).toString() === arg
 }
 
 function isBoolean(arg) {
   return arg === "true" || arg === "false"
+}
+
+function isString(arg) {
+  return arg.charAt(0) === arg.charAt(arg.length-1) && (arg.charAt(0) === "\"" || arg.charAt(0) === "'")
+}
+
+function isAPath(arg) {
+  return check(arg)
 }
 
 function evaluate(arg) {
@@ -109,14 +117,16 @@ function evaluate(arg) {
     return ! evaluate(arg.substring(1, arg.length))
   } else if(isStringLength(arg)) {
     return evaluate(arg.substring(0, arg.length-7)).length
-  } else if(isAPath(arg)) {
-    return get(arg)
   } else if(isNumber(arg)) {
     return parseFloat(arg)
   } else if(isBoolean(arg)) {
     return arg === "true"
+  } else if(isString(arg)) {
+    return arg.substring(1, arg.length - 1)
+  } else if(isAPath(arg)) {
+    return get(arg)
   } else {
-    return arg
+    throw new Error(PATH_NOT_FOUND_ERROR)
   }
 }
 
@@ -153,7 +163,7 @@ function operate(args, index) {
  * binary operator and unary operator (not all)
  */
 function evals(args) {
-  console.log(args)
+  // console.log(args)
   if(args.length === 0) {
     throw new Error(INVALID_ARG_ERROR)
   } else if(args.length === 1) {
