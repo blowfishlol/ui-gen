@@ -24,6 +24,9 @@ class App extends Component {
     var elements = this.props.config.map(element => {
       if(element.hasOwnProperty("rendered")) {
         if(!evaluator(element.rendered)) {
+          /**
+           * return an empty component
+           */
           return <div key={element.path}/>
         }
       }

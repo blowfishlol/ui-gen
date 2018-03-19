@@ -1,6 +1,13 @@
 import storage from "./../storage"
 import ActionList from "./../reducer/actionList"
-
+import ComponentType from "./ComponentType"
+/**
+ * param: string, ComponentType
+ * return: var (according to ComponentType param)
+ * check in the storage whether or not a value is stored
+ * with the given path, create default value if not available
+ * then return the obtained value to the caller
+ */
 export default function f(path, type) {
   try {
     const data = storage.getState().data
@@ -33,16 +40,16 @@ function get(ptr, path) {
 
 function defaultValue(type) {
   switch(type) {
-    case "text":     return ""
-    case "date":     return "2000-01-01"
-    case "image":    return ""
-    case "checkbox": return {}
-    case "time":     return "12:00"
-    case "toggle":   return false
-    case "dropdown": return ""
-    case "number":   return 0
-    case "array":    return []
-    case "map":      return {}
+    case ComponentType.TEXT:     return ""
+    case ComponentType.DATE:     return "2000-01-01"
+    case ComponentType.IMAGE:    return ""
+    case ComponentType.CHECKBOX: return {}
+    case ComponentType.TIME:     return "12:00"
+    case ComponentType.TOGGLE:   return false
+    case ComponentType.DROPDOWN: return ""
+    case ComponentType.NUMBER:   return 0
+    case ComponentType.ARRAY:    return []
+    case ComponentType.MAP:      return {}
     default:         return ""
   }
 }
@@ -52,6 +59,13 @@ export function fetchAllData() {
   return data[data.length-1]
 }
 
+/**
+ * param: string
+ * return: boolean
+ * check in the storage whether or not a value is stored
+ * with the given path
+ * (will not create default value if not available)
+ */
 export function check(path) {
   try {
     const data = storage.getState().data
