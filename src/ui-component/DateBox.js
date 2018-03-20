@@ -8,7 +8,6 @@ import { labelCheck } from '../util/InfoChecker';
 
 import  ActionList  from "./../reducer/actionList"
 import get from '../util/get';
-import getLayoutString from '../util/LayoutProcessor';
 
 class DateBox extends React.Component {
 
@@ -17,13 +16,11 @@ class DateBox extends React.Component {
     this.state = {
       label: labelCheck(this.props.config.label),
       value: get(this.props.config.path, this.props.config.type),
-      layout: getLayoutString(this.props.config.layout),
       // required: this.props.config.required ? "required" : "",
     }
   }
 
   render() {
-    console.log(this.props.config.path);
     return <div className="k-form-field ">
       <p>{this.state.label}</p>
       <DatePicker

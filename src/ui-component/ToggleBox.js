@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { labelCheck } from '../util/InfoChecker';
-import getLayoutString from '../util/LayoutProcessor';
 import  ActionList  from "./../reducer/actionList"
-
 import get from '../util/get';
 
 class ToggleBox extends React.Component {
@@ -15,8 +13,7 @@ class ToggleBox extends React.Component {
     this.state = {
       label: labelCheck(this.props.config.label),
       // required: requiredCheck(this.props.config.required),
-      default_value: get(this.props.config.path, this.props.config.type),
-      layout: getLayoutString(this.props.config.layout),
+      default_value: get(this.props.config.path, this.props.config.type)
     }
   }
 

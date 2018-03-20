@@ -27,7 +27,6 @@ class CheckBox extends React.Component {
   * The path for each checkbox is: checkboxpath.value where checkbox is the path stated in the config and value is the value in the config for ecah checkbox
   */
   render() {
-
     const checkboxes = this.state.contents.map(content => {
       const childPath = this.props.config.path + "." + content.value
       content.checked = get(childPath, "toggle")
