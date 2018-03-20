@@ -29,7 +29,7 @@ class PageNavigator extends Component {
       } else if(index >= this.getLastAppState()) {
         if(p.hasOwnProperty("rendered")) {
           if(!evaluator(p.rendered)) {
-            this.props.popState(index)
+            this.props.popData(index)
             /**
              * returns an empty element
              */
@@ -43,7 +43,7 @@ class PageNavigator extends Component {
       } else {
         if(p.hasOwnProperty("rendered")) {
           if(!evaluator(p.rendered)) {
-            this.props.popState(index)
+            this.props.popData(index)
             /**
              * returns an empty element
              */
@@ -62,7 +62,7 @@ class PageNavigator extends Component {
       </div>
       <h1>{current.pagename}</h1>
       <App config={current.config} />
-      <BlankSpace space="50px" />
+      <BlankSpace space="75px" />
       <div className="k-form-field row navFooter">
         <div className="col-sm-6 col-xs-6">
           {prevBtn}
@@ -75,11 +75,15 @@ class PageNavigator extends Component {
   }
 
   jumpButtonListener(index) {
-    this.props.pushState(index)
+    var target = this.props.appState.findIndex(element => {
+      return element === index
+    })
+    console.log(target)
+    this.props.popState((this.props.appState.length-1) - target)
   }
 
   prevButtonListener() {
-    this.props.pushState(this.props.appState[this.props.appState.length - 2])
+    this.props.popState(1)
   }
 
   /**
@@ -123,6 +127,12 @@ const mapDispatchToProps = (dispatch) => {
       }
     }),
     popState: (index) => dispatch({
+      type: ActionList.POP_APP_STATE,
+      payload: {
+        "index": index
+      }
+    }),
+    popData: (index) => dispatch({
       type: ActionList.POP_DATA_BY_INDEX,
       payload: {
         "index": index

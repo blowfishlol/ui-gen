@@ -6,13 +6,15 @@ import App from './App';
 import ErrorBox from './ErrorBox';
 
 import get from '../util/get';
+import getLayoutString from '../util/LayoutProcessor'
 
 class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: Array(get(this.props.config.path, this.props.config.type).length).fill("this data is just a filler")
+      childData: Array(get(this.props.config.path, this.props.config.type).length).fill("this data is just a filler"),
+      layout: getLayoutString(this.props.config.layout),
     };
   }
 
@@ -49,13 +51,13 @@ class ArrayInput extends React.Component {
       </div>
     });
 
-    return <label>
+    return <div>
       <span>{this.props.config.label}</span>
       <div className="k-form">
         {elements}
       </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
-    </label>
+    </div>
   }
 }
 

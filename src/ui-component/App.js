@@ -43,7 +43,7 @@ class App extends Component {
         case ComponentType.DATE:     return <DateBox key={element.path} config={element} />
         case ComponentType.TIME:     return <TimeBox key={element.path} config={element} />
         case ComponentType.ARRAY:    return <ArrayInput key={element.path} config={element} />
-        case ComponentType.MAP:      return <MapInput key={element.path} config={element} evenChild={isEvenChild}/>
+        case ComponentType.MAP:      return <div className="col-sm-12"><MapInput key={element.path} config={element} evenChild={isEvenChild}/></div>
         default:                     return <ErrorBox key={element.path} message={'Unrecognized element type "' + element.type + '"'} />
       }
     })
