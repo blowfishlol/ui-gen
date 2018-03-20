@@ -86,7 +86,12 @@ var page = [
                             {
                                 "label": "Grandchild 3",
                                 "type": "time",
-                                "path": "grandchild3"
+                                "path": "grandchild3",
+                                "layout": {
+                                    "mobile": 2,
+                                    "tablet": 2,
+                                    "desktop": 2
+                                }
                             },
                             {
                                 "label": "Grandchild 4",
