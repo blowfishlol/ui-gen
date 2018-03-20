@@ -9,7 +9,7 @@ import evaluator from "./util/evaluator2"
 import { fetchAllData } from "./util/get"
 import ActionList from "./reducer/actionList"
 
-import { TabStrip, TabStripTab, PanelBar, PanelBarItem, PanelBarUtils } from '@progress/kendo-react-layout';
+import { TabStrip, TabStripTab } from '@progress/kendo-react-layout';
 
 class PageNavigator extends Component {
 
@@ -39,7 +39,7 @@ class PageNavigator extends Component {
     const navBar = this.props.page.map((p, index) => {
       if(index === this.getLastAppState()) {
         isLastPage = true
-        this.currentPage = index;
+        currentPage = index;
         return <TabStripTab key={index}  disabled={true} title={p.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
         if(p.hasOwnProperty("rendered")) {
@@ -68,24 +68,21 @@ class PageNavigator extends Component {
         return <TabStripTab key={index}  onClick={() => this.jumpButtonListener(index)} title={p.pagename}>{content}</TabStripTab>
       }
     })
-    console.log(navBar, "navbar");
-
   /**
    * looking for hidden page so we can get the correct page index for the TabStrip
    **/
     var hiddenPageIndexes = [];
-    for ( var index in navBar ) {
-      if(navBar[index] == 0) {
+    for ( let index in navBar ) {
+      if(navBar[index] === 0) {
         hiddenPageIndexes.push(index);
       }
     }
-    console.log("Hidden Pages:", hiddenPageIndexes);
     /**
      * Adjusting currentPage so it gets the correct index.
      **/
-    for ( var index in hiddenPageIndexes ) {
-      if (this.currentPage > hiddenPageIndexes[index]) {
-        this.currentPage--;
+    for ( let index in hiddenPageIndexes ) {
+      if (currentPage > hiddenPageIndexes[index]) {
+        currentPage--;
       }
     }
     /**
@@ -94,9 +91,8 @@ class PageNavigator extends Component {
     const navBarFiltered = navBar.filter(nav => nav !== 0);
     const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
     const nextBtn = isLastPage ? "FINISH" : "NEXT"
-    console.log(this.currentPage, "curent pge")
     return <div>
-        <TabStrip selected={this.currentPage} onSelect={(e) => this.jumpButtonListener(e.selected)}>
+        <TabStrip selected={currentPage} onSelect={(e) => this.jumpButtonListener(e.selected)}>
         {navBarFiltered}
          </TabStrip>
       <BlankSpace space="50px" />
