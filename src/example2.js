@@ -48,6 +48,11 @@ var page = [
                         "path": "child1",
                         "child_content": {
                             "type": "date"
+                        },
+                        "layout": {
+                            "mobile": 12,
+                            "tablet": 4,
+                            "desktop": 3
                         }
                     },
                     {
@@ -66,6 +71,11 @@ var page = [
                                         { "text": "Eulav", "value": "value2" },
                                         { "text": "Lueva", "value": "value3" },
                                     ]
+                                },
+                                "layout": {
+                                    "mobile": 12,
+                                    "tablet": 4,
+                                    "desktop": 3
                                 }
                             },
                             {
