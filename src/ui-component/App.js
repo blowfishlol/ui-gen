@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import './style.css'
-
 import TextBox from './TextBox';
 import DateBox from './DateBox';
 import TimeBox from './TimeBox';

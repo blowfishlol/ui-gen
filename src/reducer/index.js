@@ -67,7 +67,7 @@ export default function reducer(state={
       page: action.payload,
       data: Array(action.payload.length).fill({})
     }
-  } else if(action.type === ActionList.PUSH_STACK) {
+  } else if(action.type === ActionList.PUSH_APP_STATE) {
     /**
      * param: index
      */
@@ -75,7 +75,7 @@ export default function reducer(state={
       ...state,
       app_state: state.app_state.concat(action.payload.index)
     }
-  } else if(action.type === ActionList.POP_STACK) {
+  } else if(action.type === ActionList.POP_DATA_BY_INDEX) {
     /**
      * param: index
      * CHANGE!

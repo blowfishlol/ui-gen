@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.k-checkbox-label {
+  margin-left: 20px;
+  padding-left: 30px;
+}
+
+.k-form {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.k-form-field {
+  padding-bottom: 15px;
+  border: 0px solid;
+}
+
+.mapChild {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.errorBox {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 10px;
+  margin: 5px;
+}
+
+.formHighlightLight {
+  background-color: #E2F1FF;
+  border: 1px solid #78A4CC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.formHighlightDark {
+  background-color: #96CDFF;
+  border: 1px solid #78A4CC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nextBtnStyle {
+  float: right;
+}
+
+.navFooter {
+  border-top: 1px solid #96D8FF;
+  background-color: #ECF8FF;
+  padding-top: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

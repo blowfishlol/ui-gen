@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import App from './ui-component/App';
+import BlankSpace from './ui-component/BlankSpace';
 
 import evaluator from "./util/evaluator2"
 import { fetchAllData } from "./util/get"
@@ -19,9 +20,11 @@ class PageNavigator extends Component {
   }
 
   render() {
+    var isLastPage = false
     const current = this.getCurrentPage()
     const navBar = this.props.page.map((p, index) => {
       if(index === this.getLastAppState()) {
+        isLastPage = true
         return <button key={index} className="k-button k-primary" disabled={true}>{p.pagename}</button>
       } else if(index >= this.getLastAppState()) {
         if(p.hasOwnProperty("rendered")) {
@@ -32,6 +35,9 @@ class PageNavigator extends Component {
              */
             return ""
           }
+        }
+        if(isLastPage) {
+          isLastPage = false
         }
         return <button key={index} className="k-button" disabled={true}>{p.pagename}</button>
       } else {
@@ -48,6 +54,7 @@ class PageNavigator extends Component {
       }
     })
     const prevBtn = this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""
+    const nextBtn = isLastPage ? "FINISH" : "NEXT"
 
     return <div>
       <div className="k-form-field">
@@ -55,9 +62,14 @@ class PageNavigator extends Component {
       </div>
       <h1>{current.pagename}</h1>
       <App config={current.config} />
-      <div className="k-form-field">
-        {prevBtn}
-        <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>NEXT</button>
+      <BlankSpace space="50px" />
+      <div className="k-form-field row navFooter">
+        <div className="col-sm-6 col-xs-6">
+          {prevBtn}
+        </div>
+        <div className="col-sm-6 col-xs-6">
+          <button className="k-button k-primary nextBtnStyle" onClick={() => this.nextButtonListener()}>{nextBtn}</button>
+        </div>
       </div>
     </div>
   }
@@ -105,13 +117,13 @@ const mapStateToProps = function(storage) {
 const mapDispatchToProps = (dispatch) => {
   return {
     pushState: (index) => dispatch({
-      type: ActionList.PUSH_STACK,
+      type: ActionList.PUSH_APP_STATE,
       payload: {
         "index": index
       }
     }),
     popState: (index) => dispatch({
-      type: ActionList.POP_STACK,
+      type: ActionList.POP_DATA_BY_INDEX,
       payload: {
         "index": index
       }

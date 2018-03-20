@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import '@progress/kendo-theme-bootstrap/dist/all.css';
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import './style.css'
 
 import storage from "./storage"
 import ActionList from "./reducer/actionList"
@@ -13,7 +14,7 @@ import page from "./example2";
 import registerServiceWorker from './registerServiceWorker';
 
 storage.dispatch({type:ActionList.SET_PAGE, payload: page});
-storage.dispatch({type:ActionList.PUSH_STACK, payload: {"index": 0}});
+storage.dispatch({type:ActionList.PUSH_APP_STATE, payload: {"index": 0}});
 ReactDOM.render(<Provider store={storage}>
     <div className="container-fluid">
       <PageNavigator page={storage.getState().page} />
