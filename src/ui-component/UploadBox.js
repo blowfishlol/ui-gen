@@ -36,7 +36,7 @@ class UploadBox extends React.Component {
      * If all files have completed the upload, complete event will trigger and will set the names of the uploadbox state to the app state.
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
-    return <div>
+    return <div className="k-form-field">
       <Upload
         className="col-*-3"
         async={this.async}

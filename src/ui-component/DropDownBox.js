@@ -23,7 +23,7 @@ class DropDownBox extends React.Component {
   }
 
   render() {
-    return <div className={"k-form-field " + this.state.layout}>
+    return <div className="k-form-field ">
       <div>{this.state.label}</div>
       <DropDownList
         data={this.state.values}

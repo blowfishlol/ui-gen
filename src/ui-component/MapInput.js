@@ -59,9 +59,9 @@ class MapInput extends React.Component {
       </div>
     });
 
-    return <div>
+    return <div className="k-form-field">
       <span>{this.props.config.label}</span>
-      <div className="k-form">
+      <div>
         {elements}
       </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>

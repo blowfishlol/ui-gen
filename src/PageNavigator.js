@@ -97,10 +97,10 @@ class PageNavigator extends Component {
          </TabStrip>
       <BlankSpace space="75px" />
       <div className="k-form-field row navFooter">
-        <div className="col-sm-6 col-xs-6">
+        <div className="col-sm-6 col-xs-3">
           {prevBtn}
         </div>
-        <div className="col-sm-6 col-xs-6">
+        <div className="col-sm-6 col-xs-3">
           <button className="k-button k-primary nextBtnStyle" onClick={() => this.nextButtonListener()}>{nextBtn}</button>
         </div>
       </div>

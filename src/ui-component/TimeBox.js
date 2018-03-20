@@ -22,7 +22,7 @@ class TimeBox extends React.Component {
   }
 
   render() {
-    return <div className={"k-form-field " + this.state.layout}>
+    return <div className="k-form-field">
     <p>{this.state.label}</p>
     <TimePicker
       value={this.state.default_value}

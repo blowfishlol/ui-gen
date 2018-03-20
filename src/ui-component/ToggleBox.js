@@ -21,7 +21,7 @@ class ToggleBox extends React.Component {
   }
 
   render() {
-    return <label className={"k-form-field " + this.state.layout}>
+    return <label className="k-form-field ">
       <span>{this.state.label}</span>
       <div>
         <input

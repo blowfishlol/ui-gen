@@ -26,7 +26,7 @@ class TextBox extends React.Component {
 
   render() {
     console.log(this.state.layout);
-    return <label className={"k-form-field" + this.state.layout}>
+    return <label className="k-form-field">
       <span>{this.state.label}</span>
       <input
         className={"k-textbox"}
