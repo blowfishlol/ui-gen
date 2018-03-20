@@ -52,15 +52,16 @@ class MapInput extends React.Component {
         childElement[i].path = this.props.config.path + "." + index + "." + childElement[i].path
       }
       var isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
-      return <div key={this.props.config.path + "." + index} className="mapChild">
+      var style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
+
+      return <div key={this.props.config.path + "." + index} className={style + " mapChild"}>
         <App config={childElement} evenChild={isEvenChild}/>
       </div>
     });
 
-    var style = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? "k-form formHighlight2" : "k-form formHighlight1") : "k-form formHighlight1"
     return <div className="k-form-field">
       <span>{this.props.config.label}</span>
-      <div className={style}>
+      <div>
         {elements}
       </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
