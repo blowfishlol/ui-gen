@@ -38,7 +38,9 @@ function lastElement(obj) {
 export default function reducer(state={
   data: [],
   app_state: [],
-  notifier: false
+  notifier: false,
+  description: [],
+  config: {}
 }, action) {
 
   if(action.type === ActionList.SET_DATA) {
@@ -58,9 +60,15 @@ export default function reducer(state={
        }),
       notifier: !state.notifier
     }
+  } else if(action.type === ActionList.SET_CONFIG) {
+    return {
+      ...state,
+      config: action.payload
+    }
   } else if(action.type === ActionList.SET_DESCRIPTION) {
     return {
       ...state,
+      description: action.payload,
       data: Array(action.payload.length).fill({}),
       app_state: state.app_state.concat(0)
     }
@@ -80,6 +88,11 @@ export default function reducer(state={
       ...state,
       app_state: state.app_state.slice(0, state.app_state.length - action.payload.index)
     }
+  } else if(action.type === ActionList.CLEAR_STATE) {
+    return {
+      ...state,
+      app_state: []
+    }
   } else if(action.type === ActionList.POP_DATA_BY_INDEX) {
     /**
      * param: index
@@ -91,6 +104,11 @@ export default function reducer(state={
       data: state.data.map((d, index) => {
         return index === action.payload.index ? {} : d
       })
+    }
+  } else if(action.type === ActionList.CLEAR_DATA) {
+    return {
+      ...state,
+      data: []
     }
   } else {
     return state;

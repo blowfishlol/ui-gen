@@ -2,20 +2,84 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
+import { DropDownList } from '@progress/kendo-react-dropdowns';
 import PageNavigator from "./PageNavigator"
 
+import get from "../../data-accessor/formDataGet"
 import ActionList from "../../reducer/actionList"
 
 class FormSelector extends React.Component {
 
   constructor(props) {
     super(props)
-    this.props.setDescription(this.props.descriptions[0].description)
+    this.state = {
+      selectedDescriptionId: this.getDefaultDescription()
+    }
+    this.props.setConfig(this.props.config.data)
+    this.prepareFormData()
+  }
+
+  lastElementOf(arr) {
+    return arr[arr.length - 1]
+  }
+
+  getDefaultDescription() {
+    if(this.props.config.hasOwnProperty("description_id")) {
+      return this.props.config.description_id
+    }
+    return this.lastElementOf(this.props.descriptions).id
+  }
+
+  getSelectedDescription() {
+    return this.props.descriptions.find(element => {
+      return this.state.selectedDescriptionId === element.id
+    }).description
+  }
+
+  /**
+   * Have to be performed everytime this component re render
+   * otherwise some data may not be available (when it should be)
+   * on evaluate() call in PageNavigator
+   * or some old data / app_state may remain when changing description
+   * resulting on some unexpected behaviour
+   */
+  prepareFormData() {
+    this.props.cleanData()
+    this.props.cleanState()
+    this.props.setDescription(this.getSelectedDescription())
+    this.getSelectedDescription().forEach(page => {
+      page.form.forEach(element => {
+        get(element.path, element.type)
+      })
+    })
   }
 
   render() {
     return <div>
-      <PageNavigator description={this.props.descriptions[0].description} />
+      <h1>{this.props.config.name}</h1>
+      <table className="descSelectorTable">
+        <tbody>
+          <tr>
+            <td>Description Version&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+              <DropDownList
+                data={this.props.descriptions}
+                textField={'name'}
+                valueField={'id'}
+                value={this.state.selectedDescriptionId}
+                onChange={(evt) => {
+                  this.setState({
+                    ...this.state,
+                    selectedDescriptionId: evt.target.value
+                  }, () => this.prepareFormData())
+                }} />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <PageNavigator
+        description={this.getSelectedDescription()}
+        config={this.props.config.data}/>
     </div>
   }
 }
@@ -30,6 +94,20 @@ const mapDispatchToProps = (dispatch) => {
     setDescription: (desc) => dispatch({
       type: ActionList.SET_DESCRIPTION,
       payload: desc
+    }),
+    setConfig: (config) => dispatch({
+      type: ActionList.SET_CONFIG,
+      payload: config
+    }),
+    cleanData: () => dispatch({
+      type: ActionList.CLEAR_DATA,
+      payload: {
+      }
+    }),
+    cleanState: () => dispatch({
+      type: ActionList.CLEAR_STATE,
+      payload: {
+      }
     })
   }
 }

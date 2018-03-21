@@ -5,9 +5,11 @@ var ActionList = {
   SET_DATA:          "set_data",
   SET_CONFIG:        "set_config",
   SET_DESCRIPTION:   "set_page",
-  PUSH_APP_STATE:    "push",
-  POP_APP_STATE:     "pop",
+  PUSH_APP_STATE:    "push_state",
+  POP_APP_STATE:     "pop_state",
+  CLEAR_STATE:       "pop_all_state",
   POP_DATA_BY_INDEX: "destroy_data",
+  CLEAR_DATA:        "destroy_all_data",
 
   SET_DESCRIPTIONS:  "set_descriptions",
 

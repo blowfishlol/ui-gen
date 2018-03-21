@@ -47,7 +47,7 @@ class PageNavigator extends Component {
     var isLastPage = false
     const current = this.getCurrentDescription()
     const content = <div>
-      <h1>{current.pagename}</h1>
+      <h2>{current.pagename}</h2>
       <App form={current.form} />
     </div>
     const navBar = this.props.description.map((p, index) => {
@@ -139,6 +139,10 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setDescription: (desc) => dispatch({
+      type: ActionList.SET_DESCRIPTION,
+      payload: desc
+    }),
     pushState: (index) => dispatch({
       type: ActionList.PUSH_APP_STATE,
       payload: {

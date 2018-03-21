@@ -16,10 +16,21 @@ import registerServiceWorker from './registerServiceWorker';
 
 import descriptions from "./example";
 
+function defaultConfig() {
+  return {
+    name: "New Configuration",
+    version: 1,
+    data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":{}}
+  }
+}
+
 storage.dispatch({type:ActionList.SET_DESCRIPTIONS, payload: descriptions})
 ReactDOM.render(<Provider store={storage}>
     <div className="container-fluid">
-      <FormSelector descriptions={descriptionGet()} />
+      <FormSelector config={defaultConfig()} descriptions={descriptionGet()} />
     </div>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
+
+console.log([{}, {a:1}, "string"].constructor === Array)
+console.log([].constructor === Array)

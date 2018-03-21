@@ -13,19 +13,81 @@ export default function f(path, type) {
   try {
     return get(fetchAllData(), path.split("."))
   } catch(error) {
+    return set(path, type)
   }
-  return set(path, type)
+}
+
+function findInConfig(path, type) {
+  var result = get(storage.getState().form.config, path.split("."))
+  return validateType(result, type)
+}
+
+function validateType(result, type) {
+  if(type === ComponentType.TEXT) {
+    if(typeof result !== "string") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.DATE) {
+    if(typeof result !== "string") {
+      throw new Error()
+    } else if(!result.match(/\d{1,2}-\d{1,2}-\d{4}/i)) {
+      throw new Error()
+    }
+  } else if(type === ComponentType.IMAGE) {
+    if(typeof result !== "string") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.CHECKBOX) {
+    if(typeof result !== "object") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.TIME) {
+    if(typeof result !== "string") {
+      throw new Error()
+    } else if(!result.match(/\d{1,2}:\d{1,2}/i)) {
+      throw new Error()
+    }
+  } else if(type === ComponentType.TOGGLE) {
+    if(typeof result !== "boolean") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.DROPDOWN) {
+    if(typeof result !== "string") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.NUMBER) {
+    if(typeof result !== "number") {
+      throw new Error()
+    }
+  } else if(type === ComponentType.ARRAY) {
+    if(result.constructor !== Array) {
+      throw new Error()
+    }
+  } else if(type === ComponentType.MAP) {
+    if(typeof result !== "object") {
+      throw new Error()
+    }
+  } else {
+    throw new Error()
+  }
+  return result
 }
 
 function set(path, type) {
+  var result = null
+  try {
+    result = findInConfig(path, type)
+  } catch(error) {
+  }
+  result = result ? result : defaultValue(type)
   storage.dispatch({
     type: ActionList.SET_DATA,
     payload: {
       "path": path,
-      "value": defaultValue(type)
+      "value": result
     }
   })
-  return defaultValue(type)
+  return result
 }
 
 function get(ptr, path) {

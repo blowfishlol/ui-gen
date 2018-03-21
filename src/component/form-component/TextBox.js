@@ -22,6 +22,7 @@ class TextBox extends React.Component {
   }
 
   render() {
+    console.log("RERENDER!", this.state.default_value)
     return <label className="k-form-field">
       <span>{this.state.label}</span>
       <input
@@ -35,6 +36,7 @@ class TextBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 
