@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import App from '../form-component/App';
 import BlankSpace from '../form-component/BlankSpace';
 
-import evaluator from "../../util/evaluator2"
+import evaluator from "../../util/evaluator"
 import { fetchAllData } from "../../data-accessor/formDataGet"
 import ActionList from "../../reducer/actionList"
 
@@ -98,7 +98,6 @@ class PageNavigator extends Component {
     var target = this.props.appState.findIndex(element => {
       return element === index
     })
-    console.log(target)
     this.props.popState((this.props.appState.length-1) - target)
   }
 

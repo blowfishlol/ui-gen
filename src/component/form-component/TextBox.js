@@ -14,7 +14,6 @@ class TextBox extends React.Component {
     /**
      * get the value inside the "result object" so when backtrack can get the value again.
      **/
-     //console.log("CALLING GET FUNTCION FOR TEXTBOX",get(this.props.form.path, this.props.form.type));
     this.state = {
       label: labelCheck(this.props.form.label),
       default_value: get(this.props.form.path, this.props.form.type),

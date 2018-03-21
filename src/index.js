@@ -14,10 +14,9 @@ import descriptionGet from "./data-accessor/descriptionGet"
 import FormSelector from './component/nav-component/FormSelector';
 import registerServiceWorker from './registerServiceWorker';
 
-import descriptions from "./example3";
+import descriptions from "./example";
 
-storage.dispatch({type:ActionList.SET_DESCRIPTIONS, payload: descriptions});
-console.log(storage.getState().description)
+storage.dispatch({type:ActionList.SET_DESCRIPTIONS, payload: descriptions})
 ReactDOM.render(<Provider store={storage}>
     <div className="container-fluid">
       <FormSelector descriptions={descriptionGet()} />

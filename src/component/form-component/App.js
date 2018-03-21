@@ -15,7 +15,7 @@ import ArrayInput from './ArrayInput';
 import ErrorBox from './ErrorBox';
 
 import ComponentType from "../ComponentType"
-import evaluator from "../../util/evaluator2"
+import evaluator from "../../util/evaluator"
 import getLayoutString from '../../util/LayoutProcessor'
 
 class App extends Component {

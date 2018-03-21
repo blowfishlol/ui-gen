@@ -1,151 +1,179 @@
-import { fetchAllData } from "./get"
+import get, { check } from "../data-accessor/formDataGet"
 
+const INVALID_ARG_ERROR = "Invalid render argument thrown"
+const PATH_NOT_FOUND_ERROR = "no_path"
+
+/**
+ * this method accept a string (with a specific format) as parameter
+ * and evaluate the value of the string
+ * then return a boolean
+ * used to evaluate the truth value of rendered property
+ * thrown by PageNavigator when it's trying to render a page or
+ * thrown by App when it's trying to render one or more of it's element
+ * (return true meant to tell that the component should be rendered)
+ */
 export default function f(arg) {
-  const root = fetchAllData();
-  const splitarg = arg.split(" ");
-  const result = begin(splitarg);
-
-  if(result === true && typeof(result) === "boolean"){
-    const tokens = arg.split(" ");
-    for(let i = 0 ; i < tokens.length ; i++) {
-      tokens[i] = objectCheck(tokens[i]);
+  try {
+    return evals(trim(arg.split(" ")))
+  } catch(error) {
+    if(error.message === PATH_NOT_FOUND_ERROR) {
+      return false
     }
-    const dependency = tokens.join(' ');
+    alert("Error: " + error.message + ": '" + arg + "'")
+  }
+  return false
+}
 
-    try {
-      return eval(dependency);
-    } catch(err) {
-      return false;
-    }
+function find(args, cond) {
+  return args.findIndex(cond)
+}
+
+function trim(args) {
+  var i = find(args, isEmpty)
+  if(i !== -1) {
+    return [].concat(args.split(0, i), args.split(i+1, args.length))
   } else {
-    console.log("DEPENDENCY VALIDATION ERROR:", result);
-    return false;
+    return args
   }
 }
 
-/**
- * Check if string refers to object
- **/
-function objectCheck(str) {
-  //this means it is not a boolean or value (IS AN OBJECT)
-  if( !( str.indexOf("true") >= 0 ||str.indexOf("false") >= 0 )) {
-    if(isNaN(str)){
-      // console.log("debug", symbolCheck(str))
-      if(symbolCheck(str) == false){
-        str = "root." + str;
-      }
-    }
-  }
-  return str;
+function isEmpty(arg) {
+  return arg === undefined || arg === null || arg === ""
 }
 
-/**
- * Check if string is an symbol. IF IT IS RETURN TRUE
- **/
-function symbolCheck(str) {
-  const symbolList = ["=", "<" , ">", "!", "&", "|","'"];
-  var flag = false;
-  symbolList.forEach((sym) => {
-    if(str.indexOf(sym) >= 0) {
-      flag = true;
-    }
-  });
-  return flag;
+function isEqualOp(arg) {
+  return arg === "=" || arg === "==" || arg === "==="
 }
 
-/**
- * Starting point of the validator.
- * If found exclamation mark will go to isExcMark
- * if not will check if it is the first value
- **/
-function begin(arr) {
-  if(arr[0] == "!"){
-    return isExcMark(arr);
+function isNegation(arg) {
+  return arg === "!"
+}
+
+function isNotEqualOp(arg) {
+  return arg === "!=" || arg === "!=="
+}
+
+function isMoreOp(arg) {
+  return arg === ">"
+}
+
+function isMoreEqualOp(arg) {
+  return arg === ">="
+}
+
+function isLessOp(arg) {
+  return arg === "<"
+}
+
+function isLessEqualOp(arg) {
+  return arg === "<="
+}
+
+function isOrOp(arg) {
+  return arg === "||" || arg === "OR" || arg === "or"
+}
+
+function isAndOp(arg) {
+  return arg === "&&" || arg === "AND" || arg === "and"
+}
+
+function isOp(arg) {
+  return isEqualOp(arg) || isNegation(arg) || isNotEqualOp(arg) || isMoreOp(arg) || isMoreEqualOp(arg) ||
+    isLessOp(arg) || isLessEqualOp(arg)
+}
+
+function isLogicGate(arg) {
+  return isOrOp(arg) || isAndOp(arg)
+}
+
+function isNegated(arg) {
+  return arg.charAt(0) === "!"
+}
+
+function isStringLength(arg) {
+  return arg.substring(arg.length-7, arg.length) === ".length"
+}
+
+function isNumber(arg) {
+  return !isNaN(parseFloat(arg)) && parseFloat(arg).toString() === arg
+}
+
+function isBoolean(arg) {
+  return arg === "true" || arg === "false"
+}
+
+function isString(arg) {
+  return arg.charAt(0) === arg.charAt(arg.length-1) && (arg.charAt(0) === "\"" || arg.charAt(0) === "'")
+}
+
+function isAPath(arg) {
+  return check(arg)
+}
+
+function evaluate(arg) {
+  if(isEmpty(arg)) {
+    return false
+  } else if(isNegated(arg)) {
+    return ! evaluate(arg.substring(1, arg.length))
+  } else if(isStringLength(arg)) {
+    return evaluate(arg.substring(0, arg.length-7)).length
+  } else if(isNumber(arg)) {
+    return parseFloat(arg)
+  } else if(isBoolean(arg)) {
+    return arg === "true"
+  } else if(isString(arg)) {
+    return arg.substring(1, arg.length - 1)
+  } else if(isAPath(arg)) {
+    return get(arg)
   } else {
-    return isValFirst(arr);
+    throw new Error(PATH_NOT_FOUND_ERROR)
+  }
+}
+
+function operate(args, index) {
+  if(isEqualOp(args[index])) {
+    return evals(args.slice(0, index)) === evals(args.slice(index+1, args.length))
+  } else if(isNegation(args[index])) {
+    if(index !== 0) {
+      throw new Error(INVALID_ARG_ERROR)
+    }
+    return ! evals(args.slice(1, args.length))
+  } else if(isNotEqualOp(args[index])) {
+    return evals(args.slice(0, index)) !== evals(args.slice(index+1, args.length))
+  } else if(isMoreOp(args[index])) {
+    return evals(args.slice(0, index)) > evals(args.slice(index+1, args.length))
+  } else if(isMoreEqualOp(args[index])) {
+    return evals(args.slice(0, index)) >= evals(args.slice(index+1, args.length))
+  } else if(isLessOp(args[index])) {
+    return evals(args.slice(0, index)) < evals(args.slice(index+1, args.length))
+  } else if(isLessEqualOp(args[index])) {
+    return evals(args.slice(0, index)) <= evals(args.slice(index+1, args.length))
+  } else if(isOrOp(args[index])) {
+    return evals(args.slice(0, index)) || evals(args.slice(index+1, args.length))
+  } else if(isAndOp(args[index])) {
+    return evals(args.slice(0, index)) && evals(args.slice(index+1, args.length))
   }
 }
 
 /**
- * Checks if the next value after ! is first value
- **/
-function isExcMark(arr) {
-  const str = arr.shift();
-  if(str.indexOf("!") >= 0) {
-    if( arr.length === 0 ) {
-      return "Expects next token"; //Expected next token
-    }
-    return isValFirst(arr);
+ * use a simple parsing algorithm
+ * take an array of string containing a sequence of arguments to be evaluated
+ * accepted arguments:
+ * string, number, boolean, variable(pointing to storage.data),
+ * binary operator and unary operator (not all)
+ */
+function evals(args) {
+  if(args.length === 0) {
+    throw new Error(INVALID_ARG_ERROR)
+  } else if(args.length === 1) {
+    return evaluate(args[0])
   }
-  return "Expects Exclamation Mark"; //Expects exclemation mark.
-}
-
-/**
- * Check if it is the first value of the condition
- **/
-function isValFirst(arr) {
-  const str = arr.shift()
-  if( /^[a-zA-Z0-9\.\\\']+$/.test(str) ) {
-    if(arr.length === 0) {
-      return "Expects operator (==, <= , >, etc)" ; //Expected next token
-    }
-    return isOperator(arr);
-  }
-  return "Expects Value, got " + str + " instead"; //Expects value, if value exists, it contains illegal chararcter
-}
-
-/**
- * Checks if the token is an operator or not
- **/
-function isOperator(arr) {
-  const str = arr.shift();
-  const operatorList = ["==", "<=" , ">=", ">", "<", "!="];
-  var opCount = 0;
-
-  operatorList.forEach((op) => {
-    if(str === op){
-      opCount++;
-    }
-  });
-
-  if(opCount === 1) {
-    if(arr.length === 0) {
-      return "Expects value, ends at " + str + " instead"; //Expected next token
-    }
-    return isValSecond(arr);
-  }
-  return "Expects operator (>,<,<=,==,etc), got" + str + " instead"; //Expects operator, unknown token found instead.
-}
-
-/**
- * Check if the token is the second value
- **/
-function isValSecond(arr) {
-  const str = arr.shift();
-  if( /^[a-zA-Z0-9\.\\\']+$/.test(str) ) {
-    if(arr.length === 0) {
-      return true; //No next token is ok
-    }
-    return isConnector(arr);
-  }
-  return "Value contains illegal character"; //Contains illegal character
-}
-
-/**
- * Check if the token is a connector
- **/
-function isConnector(arr) {
-  const str = arr.shift();
-  if( str==="&&" ^ str==="||" ) {
-    if(arr.length === 0) {
-      return "Expects next token, ends at " + str + " instead"; //expects next token
-    } else {
-      if(arr[0].indexOf("!") >= 0){
-        return isExcMark(arr);
-      } else {
-        return isValFirst(arr);
-      }
+  var i = find(args, isLogicGate)
+  if(i === -1) {
+    i = find(args, isOp)
+    if(i === -1) {
+      throw new Error(INVALID_ARG_ERROR)
     }
   }
-  return "Expects && or ||, got " + str + " instead"; //Expects &&/||, got other instead
+  return operate(args, i)
 }
