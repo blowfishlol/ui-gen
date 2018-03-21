@@ -1,8 +1,8 @@
-var page = [
+var description = [
     {
         "pagename": "Initialize",
         "rendered": "true",
-        "config": [
+        "form": [
             {
                 "label": "Name",
                 "type": "text",
@@ -108,7 +108,7 @@ var page = [
     {
         "pagename": "Options",
         "rendered": "installation.user.accept == true",
-        "config": [
+        "form": [
             {
                 "label": "Please choose installation mode",
                 "type": "dropdown",
@@ -144,7 +144,7 @@ var page = [
     {
         "pagename": "Finishing",
         "rendered": "true == true",
-        "config": [
+        "form": [
             {
                 "label": "Are you statisfied?",
                 "type": "toggle",
@@ -159,4 +159,4 @@ var page = [
     }
 ]
 
-export default(page);
+export default(description);

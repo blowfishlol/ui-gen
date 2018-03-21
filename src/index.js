@@ -9,15 +9,18 @@ import './style.css'
 
 import storage from "./storage"
 import ActionList from "./reducer/actionList"
-import PageNavigator from './PageNavigator';
-import page from "./example2";
+import descriptionGet from "./data-accessor/descriptionGet"
+
+import FormSelector from './component/nav-component/FormSelector';
 import registerServiceWorker from './registerServiceWorker';
 
-storage.dispatch({type:ActionList.SET_PAGE, payload: page});
-storage.dispatch({type:ActionList.PUSH_APP_STATE, payload: {"index": 0}});
+import descriptions from "./example3";
+
+storage.dispatch({type:ActionList.SET_DESCRIPTIONS, payload: descriptions});
+console.log(storage.getState().description)
 ReactDOM.render(<Provider store={storage}>
     <div className="container-fluid">
-      <PageNavigator page={storage.getState().page} />
+      <FormSelector descriptions={descriptionGet()} />
     </div>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
