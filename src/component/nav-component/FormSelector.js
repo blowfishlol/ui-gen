@@ -70,6 +70,7 @@ class FormSelector extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return <div>
       <h1>{this.props.config.name}</h1>
       <table className="descSelectorTable">
@@ -101,6 +102,8 @@ class FormSelector extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    config: storage.config.current_config,
+    descriptions: storage.description.descriptions
   }
 }
 

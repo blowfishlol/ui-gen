@@ -6,7 +6,6 @@ import App from './App';
 import ErrorBox from './ErrorBox';
 
 import get from '../../data-accessor/formDataGet';
-import getLayoutString from '../../util/LayoutProcessor'
 
 class ArrayInput extends React.Component {
 
@@ -24,7 +23,6 @@ class ArrayInput extends React.Component {
      * class only see the array length
      * used to repliate same component in render
      */
-    console.log(get(this.props.form.path, this.props.form.type))
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["just to replicate child"])

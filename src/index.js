@@ -9,25 +9,24 @@ import './style.css'
 
 import storage from "./storage"
 import ActionList from "./reducer/actionList"
-import descriptionGet from "./data-accessor/descriptionGet"
 
-import FormSelector from './component/nav-component/FormSelector';
+// import FormSelector from './component/nav-component/FormSelector';
+import Navigator from './component/nav-component/Navigator';
 import registerServiceWorker from './registerServiceWorker';
 
 import descriptions from "./example";
 
-function defaultConfig() {
-  return {
-    name: "New Configuration",
-    version: 1,
-    data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
-  }
-}
-
 storage.dispatch({type:ActionList.SET_DESCRIPTIONS, payload: descriptions})
+// ReactDOM.render(<Provider store={storage}>
+//     <div className="container-fluid">
+//       <FormSelector config={defaultConfig()} descriptions={descriptionGet()} />
+//     </div>
+//   </Provider>, document.getElementById('root'));
+// registerServiceWorker();
+
 ReactDOM.render(<Provider store={storage}>
-    <div className="container-fluid">
-      <FormSelector config={defaultConfig()} descriptions={descriptionGet()} />
-    </div>
-  </Provider>, document.getElementById('root'));
+  <div className="container-fluid">
+    <Navigator />
+  </div>
+</Provider>, document.getElementById('root'));
 registerServiceWorker();
