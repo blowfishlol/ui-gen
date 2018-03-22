@@ -20,7 +20,7 @@ function defaultConfig() {
   return {
     name: "New Configuration",
     version: 1,
-    data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":{}}
+    data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
   }
 }
 
@@ -31,6 +31,3 @@ ReactDOM.render(<Provider store={storage}>
     </div>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
-
-console.log([{}, {a:1}, "string"].constructor === Array)
-console.log([].constructor === Array)
