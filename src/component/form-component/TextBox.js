@@ -28,9 +28,17 @@ class TextBox extends React.Component {
       <input
         className={"k-textbox"}
         placeholder={this.state.placeholder}
-        defaultValue={this.state.default_value}
-        onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
+        value={this.state.default_value}
+        onChange={evt => this.handleChange(this.props.form.path, evt.target.value)} />
     </label>
+  }
+
+  handleChange(path, val){
+      this.setState({
+          ...this.state,
+          default_value: val,
+      })
+      this.props.updateState(path,val)
   }
 }
 
