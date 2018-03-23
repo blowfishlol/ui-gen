@@ -7,6 +7,8 @@ var ActionList = {
   DELETE_CONFIG:              "delete_config",
   ON_CONFIG_DELETED:          "on_config_deleted",
   ON_CONFIG_DELETE_FAIL:      "on_config_delete_fail",
+  CHANGE_CURRENT_CONFIG_NAME: "change_config_name",
+  SAVE_CONFIG:                "save_config",
 
   SET_DATA:                   "set_data",
   SET_DATA_BY_INDEX:          "set_data_by_index",
@@ -25,6 +27,7 @@ var ActionList = {
   ON_LOGIN:                    "login",
   ON_LOGIN_SUCCESS:            "login_success",
   ON_LOGIN_FAIL:               "login_fail",
+  ON_LOGOUT:                   "logout"
 };
 
 export default(ActionList);

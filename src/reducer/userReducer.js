@@ -12,24 +12,12 @@ export default function reducer(state={
 
 
   if(action.type === ActionList.ON_LOGIN) {
-    console.log(action.payload, server+"/user/login")
-    axios.post(server + "/user/login", action.payload, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        })
+    axios.post(server + "/user/login", action.payload)
       .then((response) => {
-        console.log(response);
         storage.dispatch({type: ActionList.ON_LOGIN_SUCCESS, payload: response.data})
       })
       .catch((err) => {
-        console.log(err)
-        // storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err})
-        storage.dispatch({type: ActionList.ON_LOGIN_SUCCESS, payload: {
-          id: 1,
-          username: "sake",
-          token: "blablablatokengajelas"
-        }})
+        storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err})
       })
     return state
   } else if(action.type === ActionList.ON_LOGIN_SUCCESS  ) {
@@ -38,6 +26,13 @@ export default function reducer(state={
       id: action.payload.id,
       username: action.payload.username,
       token: action.payload.token
+    }
+  } else if(action.type === ActionList.ON_LOGOUT  ) {
+    return {
+      ...state,
+      id: -1,
+      username: "",
+      token: ""
     }
   } else {
     return state

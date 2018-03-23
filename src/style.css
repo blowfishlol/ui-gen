@@ -56,3 +56,18 @@
 .loginFormStyle {
   margin: 15px;
 }
+
+.configDisplayHeader {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+}
+
+.configDisplayHeader button {
+  float: right;
+}
+
+.formSelectorHeader {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}

@@ -27,6 +27,10 @@ export default function reducer(state={
       ...state,
       descriptions: action.payload,
     }
+  } else if(action.type === ActionList.ON_LOGOUT) {
+    return {
+      descriptions: []
+    }
   } else {
     return state;
   }

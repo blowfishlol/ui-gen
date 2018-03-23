@@ -12,6 +12,7 @@ import storage from "./storage"
 import Navigator from './component/nav-component/Navigator';
 import registerServiceWorker from './registerServiceWorker';
 
+
 ReactDOM.render(<Provider store={storage}>
   <div className="container-fluid">
     <Navigator />

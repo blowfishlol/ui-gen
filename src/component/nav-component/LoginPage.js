@@ -39,6 +39,7 @@ class LoginPage extends React.Component {
           <label className="k-form-field col-sm-12">
             <span>Password</span>
             <input
+              type="password"
               className={"k-textbox"}
               placeholder={"Password"}
               value={this.state.password}

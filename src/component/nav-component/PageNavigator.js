@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React, { Component } from 'react'
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import App from '../form-component/App';
-import BlankSpace from '../form-component/BlankSpace';
+import App from '../form-component/App'
+import BlankSpace from '../form-component/BlankSpace'
 
 import evaluator from "../../util/evaluator"
 import { fetchAllData } from "../../data-accessor/formDataGet"
 import ActionList from "../../reducer/actionList"
 
-import { TabStrip, TabStripTab } from '@progress/kendo-react-layout';
+import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
 

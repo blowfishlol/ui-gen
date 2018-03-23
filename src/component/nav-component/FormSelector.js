@@ -15,9 +15,11 @@ class FormSelector extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isEditNameMode: false,
+      configName: this.props.config.name,
       selectedDescriptionId: this.getDefaultDescription()
     }
-    this.props.setConfig(this.props.config.data)
+    this.props.setConfig(this.props.config.configContents)
     this.prepareFormData()
   }
 
@@ -26,8 +28,12 @@ class FormSelector extends React.Component {
   }
 
   getDefaultDescription() {
-    if(this.props.config.hasOwnProperty("description_id")) {
-      return this.props.config.description_id
+    if(this.props.config.hasOwnProperty("configContents")) {
+      if(this.props.config.hasOwnProperty("description")) {
+        if(this.props.config.hasOwnProperty("id")) {
+          return this.props.config.configContents.description.id
+        }
+      }
     }
     return this.lastElementOf(this.props.descriptions).id
   }
@@ -70,9 +76,24 @@ class FormSelector extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    if(this.state.isEditNameMode) {
+      var formSelectorHeader = <div className="formSelectorHeader">
+        <input
+          classname="k-textbox"
+          type="text"
+          value={this.state.configName}
+          onChange={evt => this.updateConfigName(evt)} />
+        <button className="k-button" onClick={() => this.onTopButtonClicked()}>CHANGE</button>
+      </div>
+    } else {
+      var formSelectorHeader = <h1 className="formSelectorHeader">
+        {this.props.config.name}
+        &nbsp;&nbsp;
+        <button className="k-button" onClick={() => this.onTopButtonClicked()}>EDIT</button>
+      </h1>
+    }
     return <div>
-      <h1>{this.props.config.name}</h1>
+      {formSelectorHeader}
       <table className="descSelectorTable">
         <tbody>
           <tr>
@@ -97,6 +118,23 @@ class FormSelector extends React.Component {
         description={this.getSelectedDescription()}
         config={this.props.config.data}/>
     </div>
+  }
+
+  updateConfigName(evt) {
+    this.setState({
+      ...this.state,
+      configName: evt.target.value
+    })
+  }
+
+  onTopButtonClicked() {
+    if(this.state.isEditNameMode) {
+      this.props.changeConfigName(this.state.configName)
+    }
+    this.setState({
+      ...this.state,
+      isEditNameMode: !this.state.isEditNameMode
+    })
   }
 }
 
@@ -126,6 +164,10 @@ const mapDispatchToProps = (dispatch) => {
       type: ActionList.CLEAR_STATE,
       payload: {
       }
+    }),
+    changeConfigName: (name) => dispatch({
+      type: ActionList.CHANGE_CURRENT_CONFIG_NAME,
+      payload: name
     })
   }
 }

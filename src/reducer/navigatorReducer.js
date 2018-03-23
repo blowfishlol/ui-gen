@@ -46,6 +46,12 @@ export default function reducer(state={
       location: NavKey.FORM_PAGE,
       error_message: ""
     }
+  } else if(action.type === ActionList.ON_LOGOUT) {
+    return {
+      ...state,
+      location: NavKey.LOGIN_PAGE,
+      error_message: ""
+    }
   } else {
     return state
   }

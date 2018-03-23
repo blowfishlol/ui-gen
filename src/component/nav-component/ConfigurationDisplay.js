@@ -13,7 +13,7 @@ class ConfigurationDisplay extends React.Component {
 
   constructor(props) {
     super(props)
-    this.props.fetchConfigs(this.props.userId)
+    this.props.fetchConfigs(this.props.userId, this.props.token)
     this.props.fetchDescriptions()
   }
 
@@ -21,29 +21,31 @@ class ConfigurationDisplay extends React.Component {
     return {
       name: "New Configuration",
       version: 1,
-      data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
+      configContents: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
     }
   }
 
   render() {
     var configTable = <Grid data={this.props.configs} >
-      <Column field="name"    width="50%" title="Cofiguration Name" />
-      <Column field="version" width="15%" title="Version" />
-      <Column field="id"      width="35%" title="Option" cell={ConfigurationDisplayCustomColumn} />
+      <Column field="name" width="50%" title="Cofiguration Name" />
+      <Column field="configContents.version" width="15%" title="Version" />
+      <Column field="id" width="35%" title="Option" cell={ConfigurationDisplayCustomColumn} />
     </Grid>
     if(this.props.configs.length === 0) {
       configTable = <div className="col-sm-12 alert alert-warning">
         No saved configuration exist.
       </div>
     } else if(this.props.errorMessage !== "") {
-      console.log(this.props.errorMessage)
       return <div>
         <h1>Configurations</h1>
         <ErrorBox message={this.props.errorMessage} />
       </div>
     }
     return <div>
-      <h1>Configurations</h1>
+      <div className="row configDisplayHeader">
+        <h1 className="col-sm-10">Configurations</h1>
+        <button className="k-button col-sm-2" onClick={() => this.props.logout()}>LOGOUT</button>
+      </div>
       {configTable}
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
@@ -57,6 +59,7 @@ const mapStateToProps = function(storage) {
   return {
     userId: storage.user.id,
     username: storage.user.username,
+    token: storage.user.token,
     configs: storage.config.configs,
     descriptions: storage.description.descriptions,
     errorMessage: storage.nav.error_message
@@ -65,10 +68,11 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    fetchConfigs: (id) => dispatch({
+    fetchConfigs: (id, token) => dispatch({
       type: ActionList.FETCH_CONFIGS,
       payload: {
-        "id": id
+        "id": id,
+        "token": token
       }
     }),
     fetchDescriptions: () => dispatch({
@@ -78,6 +82,9 @@ const mapDispatchToProps = function(dispatch) {
       type: ActionList.ASSIGN_CONFIG,
       payload: config
     }),
+    logout: () => dispatch({
+      type: ActionList.ON_LOGOUT
+    })
   }
 }
 
