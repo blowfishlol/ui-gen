@@ -2,6 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
+import ErrorBox from "../form-component/ErrorBox"
+
 import ActionList from "../../reducer/actionList"
 
 class LoginPage extends React.Component {
@@ -15,31 +17,44 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    return <div className="k-form">
-      <div className="col-sm-12">
-        <span><h1><b> LOGIN </b></h1></span>
-      </div>
+    if(this.props.errorMessage !== "") {
+      var error = <ErrorBox message={this.props.errorMessage} />
+    }
+    return <div className="row">
+      <div className="col-md-3 col-sm-3 col-xs-12"></div>
+      <div className="k-form col-md-6 col-sm-6 col-xs-12">
+        <div className="row loginFormStyle">
+          <div className="col-sm-12">
+            <center><h1><b> LOGIN </b></h1></center>
+          </div>
 
-      <label className="k-form-field">
-        <span>Username</span>
-        <input
-          className={"k-textbox"}
-          placeholder={"Username"}
-          value={this.state.username}
-          onChange={evt => this.updateUsername(evt)} />
-      </label>
-      <label className="k-form-field">
-        <span>Password</span>
-        <input
-          className={"k-textbox"}
-          placeholder={"Password"}
-          value={this.state.password}
-          onChange={evt => this.updatePassword(evt)} />
-      </label>
+          <label className="k-form-field col-sm-12">
+            <span>Username</span>
+            <input
+              className={"k-textbox"}
+              placeholder={"Username"}
+              value={this.state.username}
+              onChange={evt => this.updateUsername(evt)} />
+          </label>
+          <label className="k-form-field col-sm-12">
+            <span>Password</span>
+            <input
+              className={"k-textbox"}
+              placeholder={"Password"}
+              value={this.state.password}
+              onChange={evt => this.updatePassword(evt)} />
+          </label>
 
-      <div className="col-sm-12">
-        <button className="k-button k-primary" onClick={() => this.props.login(this.state)}> LOGIN </button>
+          <div className="col-sm-12">
+            {error}
+          </div>
+
+          <div className="col-sm-12">
+            <button className="k-button k-primary" onClick={() => this.props.login(this.state)}> LOGIN </button>
+          </div>
+        </div>
       </div>
+      <div className="col-md-3 col-sm-3 col-xs-12"></div>
     </div>
   }
 
@@ -58,6 +73,7 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    errorMessage: storage.nav.error_message
   }
 }
 

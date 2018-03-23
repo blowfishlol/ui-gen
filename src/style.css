@@ -20,14 +20,6 @@
   margin-bottom: 10px;
 }
 
-.errorBox {
-  color: #a94442;
-  background-color: #f2dede;
-  border: 1px solid #ebccd1;
-  padding: 10px;
-  margin: 5px;
-}
-
 .formHighlightLight {
   background-color: #E2F1FF;
   border: 1px solid #78A4CC;
@@ -59,4 +51,8 @@
 .descSelectorTable {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.loginFormStyle {
+  margin: 15px;
 }

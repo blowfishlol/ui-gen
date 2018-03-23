@@ -109,13 +109,13 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setDescription: (desc) => dispatch({
-      type: ActionList.SET_DESCRIPTION,
-      payload: desc
-    }),
     setConfig: (config) => dispatch({
       type: ActionList.SET_CONFIG,
       payload: config
+    }),
+    setDescription: (desc) => dispatch({
+      type: ActionList.SET_DESCRIPTION,
+      payload: desc
     }),
     cleanData: () => dispatch({
       type: ActionList.CLEAR_DATA,

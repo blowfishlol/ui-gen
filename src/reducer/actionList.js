@@ -3,8 +3,10 @@ var ActionList = {
   FETCH_CONFIGS:              "fetch_configs",
   ON_CONFIGS_FETCHED:         "configs_fetched",
   ON_CONFIGS_FETCH_FAIL:      "fetch_configs_fail",
-  SET_CONFIGS:                "set_configurations",
   ASSIGN_CONFIG:              "assign_config",
+  DELETE_CONFIG:              "delete_config",
+  ON_CONFIG_DELETED:          "on_config_deleted",
+  ON_CONFIG_DELETE_FAIL:      "on_config_delete_fail",
 
   SET_DATA:                   "set_data",
   SET_DATA_BY_INDEX:          "set_data_by_index",
@@ -19,14 +21,10 @@ var ActionList = {
   FETCH_DESCRIPTIONS:         "fetch_descs",
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",
   ON_DESCRIPTIONS_FETCH_FAIL: "fetch_descs_fail",
-  SET_DESCRIPTIONS:           "set_descriptions",
 
   ON_LOGIN:                    "login",
   ON_LOGIN_SUCCESS:            "login_success",
   ON_LOGIN_FAIL:               "login_fail",
-  SET_USER:                    "set_user",
-
-  CHANGE_LOCATION:             "navigate_to",
 };
 
 export default(ActionList);
