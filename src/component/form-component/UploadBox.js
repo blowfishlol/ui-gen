@@ -8,13 +8,14 @@ import './UploadBox.css'
 import "@progress/kendo-ui";
 import { Upload } from '@progress/kendo-upload-react-wrapper';
 import { labelCheck } from '../../util/InfoChecker';
+import server from "../../util/server"
 
 class UploadBox extends React.Component {
 
   constructor(props) {
     super(props);
     this.async = {
-      saveUrl: "http://192.168.200.154:8080/file/upload",
+      saveUrl: (server + "/file/upload"),
       removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
       autoUpload: false,
       saveField: "file"

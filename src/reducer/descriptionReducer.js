@@ -4,8 +4,6 @@ import storage from "../storage"
 import server from "../util/server"
 import ActionList from "./actionList"
 
-// import dummy from "../example"
-
 export default function reducer(state={
   descriptions: []
 }, action) {

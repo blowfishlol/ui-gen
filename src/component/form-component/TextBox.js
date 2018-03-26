@@ -29,6 +29,14 @@ class TextBox extends React.Component {
         onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
     </label>
   }
+
+  handleChange(path, val){
+      this.setState({
+          ...this.state,
+          default_value: val,
+      })
+      this.props.updateState(path,val)
+  }
 }
 
 const mapStateToProps = function(storage) {
