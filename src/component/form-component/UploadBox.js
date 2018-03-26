@@ -45,33 +45,38 @@ class UploadBox extends React.Component {
         className="col-*-3"
         async={this.async}
         dropZone={this.dropZone}
-        complete={(event) => {
-          this.props.updateState(this.state.path, this.state.ids)
-          this.props.addExtFileRef(this.state.ids)
-        }}
-        upload={(event) => {
-          var files = event.files
-          var nameState = this.state.names
-          files.forEach((file) => {
-            nameState.push(file.name)
-            this.setState({names: nameState})
-          })
-        }}
-        success={(event) => {
-          var fileId = event.response
-          this.setState({
-            ...this.state,
-            ids: this.state.ids.concat(fileId)
-          })
-        }}
-        select={(event) => {this.selectHandler(this.boxId, event)}}
-        clear={(event) => {this.clearHandler(this.boxId, event)}}
-        remove={(event) => {this.removeHandler(this.boxId, event)}} />
+        complete={event => this.completeHandler(event)}
+        upload={event => this.uploadHandler(event)}
+        success={event => this.successHandler(event)}
+        select={event => this.selectHandler(this.boxId, event)}
+        clear={event => this.clearHandler(this.boxId, event)}
+        remove={event => this.removeHandler(this.boxId, event)} />
       <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3"></div>
     </div>
   }
 
+  completeHandler(event) {
+    this.props.updateState(this.state.path, this.state.ids)
+    this.props.addExtFileRef(this.state.ids)
+  }
+
+  uploadHandler(event) {
+    var files = event.files
+    var nameState = this.state.names
+    files.forEach((file) => {
+      nameState.push(file.name)
+      this.setState({names: nameState})
+    })
+  }
+
+  successHandler(event) {
+    var fileId = event.response
+    this.setState({
+      ...this.state,
+      ids: this.state.ids.concat(fileId)
+    })
+  }
 
   selectHandler(boxId, event) {
     var files = event.files
@@ -97,7 +102,6 @@ class UploadBox extends React.Component {
   *Clear means remove all upload from the list.
   **/
   clearHandler(boxId, event) {
-    console.log("clear triggered!", event)
     var coll = document.getElementById(boxId)
     while(coll.hasChildNodes()){
       coll.removeChild(coll.firstChild)
@@ -105,23 +109,8 @@ class UploadBox extends React.Component {
   }
 
   removeHandler(boxId, event) {
-    console.log("remove triggered!",event)
     const uid = event.files[0].uid
     document.getElementById(uid).remove()
-  }
-
-  /**
-  *TODO: If API available, change the names into the ID that they get from the server.
-  **/
-  uploadHandler(event, self) {
-    var files = event.files
-
-    var names = []
-    files.forEach((file) => {
-        names.push(file.name)
-    })
-
-    self.props.updateState(this.state.path, names)
   }
 }
 
