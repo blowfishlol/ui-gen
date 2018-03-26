@@ -1,32 +1,33 @@
-import React from "react";
+import React from "react"
 
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import { connect } from "react-redux"
+import { compose } from "recompose"
 import  ActionList  from "../../reducer/actionList"
 
 import './UploadBox.css'
-import "@progress/kendo-ui";
-import { Upload } from '@progress/kendo-upload-react-wrapper';
-import { labelCheck } from '../../util/InfoChecker';
+import "@progress/kendo-ui"
+import { Upload } from '@progress/kendo-upload-react-wrapper'
+import { labelCheck } from '../../util/InfoChecker'
 import server from "../../util/server"
 
 class UploadBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.async = {
       saveUrl: (server + "/file/upload"),
       removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
       autoUpload: false,
       saveField: "file"
     }
-    this.dropZone = ".dropZoneElement";
+    this.dropZone = ".dropZoneElement"
     this.state = {
       label: labelCheck(this.props.form.label),
       path: this.props.form.path,
       names: [],
-    };
-    this.boxId ="imageCollection"+Math.floor(Math.random() * Math.floor(50000));
+      ids: []
+    }
+    this.boxId ="imageCollection"+Math.floor(Math.random() * Math.floor(50000))
   }
 
   render() {
@@ -45,15 +46,23 @@ class UploadBox extends React.Component {
         async={this.async}
         dropZone={this.dropZone}
         complete={(event) => {
-          this.props.updateState(this.state.path, this.state.names);
+          this.props.updateState(this.state.path, this.state.ids)
+          this.props.addExtFileRef(this.state.ids)
         }}
         upload={(event) => {
-          var files = event.files;
-          var nameState = this.state.names;
+          var files = event.files
+          var nameState = this.state.names
           files.forEach((file) => {
             nameState.push(file.name)
-            this.setState({names: nameState});
-          });
+            this.setState({names: nameState})
+          })
+        }}
+        success={(event) => {
+          var fileId = event.response
+          this.setState({
+            ...this.state,
+            ids: this.state.ids.concat(fileId)
+          })
         }}
         select={(event) => {this.selectHandler(this.boxId, event)}}
         clear={(event) => {this.clearHandler(this.boxId, event)}}
@@ -65,52 +74,54 @@ class UploadBox extends React.Component {
 
 
   selectHandler(boxId, event) {
-    var files = event.files;
+    var files = event.files
     files.forEach((file) => {
-      var preview = document.createElement("IMG");
-      var fileRaw = file.rawFile;
-      var reader = new FileReader();
-      preview.setAttribute("width", 100);
-      preview.setAttribute("height", 100);
-      preview.setAttribute("id", file.uid);
+      var preview = document.createElement("IMG")
+      var fileRaw = file.rawFile
+      var reader = new FileReader()
+      preview.setAttribute("width", 100)
+      preview.setAttribute("height", 100)
+      preview.setAttribute("id", file.uid)
       preview.setAttribute("class", "img-thumbnail")
 
       reader.addEventListener("load", function () {
-         preview.src = reader.result;
-       }, false);
+         preview.src = reader.result
+       }, false)
 
-      reader.readAsDataURL(fileRaw);
-      document.getElementById(boxId).appendChild(preview);
-    });
+      reader.readAsDataURL(fileRaw)
+      document.getElementById(boxId).appendChild(preview)
+    })
   }
 
   /**
   *Clear means remove all upload from the list.
   **/
-  clearHandler(boxId,event) {
-    var coll = document.getElementById(boxId);
+  clearHandler(boxId, event) {
+    console.log("clear triggered!", event)
+    var coll = document.getElementById(boxId)
     while(coll.hasChildNodes()){
-      coll.removeChild(coll.firstChild);
+      coll.removeChild(coll.firstChild)
     }
   }
 
-  removeHandler(boxId,event) {
-    const uid = event.files[0].uid;
-    document.getElementById(uid).remove();
+  removeHandler(boxId, event) {
+    console.log("remove triggered!",event)
+    const uid = event.files[0].uid
+    document.getElementById(uid).remove()
   }
 
   /**
   *TODO: If API available, change the names into the ID that they get from the server.
   **/
-  uploadHandler(event,self) {
-    var files = event.files;
+  uploadHandler(event, self) {
+    var files = event.files
 
-    var names = [];
+    var names = []
     files.forEach((file) => {
-        names.push(file.name);
-    });
+        names.push(file.name)
+    })
 
-    self.props.updateState(this.state.path, names);
+    self.props.updateState(this.state.path, names)
   }
 }
 
@@ -121,12 +132,20 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path,value) => dispatch({
+    updateState: (path, value) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
       }
+    }),
+    addExtFileRef: (ids) => dispatch({
+      type: ActionList.ADD_EXT_FILE_REF,
+      payload: ids
+    }),
+    removeExtFileRef: (ids) => dispatch({
+      type: ActionList.REMOVE_EXT_FILE_REF,
+      payload: ids
     })
   }
 }

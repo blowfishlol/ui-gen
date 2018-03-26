@@ -22,6 +22,8 @@ var ActionList = {
   CLEAR_STATE:                "pop_all_state",
   POP_DATA_BY_INDEX:          "destroy_data",
   CLEAR_DATA:                 "destroy_all_data",
+  ADD_EXT_FILE_REF:           "add_external_file_reference",
+  REMOVE_EXT_FILE_REF:        "add_external_file_reference",
 
   FETCH_DESCRIPTIONS:         "fetch_descs",
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",

@@ -9,13 +9,20 @@ import './style.css'
 
 import storage from "./storage"
 
+import { Ripple } from '@progress/kendo-react-ripple';
 import Navigator from './component/nav-component/Navigator';
 import registerServiceWorker from './registerServiceWorker';
 
 
 ReactDOM.render(<Provider store={storage}>
   <div className="container-fluid">
-    <Navigator />
+    <Ripple>
+      <Navigator />
+    </Ripple>
   </div>
 </Provider>, document.getElementById('root'));
 registerServiceWorker()
+
+var i = undefined
+
+console.log(!i ? "true" : "false")

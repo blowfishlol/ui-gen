@@ -45,7 +45,8 @@ export default function reducer(state={
   app_state: [],
   notifier: false,
   description: [],
-  config: {}
+  config: {},
+  ext_file_ids: []
 }, action) {
 
   if(action.type === ActionList.SET_DATA) {
@@ -118,6 +119,20 @@ export default function reducer(state={
       ...state,
       data: state.data.map((d, index) => {
         return index === action.payload.index ? {} : d
+      })
+    }
+  } else if(action.type === ActionList.ADD_EXT_FILE_REF) {
+    return {
+      ...state,
+      ext_file_ids: state.ext_file_ids.concat(action.payload)
+    }
+  } else if(action.type === ActionList.REMOVE_EXT_FILE_REF) {
+    return {
+      ...state,
+      ext_file_ids: state.ext_file_ids.filter(saved_id => {
+        return !action.payload.find(removed_id => {
+          return saved_id === removed_id
+        })
       })
     }
   } else if(action.type === ActionList.CLEAR_DATA) {

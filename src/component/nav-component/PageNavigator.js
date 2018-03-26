@@ -122,6 +122,7 @@ class PageNavigator extends Component {
       id: this.props.userId,
       data: JSON.stringify(fetchAllData()),
       description_id: this.props.descriptionId,
+      file_id: this.props.extFileRef,  /// ----> CHANGE LATER
       token: this.props.token
     }
     if(this.props.currentConfig.hasOwnProperty("id")) {
@@ -139,7 +140,8 @@ const mapStateToProps = function(storage) {
 
     userId: storage.user.id,
     token: storage.user.token,
-    currentConfig: storage.config.current_config
+    currentConfig: storage.config.current_config,
+    extFileRef: storage.form.ext_file_ids
   }
 }
 
