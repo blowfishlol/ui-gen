@@ -11,8 +11,9 @@ class MapInput extends React.Component {
 
   constructor(props) {
     super(props);
+    // console.log(this.props.form.path, get(this.props.form.path, this.props.form.type))
     this.state = {
-      childData: Array(Object.keys(get(this.props.form.path, this.props.form.type)).length).fill("this data is just a filler"),
+      childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler"),
       layout: getLayoutString(this.props.form.layout)
     };
   }
@@ -24,6 +25,7 @@ class MapInput extends React.Component {
    * used to repliate same component in render
    */
   add() {
+    console.log(get(this.props.form.path, this.props.form.type))
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["just to replicate child"])

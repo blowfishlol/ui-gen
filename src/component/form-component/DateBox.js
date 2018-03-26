@@ -19,13 +19,13 @@ class DateBox extends React.Component {
       // required: this.props.form.required ? "required" : "",
     }
   }
-  
+
   render() {
     return <div className="k-form-field ">
       <p>{this.state.label}</p>
       <DatePicker
         format={"dd MMMM yyyy"}
-        value={this.state.value}
+        value={get(this.props.form.path, this.props.form.type)}
         change={this.changeDate}
         id={this.props.form.path} />
     </div>

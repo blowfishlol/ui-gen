@@ -6,15 +6,13 @@ import App from './App';
 import ErrorBox from './ErrorBox';
 
 import get from '../../data-accessor/formDataGet';
-import getLayoutString from '../../util/LayoutProcessor'
 
 class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler"),
-      layout: getLayoutString(this.props.form.layout),
+      childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler")
     };
   }
 

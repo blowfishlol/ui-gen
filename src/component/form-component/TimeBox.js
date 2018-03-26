@@ -14,16 +14,15 @@ class TimeBox extends React.Component {
     super(props);
     this.state = {
       label: labelCheck(this.props.form.label),
-      default_value: get(this.props.form.path, this.props.form.type),
       // required: this.props.form.required ? "required" : "",
     }
   }
 
   render() {
-    return <div className="k-form-field">
+    return <div className="k-form-fartield">
       <p>{this.state.label}</p>
       <TimePicker
-        value={this.state.default_value}
+        value={get(this.props.form.path, this.props.form.type)}
         dateInput={true}
         format={"HH:mm"}
         change={evt => this.props.updateState(this.props.form.path, this.timeFormat(evt))}/>

@@ -16,20 +16,19 @@ class TextBox extends React.Component {
      **/
     this.state = {
       label: labelCheck(this.props.form.label),
-      default_value: get(this.props.form.path, this.props.form.type),
       placeholder: placeholderCheck(this.props.form.value)
-    };
+    }
   }
 
   render() {
-    console.log("RERENDER!", this.state.default_value)
+    // console.log("re render!", get(this.props.form.path, this.props.form.type))
     return <label className="k-form-field">
       <span>{this.state.label}</span>
       <input
         className={"k-textbox"}
         placeholder={this.state.placeholder}
-        value={this.state.default_value}
-        onChange={evt => this.handleChange(this.props.form.path, evt.target.value)} />
+        value={get(this.props.form.path, this.props.form.type)}
+        onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
     </label>
   }
 

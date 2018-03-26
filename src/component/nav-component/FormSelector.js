@@ -5,8 +5,10 @@ import { compose } from "recompose";
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import PageNavigator from "./PageNavigator"
 
-import get from "../../data-accessor/formDataGet"
+import { setByIndex } from "../../data-accessor/formDataGet"
+import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
+import ComponentType from "../ComponentType"
 
 class FormSelector extends React.Component {
 
@@ -47,14 +49,28 @@ class FormSelector extends React.Component {
     this.props.cleanData()
     this.props.cleanState()
     this.props.setDescription(this.getSelectedDescription())
-    this.getSelectedDescription().forEach(page => {
+    this.getSelectedDescription().forEach((page, index) => {
+      if(page.hasOwnProperty("rendered")) {
+        if(!evaluator(page.rendered)) {
+          return
+        }
+      }
       page.form.forEach(element => {
-        get(element.path, element.type)
+        if(element.type === ComponentType.ARRAY || element.type === ComponentType.MAP) {
+          return
+        }
+        if(element.hasOwnProperty("rendered")) {
+          if(!evaluator(element.rendered)) {
+            return
+          }
+        }
+        setByIndex(element.path, element.type, index)
       })
     })
   }
 
   render() {
+    console.log(this.props)
     return <div>
       <h1>{this.props.config.name}</h1>
       <table className="descSelectorTable">
@@ -86,6 +102,8 @@ class FormSelector extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    config: storage.config.current_config,
+    descriptions: storage.description.descriptions
   }
 }
 

@@ -16,7 +16,6 @@ class NumberBox extends React.Component{
     this.state = {
       label: labelCheck(this.props.form.label),
       // required: requiredCheck(this.props.form.required),
-      default_value: get(this.props.form.path, this.props.form.type),
       placeholder: placeholderCheck(this.props.form.value),
     }
   }
@@ -27,8 +26,8 @@ class NumberBox extends React.Component{
         <p>{this.props.form.label}</p>
         <NumericTextBox
           placeholder={this.state.placeholder}
-          defaultValue={this.state.default_value}
-          onChange={(evt) => {return this.props.updateState(this.props.form.path, evt.target.value)}}/>
+          value={get(this.props.form.path, this.props.form.type)}
+          onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)}/>
       </label>
     </div>
   }
@@ -36,6 +35,7 @@ class NumberBox extends React.Component{
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

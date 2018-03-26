@@ -73,6 +73,23 @@ function validateType(result, type) {
   return result
 }
 
+export function setByIndex(path, type, index) {
+  var result = null
+  try {
+    result = findInConfig(path, type)
+  } catch(error) {
+  }
+  result = result ? result : defaultValue(type)
+  storage.dispatch({
+    type: ActionList.SET_DATA_BY_INDEX,
+    payload: {
+      "path": path,
+      "value": result,
+      "index": index
+    }
+  })
+}
+
 function set(path, type) {
   var result = null
   try {
@@ -111,7 +128,7 @@ function defaultValue(type) {
     case ComponentType.DROPDOWN: return ""
     case ComponentType.NUMBER:   return 0
     case ComponentType.ARRAY:    return []
-    case ComponentType.MAP:      return {}
+    case ComponentType.MAP:      return []
     default:                     return ""
   }
 }

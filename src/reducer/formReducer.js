@@ -1,6 +1,14 @@
 import ActionList from "./actionList"
 // import storage from "../storage"
 
+function isInteger(arg) {
+  return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
+}
+
+function defaultForPath(arg) {
+  return isInteger(arg) ? [] : {}
+}
+
 /**
  * [MOTI]
  * function set
@@ -13,9 +21,13 @@ function set(path, value, ptr) {
     ptr[path[0]] = value
     return ptr
   } else {
+    if(isInteger(path[0])) {
+      ptr[parseInt(path[0], 10)] = set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]))
+      return ptr
+    }
     return {
       ...ptr,
-      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : {})
+      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]))
     }
   }
 }
@@ -55,7 +67,17 @@ export default function reducer(state={
       ...state,
       data: state.data.map((d, index) => {
         return index === lastElement(state.app_state) ?
-            set(action.payload.path.split("."), action.payload.value, clone(state.data[lastElement(state.app_state)])) :
+            set(action.payload.path.split("."), action.payload.value, clone(d)) :
+            d
+       }),
+      notifier: !state.notifier
+    }
+  } else if(action.type === ActionList.SET_DATA_BY_INDEX) {
+    return {
+      ...state,
+      data: state.data.map((d, index) => {
+        return index === action.payload.index ?
+            set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
        }),
       notifier: !state.notifier
