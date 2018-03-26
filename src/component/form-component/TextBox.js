@@ -10,7 +10,6 @@ class TextBox extends React.Component {
 
   constructor(props) {
     super(props);
-
     /**
      * get the value inside the "result object" so when backtrack can get the value again.
      **/
@@ -21,7 +20,6 @@ class TextBox extends React.Component {
   }
 
   render() {
-    // console.log("re render!", get(this.props.form.path, this.props.form.type))
     return <label className="k-form-field">
       <span>{this.state.label}</span>
       <input

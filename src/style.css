@@ -57,6 +57,11 @@
 
 .loginFormStyle {
   margin: 15px;
+  padding-top: 20px;
+}
+
+.loginFormStyle button {
+  float: right;
 }
 
 .configDisplayHeader {
