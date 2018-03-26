@@ -42,6 +42,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  overflow: hidden;
+  z-index: 999;
 }
 
 .navFooter button {
@@ -55,6 +57,11 @@
 
 .loginFormStyle {
   margin: 15px;
+  padding-top: 20px;
+}
+
+.loginFormStyle button {
+  float: right;
 }
 
 .configDisplayHeader {
@@ -97,6 +104,10 @@
   padding: 6px 0;
 }
 
+.userDisplay2 label {
+  padding: 6px 0;
+}
+
 .narrow {
   display: none;
 }
@@ -124,5 +135,6 @@
     padding-right: 30px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 5px;
   }
 }

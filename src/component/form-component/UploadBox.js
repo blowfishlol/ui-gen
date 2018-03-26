@@ -37,6 +37,7 @@ class UploadBox extends React.Component {
      * TODO: Fix the styling of the drop box. currently not accurate and weird.
      **/
     return <div className="k-form-field">
+      <span>{this.state.label}</span>
       <Upload
         className="col-*-3"
         async={this.async}
@@ -55,7 +56,7 @@ class UploadBox extends React.Component {
         select={(event) => {this.selectHandler(this.boxId, event)}}
         clear={(event) => {this.clearHandler(this.boxId, event)}}
         remove={(event) => {this.removeHandler(this.boxId, event)}} />
-        <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3"></div>
     </div>
   }
