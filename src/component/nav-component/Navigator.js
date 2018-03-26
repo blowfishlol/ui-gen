@@ -7,6 +7,7 @@ import LoginPage from "./LoginPage"
 import ConfigurationDisplay from "./ConfigurationDisplay"
 import FormSelector from "./FormSelector"
 import BlankSpace from "../form-component/BlankSpace"
+import ErrorBox from "../form-component/ErrorBox"
 
 import { NavKey } from "../../reducer/actionList"
 
@@ -25,7 +26,7 @@ class Navigator extends React.Component {
                                         <BlankSpace space="75px" />
                                         <FormSelector />
                                       </div>
-      default:                        return <p>default</p>
+      default:                        return <ErrorBox message="Invalid Page" />
     }
   }
 }

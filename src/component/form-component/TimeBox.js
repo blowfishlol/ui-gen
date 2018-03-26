@@ -19,7 +19,7 @@ class TimeBox extends React.Component {
   }
 
   render() {
-    return <div className="k-form-fartield">
+    return <div className="k-form-field">
       <p>{this.state.label}</p>
       <TimePicker
         value={get(this.props.form.path, this.props.form.type)}

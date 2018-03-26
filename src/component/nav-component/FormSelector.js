@@ -29,8 +29,8 @@ class FormSelector extends React.Component {
 
   getDefaultDescription() {
     if(this.props.currentConfig.hasOwnProperty("configContent")) {
-      if(this.props.currentConfig.hasOwnProperty("description")) {
-        if(this.props.currentConfig.hasOwnProperty("id")) {
+      if(this.props.currentConfig.configContent.hasOwnProperty("description")) {
+        if(this.props.currentConfig.configContent.description.hasOwnProperty("id")) {
           return this.props.currentConfig.configContent.description.id
         }
       }

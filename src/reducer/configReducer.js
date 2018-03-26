@@ -10,7 +10,6 @@ export default function reducer(state={
   default_config: {
     name: "New Configuration",
     configContent: {
-      version: 0,
       data: {}
     }
   }
@@ -19,10 +18,10 @@ export default function reducer(state={
   if(action.type === ActionList.FETCH_CONFIGS) {
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
-        console.log(response)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
       })
       .catch((err) => {
+        console.log("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.message})
       })
     return state
@@ -55,11 +54,10 @@ export default function reducer(state={
   } else if(action.type === ActionList.DELETE_CONFIG) {
     axios.post(server + "/config/delete", action.payload)
       .then((response) => {
-        console.log(response);
         storage.dispatch({type: ActionList.ON_CONFIG_DELETED, payload: response.data})
       })
       .catch((err) => {
-        console.log(err)
+        console.log("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err.message})
       })
     return state
@@ -71,11 +69,10 @@ export default function reducer(state={
   } else if(action.type === ActionList.SAVE_CONFIG) {
     axios.post(server + "/config/create", action.payload)
       .then((response) => {
-        console.log(response);
         storage.dispatch({type: ActionList.ON_CONFIG_SAVED, payload: response.data})
       })
       .catch((err) => {
-        console.log(err)
+        console.log("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIG_SAVE_FAIL, payload: err.message})
       })
     return state

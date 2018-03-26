@@ -13,11 +13,10 @@ export default function reducer(state={
   if(action.type === ActionList.FETCH_DESCRIPTIONS) {
     axios.post(server + "/description/list", action.payload)
       .then((response) => {
-        console.log(response);
         storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCHED, payload: response.data})
       })
       .catch((err) => {
-        console.log(err)
+        console.log("ERROR", err)
         storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCH_FAIL, payload: err.message})
       })
     return state

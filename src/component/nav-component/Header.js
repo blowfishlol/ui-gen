@@ -13,7 +13,7 @@ class Header extends React.Component {
           <div className="col-sm-6">
             {
               this.props.location === NavKey.FORM_PAGE ?
-              <button className="k-button col-sm-2" onClick={() => this.props.back()}>Back</button> :
+              <button className="k-button k-primary col-sm-2" onClick={() => this.props.back()}>Back</button> :
               ""
             }
           </div>
@@ -32,11 +32,11 @@ class Header extends React.Component {
                 <td>
                   {
                     this.props.location === NavKey.FORM_PAGE ?
-                    <button className="k-button" onClick={() => this.props.back()}>Back</button> :
+                    <button className="k-button k-primary" onClick={() => this.props.back()}>Back</button> :
                     ""
                   }
                 </td>
-                <td align="right">
+                <td align="right" className="userDisplay2">
                   <label>{this.props.username}</label>
                 </td>
                 <td className="shrinkToFit" align="right">
