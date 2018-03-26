@@ -15,9 +15,11 @@ class FormSelector extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isEditNameMode: false,
+      configName: this.props.currentConfig.name,
       selectedDescriptionId: this.getDefaultDescription()
     }
-    this.props.setConfig(this.props.config.data)
+    this.props.setFormConfig(this.props.currentConfig.configContent.data)
     this.prepareFormData()
   }
 
@@ -26,8 +28,12 @@ class FormSelector extends React.Component {
   }
 
   getDefaultDescription() {
-    if(this.props.config.hasOwnProperty("description_id")) {
-      return this.props.config.description_id
+    if(this.props.currentConfig.hasOwnProperty("configContent")) {
+      if(this.props.currentConfig.hasOwnProperty("description")) {
+        if(this.props.currentConfig.hasOwnProperty("id")) {
+          return this.props.currentConfig.configContent.description.id
+        }
+      }
     }
     return this.lastElementOf(this.props.descriptions).id
   }
@@ -35,7 +41,7 @@ class FormSelector extends React.Component {
   getSelectedDescription() {
     return this.props.descriptions.find(element => {
       return this.state.selectedDescriptionId === element.id
-    }).description
+    }).data
   }
 
   /**
@@ -70,9 +76,25 @@ class FormSelector extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    var formSelectorHeader
+    if(this.state.isEditNameMode) {
+      formSelectorHeader = <div className="formSelectorHeader">
+        <input
+          className="k-textbox"
+          type="text"
+          value={this.state.configName}
+          onChange={evt => this.updateConfigName(evt)} />
+        <button className="k-button" onClick={() => this.onTopButtonClicked()}>CHANGE</button>
+      </div>
+    } else {
+      formSelectorHeader = <h1 className="formSelectorHeader">
+        {this.props.currentConfig.name}
+        &nbsp;&nbsp;
+        <button className="k-button" onClick={() => this.onTopButtonClicked()}>EDIT</button>
+      </h1>
+    }
     return <div>
-      <h1>{this.props.config.name}</h1>
+      {formSelectorHeader}
       <table className="descSelectorTable">
         <tbody>
           <tr>
@@ -80,7 +102,7 @@ class FormSelector extends React.Component {
             <td>
               <DropDownList
                 data={this.props.descriptions}
-                textField={'name'}
+                textField={'version'}
                 valueField={'id'}
                 value={this.state.selectedDescriptionId}
                 onChange={(evt) => {
@@ -93,29 +115,44 @@ class FormSelector extends React.Component {
           </tr>
         </tbody>
       </table>
-      <PageNavigator
-        description={this.getSelectedDescription()}
-        config={this.props.config.data}/>
+      <PageNavigator descriptionId={this.state.selectedDescriptionId}/>
     </div>
+  }
+
+  updateConfigName(evt) {
+    this.setState({
+      ...this.state,
+      configName: evt.target.value
+    })
+  }
+
+  onTopButtonClicked() {
+    if(this.state.isEditNameMode) {
+      this.props.changeConfigName(this.state.configName)
+    }
+    this.setState({
+      ...this.state,
+      isEditNameMode: !this.state.isEditNameMode
+    })
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
-    config: storage.config.current_config,
+    currentConfig: storage.config.current_config,
     descriptions: storage.description.descriptions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setFormConfig: (config) => dispatch({
+      type: ActionList.SET_CONFIG,
+      payload: config
+    }),
     setDescription: (desc) => dispatch({
       type: ActionList.SET_DESCRIPTION,
       payload: desc
-    }),
-    setConfig: (config) => dispatch({
-      type: ActionList.SET_CONFIG,
-      payload: config
     }),
     cleanData: () => dispatch({
       type: ActionList.CLEAR_DATA,
@@ -126,6 +163,10 @@ const mapDispatchToProps = (dispatch) => {
       type: ActionList.CLEAR_STATE,
       payload: {
       }
+    }),
+    changeConfigName: (name) => dispatch({
+      type: ActionList.CHANGE_CURRENT_CONFIG_NAME,
+      payload: name
     })
   }
 }

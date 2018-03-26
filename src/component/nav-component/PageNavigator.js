@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React, { Component } from 'react'
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import App from '../form-component/App';
-import BlankSpace from '../form-component/BlankSpace';
+import App from '../form-component/App'
+import BlankSpace from '../form-component/BlankSpace'
 
 import evaluator from "../../util/evaluator"
 import { fetchAllData } from "../../data-accessor/formDataGet"
 import ActionList from "../../reducer/actionList"
 
-import { TabStrip, TabStripTab } from '@progress/kendo-react-layout';
+import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
 
@@ -126,23 +126,35 @@ class PageNavigator extends Component {
         return
       }
     }
-    this.generateJSON()
+    // this.generateJSON()
+    var finalConfig = {
+      name: this.props.currentConfig.name,
+      id: this.props.userId,
+      data: JSON.stringify(fetchAllData()),
+      description_id: this.props.descriptionId,
+      token: this.props.token
+    }
+    if(this.props.currentConfig.hasOwnProperty("id")) {
+      finalConfig.config_id = this.props.currentConfig.id
+    }
+    this.props.saveConfig(finalConfig)
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
     notifier: storage.form.notifier,
-    appState: storage.form.app_state
+    appState: storage.form.app_state,
+    description: storage.form.description,
+
+    userId: storage.user.id,
+    token: storage.user.token,
+    currentConfig: storage.config.current_config
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setDescription: (desc) => dispatch({
-      type: ActionList.SET_DESCRIPTION,
-      payload: desc
-    }),
     pushState: (index) => dispatch({
       type: ActionList.PUSH_APP_STATE,
       payload: {
@@ -160,6 +172,10 @@ const mapDispatchToProps = (dispatch) => {
       payload: {
         "index": index
       }
+    }),
+    saveConfig: (config) => dispatch({
+      type: ActionList.SAVE_CONFIG,
+      payload: config
     })
   }
 }

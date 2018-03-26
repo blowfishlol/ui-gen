@@ -32,13 +32,6 @@ function set(path, value, ptr) {
   }
 }
 
-/**
- * [MOTI]
- * TODO
- * modify this clone function with a better way to clone an object
- *[msg from wibi:]
- *Ini udh bagus kok, daripada rempong dan ini performance wise optimal wkwk
- */
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
@@ -131,6 +124,30 @@ export default function reducer(state={
     return {
       ...state,
       data: []
+    }
+  } else if(action.type === ActionList.ON_CONFIG_SAVED) {
+    return {
+      data: [],
+      app_state: [],
+      notifier: false,
+      description: [],
+      config: {}
+    }
+  } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
+    return {
+      data: [],
+      app_state: [],
+      notifier: false,
+      description: [],
+      config: {}
+    }
+  } else if(action.type === ActionList.ON_LOGOUT) {
+    return {
+      data: [],
+      app_state: [],
+      notifier: false,
+      description: [],
+      config: {}
     }
   } else {
     return state;

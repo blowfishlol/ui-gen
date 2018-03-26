@@ -4,81 +4,83 @@ import { compose } from "recompose"
 
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
 import ConfigurationDisplayCustomColumn from "./ConfigurationDisplayCustomColumn"
+import BlankSpace from "../form-component/BlankSpace"
+import ErrorBox from "../form-component/ErrorBox"
 
-import ActionList, { NavKey } from "../../reducer/actionList"
+import ActionList from "../../reducer/actionList"
 
 class ConfigurationDisplay extends React.Component {
 
   constructor(props) {
     super(props)
-    this.props.setConfig(this.getConfig())
-  }
-
-  getConfig() {
-    return [
-      {
-        id: 1,
-        name: "Old Configuration",
-        version: 1,
-        data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
-      },
-      {
-        id: 2,
-        name: "Older Configuration",
-        version: 1,
-        data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
-      }
-    ]
-  }
-
-  defaultConfig() {
-    return {
-      name: "New Configuration",
-      version: 1,
-      data: {"installation":{"user":{"name":"timothy","accept":true},"mode":"express","statisfied":true},"root":[]}
-    }
+    this.props.fetchConfigs(this.props.userId, this.props.token)
+    this.props.fetchDescriptions(this.props.userId, this.props.token)
   }
 
   render() {
-    return <div>
-      <h1>Configurations</h1>
-      <Grid style={{ maxHeight: '400px' }} data={this.props.configs} >
-        <Column field="name" title="Cofiguration Name" />
-        <Column field="version" title="Version" />
-        <Column field="id" title="Option" cell={ConfigurationDisplayCustomColumn} />
-      </Grid>
-      <button className="k-button k-primary" onClick={() => this.onNewConfigBtnClicked()}>NEW CONFIG</button>
-    </div>
-  }
+    const configTableHeader = <h1 className="col-sm-10 configDisplayHeader">Configurations</h1>
+    if(this.props.errorMessage !== "") {
+      return <div>
+        {configTableHeader}
+        <ErrorBox message={this.props.errorMessage} />
+      </div>
+    }
 
-  onNewConfigBtnClicked() {
-    this.props.setSelectedConfig(this.defaultConfig())
-    this.props.gotoForm()
+    var configTable
+    if(this.props.configs.length === 0) {
+      configTable = <div className="col-sm-12 alert alert-warning">
+        No saved configuration exist.
+      </div>
+    } else {
+      configTable = <Grid data={this.props.configs} >
+        <Column field="name" width="50%" title="Cofiguration Name" />
+        <Column field="configContent.version" width="15%" title="Version" />
+        <Column field="id" width="35%" title="Option" cell={ConfigurationDisplayCustomColumn} />
+      </Grid>
+    }
+    return <div>
+      {configTableHeader}
+      {configTable}
+      <BlankSpace space="75px" />
+      <div className="k-form-field navFooter">
+        <button className="k-button k-primary" onClick={() => this.props.setSelectedConfig(this.props.default_config)}>NEW CONFIG</button>
+      </div>
+    </div>
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
-    configs: storage.config.configs
+    userId: storage.user.id,
+    username: storage.user.username,
+    token: storage.user.token,
+    configs: storage.config.configs,
+    default_config: storage.config.default_config,
+    descriptions: storage.description.descriptions,
+    errorMessage: storage.nav.error_message
   }
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    gotoForm: () => dispatch({
-      type: ActionList.CHANGE_LOCATION,
+    fetchConfigs: (id, token) => dispatch({
+      type: ActionList.FETCH_CONFIGS,
       payload: {
-        location: NavKey.FORM_PAGE
+        "id": id,
+        "token": token
       }
     }),
-    setConfig: (config) => dispatch({
-      type: ActionList.SET_CONFIGS,
-      payload: config
+    fetchDescriptions: (id, token) => dispatch({
+      type: ActionList.FETCH_DESCRIPTIONS,
+      payload: {
+        "id": id,
+        "token": token
+      }
     }),
     setSelectedConfig: (config) => dispatch({
       type: ActionList.ASSIGN_CONFIG,
       payload: config
-    }),
+    })
   }
 }
 

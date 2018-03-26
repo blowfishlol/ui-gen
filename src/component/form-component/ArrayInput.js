@@ -42,10 +42,10 @@ class ArrayInput extends React.Component {
       return <div key={this.props.form.path + "." + index}>
         <App
           form={[{
-              label: "",
-              type: this.props.form.child_content.type,
-              path: this.props.form.path + "." + index
-            }]} />
+            label: "",
+            type: this.props.form.child_content.type,
+            path: this.props.form.path + "." + index
+          }]} />
       </div>
     });
 

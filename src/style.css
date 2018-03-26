@@ -20,14 +20,6 @@
   margin-bottom: 10px;
 }
 
-.errorBox {
-  color: #a94442;
-  background-color: #f2dede;
-  border: 1px solid #ebccd1;
-  padding: 10px;
-  margin: 5px;
-}
-
 .formHighlightLight {
   background-color: #E2F1FF;
   border: 1px solid #78A4CC;
@@ -59,4 +51,78 @@
 .descSelectorTable {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.loginFormStyle {
+  margin: 15px;
+}
+
+.configDisplayHeader {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+}
+
+.formSelectorHeader {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.menuBar {
+  background-color: #007bff;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.menuBar button {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.userDisplay button {
+  float: right;
+}
+
+.userDisplay label {
+  float: right;
+  padding: 6px 0;
+}
+
+.narrow {
+  display: none;
+}
+
+.narrow table {
+  width: 100%;
+}
+
+.shrinkToFit {
+  width:1%;
+  white-space:nowrap;
+}
+
+@media only screen and (max-width: 575px) {
+  .wide {
+    display: none;
+  }
+
+  .narrow {
+    display: inline-block;
+  }
+
+  .menuBar button {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
