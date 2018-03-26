@@ -1,0 +1,49 @@
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
+
+import ActionList, { NavKey } from "../../reducer/actionList"
+
+class Header extends React.Component {
+
+  render() {
+    return <div className="row menuBar">
+      <div className="col-sm-6">
+        {
+          this.props.location === NavKey.FORM_PAGE ?
+          <button className="k-button col-sm-2" onClick={() => this.props.logout()}>Back</button> :
+          ""
+        }
+      </div>
+      <div className="col-sm-6 userDisplay">
+        <button className="k-button col-sm-2" onClick={() => this.props.logout()}>LOGOUT</button>
+        <label>{this.props.username}</label>
+      </div>
+    </div>
+  }
+}
+
+const mapStateToProps = function(storage) {
+  return {
+    username: storage.user.username,
+    location: storage.nav.location
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    back: () => dispatch({
+      type: ActionList.ON_BACK_PRESSED_CONFIG
+    }),
+    logout: () => dispatch({
+      type: ActionList.ON_LOGOUT
+    })
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Header);

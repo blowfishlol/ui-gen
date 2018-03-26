@@ -63,11 +63,35 @@
   margin-right: 20px;
 }
 
-.configDisplayHeader button {
-  float: right;
-}
-
 .formSelectorHeader {
   margin-top: 10px;
   margin-bottom: 15px;
+}
+
+.menuBar {
+  background-color: #007bff;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.menuBar button {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.userDisplay button {
+  float: right;
+}
+
+.userDisplay label {
+  float: right;
+  padding: 6px 0;
 }

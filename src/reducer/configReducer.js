@@ -6,23 +6,38 @@ import ActionList from "./actionList"
 
 export default function reducer(state={
   configs: [],
-  current_config: {}
+  current_config: {},
+  default_config: {
+    name: "New Configuration",
+    version: 1,
+    configContents: {
+      data: {}
+    }
+  }
 }, action) {
 
   if(action.type === ActionList.FETCH_CONFIGS) {
-    axios.post(server + "/config/get", action.payload)
+    axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
         console.log(response)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
       })
       .catch((err) => {
-        storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err})
+        storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.message})
       })
     return state
   } else if(action.type === ActionList.ON_CONFIGS_FETCHED) {
     return {
       ...state,
-      configs: action.payload
+      configs: action.payload.map(element => {
+        return {
+          ...element,
+          configContent: {
+            ...element.configContent,
+            data: JSON.parse(element.configContent.data)
+          }
+        }
+      })
     }
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
     return {
@@ -38,14 +53,14 @@ export default function reducer(state={
       }
     }
   } else if(action.type === ActionList.DELETE_CONFIG) {
-    axios.post(server + "/user/login", action.payload)
+    axios.post(server + "/user/loginxx", action.payload)
       .then((response) => {
         console.log(response);
         storage.dispatch({type: ActionList.ON_CONFIG_DELETED, payload: response.data})
       })
       .catch((err) => {
         console.log(err)
-        storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err})
+        storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err.message})
       })
     return state
   } else if(action.type === ActionList.ON_CONFIG_DELETED) {
@@ -53,8 +68,30 @@ export default function reducer(state={
       ...state,
       configs: state.configs.filter(element => element.id !== action.payload.id)
     }
+  } else if(action.type === ActionList.SAVE_CONFIG) {
+    axios.post(server + "/user/loginxx", action.payload)
+      .then((response) => {
+        console.log(response);
+        storage.dispatch({type: ActionList.ON_CONFIG_SAVED, payload: response.data})
+      })
+      .catch((err) => {
+        console.log(err)
+        storage.dispatch({type: ActionList.ON_CONFIG_SAVE_FAIL, payload: err.message})
+      })
+    return state
+  } else if(action.type === ActionList.ON_CONFIG_SAVED) {
+    return {
+      ...state,
+      current_config: {}
+    }
+  } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
+    return {
+      ...state,
+      current_config: {}
+    }
   } else if(action.type === ActionList.ON_LOGOUT) {
     return {
+      ...state,
       configs: [],
       current_config: {}
     }

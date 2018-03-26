@@ -16,10 +16,10 @@ class FormSelector extends React.Component {
     super(props)
     this.state = {
       isEditNameMode: false,
-      configName: this.props.config.name,
+      configName: this.props.currentConfig.name,
       selectedDescriptionId: this.getDefaultDescription()
     }
-    this.props.setConfig(this.props.config.configContents)
+    this.props.setFormConfig(this.props.currentConfig.configContent.data)
     this.prepareFormData()
   }
 
@@ -28,10 +28,10 @@ class FormSelector extends React.Component {
   }
 
   getDefaultDescription() {
-    if(this.props.config.hasOwnProperty("configContents")) {
-      if(this.props.config.hasOwnProperty("description")) {
-        if(this.props.config.hasOwnProperty("id")) {
-          return this.props.config.configContents.description.id
+    if(this.props.currentConfig.hasOwnProperty("configContent")) {
+      if(this.props.currentConfig.hasOwnProperty("description")) {
+        if(this.props.currentConfig.hasOwnProperty("id")) {
+          return this.props.currentConfig.configContent.description.id
         }
       }
     }
@@ -41,7 +41,7 @@ class FormSelector extends React.Component {
   getSelectedDescription() {
     return this.props.descriptions.find(element => {
       return this.state.selectedDescriptionId === element.id
-    }).description
+    }).data
   }
 
   /**
@@ -76,8 +76,9 @@ class FormSelector extends React.Component {
   }
 
   render() {
+    var formSelectorHeader
     if(this.state.isEditNameMode) {
-      var formSelectorHeader = <div className="formSelectorHeader">
+      formSelectorHeader = <div className="formSelectorHeader">
         <input
           classname="k-textbox"
           type="text"
@@ -86,8 +87,8 @@ class FormSelector extends React.Component {
         <button className="k-button" onClick={() => this.onTopButtonClicked()}>CHANGE</button>
       </div>
     } else {
-      var formSelectorHeader = <h1 className="formSelectorHeader">
-        {this.props.config.name}
+      formSelectorHeader = <h1 className="formSelectorHeader">
+        {this.props.currentConfig.name}
         &nbsp;&nbsp;
         <button className="k-button" onClick={() => this.onTopButtonClicked()}>EDIT</button>
       </h1>
@@ -101,7 +102,7 @@ class FormSelector extends React.Component {
             <td>
               <DropDownList
                 data={this.props.descriptions}
-                textField={'name'}
+                textField={'version'}
                 valueField={'id'}
                 value={this.state.selectedDescriptionId}
                 onChange={(evt) => {
@@ -114,9 +115,7 @@ class FormSelector extends React.Component {
           </tr>
         </tbody>
       </table>
-      <PageNavigator
-        description={this.getSelectedDescription()}
-        config={this.props.config.data}/>
+      <PageNavigator descriptionId={this.state.selectedDescriptionId}/>
     </div>
   }
 
@@ -140,14 +139,14 @@ class FormSelector extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-    config: storage.config.current_config,
+    currentConfig: storage.config.current_config,
     descriptions: storage.description.descriptions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setConfig: (config) => dispatch({
+    setFormConfig: (config) => dispatch({
       type: ActionList.SET_CONFIG,
       payload: config
     }),

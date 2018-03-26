@@ -126,23 +126,36 @@ class PageNavigator extends Component {
         return
       }
     }
-    this.generateJSON()
+    // this.generateJSON()
+    var finalConfig = {
+      name: this.props.currentConfig.name,
+      user_id: this.props.userId,
+      version: (this.props.currentConfig + 1),
+      data: JSON.stringify(fetchAllData()),
+      description_id: this.props.selectedDescriptionId,
+      token: this.props.token
+    }
+    if(this.props.currentConfig.hasOwnProperties("id")) {
+      finalConfig.id = this.props.currentConfig.id
+    }
+    this.saveConfig(finalConfig)
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
     notifier: storage.form.notifier,
-    appState: storage.form.app_state
+    appState: storage.form.app_state,
+    description: storage.form.description,
+
+    userId: storage.user.id,
+    token: storage.user.token,
+    currentConfig: storage.config.current_config
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setDescription: (desc) => dispatch({
-      type: ActionList.SET_DESCRIPTION,
-      payload: desc
-    }),
     pushState: (index) => dispatch({
       type: ActionList.PUSH_APP_STATE,
       payload: {
@@ -160,6 +173,10 @@ const mapDispatchToProps = (dispatch) => {
       payload: {
         "index": index
       }
+    }),
+    saveConfig: (config) => dispatch({
+      type: ActionList.POP_DATA_BY_INDEX,
+      payload: config
     })
   }
 }

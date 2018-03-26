@@ -18,4 +18,4 @@ ReactDOM.render(<Provider store={storage}>
     <Navigator />
   </div>
 </Provider>, document.getElementById('root'));
-registerServiceWorker();
+registerServiceWorker()

@@ -17,7 +17,7 @@ export default function reducer(state={
         storage.dispatch({type: ActionList.ON_LOGIN_SUCCESS, payload: response.data})
       })
       .catch((err) => {
-        storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err})
+        storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err.message})
       })
     return state
   } else if(action.type === ActionList.ON_LOGIN_SUCCESS  ) {

@@ -46,6 +46,21 @@ export default function reducer(state={
       location: NavKey.FORM_PAGE,
       error_message: ""
     }
+  } else if(action.type === ActionList.ON_CONFIG_SAVE_FAIL) {
+    alert(action.payload)
+    return state
+  } else if(action.type === ActionList.ON_CONFIG_SAVED) {
+    return {
+      ...state,
+      location: NavKey.CONFIGURATION_MENU,
+      error_message: ""
+    }
+  } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
+    return {
+      ...state,
+      location: NavKey.CONFIGURATION_MENU,
+      error_message: ""
+    }
   } else if(action.type === ActionList.ON_LOGOUT) {
     return {
       ...state,

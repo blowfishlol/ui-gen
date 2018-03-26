@@ -125,6 +125,22 @@ export default function reducer(state={
       ...state,
       data: []
     }
+  } else if(action.type === ActionList.ON_CONFIG_SAVED) {
+    return {
+      data: [],
+      app_state: [],
+      notifier: false,
+      description: [],
+      config: {}
+    }
+  } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
+    return {
+      data: [],
+      app_state: [],
+      notifier: false,
+      description: [],
+      config: {}
+    }
   } else if(action.type === ActionList.ON_LOGOUT) {
     return {
       data: [],

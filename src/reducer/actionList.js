@@ -9,6 +9,9 @@ var ActionList = {
   ON_CONFIG_DELETE_FAIL:      "on_config_delete_fail",
   CHANGE_CURRENT_CONFIG_NAME: "change_config_name",
   SAVE_CONFIG:                "save_config",
+  ON_CONFIG_SAVED:            "config_saved",
+  ON_CONFIG_SAVE_FAIL:        "config_save_fail",
+  ON_BACK_PRESSED_CONFIG:     "cancel_config",
 
   SET_DATA:                   "set_data",
   SET_DATA_BY_INDEX:          "set_data_by_index",
