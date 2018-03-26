@@ -14,7 +14,7 @@ class UploadBox extends React.Component {
   constructor(props) {
     super(props);
     this.async = {
-      saveUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
+      saveUrl: "http://localhost:8080/file/upload",
       removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
       autoUpload: false
     }
