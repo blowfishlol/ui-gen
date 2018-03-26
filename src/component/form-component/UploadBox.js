@@ -14,9 +14,10 @@ class UploadBox extends React.Component {
   constructor(props) {
     super(props);
     this.async = {
-      saveUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
+      saveUrl: "http://192.168.200.154:8080/file/upload",
       removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
-      autoUpload: false
+      autoUpload: false,
+      saveField: "file"
     }
     this.dropZone = ".dropZoneElement";
     this.state = {
