@@ -129,16 +129,15 @@ class PageNavigator extends Component {
     // this.generateJSON()
     var finalConfig = {
       name: this.props.currentConfig.name,
-      user_id: this.props.userId,
-      version: (this.props.currentConfig + 1),
+      id: this.props.userId,
       data: JSON.stringify(fetchAllData()),
-      description_id: this.props.selectedDescriptionId,
+      description_id: this.props.descriptionId,
       token: this.props.token
     }
-    if(this.props.currentConfig.hasOwnProperties("id")) {
-      finalConfig.id = this.props.currentConfig.id
+    if(this.props.currentConfig.hasOwnProperty("id")) {
+      finalConfig.config_id = this.props.currentConfig.id
     }
-    this.saveConfig(finalConfig)
+    this.props.saveConfig(finalConfig)
   }
 }
 
@@ -175,7 +174,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     }),
     saveConfig: (config) => dispatch({
-      type: ActionList.POP_DATA_BY_INDEX,
+      type: ActionList.SAVE_CONFIG,
       payload: config
     })
   }

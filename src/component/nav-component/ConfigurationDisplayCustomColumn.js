@@ -16,15 +16,26 @@ class ConfigurationDisplayCustomColumn extends GridCell {
 
   render() {
     return <td>
-      <button className="k-button k-primary" onClick={() => this.props.setSelectedConfig(this.findConfig())}>EDIT</button>&nbsp;
-      <button className="k-button k-primary" onClick={() => this.props.deleteConfig(this.props.dataItem.id)}>DELETE</button>
+      <button
+        className="k-button k-primary"
+        onClick={() => this.props.setSelectedConfig(this.findConfig())}>
+          EDIT
+      </button>
+      &nbsp;
+      <button
+        className="k-button k-primary"
+        onClick={() => this.props.deleteConfig(this.props.dataItem.id, this.props.userId, this.props.token)}>
+          DELETE
+      </button>
     </td>
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
-    configs: storage.config.configs
+    configs: storage.config.configs,
+    userId: storage.user.id,
+    token: storage.user.token
   }
 }
 
@@ -34,10 +45,12 @@ const mapDispatchToProps = function(dispatch) {
       type: ActionList.ASSIGN_CONFIG,
       payload: config
     }),
-    deleteConfig: (id) => dispatch({
+    deleteConfig: (configId, userId, token) => dispatch({
       type: ActionList.DELETE_CONFIG,
       payload: {
-        "id": id
+        "config_id": configId,
+        "id": userId,
+        "token": token
       }
     })
   }

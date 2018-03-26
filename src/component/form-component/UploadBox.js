@@ -60,6 +60,7 @@ class UploadBox extends React.Component {
     </div>
   }
 
+
   selectHandler(boxId, event) {
     var files = event.files;
     files.forEach((file) => {

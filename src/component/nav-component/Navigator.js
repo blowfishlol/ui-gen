@@ -17,12 +17,12 @@ class Navigator extends React.Component {
       case NavKey.LOGIN_PAGE:         return <LoginPage />
       case NavKey.CONFIGURATION_MENU: return <div>
                                         <Header />
-                                        <BlankSpace space="60px" />
+                                        <BlankSpace space="75px" />
                                         <ConfigurationDisplay />
                                       </div>
       case NavKey.FORM_PAGE:          return <div>
                                         <Header />
-                                        <BlankSpace space="60px" />
+                                        <BlankSpace space="75px" />
                                         <FormSelector />
                                       </div>
       default:                        return <p>default</p>

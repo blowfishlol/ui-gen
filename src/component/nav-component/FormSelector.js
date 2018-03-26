@@ -80,7 +80,7 @@ class FormSelector extends React.Component {
     if(this.state.isEditNameMode) {
       formSelectorHeader = <div className="formSelectorHeader">
         <input
-          classname="k-textbox"
+          className="k-textbox"
           type="text"
           value={this.state.configName}
           onChange={evt => this.updateConfigName(evt)} />

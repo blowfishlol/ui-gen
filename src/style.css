@@ -78,6 +78,7 @@
   color: #fff;
   font-size: 16px;
   overflow: hidden;
+  z-index: 999;
 }
 
 .menuBar button {
@@ -94,4 +95,34 @@
 .userDisplay label {
   float: right;
   padding: 6px 0;
+}
+
+.narrow {
+  display: none;
+}
+
+.narrow table {
+  width: 100%;
+}
+
+.shrinkToFit {
+  width:1%;
+  white-space:nowrap;
+}
+
+@media only screen and (max-width: 575px) {
+  .wide {
+    display: none;
+  }
+
+  .narrow {
+    display: inline-block;
+  }
+
+  .menuBar button {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }

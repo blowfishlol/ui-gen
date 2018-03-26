@@ -9,8 +9,8 @@ export default function reducer(state={
   current_config: {},
   default_config: {
     name: "New Configuration",
-    version: 1,
-    configContents: {
+    configContent: {
+      version: 0,
       data: {}
     }
   }
@@ -53,7 +53,7 @@ export default function reducer(state={
       }
     }
   } else if(action.type === ActionList.DELETE_CONFIG) {
-    axios.post(server + "/user/loginxx", action.payload)
+    axios.post(server + "/config/delete", action.payload)
       .then((response) => {
         console.log(response);
         storage.dispatch({type: ActionList.ON_CONFIG_DELETED, payload: response.data})
@@ -66,10 +66,10 @@ export default function reducer(state={
   } else if(action.type === ActionList.ON_CONFIG_DELETED) {
     return {
       ...state,
-      configs: state.configs.filter(element => element.id !== action.payload.id)
+      configs: state.configs.filter(element => element.id !== action.payload)
     }
   } else if(action.type === ActionList.SAVE_CONFIG) {
-    axios.post(server + "/user/loginxx", action.payload)
+    axios.post(server + "/config/create", action.payload)
       .then((response) => {
         console.log(response);
         storage.dispatch({type: ActionList.ON_CONFIG_SAVED, payload: response.data})

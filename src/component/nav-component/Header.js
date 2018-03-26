@@ -7,17 +7,45 @@ import ActionList, { NavKey } from "../../reducer/actionList"
 class Header extends React.Component {
 
   render() {
-    return <div className="row menuBar">
-      <div className="col-sm-6">
-        {
-          this.props.location === NavKey.FORM_PAGE ?
-          <button className="k-button col-sm-2" onClick={() => this.props.logout()}>Back</button> :
-          ""
-        }
+    return <div>
+      <div className="wide">
+        <div className="row menuBar">
+          <div className="col-sm-6">
+            {
+              this.props.location === NavKey.FORM_PAGE ?
+              <button className="k-button col-sm-2" onClick={() => this.props.back()}>Back</button> :
+              ""
+            }
+          </div>
+          <div className="col-sm-6 userDisplay">
+            <button className="k-button col-sm-2" onClick={() => this.props.logout()}>LOGOUT</button>
+            <label>{this.props.username}</label>
+          </div>
+        </div>
       </div>
-      <div className="col-sm-6 userDisplay">
-        <button className="k-button col-sm-2" onClick={() => this.props.logout()}>LOGOUT</button>
-        <label>{this.props.username}</label>
+
+      <div className="narrow">
+        <div className="row menuBar">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  {
+                    this.props.location === NavKey.FORM_PAGE ?
+                    <button className="k-button" onClick={() => this.props.back()}>Back</button> :
+                    ""
+                  }
+                </td>
+                <td align="right">
+                  <label>{this.props.username}</label>
+                </td>
+                <td className="shrinkToFit" align="right">
+                  <button className="k-button" onClick={() => this.props.logout()}>LOGOUT</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   }
