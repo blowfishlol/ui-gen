@@ -12,13 +12,22 @@ import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
 import get from '../../data-accessor/formDataGet'
 
+const blobToFile = (theBlob, fileName) => {
+  theBlob.lastModifiedDate = new Date()
+  theBlob.name = fileName
+  return theBlob
+}
+
 const fetchFileById = (id, context) => {
-  axios.post(server + "/file/request/" + id)
+  axios.post(server + "/file/download/" + id)
     .then((response) => {
       console.log("debug", response)
       context.setState({
         ...context.state,
-        files: context.state.files.concat(response.data)
+        files: context.state.files.concat({
+          ...response.data,
+          rawFile: new Blob(response.data.rawData)
+        })
       })
     })
     .catch((err) => {
@@ -71,30 +80,25 @@ class UploadBox extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     var storedFile = ""
     if(this.state.files) {
       storedFile = this.state.files.map(file => {
         var reader = new FileReader()
-		
-        var source;
-		
-		var preview = document.createElement("IMG");
-		
-		var base = "";
-		
+        var preview = document.createElement("IMG")
+        var base = ""
+
         reader.addEventListener("load", function () {
-           preview.src = reader.result;
-		   try {
-			var image = document.getElementById(file.uid);
-			image.src = reader.result;
-		   } catch (e) {
-			   console.log(e);
-		   }
-		 }, false)
-		 
+          preview.src = reader.result
+          try {
+            var image = document.getElementById(file.uid)
+            image.src = reader.result
+          } catch (e) {
+            console.log(e)
+          }
+        }, false)
         reader.readAsDataURL(file.rawFile)
-		
-	  return <img width={100} height={100} key={file.uid} id={file.uid} className="img-thumbnail" src={base} alt=""/>
+        return <img width={100} height={100} key={file.uid} id={file.uid} className="img-thumbnail" src={base} alt=""/>
       })
     }
 
