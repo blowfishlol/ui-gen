@@ -72,16 +72,31 @@ class UploadBox extends React.Component {
 
   render() {
     var storedFile = ""
-    storedFile = this.state.files.map(file => {
-      var reader = new FileReader()
-      var source
-      reader.addEventListener("load", function () {
-         source = reader.result
-       }, false)
-
-      reader.readAsDataURL(file.rawFile)
-      return <img width={100} height={100} key={file.uid} className="img-thumbnail" src={source} alt=""/>
-    })
+    if(this.state.files) {
+      storedFile = this.state.files.map(file => {
+        var reader = new FileReader()
+		
+        var source;
+		
+		var preview = document.createElement("IMG");
+		
+		var base = "";
+		
+        reader.addEventListener("load", function () {
+           preview.src = reader.result;
+		   try {
+			var image = document.getElementById(file.uid);
+			image.src = reader.result;
+		   } catch (e) {
+			   console.log(e);
+		   }
+		 }, false)
+		 
+        reader.readAsDataURL(file.rawFile)
+		
+	  return <img width={100} height={100} key={file.uid} id={file.uid} className="img-thumbnail" src={base} alt=""/>
+      })
+    }
 
     return <div className="k-form-field">
       <span>{this.state.label}</span>
