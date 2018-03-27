@@ -1,7 +1,3 @@
-import axios from "axios"
-
-import storage from "../storage"
-import server from "../util/server"
 import ActionList from "./actionList"
 
 function isInteger(arg) {

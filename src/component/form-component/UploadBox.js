@@ -15,9 +15,10 @@ import get from '../../data-accessor/formDataGet'
 const fetchFileById = (id, context) => {
   axios.post(server + "/file/request/" + id)
     .then((response) => {
+      console.log("debug", response)
       context.setState({
         ...context.state,
-        files: context.state.files.concat(response)
+        files: context.state.files.concat(response.data)
       })
     })
     .catch((err) => {
@@ -31,10 +32,10 @@ const deleteFileById = (id, context) => {
       context.setState({
         ...context.state,
         ids: context.state.ids.filter(id => {
-          id !== response.data
+          return id !== response.data
         }),
         files: context.state.files.filter(file => {
-          file.id !== response.data
+          return file.id !== response.data
         })
       })
       context.removeExtFileRef(response.data)
