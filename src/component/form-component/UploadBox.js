@@ -25,6 +25,25 @@ const fetchFileById = (id, context) => {
     })
 }
 
+const deleteFileById = (id, context) => {
+  axios.get(server + "/file/remove/" + id)
+    .then((response) => {
+      context.setState({
+        ...context.state,
+        ids: context.state.ids.filter(id => {
+          id !== response.data
+        }),
+        files: context.state.files.filter(file => {
+          file.id !== response.data
+        })
+      })
+      context.removeExtFileRef(response.data)
+    })
+    .catch((err) => {
+      console.log("ERROR", err)
+    })
+}
+
 class UploadBox extends React.Component {
 
   constructor(props) {
@@ -52,18 +71,16 @@ class UploadBox extends React.Component {
 
   render() {
     var storedFile = ""
-    if(this.state.files) {
-      storedFile = this.state.files.map(file => {
-        var reader = new FileReader()
-        var source
-        reader.addEventListener("load", function () {
-           source = reader.result
-         }, false)
+    storedFile = this.state.files.map(file => {
+      var reader = new FileReader()
+      var source
+      reader.addEventListener("load", function () {
+         source = reader.result
+       }, false)
 
-        reader.readAsDataURL(file.rawFile)
-        return <img width={100} height={100} key={file.uid} className="img-thumbnail" src={source} alt=""/>
-      })
-    }
+      reader.readAsDataURL(file.rawFile)
+      return <img width={100} height={100} key={file.uid} className="img-thumbnail" src={source} alt=""/>
+    })
 
     return <div className="k-form-field">
       <span>{this.state.label}</span>
@@ -113,39 +130,16 @@ class UploadBox extends React.Component {
 
   selectHandler(boxId, event) {
     console.log("select", boxId, event)
-    var files = event.files
-    // files.forEach((file) => {
-    //   var preview = document.createElement("IMG")
-    //   var fileRaw = file.rawFile
-    //   var reader = new FileReader()
-    //   preview.setAttribute("width", 100)
-    //   preview.setAttribute("height", 100)
-    //   preview.setAttribute("id", file.uid)
-    //   preview.setAttribute("class", "img-thumbnail")
-    //
-    //   reader.addEventListener("load", function () {
-    //      preview.src = reader.result
-    //    }, false)
-    //
-    //   reader.readAsDataURL(fileRaw)
-    //   document.getElementById(boxId).appendChild(preview)
-    // })
   }
 
-  /**
-  *Clear means remove all upload from the list.
-  **/
   clearHandler(boxId, event) {
     console.log("clear", boxId, event)
-    var coll = document.getElementById(boxId)
-    while(coll.hasChildNodes()){
-      coll.removeChild(coll.firstChild)
-    }
   }
 
   removeHandler(boxId, event) {
-    const uid = event.files[0].uid
-    document.getElementById(uid).remove()
+    if(event.files[0].hasOwnProperty("id")) {
+      deleteFileById(event.files[0].id, this)
+    }
     console.log("remove", boxId, event)
   }
 }

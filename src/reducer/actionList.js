@@ -24,8 +24,6 @@ var ActionList = {
   CLEAR_DATA:                 "destroy_all_data",
   ADD_EXT_FILE_REF:           "add_external_file_reference",
   REMOVE_EXT_FILE_REF:        "remove_external_file_reference",
-  EXT_FILE_REF_REMOVED:       "external_file_reference_removed",
-  EXT_FILE_REF_REMOVE_FAIL:   "external_file_reference_remove_fail",
 
   FETCH_DESCRIPTIONS:         "fetch_descs",
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",
