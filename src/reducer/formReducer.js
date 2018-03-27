@@ -130,16 +130,6 @@ export default function reducer(state={
       ext_file_ids: state.ext_file_ids.concat(action.payload)
     }
   } else if(action.type === ActionList.REMOVE_EXT_FILE_REF) {
-    axios.get(server + "/file/remove/" + action.payload)
-      .then((response) => {
-        storage.dispatch({type: ActionList.EXT_FILE_REF_REMOVED, payload: response.data})
-      })
-      .catch((err) => {
-        console.log("ERROR", err)
-        storage.dispatch({type: ActionList.EXT_FILE_REF_REMOVE_FAIL, payload: err.message})
-      })
-    return state
-  } else if(action.type === ActionList.EXT_FILE_REF_REMOVED) {
     return {
       ...state,
       ext_file_ids: state.ext_file_ids.filter(saved_id => {
