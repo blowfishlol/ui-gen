@@ -115,7 +115,7 @@ class FormSelector extends React.Component {
           </tr>
         </tbody>
       </table>
-      <PageNavigator descriptionId={this.state.selectedDescriptionId}/>
+      <PageNavigator descriptionId={this.state.selectedDescriptionId} configName={this.state.configName}/>
     </div>
   }
 

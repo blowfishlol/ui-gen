@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { labelCheck, placeholderCheck } from '../../util/InfoChecker';
+import { labelCheck, placeholderCheck } from '../../util/InfoChecker'
 import  ActionList  from "../../reducer/actionList"
-import get from '../../data-accessor/formDataGet';
+import get from '../../data-accessor/formDataGet'
 
 class TextBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     /**
      * get the value inside the "result object" so when backtrack can get the value again.
      **/

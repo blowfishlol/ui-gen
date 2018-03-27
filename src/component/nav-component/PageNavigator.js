@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "recompose"
+import $ from 'jquery'
 
+import { Dialog } from '@progress/kendo-dialog-react-wrapper'
 import App from '../form-component/App'
 import BlankSpace from '../form-component/BlankSpace'
 
@@ -12,6 +14,40 @@ import ActionList from "../../reducer/actionList"
 import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
+
+  constructor(props) {
+    super(props)
+    this.dialogActions = [
+      {
+        text:"Yes",
+        primary:true,
+        action:function(e) {
+          e.sender.options.save()
+        }
+      },
+      {
+        text:"No",
+        action:function(e) {
+          e.sender.close()
+        }
+      }
+    ]
+  }
+
+  saveConfig() {
+    var finalConfig = {
+      name: this.props.currentConfig.name,
+      id: this.props.userId,
+      data: JSON.stringify(fetchAllData()),
+      description_id: this.props.descriptionId,
+      file_id: this.props.extFileRef,
+      token: this.props.token
+    }
+    if(this.props.currentConfig.hasOwnProperty("id")) {
+      finalConfig.config_id = this.props.currentConfig.id
+    }
+    this.props.saveConfig(finalConfig)
+  }
 
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
@@ -61,7 +97,7 @@ class PageNavigator extends Component {
             /**
              * returns an empty element
              */
-            return 0;
+            return 0
           }
         }
         if(isLastPage) {
@@ -75,7 +111,7 @@ class PageNavigator extends Component {
             /**
              * returns an empty element
              */
-            return 0;
+            return 0
           }
         }
         return <TabStripTab key={index} onClick={() => this.jumpButtonListener(index)} title={p.pagename}>{content}</TabStripTab>
@@ -87,6 +123,11 @@ class PageNavigator extends Component {
         {navBar.filter(nav => nav !== 0)}
       </TabStrip>
       <BlankSpace space="75px" />
+
+      <Dialog title="Confirm Save"  visible={false} minWidth={250} width={450} actions={this.dialogActions} save={() => this.saveConfig()}>
+       <p style={{margin: "30px", textAlign: "center"}}>Save current configuration as &quot;{this.props.configName}&quot;?</p>
+      </Dialog>
+
       <div className="k-form-field navFooter">
         <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{isLastPage ? "FINISH" : "NEXT"}</button>
         {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""}
@@ -117,18 +158,11 @@ class PageNavigator extends Component {
         return
       }
     }
-    var finalConfig = {
-      name: this.props.currentConfig.name,
-      id: this.props.userId,
-      data: JSON.stringify(fetchAllData()),
-      description_id: this.props.descriptionId,
-      file_id: this.props.extFileRef,  /// ----> CHANGE LATER
-      token: this.props.token
-    }
-    if(this.props.currentConfig.hasOwnProperty("id")) {
-      finalConfig.config_id = this.props.currentConfig.id
-    }
-    this.props.saveConfig(finalConfig)
+    this.open()
+  }
+
+  open(){
+    $('[data-role="dialog"]').data('kendoDialog').open()
   }
 }
 

@@ -1,14 +1,29 @@
 import React from "react"
-
 import { connect } from "react-redux"
 import { compose } from "recompose"
-import  ActionList  from "../../reducer/actionList"
+import axios from "axios"
 
 import './UploadBox.css'
 import "@progress/kendo-ui"
 import { Upload } from '@progress/kendo-upload-react-wrapper'
+
 import { labelCheck } from '../../util/InfoChecker'
+import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
+import get from '../../data-accessor/formDataGet'
+
+const fetchFileById = (id, context) => {
+  axios.post(server + "/file/request/" + id)
+    .then((response) => {
+      context.setState({
+        ...context.state,
+        files: context.state.files.concat(response)
+      })
+    })
+    .catch((err) => {
+      console.log("ERROR", err)
+    })
+}
 
 class UploadBox extends React.Component {
 
@@ -25,20 +40,31 @@ class UploadBox extends React.Component {
       label: labelCheck(this.props.form.label),
       path: this.props.form.path,
       names: [],
-      ids: []
+      ids: get(this.props.form.path, this.props.form.type),
+      files: []
     }
-    this.boxId ="imageCollection"+Math.floor(Math.random() * Math.floor(50000))
+    this.boxId = this.props.form.path + ":UploadBox"
+    this.props.addExtFileRef(this.state.ids)
+    this.state.ids.forEach(id => {
+      fetchFileById(id, this)
+    })
   }
 
   render() {
-    /**
-     * [Wibi]
-     * upload event means that each individual file is uploaded
-     * complete event means that All images are done uploading.
-     * In in case of upload, it will push the name of the uploaded file into the state containing the names collection
-     * If all files have completed the upload, complete event will trigger and will set the names of the uploadbox state to the app state.
-     * TODO: Fix the styling of the drop box. currently not accurate and weird.
-     **/
+    var storedFile = ""
+    if(this.state.files) {
+      storedFile = this.state.files.map(file => {
+        var reader = new FileReader()
+        var source
+        reader.addEventListener("load", function () {
+           source = reader.result
+         }, false)
+
+        reader.readAsDataURL(file.rawFile)
+        return <img width={100} height={100} key={file.uid} className="img-thumbnail" src={source} alt=""/>
+      })
+    }
+
     return <div className="k-form-field">
       <span>{this.state.label}</span>
       <Upload
@@ -52,16 +78,16 @@ class UploadBox extends React.Component {
         clear={event => this.clearHandler(this.boxId, event)}
         remove={event => this.removeHandler(this.boxId, event)} />
       <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
-      <div id={this.boxId} className="col-*-3"></div>
+      <div id={this.boxId} className="col-*-3">{storedFile}</div>
     </div>
   }
 
   completeHandler(event) {
-    this.props.updateState(this.state.path, this.state.ids)
-    this.props.addExtFileRef(this.state.ids)
+    console.log("complete", event, this.state.ids)
   }
 
   uploadHandler(event) {
+    console.log("upload", event)
     var files = event.files
     var nameState = this.state.names
     files.forEach((file) => {
@@ -71,37 +97,46 @@ class UploadBox extends React.Component {
   }
 
   successHandler(event) {
-    var fileId = event.response
+    console.log("success", event, event.response)
+    if(typeof event.response.data !== "number") {
+      return
+    }
+    event.files[0].id = event.response.data
+    this.props.updateState(this.props.form.path + "." + this.state.ids.length, event.response.data)
+    this.props.addExtFileRef(event.response.data)
     this.setState({
       ...this.state,
-      ids: this.state.ids.concat(fileId)
+      ids: this.state.ids.concat(event.response),
+      files: this.state.files.concat(event.files[0])
     })
   }
 
   selectHandler(boxId, event) {
+    console.log("select", boxId, event)
     var files = event.files
-    files.forEach((file) => {
-      var preview = document.createElement("IMG")
-      var fileRaw = file.rawFile
-      var reader = new FileReader()
-      preview.setAttribute("width", 100)
-      preview.setAttribute("height", 100)
-      preview.setAttribute("id", file.uid)
-      preview.setAttribute("class", "img-thumbnail")
-
-      reader.addEventListener("load", function () {
-         preview.src = reader.result
-       }, false)
-
-      reader.readAsDataURL(fileRaw)
-      document.getElementById(boxId).appendChild(preview)
-    })
+    // files.forEach((file) => {
+    //   var preview = document.createElement("IMG")
+    //   var fileRaw = file.rawFile
+    //   var reader = new FileReader()
+    //   preview.setAttribute("width", 100)
+    //   preview.setAttribute("height", 100)
+    //   preview.setAttribute("id", file.uid)
+    //   preview.setAttribute("class", "img-thumbnail")
+    //
+    //   reader.addEventListener("load", function () {
+    //      preview.src = reader.result
+    //    }, false)
+    //
+    //   reader.readAsDataURL(fileRaw)
+    //   document.getElementById(boxId).appendChild(preview)
+    // })
   }
 
   /**
   *Clear means remove all upload from the list.
   **/
   clearHandler(boxId, event) {
+    console.log("clear", boxId, event)
     var coll = document.getElementById(boxId)
     while(coll.hasChildNodes()){
       coll.removeChild(coll.firstChild)
@@ -111,6 +146,7 @@ class UploadBox extends React.Component {
   removeHandler(boxId, event) {
     const uid = event.files[0].uid
     document.getElementById(uid).remove()
+    console.log("remove", boxId, event)
   }
 }
 
@@ -132,9 +168,9 @@ const mapDispatchToProps = (dispatch) => {
       type: ActionList.ADD_EXT_FILE_REF,
       payload: ids
     }),
-    removeExtFileRef: (ids) => dispatch({
+    removeExtFileRef: (id) => dispatch({
       type: ActionList.REMOVE_EXT_FILE_REF,
-      payload: ids
+      payload: id
     })
   }
 }

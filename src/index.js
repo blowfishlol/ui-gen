@@ -22,7 +22,3 @@ ReactDOM.render(<Provider store={storage}>
   </div>
 </Provider>, document.getElementById('root'));
 registerServiceWorker()
-
-var i = undefined
-
-console.log(!i ? "true" : "false")

@@ -34,7 +34,7 @@ function validateType(result, type) {
       throw new Error()
     }
   } else if(type === ComponentType.IMAGE) {
-    if(typeof result !== "string") {
+    if(result.constructor !== Array) {
       throw new Error()
     }
   } else if(type === ComponentType.CHECKBOX) {
@@ -64,7 +64,7 @@ function validateType(result, type) {
       throw new Error()
     }
   } else if(type === ComponentType.MAP) {
-    if(typeof result !== "object") {
+    if(result.constructor !== Array) {
       throw new Error()
     }
   } else {
@@ -121,7 +121,7 @@ function defaultValue(type) {
   switch(type) {
     case ComponentType.TEXT:     return ""
     case ComponentType.DATE:     return "2000-01-01"
-    case ComponentType.IMAGE:    return ""
+    case ComponentType.IMAGE:    return []
     case ComponentType.CHECKBOX: return {}
     case ComponentType.TIME:     return "12:00"
     case ComponentType.TOGGLE:   return false

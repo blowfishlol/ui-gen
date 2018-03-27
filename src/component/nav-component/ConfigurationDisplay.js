@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
+import { Grid, GridColumn as Column } from '@progress/kendo-react-grid'
 import ConfigurationDisplayCustomColumn from "./ConfigurationDisplayCustomColumn"
 import BlankSpace from "../form-component/BlankSpace"
 import ErrorBox from "../form-component/ErrorBox"
@@ -40,7 +40,7 @@ class ConfigurationDisplay extends React.Component {
     }
     return <div>
       {configTableHeader}
-      {configTable}
+        {configTable}
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
         <button className="k-button k-primary" onClick={() => this.props.setSelectedConfig(this.props.default_config)}>NEW CONFIG</button>
