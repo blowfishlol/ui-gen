@@ -45,7 +45,8 @@ export default function reducer(state={
   notifier: false,
   description: [],
   config: {},
-  ext_file_ids: []
+  ext_file_ids: [],
+  removed_ext_file_ids: []
 }, action) {
 
   if(action.type === ActionList.SET_DATA) {
@@ -132,11 +133,17 @@ export default function reducer(state={
         return saved_id !== action.payload
       })
     }
+  } else if(action.type === ActionList.ADD_REMOVED_EXT_FILE_REF) {
+    return {
+      ...state,
+      removed_ext_file_ids: state.removed_ext_file_ids.concat(action.payload)
+    }
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {
       ...state,
       data: [],
-      ext_file_ids: []
+      ext_file_ids: [],
+      removed_ext_file_ids: []
     }
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
     return {
@@ -145,7 +152,8 @@ export default function reducer(state={
       notifier: false,
       description: [],
       config: {},
-      ext_file_ids: []
+      ext_file_ids: [],
+      removed_ext_file_ids: []
     }
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
     return {
@@ -154,7 +162,8 @@ export default function reducer(state={
       notifier: false,
       description: [],
       config: {},
-      ext_file_ids: []
+      ext_file_ids: [],
+      removed_ext_file_ids: []
     }
   } else if(action.type === ActionList.ON_LOGOUT) {
     return {
@@ -163,7 +172,8 @@ export default function reducer(state={
       notifier: false,
       description: [],
       config: {},
-      ext_file_ids: []
+      ext_file_ids: [],
+      removed_ext_file_ids: []
     }
   } else {
     return state;

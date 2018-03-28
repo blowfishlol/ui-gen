@@ -41,6 +41,7 @@ class PageNavigator extends Component {
       data: JSON.stringify(fetchAllData()),
       description_id: this.props.descriptionId,
       file_id: this.props.extFileRef,
+      removed_file_id: this.props.removedExtFileRef,
       token: this.props.token
     }
     if(this.props.currentConfig.hasOwnProperty("id")) {
@@ -161,7 +162,8 @@ class PageNavigator extends Component {
     this.open()
   }
 
-  open(){
+  open() {
+    console.log("why this one is opened?")
     $('[data-role="dialog"]').data('kendoDialog').open()
   }
 }
@@ -175,7 +177,8 @@ const mapStateToProps = function(storage) {
     userId: storage.user.id,
     token: storage.user.token,
     currentConfig: storage.config.current_config,
-    extFileRef: storage.form.ext_file_ids
+    extFileRef: storage.form.ext_file_ids,
+    removedExtFileRef: storage.form.removed_ext_file_ids
   }
 }
 
