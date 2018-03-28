@@ -4,6 +4,7 @@ import config from "./configReducer"
 import description from "./descriptionReducer"
 import form from "./formReducer"
 import user from "./userReducer"
+import dialog from "./dialogReducer"
 import nav from "./navigatorReducer"
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   description,
   form,
   user,
+  dialog,
   nav
 })

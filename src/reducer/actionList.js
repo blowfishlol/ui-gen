@@ -1,4 +1,4 @@
-var ActionList = {
+export default({
 
   FETCH_CONFIGS:              "fetch_configs",
   ON_CONFIGS_FETCHED:         "configs_fetched",
@@ -33,10 +33,11 @@ var ActionList = {
   ON_LOGIN:                    "login",
   ON_LOGIN_SUCCESS:            "login_success",
   ON_LOGIN_FAIL:               "login_fail",
-  ON_LOGOUT:                   "logout"
-};
+  ON_LOGOUT:                   "logout",
 
-export default(ActionList);
+  SET_DIALOG_MESSAGE:          "set_dialog_message",
+  SET_ADDITIONAL_METHOD:       "set_methods"
+})
 
 export const NavKey = {
   CONFIGURATION_MENU: "configuration",

@@ -6,8 +6,8 @@ import Header from "./Header"
 import LoginPage from "./LoginPage"
 import ConfigurationDisplay from "./ConfigurationDisplay"
 import FormSelector from "./FormSelector"
-import BlankSpace from "../form-component/BlankSpace"
-import ErrorBox from "../form-component/ErrorBox"
+import BlankSpace from "../BlankSpace"
+import ErrorBox from "../ErrorBox"
 
 import { NavKey } from "../../reducer/actionList"
 
@@ -48,4 +48,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(Navigator);
+)(Navigator)

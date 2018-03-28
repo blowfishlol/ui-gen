@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import ErrorBox from "../form-component/ErrorBox"
+import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
 
@@ -83,7 +83,7 @@ const mapDispatchToProps = function(dispatch) {
     login: (user) => dispatch({
       type: ActionList.ON_LOGIN,
       payload: user
-    }),
+    })
   }
 }
 
