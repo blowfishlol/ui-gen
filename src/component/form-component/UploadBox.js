@@ -73,7 +73,6 @@ class UploadBox extends React.Component {
         }
       }
     ]
-    this.clickedImageId = -1
     this.state = {
       label: labelCheck(this.props.form.label),
       path: this.props.form.path,
@@ -81,8 +80,10 @@ class UploadBox extends React.Component {
       ids: get(this.props.form.path, this.props.form.type),
       files: []
     }
+    this.clickedImageId = -1
     this.idsFromDB = get(this.props.form.path, this.props.form.type)
     this.boxId = this.props.form.path + ":UploadBox"
+
     this.props.addExtFileRef(this.state.ids)
     this.state.ids.forEach(id => {
       fetchFileById(id, this)
