@@ -165,7 +165,7 @@ class UploadBox extends React.Component {
       <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
 
-      <Dialog visible={false} minWidth={250} width={450} actions={this.dialogActions} delete={() => this.deleteImage()}>
+      <Dialog visible={false} minWidth={250} width={450} actions={this.dialogActions} open={ (e) => console.log(e) } delete={() => this.deleteImage()}>
         <p style={{margin: "30px", textAlign: "center"}}>Do you want to delete this image?</p>
       </Dialog>
     </div>
