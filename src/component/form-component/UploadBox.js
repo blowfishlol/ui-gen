@@ -77,6 +77,13 @@ class UploadBox extends React.Component {
       var preview = document.createElement("IMG")
       var base = ""
 
+			/**
+			 * This only declares the callback function that will be executed when reader done loading the file.
+			 * This function will be called when reader successfully read the file.rawFile as a js file object.
+			 * Because this is asynchronous, the <img> is already put in side the page. So in order to access the right <img>,
+			 * it uses the file.uid to get the right element and changing the src to reader result (which is a (header+string) base64 encoded string too.
+			 * The reader.result value only exists in the callback function fml smh.
+			**/
       reader.addEventListener("load", function () {
         preview.src = reader.result
         try {
@@ -85,7 +92,15 @@ class UploadBox extends React.Component {
         } catch (e) {
         }
       }, false)
-
+			
+			
+			/**
+			 * In this try section, the reader will try to read the rawfile as data URL.
+			 * If it can read the data as rawfile, that means that the file.rawFile is a valid js file object 
+			 * and it will call the callback function. => read the comment about the callback function.
+			 * If not, it will throw an error, and will construct a (header+string) base64 encoded string that will be used directly
+			 * in the "src" attribute of the image element.
+			**/
       try {
         reader.readAsDataURL(file.rawFile)
       } catch (e) {
