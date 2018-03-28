@@ -2,10 +2,12 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 import axios from "axios"
+import $ from 'jquery'
 
 import './UploadBox.css'
 import "@progress/kendo-ui"
 import { Upload } from '@progress/kendo-upload-react-wrapper'
+import { Dialog } from '@progress/kendo-dialog-react-wrapper'
 
 import { labelCheck } from '../../util/InfoChecker'
 import  ActionList  from "../../reducer/actionList"
@@ -17,7 +19,7 @@ const fetchFileById = (id, context) => {
     .then((response) => {
       context.setState({
         ...context.state,
-        files: context.state.files.concat(response)
+        files: context.state.files.concat(response.data)
       })
     })
     .catch((err) => {
@@ -31,13 +33,13 @@ const deleteFileById = (id, context) => {
       context.setState({
         ...context.state,
         ids: context.state.ids.filter(id => {
-          id !== response.data
+          return id !== response.data
         }),
         files: context.state.files.filter(file => {
-          file.id !== response.data
+          return file.id !== response.data
         })
       })
-      context.removeExtFileRef(response.data)
+      context.props.removeExtFileRef(response.data)
     })
     .catch((err) => {
       console.log("ERROR", err)
@@ -55,6 +57,23 @@ class UploadBox extends React.Component {
       saveField: "file"
     }
     this.dropZone = ".dropZoneElement"
+    this.dialogActions = [
+      {
+        text:"Yes",
+        primary:true,
+        action:function(e) {
+          e.sender.options.delete()
+          e.sender.close()
+        }
+      },
+      {
+        text:"No",
+        action:function(e) {
+          e.sender.close()
+        }
+      }
+    ]
+    this.clickedImageId = -1
     this.state = {
       label: labelCheck(this.props.form.label),
       path: this.props.form.path,
@@ -62,53 +81,76 @@ class UploadBox extends React.Component {
       ids: get(this.props.form.path, this.props.form.type),
       files: []
     }
+    this.idsFromDB = get(this.props.form.path, this.props.form.type)
     this.boxId = this.props.form.path + ":UploadBox"
     this.props.addExtFileRef(this.state.ids)
     this.state.ids.forEach(id => {
       fetchFileById(id, this)
     })
   }
-	
+
+  open(id) {
+    if(this.idsFromDB.find(idFromDB => idFromDB === id) === undefined) {
+      return
+    }
+    this.clickedImageId = id
+    console.log("this one should be opened!", id)
+    $('[data-role="dialog"]').data('kendoDialog').open()
+  }
+
+  deleteImage() {
+    console.log(this.clickedImageId)
+    this.setState({
+      ...this.state,
+      ids: this.state.ids.filter(id => {
+        return id !== this.clickedImageId
+      }),
+      files: this.state.files.filter(file => {
+        return file.id !== this.clickedImageId
+      })
+    })
+    this.props.removeExtFileRef(this.clickedImageId)
+    this.props.addRemovedExtFileRef(this.clickedImageId)
+  }
 
   render() {
     var storedFile = ""
     if(this.state.files) {
-      storedFile = this.state.files.map(file => {
+      storedFile = this.state.files.map((file, index) => {
         var reader = new FileReader()
-		
-        var source;
-		
-				var preview = document.createElement("IMG");
-				
-				var base = "";
-				
+				var preview = document.createElement("IMG")
+				var base = ""
+
 				reader.addEventListener("load", function () {
-					preview.src = reader.result;
+					preview.src = reader.result
 					try {
-						var image = document.getElementById(file.uid);
-						image.src = reader.result;
+						var image = document.getElementById(file.uid)
+						image.src = reader.result
 					} catch (e) {
-						console.log(e);
 					}
 				}, false)
-				 
+
 				try {
-					console.log("FILERAW", file.rawFile);
-					reader.readAsDataURL(file.rawFile);
+					reader.readAsDataURL(file.rawFile)
 				} catch (e) {
-					var rawResponse = file.data.rawFile;
-					console.log("FILE.DATA" , file.data);
-					base = "data:image/png;base64," + rawResponse;
-					
-					
+					var rawResponse = file.rawFile
+					base = "data:image/png;base64," + rawResponse
 				}
-						//return <Image key={file.uid} id={file.uid} source={{uri: base, scale: 1}} style={{ height:100, width:100 }} />
-				return <img width={100} height={100} key={file.uid} id={file.uid} className="img-thumbnail" src={base} alt=""/>
+
+				return <img
+          width={100}
+          height={100}
+          key={this.boxId + "." + index}
+          id={file.uid}
+          className="img-thumbnail"
+          src={base}
+          alt=""
+          onClick={() => this.open(file.id)}/>
 			})
     }
 
     return <div className="k-form-field">
-      <span>{this.state.label}</span>
+      <span id="abc">{this.state.label}</span>
       <Upload
         className="col-*-3"
         async={this.async}
@@ -121,15 +163,17 @@ class UploadBox extends React.Component {
         remove={event => this.removeHandler(this.boxId, event)} />
       <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
+
+      <Dialog visible={false} minWidth={250} width={450} actions={this.dialogActions} delete={() => this.deleteImage()}>
+        <p style={{margin: "30px", textAlign: "center"}}>Do you want to delete this image?</p>
+      </Dialog>
     </div>
   }
 
   completeHandler(event) {
-    console.log("complete", event, this.state.ids)
   }
 
   uploadHandler(event) {
-    console.log("upload", event)
     var files = event.files
     var nameState = this.state.names
     files.forEach((file) => {
@@ -139,7 +183,6 @@ class UploadBox extends React.Component {
   }
 
   successHandler(event) {
-    console.log("success", event, event.response)
     if(typeof event.response.data !== "number") {
       return
     }
@@ -153,38 +196,16 @@ class UploadBox extends React.Component {
     })
   }
 
-  selectHandler(boxId, event, wrapper) {
-		var file = event.files[0];
-		var raw = file.rawFile;
-		var reader = new FileReader();
-		console.log("raw",raw);
-		if(raw) {
-			reader.addEventListener("load", function () {
-				var preview = document.createElement("IMG");
-				var base64string = reader.result;
-				preview.setAttribute("src", base64string);
-				preview.setAttribute("class", "image-preview");
-				
-				var n = document.querySelectorAll(".k-file[data-uid='" + file.uid + "'] .k-file-extension-wrapper");
-				console.log("SELECTED_DOM",n);
-				
-				n[0].parentNode.replaceChild(preview,n[0]);
-			});
-			reader.readAsDataURL(raw);
-		}
-		
-    console.log("select", boxId, event)
+  selectHandler(boxId, event) {
   }
 
   clearHandler(boxId, event) {
-    console.log("clear", boxId, event)
   }
 
   removeHandler(boxId, event) {
     if(event.files[0].hasOwnProperty("id")) {
       deleteFileById(event.files[0].id, this)
     }
-    console.log("remove", boxId, event)
   }
 }
 
@@ -208,6 +229,10 @@ const mapDispatchToProps = (dispatch) => {
     }),
     removeExtFileRef: (id) => dispatch({
       type: ActionList.REMOVE_EXT_FILE_REF,
+      payload: id
+    }),
+    addRemovedExtFileRef: (id) => dispatch({
+      type: ActionList.ADD_REMOVED_EXT_FILE_REF,
       payload: id
     })
   }
