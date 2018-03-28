@@ -93,15 +93,7 @@ class UploadBox extends React.Component {
         base = "data:image/png;base64," + rawResponse
       }
 
-      return <img
-        width={100}
-        height={100}
-        key={this.props.form.path + "." + index}
-        id={file.uid}
-        className="img-thumbnail"
-        src={base}
-        alt=""
-        onClick={() => this.showDeleteConfirmDialog(file)} />
+      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={base} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
     })
   }
 
