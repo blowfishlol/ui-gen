@@ -39,6 +39,7 @@ const deleteFileById = (id, context) => {
           return file.id !== response.data
         })
       })
+      context.props.updateState(context.props.form.path, context.state.ids)
       context.props.removeExtFileRef(response.data)
     })
     .catch((err) => {
@@ -57,19 +58,25 @@ class UploadBox extends React.Component {
       saveField: "file"
     }
     this.dropZone = ".dropZoneElement"
-    this.dialogActions = [
+    this.deleteImageActions = [
       {
         text:"Yes",
         primary:true,
         action:function(e) {
+          e.sender.options.context.setState({
+            ...e.sender.options.context.state,
+            isPopupDialogOpened: false
+          })
           e.sender.options.delete()
-          e.sender.close()
         }
       },
       {
         text:"No",
         action:function(e) {
-          e.sender.close()
+          e.sender.options.context.setState({
+            ...e.sender.options.context.state,
+            isPopupDialogOpened: false
+          })
         }
       }
     ]
@@ -78,7 +85,8 @@ class UploadBox extends React.Component {
       path: this.props.form.path,
       names: [],
       ids: get(this.props.form.path, this.props.form.type),
-      files: []
+      files: [],
+      isPopupDialogOpened : false
     }
     this.clickedImageId = -1
     this.idsFromDB = get(this.props.form.path, this.props.form.type)
@@ -88,6 +96,7 @@ class UploadBox extends React.Component {
     this.state.ids.forEach(id => {
       fetchFileById(id, this)
     })
+    this.dialogContent = ""
   }
 
   open(id) {
@@ -95,8 +104,15 @@ class UploadBox extends React.Component {
       return
     }
     this.clickedImageId = id
-    console.log("this one should be opened!", id)
-    $('[data-role="dialog"]').data('kendoDialog').open()
+    this.setState({
+      ...this.state,
+      isPopupDialogOpened: true
+    })
+    // $('[data-role="dialog"]').data('kendoDialog').open()
+  }
+
+  close() {
+
   }
 
   deleteImage() {
@@ -110,6 +126,7 @@ class UploadBox extends React.Component {
         return file.id !== this.clickedImageId
       })
     })
+    this.props.updateState(this.props.form.path, this.state.ids)
     this.props.removeExtFileRef(this.clickedImageId)
     this.props.addRemovedExtFileRef(this.clickedImageId)
   }
@@ -150,6 +167,8 @@ class UploadBox extends React.Component {
 			})
     }
 
+    this.dialogContent = <p style={{margin: "30px", textAlign: "center"}}>Do you want to delete this image?</p>
+
     return <div className="k-form-field">
       <span id="abc">{this.state.label}</span>
       <Upload
@@ -159,15 +178,19 @@ class UploadBox extends React.Component {
         complete={event => this.completeHandler(event)}
         upload={event => this.uploadHandler(event)}
         success={event => this.successHandler(event)}
-        select={event => this.selectHandler(this.boxId, event, this.wrapper)}
-        clear={event => this.clearHandler(this.boxId, event)}
-        remove={event => this.removeHandler(this.boxId, event)} />
+        select={event => this.selectHandler(event)}
+        clear={event => this.clearHandler(event)}
+        remove={event => this.removeHandler(event)} />
       <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
 
-      <Dialog visible={false} minWidth={250} width={450} actions={this.dialogActions} delete={() => this.deleteImage()}>
-        <p style={{margin: "30px", textAlign: "center"}}>Do you want to delete this image?</p>
-      </Dialog>
+      {
+        this.state.isPopupDialogOpened ?
+        <Dialog id="delete" data-role="deleteDialog" minWidth={250} width={450} actions={this.deleteImageActions} context={this} delete={() => this.deleteImage()}>
+          {this.dialogContent}
+        </Dialog> :
+        ""
+      }
     </div>
   }
 
@@ -188,22 +211,22 @@ class UploadBox extends React.Component {
       return
     }
     event.files[0].id = event.response.data
-    this.props.updateState(this.props.form.path + "." + this.state.ids.length, event.response.data)
-    this.props.addExtFileRef(event.response.data)
     this.setState({
       ...this.state,
-      ids: this.state.ids.concat(event.response),
+      ids: this.state.ids.concat(event.response.data),
       files: this.state.files.concat(event.files[0])
     })
+    this.props.updateState(this.props.form.path, this.state.ids)
+    this.props.addExtFileRef(event.response.data)
   }
 
-  selectHandler(boxId, event) {
+  selectHandler(event) {
   }
 
-  clearHandler(boxId, event) {
+  clearHandler(event) {
   }
 
-  removeHandler(boxId, event) {
+  removeHandler(event) {
     if(event.files[0].hasOwnProperty("id")) {
       deleteFileById(event.files[0].id, this)
     }

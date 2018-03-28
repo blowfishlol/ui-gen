@@ -17,18 +17,28 @@ class PageNavigator extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      isPopupDialogOpened : false
+    }
     this.dialogActions = [
       {
         text:"Yes",
         primary:true,
         action:function(e) {
+          e.sender.options.context.setState({
+            ...e.sender.options.context.state,
+            isPopupDialogOpened: false
+          })
           e.sender.options.save()
         }
       },
       {
         text:"No",
         action:function(e) {
-          e.sender.close()
+          e.sender.options.context.setState({
+            ...e.sender.options.context.state,
+            isPopupDialogOpened: false
+          })
         }
       }
     ]
@@ -125,9 +135,13 @@ class PageNavigator extends Component {
       </TabStrip>
       <BlankSpace space="75px" />
 
-      <Dialog title="Confirm Save"  visible={false} minWidth={250} width={450} actions={this.dialogActions} save={() => this.saveConfig()}>
-       <p style={{margin: "30px", textAlign: "center"}}>Save current configuration as &quot;{this.props.configName}&quot;?</p>
-      </Dialog>
+      {
+        this.state.isPopupDialogOpened ?
+        <Dialog title="Confirm Save" minWidth={250} width={450} actions={this.dialogActions} context={this} save={() => this.saveConfig()}>
+          <p style={{margin: "30px", textAlign: "center"}}>Save current configuration as &quot;{this.props.configName}&quot;?</p>
+        </Dialog> :
+        ""
+      }
 
       <div className="k-form-field navFooter">
         <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{isLastPage ? "FINISH" : "NEXT"}</button>
@@ -159,13 +173,17 @@ class PageNavigator extends Component {
         return
       }
     }
-    this.open()
+    // this.open()
+    this.setState({
+      ...this.state,
+      isPopupDialogOpened: true
+    })
   }
 
-  open() {
-    console.log("why this one is opened?")
-    $('[data-role="dialog"]').data('kendoDialog').open()
-  }
+  // open() {
+  //   console.log("why this one is opened?")
+  //   $('[data-role="dialog"]').data('kendoDialog').open()
+  // }
 }
 
 const mapStateToProps = function(storage) {
