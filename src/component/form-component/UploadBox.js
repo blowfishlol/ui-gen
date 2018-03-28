@@ -159,10 +159,10 @@ class UploadBox extends React.Component {
         complete={event => this.completeHandler(event)}
         upload={event => this.uploadHandler(event)}
         success={event => this.successHandler(event)}
-        select={event => this.selectHandler(this.boxId, event)}
+        select={event => this.selectHandler(this.boxId, event, this.wrapper)}
         clear={event => this.clearHandler(this.boxId, event)}
         remove={event => this.removeHandler(this.boxId, event)} />
-      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
 
       <Dialog visible={false} minWidth={250} width={450} actions={this.dialogActions} delete={() => this.deleteImage()}>
