@@ -185,13 +185,14 @@ class UploadBox extends React.Component {
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
 
 
-      {
+      {/*
         this.state.isPopupDialogOpened ?
         <Dialog id="delete" data-role="deleteDialog" minWidth={250} width={450} actions={this.deleteImageActions} context={this} delete={() => this.deleteImage()}>
           {this.dialogContent}
         </Dialog> :
         ""
-      }
+      */}
+			
     </div>
   }
 
@@ -199,12 +200,8 @@ class UploadBox extends React.Component {
   }
 
   uploadHandler(event) {
+		console.log("Upload fires.");
     var files = event.files
-    var nameState = this.state.names
-    files.forEach((file) => {
-      nameState.push(file.name)
-      this.setState({names: nameState})
-    })
   }
 
   successHandler(event) {

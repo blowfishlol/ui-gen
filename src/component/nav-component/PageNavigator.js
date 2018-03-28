@@ -25,6 +25,7 @@ class PageNavigator extends Component {
         text:"Yes",
         primary:true,
         action:function(e) {
+					console.log(e)
           e.sender.options.context.setState({
             ...e.sender.options.context.state,
             isPopupDialogOpened: false
@@ -136,6 +137,7 @@ class PageNavigator extends Component {
       <BlankSpace space="75px" />
 
       {
+				
         this.state.isPopupDialogOpened ?
         <Dialog title="Confirm Save" minWidth={250} width={450} actions={this.dialogActions} context={this} save={() => this.saveConfig()}>
           <p style={{margin: "30px", textAlign: "center"}}>Save current configuration as &quot;{this.props.configName}&quot;?</p>
