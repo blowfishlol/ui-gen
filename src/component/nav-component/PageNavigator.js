@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "recompose"
-import $ from 'jquery'
 
-import { Dialog } from '@progress/kendo-dialog-react-wrapper'
 import App from '../form-component/App'
-import BlankSpace from '../form-component/BlankSpace'
+import BlankSpace from '../BlankSpace'
 
+import { dialogOpen } from "../ConfirmationDialog"
 import evaluator from "../../util/evaluator"
 import { fetchAllData } from "../../data-accessor/formDataGet"
 import ActionList from "../../reducer/actionList"
@@ -14,51 +13,6 @@ import ActionList from "../../reducer/actionList"
 import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      isPopupDialogOpened : false
-    }
-    this.dialogActions = [
-      {
-        text:"Yes",
-        primary:true,
-        action:function(e) {
-          e.sender.options.context.setState({
-            ...e.sender.options.context.state,
-            isPopupDialogOpened: false
-          })
-          e.sender.options.save()
-        }
-      },
-      {
-        text:"No",
-        action:function(e) {
-          e.sender.options.context.setState({
-            ...e.sender.options.context.state,
-            isPopupDialogOpened: false
-          })
-        }
-      }
-    ]
-  }
-
-  saveConfig() {
-    var finalConfig = {
-      name: this.props.currentConfig.name,
-      id: this.props.userId,
-      data: JSON.stringify(fetchAllData()),
-      description_id: this.props.descriptionId,
-      file_id: this.props.extFileRef,
-      removed_file_id: this.props.removedExtFileRef,
-      token: this.props.token
-    }
-    if(this.props.currentConfig.hasOwnProperty("id")) {
-      finalConfig.config_id = this.props.currentConfig.id
-    }
-    this.props.saveConfig(finalConfig)
-  }
 
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
@@ -135,14 +89,6 @@ class PageNavigator extends Component {
       </TabStrip>
       <BlankSpace space="75px" />
 
-      {
-        this.state.isPopupDialogOpened ?
-        <Dialog title="Confirm Save" minWidth={250} width={450} actions={this.dialogActions} context={this} save={() => this.saveConfig()}>
-          <p style={{margin: "30px", textAlign: "center"}}>Save current configuration as &quot;{this.props.configName}&quot;?</p>
-        </Dialog> :
-        ""
-      }
-
       <div className="k-form-field navFooter">
         <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{isLastPage ? "FINISH" : "NEXT"}</button>
         {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""}
@@ -173,17 +119,32 @@ class PageNavigator extends Component {
         return
       }
     }
-    // this.open()
-    this.setState({
-      ...this.state,
-      isPopupDialogOpened: true
-    })
+    this.showConfirmationDialog()
   }
 
-  // open() {
-  //   console.log("why this one is opened?")
-  //   $('[data-role="dialog"]').data('kendoDialog').open()
-  // }
+  showConfirmationDialog() {
+    this.props.setDialogMessage("Do you want to save this configuration as \"" + this.props.configName + "\"?")
+    this.props.setDialogFinishFunction({
+      onFinish: () => this.saveConfig()
+    })
+    dialogOpen()
+  }
+
+  saveConfig() {
+    var finalConfig = {
+      name: this.props.currentConfig.name,
+      id: this.props.userId,
+      data: JSON.stringify(fetchAllData()),
+      description_id: this.props.descriptionId,
+      file_id: this.props.extFileRef,
+      removed_file_id: this.props.removedExtFileRef,
+      token: this.props.token
+    }
+    if(this.props.currentConfig.hasOwnProperty("id")) {
+      finalConfig.config_id = this.props.currentConfig.id
+    }
+    this.props.saveConfig(finalConfig)
+  }
 }
 
 const mapStateToProps = function(storage) {
@@ -223,6 +184,14 @@ const mapDispatchToProps = (dispatch) => {
     saveConfig: (config) => dispatch({
       type: ActionList.SAVE_CONFIG,
       payload: config
+    }),
+    setDialogMessage: (message) => dispatch({
+      type: ActionList.SET_DIALOG_MESSAGE,
+      payload: message
+    }),
+    setDialogFinishFunction: (methods) => dispatch({
+      type: ActionList.SET_ADDITIONAL_METHOD,
+      payload: methods
     })
   }
 }

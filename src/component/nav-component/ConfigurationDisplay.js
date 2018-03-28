@@ -4,8 +4,8 @@ import { compose } from "recompose"
 
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid'
 import ConfigurationDisplayCustomColumn from "./ConfigurationDisplayCustomColumn"
-import BlankSpace from "../form-component/BlankSpace"
-import ErrorBox from "../form-component/ErrorBox"
+import BlankSpace from "../BlankSpace"
+import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
 

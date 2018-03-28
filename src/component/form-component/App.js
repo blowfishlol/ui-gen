@@ -12,7 +12,7 @@ import UploadBox from './UploadBox';
 import CheckBox from './CheckBox';
 import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
-import ErrorBox from './ErrorBox';
+import ErrorBox from '../ErrorBox';
 
 import ComponentType from "../ComponentType"
 import evaluator from "../../util/evaluator"

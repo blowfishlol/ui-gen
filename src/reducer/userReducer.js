@@ -10,7 +10,6 @@ export default function reducer(state={
   token: ""
 }, action) {
 
-
   if(action.type === ActionList.ON_LOGIN) {
     axios.post(server + "/user/login", action.payload)
       .then((response) => {
@@ -21,14 +20,14 @@ export default function reducer(state={
         storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err.message})
       })
     return state
-  } else if(action.type === ActionList.ON_LOGIN_SUCCESS  ) {
+  } else if(action.type === ActionList.ON_LOGIN_SUCCESS) {
     return {
       ...state,
       id: action.payload.id,
       username: action.payload.username,
       token: action.payload.token
     }
-  } else if(action.type === ActionList.ON_LOGOUT  ) {
+  } else if(action.type === ActionList.ON_LOGOUT) {
     return {
       ...state,
       id: -1,

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import App from './App';
-import ErrorBox from './ErrorBox';
+import ErrorBox from '../ErrorBox';
 import get from '../../data-accessor/formDataGet'
 import getLayoutString from '../../util/LayoutProcessor';
 
