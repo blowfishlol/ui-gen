@@ -116,10 +116,10 @@ class UploadBox extends React.Component {
         complete={event => this.completeHandler(event)}
         upload={event => this.uploadHandler(event)}
         success={event => this.successHandler(event)}
-        select={event => this.selectHandler(this.boxId, event)}
+        select={event => this.selectHandler(this.boxId, event, this.wrapper)}
         clear={event => this.clearHandler(this.boxId, event)}
         remove={event => this.removeHandler(this.boxId, event)} />
-      <div className="dropZoneElement">Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
       <div id={this.boxId} className="col-*-3">{storedFile}</div>
     </div>
   }
@@ -153,7 +153,26 @@ class UploadBox extends React.Component {
     })
   }
 
-  selectHandler(boxId, event) {
+  selectHandler(boxId, event, wrapper) {
+		var file = event.files[0];
+		var raw = file.rawFile;
+		var reader = new FileReader();
+		console.log("raw",raw);
+		if(raw) {
+			reader.addEventListener("load", function () {
+				var preview = document.createElement("IMG");
+				var base64string = reader.result;
+				preview.setAttribute("src", base64string);
+				preview.setAttribute("class", "image-preview");
+				
+				var n = document.querySelectorAll(".k-file[data-uid='" + file.uid + "'] .k-file-extension-wrapper");
+				console.log("SELECTED_DOM",n);
+				
+				n[0].parentNode.replaceChild(preview,n[0]);
+			});
+			reader.readAsDataURL(raw);
+		}
+		
     console.log("select", boxId, event)
   }
 
