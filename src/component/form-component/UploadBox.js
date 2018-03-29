@@ -92,11 +92,11 @@ class UploadBox extends React.Component {
         } catch (e) {
         }
       }, false)
-			
-			
+
+
 			/**
 			 * In this try section, the reader will try to read the rawfile as data URL.
-			 * If it can read the data as rawfile, that means that the file.rawFile is a valid js file object 
+			 * If it can read the data as rawfile, that means that the file.rawFile is a valid js file object
 			 * and it will call the callback function. => read the comment about the callback function.
 			 * If not, it will throw an error, and will construct a (header+string) base64 encoded string that will be used directly
 			 * in the "src" attribute of the image element.
@@ -113,6 +113,7 @@ class UploadBox extends React.Component {
   }
 
   render() {
+    console.log("debug", this.state.files)
     var storedFile = ""
     if(this.state.files) {
       storedFile = this.parseStoredFiles()
@@ -152,6 +153,7 @@ class UploadBox extends React.Component {
       return
     }
     event.files[0].id = event.response.data
+    console.log(event)
     this.setState({
       ...this.state,
       ids: this.state.ids.concat(event.response.data),
