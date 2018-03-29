@@ -6,6 +6,8 @@ import $ from 'jquery'
 import "@progress/kendo-ui"
 import { Dialog } from '@progress/kendo-dialog-react-wrapper'
 
+import ActionList from "../reducer/actionList"
+
 export function dialogOpen() {
   $('[data-role="dialog"]').data('kendoDialog').open()
 }
@@ -40,6 +42,7 @@ class ConfirmationDialog extends React.Component {
         minWidth={250}
         width={450}
         actions={this.actions}
+        close={() => this.props.done()}
         finish={this.props.methods.onFinish}>
           <p style={{margin: "30px", textAlign: "center"}}>{this.props.message}</p>
       </Dialog>
@@ -56,6 +59,9 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    done: () => dispatch({
+      type: ActionList.SET_DIALOG_DEFAULT
+    })
   }
 }
 

@@ -4,10 +4,12 @@ import storage from "../storage"
 import server from "../util/server"
 import ActionList from "./actionList"
 
-export default function reducer(state={
-  descriptions: []
-}, action) {
+const defaultState = {
+  descriptions: [],
+  fetched: false
+}
 
+export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.FETCH_DESCRIPTIONS) {
     axios.post(server + "/description/list", action.payload)
       .then((response) => {
@@ -15,23 +17,27 @@ export default function reducer(state={
       })
       .catch((err) => {
         console.log("ERROR", err)
-        storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCH_FAIL, payload: err.message})
+        storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
   } else if(action.type === ActionList.ON_DESCRIPTIONS_FETCHED) {
     return {
       ...state,
-      descriptions: action.payload.map(element => {
+      descriptions: action.payload.map(description => {
         return {
-          ...element,
-          data: JSON.parse(element.data)
+          ...description,
+          data: JSON.parse(description.data)
         }
-      })
+      }),
+      fetched: true
+    }
+  } else if(action.type === ActionList.ON_DESCRIPTIONS_FETCH_FAIL) {
+    return {
+      ...state,
+      fetched: true
     }
   } else if(action.type === ActionList.ON_LOGOUT) {
-    return {
-      descriptions: []
-    }
+    return defaultState
   } else {
     return state;
   }

@@ -36,7 +36,8 @@ export default({
   ON_LOGOUT:                   "logout",
 
   SET_DIALOG_MESSAGE:          "set_dialog_message",
-  SET_ADDITIONAL_METHOD:       "set_methods"
+  SET_ADDITIONAL_METHOD:       "set_methods",
+  SET_DIALOG_DEFAULT:          "revert_default"
 })
 
 export const NavKey = {

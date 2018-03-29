@@ -24,6 +24,10 @@ class ConfigurationDisplay extends React.Component {
         {configTableHeader}
         <ErrorBox message={this.props.errorMessage} />
       </div>
+    } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched) {
+      return <div className="col-sm-12 alert alert-info">
+        Loading data
+      </div>
     }
 
     var configTable
@@ -57,6 +61,8 @@ const mapStateToProps = function(storage) {
     configs: storage.config.configs,
     default_config: storage.config.default_config,
     descriptions: storage.description.descriptions,
+    isConfigFetched: storage.config.fetched,
+    isDescriptionFetched: storage.description.fetched,
     errorMessage: storage.nav.error_message
   }
 }

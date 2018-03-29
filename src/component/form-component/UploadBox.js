@@ -13,9 +13,12 @@ import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
 import get from "../../util/formDataGet"
 
-const fetchFileById = (id, context) => {
-  axios.post(server + "/file/request/" + id)
-    .then((response) => {
+const fetchFileById = (id, context, userId, token) => {
+  axios.post(server + "/file/request", {
+    "id": userId,
+    "token": token,
+    "file_id": id
+  }).then((response) => {
       context.setState({
         ...context.state,
         files: context.state.files.concat(response.data)
@@ -26,9 +29,12 @@ const fetchFileById = (id, context) => {
     })
 }
 
-const deleteFileById = (id, context) => {
-  axios.get(server + "/file/remove/" + id)
-    .then((response) => {
+const deleteFileById = (id, context, userId, token) => {
+  axios.post(server + "/file/remove", {
+    "id": userId,
+    "token": token,
+    "file_id": id
+  }).then((response) => {
       context.setState({
         ...context.state,
         ids: context.state.ids.filter(id => {
@@ -68,7 +74,7 @@ class UploadBox extends React.Component {
 
     this.props.addExtFileRef(this.state.ids)
     this.state.ids.forEach(id => {
-      fetchFileById(id, this)
+      fetchFileById(id, this, this.props.userId, this.props.token)
     })
   }
 
@@ -84,7 +90,7 @@ class UploadBox extends React.Component {
           width={100} height={100}
           key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
           className="img-thumbnail"
-          src={server+ "/file/download/" + file.id}
+          src={server+ "/file/download/" + file.id + "?id=" + this.props.userId + "&token=" + this.props.token}
           alt=""
           onError={() => this.setDefaultImage(this.props.form.path+"."+index)}
           onClick={() => this.showDeleteConfirmDialog(file)} />
@@ -142,7 +148,7 @@ class UploadBox extends React.Component {
 
   removeHandler(event) {
     if(event.files[0].hasOwnProperty("id")) {
-      deleteFileById(event.files[0].id, this)
+      deleteFileById(event.files[0].id, this, this.props.userId, this.props.token)
     }
   }
 
@@ -176,6 +182,8 @@ class UploadBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    userId: storage.user.id,
+    token: storage.user.token
   }
 }
 

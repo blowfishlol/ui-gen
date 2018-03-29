@@ -4,12 +4,13 @@ import storage from "../storage"
 import server from "../util/server"
 import ActionList from "./actionList"
 
-export default function reducer(state={
+const defaultState = {
   id: -1,
   username: "",
   token: ""
-}, action) {
+}
 
+export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.ON_LOGIN) {
     axios.post(server + "/user/login", action.payload)
       .then((response) => {
@@ -17,7 +18,7 @@ export default function reducer(state={
       })
       .catch((err) => {
         console.log("ERROR", err)
-        storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err.message})
+        storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
   } else if(action.type === ActionList.ON_LOGIN_SUCCESS) {
@@ -28,12 +29,7 @@ export default function reducer(state={
       token: action.payload.token
     }
   } else if(action.type === ActionList.ON_LOGOUT) {
-    return {
-      ...state,
-      id: -1,
-      username: "",
-      token: ""
-    }
+    return defaultState
   } else {
     return state
   }

@@ -39,7 +39,7 @@ function lastElement(obj) {
   return obj[obj.length - 1]
 }
 
-export default function reducer(state={
+const defaultState = {
   data: [],
   app_state: [],
   notifier: false,
@@ -47,7 +47,9 @@ export default function reducer(state={
   config: {},
   ext_file_ids: [],
   removed_ext_file_ids: []
-}, action) {
+}
+
+export default function reducer(state = defaultState, action) {
 
   if(action.type === ActionList.SET_DATA) {
     /**
@@ -146,35 +148,11 @@ export default function reducer(state={
       removed_ext_file_ids: []
     }
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
-    return {
-      data: [],
-      app_state: [],
-      notifier: false,
-      description: [],
-      config: {},
-      ext_file_ids: [],
-      removed_ext_file_ids: []
-    }
+    return defaultState
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
-    return {
-      data: [],
-      app_state: [],
-      notifier: false,
-      description: [],
-      config: {},
-      ext_file_ids: [],
-      removed_ext_file_ids: []
-    }
+    return defaultState
   } else if(action.type === ActionList.ON_LOGOUT) {
-    return {
-      data: [],
-      app_state: [],
-      notifier: false,
-      description: [],
-      config: {},
-      ext_file_ids: [],
-      removed_ext_file_ids: []
-    }
+    return defaultState
   } else {
     return state;
   }

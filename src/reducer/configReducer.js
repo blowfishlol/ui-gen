@@ -4,17 +4,19 @@ import storage from "../storage"
 import server from "../util/server"
 import ActionList from "./actionList"
 
-export default function reducer(state={
+const defaultState = {
   configs: [],
   current_config: {},
+  fetched: false,
   default_config: {
     name: "New Configuration",
     configContent: {
       data: {}
     }
   }
-}, action) {
+}
 
+export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.FETCH_CONFIGS) {
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
@@ -22,7 +24,7 @@ export default function reducer(state={
       })
       .catch((err) => {
         console.log("ERROR", err)
-        storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.message})
+        storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
   } else if(action.type === ActionList.ON_CONFIGS_FETCHED) {
@@ -36,7 +38,13 @@ export default function reducer(state={
             data: JSON.parse(element.configContent.data)
           }
         }
-      })
+      }),
+      fetched: true
+    }
+  } else if(action.type === ActionList.ON_CONFIGS_FETCH_FAIL) {
+    return {
+      ...state,
+      fetched: true
     }
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
     return {
@@ -58,7 +66,7 @@ export default function reducer(state={
       })
       .catch((err) => {
         console.log("ERROR", err)
-        storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err.message})
+        storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
   } else if(action.type === ActionList.ON_CONFIG_DELETED) {
@@ -73,7 +81,7 @@ export default function reducer(state={
       })
       .catch((err) => {
         console.log("ERROR", err)
-        storage.dispatch({type: ActionList.ON_CONFIG_SAVE_FAIL, payload: err.message})
+        storage.dispatch({type: ActionList.ON_CONFIG_SAVE_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
@@ -87,11 +95,7 @@ export default function reducer(state={
       current_config: {}
     }
   } else if(action.type === ActionList.ON_LOGOUT) {
-    return {
-      ...state,
-      configs: [],
-      current_config: {}
-    }
+    return defaultState
   } else {
     return state
   }

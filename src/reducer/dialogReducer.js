@@ -1,9 +1,11 @@
 import ActionList from "./actionList"
 
-export default function reducer(state={
-  message: "Message",
+const defaultState = {
+  message: "",
   methods: {}
-}, action) {
+}
+
+export default function reducer(state = defaultState, action) {
 
   if(action.type === ActionList.SET_DIALOG_MESSAGE) {
     return {
@@ -15,6 +17,8 @@ export default function reducer(state={
       ...state,
       methods: action.payload
     }
+  } else if(action.type === ActionList.SET_DIALOG_DEFAULT) {
+    return defaultState
   } else {
     return state;
   }

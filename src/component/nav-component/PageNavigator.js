@@ -22,28 +22,6 @@ class PageNavigator extends Component {
     return this.props.description[this.getLastAppState()]
   }
 
-  getCurrentPageIndex(navBar) {
-    var currentPage = this.getLastAppState()
-    /**
-     * looking for hidden page so we can get the correct page index for the TabStrip
-     **/
-    var hiddenPageIndexes = []
-    for(let index in navBar) {
-      if(navBar[index] === 0) {
-        hiddenPageIndexes.push(index)
-      }
-    }
-    /**
-     * Adjusting currentPage so it gets the correct index.
-     **/
-    for(let index in hiddenPageIndexes) {
-      if(currentPage > hiddenPageIndexes[index]) {
-        currentPage--
-      }
-    }
-    return currentPage
-  }
-
   render() {
     var isLastPage = false
     const current = this.getCurrentDescription()
@@ -51,13 +29,13 @@ class PageNavigator extends Component {
       <h2>{current.pagename}</h2>
       <App form={current.form} />
     </div>
-    const navBar = this.props.description.map((p, index) => {
+    const navBar = this.props.description.map((page, index) => {
       if(index === this.getLastAppState()) {
         isLastPage = true
-        return <TabStripTab key={index}  disabled={true} title={p.pagename}>{content}</TabStripTab>
+        return <TabStripTab key={index} current={true} disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
-        if(p.hasOwnProperty("rendered")) {
-          if(!evaluator(p.rendered)) {
+        if(page.hasOwnProperty("rendered")) {
+          if(!evaluator(page.rendered)) {
             this.props.popData(index)
             /**
              * returns an empty element
@@ -68,10 +46,10 @@ class PageNavigator extends Component {
         if(isLastPage) {
           isLastPage = false
         }
-        return <TabStripTab key={index}  disabled={true} title={p.pagename}>{content}</TabStripTab>
+        return <TabStripTab key={index}  disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else {
-        if(p.hasOwnProperty("rendered")) {
-          if(!evaluator(p.rendered)) {
+        if(page.hasOwnProperty("rendered")) {
+          if(!evaluator(page.rendered)) {
             this.props.popData(index)
             /**
              * returns an empty element
@@ -79,13 +57,15 @@ class PageNavigator extends Component {
             return 0
           }
         }
-        return <TabStripTab key={index} onClick={() => this.jumpButtonListener(index)} title={p.pagename}>{content}</TabStripTab>
+        return <TabStripTab key={index} title={page.pagename}>{content}</TabStripTab>
       }
-    })
+    }).filter(nav => nav !== 0)
 
     return <div>
-      <TabStrip selected={this.getCurrentPageIndex(navBar)} onSelect={(e) => this.jumpButtonListener(e.selected)}>
-        {navBar.filter(nav => nav !== 0)}
+      <TabStrip
+        selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
+        onSelect={(e) => this.jumpButtonListener(e.selected, navBar)}>
+          {navBar}
       </TabStrip>
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
@@ -95,10 +75,13 @@ class PageNavigator extends Component {
     </div>
   }
 
-  jumpButtonListener(index) {
+  jumpButtonListener(index, navBar) {
+    index = parseInt(navBar[index].key)
+    console.log("debug", index)
     var target = this.props.appState.findIndex(element => {
       return element === index
     })
+    console.log("debug", target)
     this.props.popState((this.props.appState.length-1) - target)
   }
 
