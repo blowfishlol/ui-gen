@@ -77,7 +77,7 @@ class UploadBox extends React.Component {
       var preview = document.createElement("IMG")
       var base = ""
 
-      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={server+ "/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
+      return <img width={100} height={100} id={file.id} key={this.props.form.path+"."+index} className="img-thumbnail" src={server+ "/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
 
     })
   }
@@ -158,6 +158,7 @@ class UploadBox extends React.Component {
   }
 
   deleteImage() {
+    console.log("mboi");
     this.setState({
       ...this.state,
       ids: this.state.ids.filter(id => {
