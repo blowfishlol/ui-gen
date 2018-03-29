@@ -87,8 +87,7 @@ class UploadBox extends React.Component {
       reader.addEventListener("load", function () {
         preview.src = reader.result
         try {
-          var image = document.getElementById(file.uid)
-          image.src = reader.result
+          document.getElementById(file.uid).src = reader.result
         } catch (e) {
         }
       }, false)
@@ -104,16 +103,20 @@ class UploadBox extends React.Component {
       try {
         reader.readAsDataURL(file.rawFile)
       } catch (e) {
-        var rawResponse = file.rawFile
-        base = "data:image/png;base64," + rawResponse
+        base = "data:image/png;base64," + file.rawFile
       }
-
-      return <img width={100} height={100} id={file.uid} key={this.props.form.path+"."+index} className="img-thumbnail" src={base} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
+      // console.log("debug", base)
+      return <img
+        width={100} height={100}
+        id={file.uid} key={this.props.form.path+"."+index}
+        className="img-thumbnail"
+        src={base}
+        alt="[Empty]"
+        onClick={() => this.showDeleteConfirmDialog(file)} />
     })
   }
 
   render() {
-    console.log("debug", this.state.files)
     var storedFile = ""
     if(this.state.files) {
       storedFile = this.parseStoredFiles()
@@ -153,7 +156,6 @@ class UploadBox extends React.Component {
       return
     }
     event.files[0].id = event.response.data
-    console.log(event)
     this.setState({
       ...this.state,
       ids: this.state.ids.concat(event.response.data),
