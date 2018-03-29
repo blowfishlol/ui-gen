@@ -5,6 +5,7 @@ import axios from "axios"
 
 import "./UploadBox.css"
 import { Upload } from "@progress/kendo-upload-react-wrapper"
+import emptyFileIcon from "../../file-empty-icon.png"
 
 import { dialogOpen } from "../ConfirmationDialog"
 import { labelCheck } from "../../util/InfoChecker"
@@ -58,7 +59,7 @@ class UploadBox extends React.Component {
     }
     this.async = {
       saveUrl: (server + "/file/upload"),
-      removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
+      removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66", // => dummy, but needed, do not remove!
       autoUpload: false,
       saveField: "file"
     }
@@ -71,55 +72,23 @@ class UploadBox extends React.Component {
     })
   }
 
-  parseStoredFiles() {
-    return this.state.files.map((file, index) => {
-      var reader = new FileReader()
-      var preview = document.createElement("IMG")
-      var base = ""
-
-			/**
-			 * This only declares the callback function that will be executed when reader done loading the file.
-			 * This function will be called when reader successfully read the file.rawFile as a js file object.
-			 * Because this is asynchronous, the <img> is already put in side the page. So in order to access the right <img>,
-			 * it uses the file.uid to get the right element and changing the src to reader result (which is a (header+string) base64 encoded string too.
-			 * The reader.result value only exists in the callback function fml smh.
-			**/
-      reader.addEventListener("load", function () {
-        preview.src = reader.result
-        try {
-          document.getElementById(file.uid).src = reader.result
-        } catch (e) {
-        }
-      }, false)
-
-
-			/**
-			 * In this try section, the reader will try to read the rawfile as data URL.
-			 * If it can read the data as rawfile, that means that the file.rawFile is a valid js file object
-			 * and it will call the callback function. => read the comment about the callback function.
-			 * If not, it will throw an error, and will construct a (header+string) base64 encoded string that will be used directly
-			 * in the "src" attribute of the image element.
-			**/
-      try {
-        reader.readAsDataURL(file.rawFile)
-      } catch (e) {
-        base = "data:image/png;base64," + file.rawFile
-      }
-      // console.log("debug", base)
-      return <img
-        width={100} height={100}
-        id={file.uid} key={this.props.form.path+"."+index}
-        className="img-thumbnail"
-        src={base}
-        alt="[Empty]"
-        onClick={() => this.showDeleteConfirmDialog(file)} />
-    })
+  setDefaultImage(id) {
+    document.getElementById(id).src = emptyFileIcon
   }
 
   render() {
     var storedFile = ""
     if(this.state.files) {
-      storedFile = this.parseStoredFiles()
+      storedFile = this.state.files.map((file, index) => {
+        return <img
+          width={100} height={100}
+          key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
+          className="img-thumbnail"
+          src={server+ "/file/download/" + file.id}
+          alt=""
+          onError={() => this.setDefaultImage(this.props.form.path+"."+index)}
+          onClick={() => this.showDeleteConfirmDialog(file)} />
+      })
     }
 
     return <div className="k-form-field">
