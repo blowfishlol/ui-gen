@@ -14,7 +14,6 @@ import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
 
-
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
   }
