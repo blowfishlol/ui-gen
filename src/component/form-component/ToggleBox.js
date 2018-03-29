@@ -4,7 +4,7 @@ import { compose } from "recompose";
 
 import { labelCheck } from '../../util/InfoChecker';
 import  ActionList  from "../../reducer/actionList"
-import get from '../../data-accessor/formDataGet';
+import get from '../../util/formDataGet';
 
 class ToggleBox extends React.Component {
 

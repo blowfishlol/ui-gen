@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import { labelCheck } from '../../util/InfoChecker';
 import  ActionList  from "../../reducer/actionList"
 
-import get from '../../data-accessor/formDataGet';
+import get from '../../util/formDataGet';
 import getLayoutString from '../../util/LayoutProcessor';
 
 class CheckBox extends React.Component {

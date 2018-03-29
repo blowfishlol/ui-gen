@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import PageNavigator from "./PageNavigator"
 
-import { setByIndex } from "../../data-accessor/formDataGet"
+import { setByIndex } from "../../util/formDataGet"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
 import ComponentType from "../ComponentType"

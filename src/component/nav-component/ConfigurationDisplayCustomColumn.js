@@ -5,6 +5,7 @@ import { compose } from "recompose"
 import { GridCell } from '@progress/kendo-react-grid';
 
 import ActionList from "../../reducer/actionList"
+import { dialogOpen } from "../Dialog"
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 
@@ -12,6 +13,14 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     return this.props.configs.find(element => {
       return element.id === this.props.dataItem.id
     })
+  }
+
+  showConfirmationDialog() {
+    this.props.setDialogMessage("Delete configuration \"" + this.props.dataItem.name + "\"?")
+    this.props.setDialogFinishFunction({
+      onFinish: () => this.props.deleteConfig(this.props.dataItem.id, this.props.userId, this.props.token)
+    })
+    dialogOpen()
   }
 
   render() {
@@ -24,7 +33,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
       &nbsp;
       <button
         className="k-button k-primary"
-        onClick={() => this.props.deleteConfig(this.props.dataItem.id, this.props.userId, this.props.token)}>
+        onClick={() => this.showConfirmationDialog()}>
           DELETE
       </button>
     </td>
@@ -52,6 +61,14 @@ const mapDispatchToProps = function(dispatch) {
         "id": userId,
         "token": token
       }
+    }),
+    setDialogMessage: (message) => dispatch({
+      type: ActionList.SET_DIALOG_MESSAGE,
+      payload: message
+    }),
+    setDialogFinishFunction: (methods) => dispatch({
+      type: ActionList.SET_ADDITIONAL_METHOD,
+      payload: methods
     })
   }
 }

@@ -1,4 +1,4 @@
-import get, { check } from "../data-accessor/formDataGet"
+import get, { check } from "../util/formDataGet"
 
 const INVALID_ARG_ERROR = "Invalid render argument thrown"
 const PATH_NOT_FOUND_ERROR = "no_path"

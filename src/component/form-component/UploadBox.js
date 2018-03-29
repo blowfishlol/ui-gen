@@ -7,11 +7,11 @@ import "./UploadBox.css"
 import { Upload } from "@progress/kendo-upload-react-wrapper"
 import emptyFileIcon from "../../file-empty-icon.png"
 
-import { dialogOpen } from "../ConfirmationDialog"
+import { dialogOpen } from "../Dialog"
 import { labelCheck } from "../../util/InfoChecker"
 import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
-import get from "../../data-accessor/formDataGet"
+import get from "../../util/formDataGet"
 
 const fetchFileById = (id, context) => {
   axios.post(server + "/file/request/" + id)
@@ -103,7 +103,7 @@ class UploadBox extends React.Component {
         select={event => this.selectHandler(event)}
         clear={event => this.clearHandler(event)}
         remove={event => this.removeHandler(event)} />
-      <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
       <div>{storedFile}</div>
     </div>
   }
