@@ -77,38 +77,7 @@ class UploadBox extends React.Component {
       var preview = document.createElement("IMG")
       var base = ""
 
-			/**
-			 * This only declares the callback function that will be executed when reader done loading the file.
-			 * This function will be called when reader successfully read the file.rawFile as a js file object.
-			 * Because this is asynchronous, the <img> is already put in side the page. So in order to access the right <img>,
-			 * it uses the file.uid to get the right element and changing the src to reader result (which is a (header+string) base64 encoded string too.
-			 * The reader.result value only exists in the callback function fml smh.
-			**/
-      reader.addEventListener("load", function () {
-        preview.src = reader.result
-        try {
-          var image = document.getElementById(file.uid)
-          image.src = reader.result
-        } catch (e) {
-        }
-      }, false)
-
-
-			/**
-			 * In this try section, the reader will try to read the rawfile as data URL.
-			 * If it can read the data as rawfile, that means that the file.rawFile is a valid js file object
-			 * and it will call the callback function. => read the comment about the callback function.
-			 * If not, it will throw an error, and will construct a (header+string) base64 encoded string that will be used directly
-			 * in the "src" attribute of the image element.
-			**/
-      try {
-        reader.readAsDataURL(file.rawFile)
-      } catch (e) {
-        var rawResponse = file.rawFile
-        base = "data:image/png;base64," + rawResponse
-      }
-
-      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={base} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
+      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={"http://localhost:8080/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
     })
   }
 
