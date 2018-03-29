@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import App from './App';
 import ErrorBox from '../ErrorBox';
 
-import get from '../../data-accessor/formDataGet';
+import get from '../../util/formDataGet';
 
 class ArrayInput extends React.Component {
 

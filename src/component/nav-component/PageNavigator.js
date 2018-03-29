@@ -5,15 +5,14 @@ import { compose } from "recompose"
 import App from '../form-component/App'
 import BlankSpace from '../BlankSpace'
 
-import { dialogOpen } from "../ConfirmationDialog"
+import { dialogOpen } from "../Dialog"
 import evaluator from "../../util/evaluator"
-import { fetchAllData } from "../../data-accessor/formDataGet"
+import { fetchAllData } from "../../util/formDataGet"
 import ActionList from "../../reducer/actionList"
 
 import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
-
 
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
@@ -123,7 +122,7 @@ class PageNavigator extends Component {
   }
 
   showConfirmationDialog() {
-    this.props.setDialogMessage("Do you want to save this configuration as \"" + this.props.configName + "\"?")
+    this.props.setDialogMessage("Save this configuration as \"" + this.props.configName + "\"?")
     this.props.setDialogFinishFunction({
       onFinish: () => this.saveConfig()
     })

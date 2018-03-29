@@ -36,17 +36,17 @@ class App extends Component {
       var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
       var elementRendered
       switch(element.type) {
-        case ComponentType.TEXT:      elementRendered = <TextBox form={element} />;                         break
-        case ComponentType.NUMBER:    elementRendered = <NumberBox form={element} />;                       break
-        case ComponentType.IMAGE:     elementRendered = <UploadBox form={element} />;                       break
-        case ComponentType.DROPDOWN:  elementRendered = <DropDownBox form={element} />;                     break
-        case ComponentType.CHECKBOX:  elementRendered = <CheckBox form={element} />;                        break
-        case ComponentType.TOGGLE:    elementRendered = <ToggleBox form={element} />;                       break
-        case ComponentType.DATE:      elementRendered = <DateBox form={element} />;                         break
-        case ComponentType.TIME:      elementRendered = <TimeBox form={element} />;                         break
-        case ComponentType.ARRAY:     elementRendered = <ArrayInput form={element} />;                      break
-        case ComponentType.MAP:       elementRendered = <MapInput form={element} evenChild={isEvenChild}/>; break
-        default:                      elementRendered = <ErrorBox message={'Unrecognized element type "' + element.type + '"'} />
+        case ComponentType.TEXT:     elementRendered = <TextBox form={element} />;                         break
+        case ComponentType.NUMBER:   elementRendered = <NumberBox form={element} />;                       break
+        case ComponentType.IMAGE:    elementRendered = <UploadBox form={element} />;                       break
+        case ComponentType.DROPDOWN: elementRendered = <DropDownBox form={element} />;                     break
+        case ComponentType.CHECKBOX: elementRendered = <CheckBox form={element} />;                        break
+        case ComponentType.TOGGLE:   elementRendered = <ToggleBox form={element} />;                       break
+        case ComponentType.DATE:     elementRendered = <DateBox form={element} />;                         break
+        case ComponentType.TIME:     elementRendered = <TimeBox form={element} />;                         break
+        case ComponentType.ARRAY:    elementRendered = <ArrayInput form={element} />;                      break
+        case ComponentType.MAP:      elementRendered = <MapInput form={element} evenChild={isEvenChild}/>; break
+        default:                     elementRendered = <ErrorBox message={'Unrecognized element type "' + element.type + '"'} />
       }
       if(element.type === ComponentType.MAP) {
         return <div key={element.path} className="col-sm-12 com-md-12 col-lg-12">

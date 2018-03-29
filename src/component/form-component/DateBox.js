@@ -7,7 +7,7 @@ import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 import { labelCheck } from '../../util/InfoChecker';
 
 import  ActionList  from "../../reducer/actionList"
-import get from '../../data-accessor/formDataGet';
+import get from '../../util/formDataGet';
 
 class DateBox extends React.Component {
 

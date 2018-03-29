@@ -5,12 +5,13 @@ import axios from "axios"
 
 import "./UploadBox.css"
 import { Upload } from "@progress/kendo-upload-react-wrapper"
+import emptyFileIcon from "../../file-empty-icon.png"
 
-import { dialogOpen } from "../ConfirmationDialog"
+import { dialogOpen } from "../Dialog"
 import { labelCheck } from "../../util/InfoChecker"
 import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
-import get from "../../data-accessor/formDataGet"
+import get from "../../util/formDataGet"
 
 const fetchFileById = (id, context) => {
   axios.post(server + "/file/request/" + id)
@@ -58,7 +59,7 @@ class UploadBox extends React.Component {
     }
     this.async = {
       saveUrl: (server + "/file/upload"),
-      removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66",
+      removeUrl: "http://www.mocky.io/v2/5aa927ba3200003a2d165b66", // => dummy, but needed, do not remove!
       autoUpload: false,
       saveField: "file"
     }
@@ -71,22 +72,23 @@ class UploadBox extends React.Component {
     })
   }
 
-  parseStoredFiles() {
-    return this.state.files.map((file, index) => {
-      var reader = new FileReader()
-      var preview = document.createElement("IMG")
-      var base = ""
-
-      return <img width={100} height={100} id={file.id} key={this.props.form.path+"."+index} className="img-thumbnail" src={server+ "/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
-
-    })
+  setDefaultImage(id) {
+    document.getElementById(id).src = emptyFileIcon
   }
 
   render() {
-    console.log("debug", this.state.files)
     var storedFile = ""
     if(this.state.files) {
-      storedFile = this.parseStoredFiles()
+      storedFile = this.state.files.map((file, index) => {
+        return <img
+          width={100} height={100}
+          key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
+          className="img-thumbnail"
+          src={server+ "/file/download/" + file.id}
+          alt=""
+          onError={() => this.setDefaultImage(this.props.form.path+"."+index)}
+          onClick={() => this.showDeleteConfirmDialog(file)} />
+      })
     }
 
     return <div className="k-form-field">
@@ -101,7 +103,7 @@ class UploadBox extends React.Component {
         select={event => this.selectHandler(event)}
         clear={event => this.clearHandler(event)}
         remove={event => this.removeHandler(event)} />
-      <div className="dropZoneElement col-*-3">Drag and drop {this.state.label} here </div>
+      <div className="dropZoneElement col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
       <div>{storedFile}</div>
     </div>
   }
@@ -123,7 +125,6 @@ class UploadBox extends React.Component {
       return
     }
     event.files[0].id = event.response.data
-    console.log(event)
     this.setState({
       ...this.state,
       ids: this.state.ids.concat(event.response.data),

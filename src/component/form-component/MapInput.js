@@ -4,7 +4,7 @@ import { compose } from "recompose";
 
 import App from './App';
 import ErrorBox from '../ErrorBox';
-import get from '../../data-accessor/formDataGet'
+import get from '../../util/formDataGet'
 import getLayoutString from '../../util/LayoutProcessor';
 
 class MapInput extends React.Component {
