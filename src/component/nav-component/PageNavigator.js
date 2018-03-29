@@ -76,12 +76,10 @@ class PageNavigator extends Component {
   }
 
   jumpButtonListener(index, navBar) {
-    index = parseInt(navBar[index].key)
-    console.log("debug", index)
+    index = parseInt(navBar[index].key, 10)
     var target = this.props.appState.findIndex(element => {
       return element === index
     })
-    console.log("debug", target)
     this.props.popState((this.props.appState.length-1) - target)
   }
 
