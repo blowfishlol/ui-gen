@@ -77,7 +77,8 @@ class UploadBox extends React.Component {
       var preview = document.createElement("IMG")
       var base = ""
 
-      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={"http://localhost:8080/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
+      return <img width={100} height={100} key={this.props.form.path+"."+index} className="img-thumbnail" src={server+ "/file/download/" + file.id} alt="" onClick={() => this.showDeleteConfirmDialog(file)} />
+
     })
   }
 
