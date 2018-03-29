@@ -165,6 +165,7 @@ class UploadBox extends React.Component {
   }
 
   deleteImage() {
+    console.log("mboi");
     this.setState({
       ...this.state,
       ids: this.state.ids.filter(id => {
