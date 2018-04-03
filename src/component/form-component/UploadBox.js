@@ -8,6 +8,7 @@ import emptyFileIcon from "../../file-empty-icon.png"
 
 import { Upload } from "@progress/kendo-upload-react-wrapper"
 
+import { generateLabel } from "./LabelTooltipGenerator"
 import { dialogOpen } from "../Dialog"
 import { labelCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
@@ -99,7 +100,7 @@ class UploadBox extends React.Component {
     }
 
     return <div className="k-form-field">
-      <span>{this.state.label}</span>
+      {generateLabel(this.props.form)}
       <Upload
         className="col-*-3"
         async={this.async}

@@ -4,6 +4,7 @@ import { compose } from "recompose"
 
 import { NumericTextBox } from "@progress/kendo-react-inputs"
 
+import { generateLabel } from "./LabelTooltipGenerator"
 import { labelCheck, placeholderCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
@@ -13,7 +14,7 @@ class NumberBox extends React.Component{
   render() {
     return <div className="k-form-field">
       <label>
-        <span>{labelCheck(this.props.form.label)}</span>
+        {generateLabel(this.props.form)}
         <NumericTextBox
           placeholder={placeholderCheck(this.props.form.value)}
           value={get(this.props.form.path, this.props.form.type)}
