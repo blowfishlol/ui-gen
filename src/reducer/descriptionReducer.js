@@ -16,7 +16,7 @@ export default function reducer(state = defaultState, action) {
         storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCHED, payload: response.data})
       })
       .catch((err) => {
-        console.log("ERROR", err)
+        console.error("ERROR", err)
         storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state

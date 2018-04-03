@@ -117,7 +117,7 @@ function get(ptr, path) {
   return get(ptr[path[0]], path.slice(1))
 }
 
-function defaultValue(type) {
+export function defaultValue(type) {
   switch(type) {
     case ComponentType.TEXT:     return ""
     case ComponentType.DATE:     return "2000-01-01"

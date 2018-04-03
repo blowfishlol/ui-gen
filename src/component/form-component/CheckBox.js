@@ -1,16 +1,16 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { labelCheck } from '../../util/InfoChecker';
-import get from '../../util/formDataGet';
-import getLayoutString from '../../util/LayoutProcessor';
+import { labelCheck } from '../../util/InfoChecker'
+import get from '../../util/formDataGet'
+import getLayoutString from '../../util/LayoutProcessor'
 import  ActionList  from "../../reducer/actionList"
 
 class CheckBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: labelCheck(this.props.form.label),
       values: get(this.props.form.path, this.props.form.type),
@@ -42,7 +42,7 @@ class CheckBox extends React.Component {
           }/>
         <label className="k-checkbox-label" htmlFor={childPath}>{content.text}</label>
       </div>
-    });
+    })
 
     return <div className="k-form-field">
       <span>{this.state.label}</span>
@@ -53,6 +53,7 @@ class CheckBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

@@ -6,32 +6,16 @@ import Form from './Form'
 import ErrorBox from '../ErrorBox'
 
 import get from '../../util/formDataGet'
-import getLayoutString from '../../util/LayoutProcessor'
 import ActionList from "../../reducer/actionList"
 
 class MapInput extends React.Component {
 
-  constructor(props) {
-    super(props)
-    // console.log(this.props.form.path, get(this.props.form.path, this.props.form.type))
-    this.state = {
-      childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler"),
-      layout: getLayoutString(this.props.form.layout)
-    }
+  nextPath() {
+    return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
   }
 
-  /**
-   * [MOTI]
-   * the data inside array does not matter
-   * class only see the array length
-   * used to repliate same component in render
-   */
   add() {
-    console.log(get(this.props.form.path, this.props.form.type))
-    this.setState({
-      ...this.state,
-      childData: this.state.childData.concat(["just to replicate child"])
-    })
+    this.props.updateState(this.nextPath(), {})
   }
 
   clone(obj) {
@@ -45,13 +29,13 @@ class MapInput extends React.Component {
       return <ErrorBox message="Content is missing" />
     }
 
-    var elements = this.state.childData.map((element, index) => {
+    var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
       const childElement = this.clone(this.props.form.child_content)
       for(var i = 0; i < childElement.length; i++) {
         childElement[i].path = this.props.form.path + "." + index + "." + childElement[i].path
       }
-      var isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
-      var style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
+      const isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
+      const style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
 
       return <div key={this.props.form.path + "." + index} className={style + " mapChild"}>
         <Form form={childElement} evenChild={isEvenChild}/>
@@ -70,6 +54,7 @@ class MapInput extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

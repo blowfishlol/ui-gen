@@ -26,7 +26,7 @@ const fetchFileById = (id, context, userId, token) => {
       })
     })
     .catch((err) => {
-      console.log("ERROR", err)
+      console.error("ERROR", err)
     })
 }
 
@@ -49,7 +49,7 @@ const deleteFileById = (id, context, userId, token) => {
       context.props.removeExtFileRef(response.data)
     })
     .catch((err) => {
-      console.log("ERROR", err)
+      console.error("ERROR", err)
     })
 }
 
@@ -185,7 +185,9 @@ class UploadBox extends React.Component {
 const mapStateToProps = function(storage) {
   return {
     userId: storage.user.id,
-    token: storage.user.token
+    token: storage.user.token,
+
+    notifier: storage.form.notifier
   }
 }
 

@@ -42,7 +42,7 @@ function lastElement(obj) {
 const defaultState = {
   data: [],
   app_state: [],
-  notifier: false,
+  notifier: false, // --> used to force re rendering on form components (ex: on data change)
   description: [],
   config: {},
   ext_file_ids: [],
@@ -53,7 +53,6 @@ export default function reducer(state = defaultState, action) {
 
   if(action.type === ActionList.SET_DATA) {
     /**
-     * [MOTI]
      * action SET is used to set any kind of data from the view
      * param required in payload:
      *  path: where the data will be stored in data hierachy, ex: user.name.firstname
@@ -88,7 +87,8 @@ export default function reducer(state = defaultState, action) {
       ...state,
       description: action.payload,
       data: Array(action.payload.length).fill({}),
-      app_state: state.app_state.concat(0)
+      app_state: state.app_state.concat(0),
+      notifier: !state.notifier
     }
   } else if(action.type === ActionList.PUSH_APP_STATE) {
     /**
@@ -154,6 +154,6 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState
   } else {
-    return state;
+    return state
   }
 }

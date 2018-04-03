@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { DropDownList } from '@progress/kendo-react-dropdowns'
 
-import { labelCheck } from '../../util/InfoChecker';
-import get from '../../util/formDataGet';
+import { labelCheck } from '../../util/InfoChecker'
+import get from '../../util/formDataGet'
 import  ActionList  from "../../reducer/actionList"
 
 class DropDownBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: labelCheck(this.props.form.label),
       // required: requiredCheck(this.props.form.required),
@@ -42,6 +42,7 @@ class DropDownBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

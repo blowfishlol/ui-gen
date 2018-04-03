@@ -23,7 +23,7 @@ export default function reducer(state = defaultState, action) {
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
       })
       .catch((err) => {
-        console.log("ERROR", err)
+        console.error("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
@@ -65,7 +65,7 @@ export default function reducer(state = defaultState, action) {
         storage.dispatch({type: ActionList.ON_CONFIG_DELETED, payload: response.data})
       })
       .catch((err) => {
-        console.log("ERROR", err)
+        console.error("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIG_DELETE_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
@@ -80,7 +80,7 @@ export default function reducer(state = defaultState, action) {
         storage.dispatch({type: ActionList.ON_CONFIG_SAVED, payload: response.data})
       })
       .catch((err) => {
-        console.log("ERROR", err)
+        console.error("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIG_SAVE_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state

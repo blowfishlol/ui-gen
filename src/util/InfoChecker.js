@@ -3,5 +3,5 @@ export function labelCheck(label) {
 }
 
 export function placeholderCheck(value) {
-  return value ? (value.hasOwnProperty("placeholder") ? value.placeholder : "" ) : "";
+  return value ? (value.hasOwnProperty("placeholder") ? value.placeholder : "" ) : ""
 }

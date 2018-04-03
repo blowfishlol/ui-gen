@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper';
+import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper'
 
-import { labelCheck } from '../../util/InfoChecker';
-import get from '../../util/formDataGet';
+import { labelCheck } from '../../util/InfoChecker'
+import get from '../../util/formDataGet'
 import  ActionList  from "../../reducer/actionList"
 
 class TimeBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: labelCheck(this.props.form.label),
       // required: this.props.form.required ? "required" : "",
@@ -36,6 +36,7 @@ class TimeBox extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

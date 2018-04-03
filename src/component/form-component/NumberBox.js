@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { NumericTextBox } from '@progress/kendo-react-inputs';
+import { NumericTextBox } from '@progress/kendo-react-inputs'
 
-import { labelCheck, placeholderCheck } from '../../util/InfoChecker';
-import get from '../../util/formDataGet';
+import { labelCheck, placeholderCheck } from '../../util/InfoChecker'
+import get from '../../util/formDataGet'
 import  ActionList  from "../../reducer/actionList"
 
 class NumberBox extends React.Component{
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: labelCheck(this.props.form.label),
       // required: requiredCheck(this.props.form.required),

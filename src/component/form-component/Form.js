@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React, { Component } from 'react'
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import TextBox from './TextBox';
-import DateBox from './DateBox';
-import TimeBox from './TimeBox';
-import DropDownBox from './DropDownBox';
-import ToggleBox from './ToggleBox';
-import NumberBox from './NumberBox';
-import UploadBox from './UploadBox';
-import CheckBox from './CheckBox';
-import MapInput from './MapInput';
-import ArrayInput from './ArrayInput';
-import ErrorBox from '../ErrorBox';
+import TextBox from './TextBox'
+import DateBox from './DateBox'
+import TimeBox from './TimeBox'
+import DropDownBox from './DropDownBox'
+import ToggleBox from './ToggleBox'
+import NumberBox from './NumberBox'
+import UploadBox from './UploadBox'
+import CheckBox from './CheckBox'
+import MapInput from './MapInput'
+import ArrayInput from './ArrayInput'
+import ErrorBox from '../ErrorBox'
 
 import evaluator from "../../util/evaluator"
 import getLayoutString from '../../util/LayoutProcessor'
@@ -60,7 +60,7 @@ class Form extends Component {
     })
 
     if(elements.length === 0) {
-      elements = "Form is empty";
+      elements = "Form is empty"
     }
 
     return <div className="k-form row">

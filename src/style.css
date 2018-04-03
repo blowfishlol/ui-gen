@@ -20,6 +20,17 @@
   margin-bottom: 10px;
 }
 
+.multipleElementComponent {
+  position:relative;
+}
+
+.bottom-right {
+  font-size: 10px;
+  position: absolute;
+  right:    0;
+  bottom:   0;
+}
+
 .formHighlightLight {
   background-color: #E2F1FF;
   border: 1px solid #78A4CC;

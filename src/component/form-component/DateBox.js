@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
 
-import { labelCheck } from '../../util/InfoChecker';
-import get from '../../util/formDataGet';
+import { labelCheck } from '../../util/InfoChecker'
+import get from '../../util/formDataGet'
 import  ActionList  from "../../reducer/actionList"
 
 class DateBox extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       label: labelCheck(this.props.form.label),
       value: get(this.props.form.path, this.props.form.type),
@@ -31,17 +31,18 @@ class DateBox extends React.Component {
   }
 
   changeDate = event => {
-    const date = event.sender.value();
+    const date = event.sender.value()
     if(!date){
-      alert("Not a proper date format. (MM/DD/YYYY)");
-      return;
+      alert("Not a proper date format. (MM/DD/YYYY)")
+      return
     }
-    this.props.updateState(this.props.form.path, date);
+    this.props.updateState(this.props.form.path, date)
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 

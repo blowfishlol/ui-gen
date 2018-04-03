@@ -5,32 +5,20 @@ import { compose } from "recompose"
 import Form from './Form'
 import ErrorBox from '../ErrorBox'
 
-import get from '../../util/formDataGet'
+import get, { defaultValue } from '../../util/formDataGet'
 import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler")
-    }
+  nextPath() {
+    return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
   }
 
   add() {
-    /**
-     * the data inside array does not matter
-     * class only see the array length
-     * used to repliate same component in render
-     */
-    this.setState({
-      ...this.state,
-      childData: this.state.childData.concat(["just to replicate child"])
-    })
+    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
   }
 
   render() {
-    console.log("debug", get(this.props.form.path, this.props.form.type))
     if(!this.props.hasOwnProperty("form")) {
       return <ErrorBox message="Config is missing" />
     } else if(!this.props.form.hasOwnProperty("child_content")) {
@@ -39,8 +27,8 @@ class ArrayInput extends React.Component {
       return <ErrorBox message="Content type is missing" />
     }
 
-    var elements = this.state.childData.map((element, index) => {
-      return <div key={this.props.form.path + "." + index}>
+    var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
+      return <div key={this.props.form.path + "." + index} className="multipleElementComponent">
         <Form
           form={[{
             label: "",
@@ -62,6 +50,7 @@ class ArrayInput extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
+    notifier: storage.form.notifier
   }
 }
 
