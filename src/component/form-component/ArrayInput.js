@@ -2,20 +2,17 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import Form from './Form'
-import ErrorBox from '../ErrorBox'
+import Form from "./Form"
+import BlankSpace from "../BlankSpace"
+import ErrorBox from "../ErrorBox"
 
-import get, { defaultValue } from '../../util/formDataGet'
+import get, { defaultValue } from "../../util/formDataGet"
 import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {
 
   nextPath() {
     return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
-  }
-
-  add() {
-    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
   }
 
   render() {
@@ -35,6 +32,8 @@ class ArrayInput extends React.Component {
             type: this.props.form.child_content.type,
             path: this.props.form.path + "." + index
           }]} />
+        <BlankSpace space="35px" />
+        <button className="k-button deleteElementButton" onClick={() => this.deleteElement(index)}>X</button>
       </div>
     })
 
@@ -45,6 +44,15 @@ class ArrayInput extends React.Component {
       </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </div>
+  }
+
+  add() {
+    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
+  }
+
+  deleteElement(index) {
+    const currentData = get(this.props.form.path, this.props.form.type)
+    this.props.updateState(this.props.form.path, currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)))
   }
 }
 

@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
-import Form from '../form-component/Form'
-import BlankSpace from '../BlankSpace'
+import { TabStrip, TabStripTab } from "@progress/kendo-react-layout"
+import Form from "../form-component/Form"
+import BlankSpace from "../BlankSpace"
 
 import { dialogOpen } from "../Dialog"
 import evaluator from "../../util/evaluator"
@@ -43,10 +43,13 @@ class PageNavigator extends Component {
         }
       }
       if(index === this.getLastAppState()) {
+        console.log("debug", 2, content)
         return <TabStripTab key={index} current={true} disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
+        console.log("debug", 3)
         return <TabStripTab key={index}  disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else {
+        console.log("debug", 1)
         return <TabStripTab key={index} title={page.pagename}>{content}</TabStripTab>
       }
     }).filter(nav => nav !== 0)

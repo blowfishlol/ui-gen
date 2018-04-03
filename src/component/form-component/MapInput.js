@@ -2,20 +2,17 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import Form from './Form'
-import ErrorBox from '../ErrorBox'
+import Form from "./Form"
+import BlankSpace from "../BlankSpace"
+import ErrorBox from "../ErrorBox"
 
-import get from '../../util/formDataGet'
+import get from "../../util/formDataGet"
 import ActionList from "../../reducer/actionList"
 
 class MapInput extends React.Component {
 
   nextPath() {
     return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
-  }
-
-  add() {
-    this.props.updateState(this.nextPath(), {})
   }
 
   clone(obj) {
@@ -37,8 +34,10 @@ class MapInput extends React.Component {
       const isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
       const style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
 
-      return <div key={this.props.form.path + "." + index} className={style + " mapChild"}>
-        <Form form={childElement} evenChild={isEvenChild}/>
+      return <div key={this.props.form.path + "." + index} className={style + " mapChild multipleElementComponent"}>
+        <Form form={childElement} evenChild={isEvenChild} />
+        <BlankSpace space="35px" />
+        <button className="k-button deleteElementButton" onClick={() => this.deleteElement(index)}>X</button>
       </div>
     })
 
@@ -49,6 +48,15 @@ class MapInput extends React.Component {
       </div>
       <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
     </div>
+  }
+
+  add() {
+    this.props.updateState(this.nextPath(), {})
+  }
+
+  deleteElement(index) {
+    const currentData = get(this.props.form.path, this.props.form.type)
+    this.props.updateState(this.props.form.path, currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)))
   }
 }
 

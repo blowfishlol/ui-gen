@@ -2,37 +2,40 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import TextBox from './TextBox'
-import DateBox from './DateBox'
-import TimeBox from './TimeBox'
-import DropDownBox from './DropDownBox'
-import ToggleBox from './ToggleBox'
-import NumberBox from './NumberBox'
-import UploadBox from './UploadBox'
-import CheckBox from './CheckBox'
-import MapInput from './MapInput'
-import ArrayInput from './ArrayInput'
-import ErrorBox from '../ErrorBox'
+import TextBox from "./TextBox"
+import DateBox from "./DateBox"
+import TimeBox from "./TimeBox"
+import DropDownBox from "./DropDownBox"
+import ToggleBox from "./ToggleBox"
+import NumberBox from "./NumberBox"
+import UploadBox from "./UploadBox"
+import CheckBox from "./CheckBox"
+import MapInput from "./MapInput"
+import ArrayInput from "./ArrayInput"
+import ErrorBox from "../ErrorBox"
 
 import evaluator from "../../util/evaluator"
-import getLayoutString from '../../util/LayoutProcessor'
+import getLayoutString from "../../util/LayoutProcessor"
+import { check } from "../../util/formDataGet"
 import ComponentType from "../ComponentType"
+import ActionList from "../../reducer/actionList"
 
 class Form extends Component {
   render() {
     var elements = this.props.form.map(element => {
-      if(element.hasOwnProperty("rendered")) {
-        if(!evaluator(element.rendered)) {
-          /**
-           * return an empty component
-           */
-          return <div key={element.path}/>
-        }
-      }
       if(!element.hasOwnProperty("type")) {
         return <ErrorBox key={element.path} message={'Invalid form file format "' + JSON.stringify(element) + '". Type is missing'} />
+      } else if(!element.hasOwnProperty("path")) {
+        return <ErrorBox key={element.path} message={'Invalid form file format "' + JSON.stringify(element) + '". Path is missing'} />
       }
-
+      if(element.hasOwnProperty("rendered")) {
+        if(!evaluator(element.rendered)) {
+          if(check(element.path)) {
+            this.props.removeData(element.path)
+          }
+          return 0
+        }
+      }
       var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
       var elementRendered
       switch(element.type) {
@@ -57,7 +60,7 @@ class Form extends Component {
           {elementRendered}
         </div>
       }
-    })
+    }).filter(element => element !== 0)
 
     if(elements.length === 0) {
       elements = "Form is empty"
@@ -77,6 +80,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    removeData: (path) => dispatch({
+      type: ActionList.POP_DATA,
+      payload: {
+        "path": path
+      }
+    })
   }
 }
 

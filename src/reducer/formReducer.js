@@ -9,7 +9,6 @@ function defaultForPath(arg) {
 }
 
 /**
- * [MOTI]
  * function set
  * set the given value to this reducer state.data
  * in the given route by path
@@ -31,6 +30,22 @@ function set(path, value, ptr) {
   }
 }
 
+function pop(path, ptr) {
+  if(path.length === 1) {
+    delete ptr[path[0]]
+    return ptr
+  } else {
+    if(ptr.hasOwnProperty(path[0])) {
+      return {
+        ...ptr,
+        [path[0]]: pop(path.slice(1), ptr[path[0]])
+      }
+    } else {
+      return ptr
+    }
+  }
+}
+
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
@@ -42,7 +57,7 @@ function lastElement(obj) {
 const defaultState = {
   data: [],
   app_state: [],
-  notifier: false, // --> used to force re rendering on form components (ex: on data change)
+  notifier: 1, // --> used to force re rendering on form components (ex: on data change)
   description: [],
   config: {},
   ext_file_ids: [],
@@ -65,7 +80,7 @@ export default function reducer(state = defaultState, action) {
             set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
        }),
-      notifier: !state.notifier
+      notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.SET_DATA_BY_INDEX) {
     return {
@@ -75,7 +90,17 @@ export default function reducer(state = defaultState, action) {
             set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
        }),
-      notifier: !state.notifier
+      notifier: (state.notifier + 1) % 10
+    }
+  } else if(action.type === ActionList.POP_DATA) {
+    return {
+      ...state,
+      data: state.data.map((d, index) => {
+        return index === lastElement(state.app_state) ?
+            pop(action.payload.path.split("."), clone(d)) :
+            d
+       }),
+       notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.SET_CONFIG) {
     return {
@@ -88,7 +113,7 @@ export default function reducer(state = defaultState, action) {
       description: action.payload,
       data: Array(action.payload.length).fill({}),
       app_state: state.app_state.concat(0),
-      notifier: !state.notifier
+      notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.PUSH_APP_STATE) {
     /**

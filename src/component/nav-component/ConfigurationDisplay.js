@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { Grid, GridColumn as Column } from '@progress/kendo-react-grid'
+import { Grid, GridColumn as Column } from "@progress/kendo-react-grid"
 import ConfigurationDisplayCustomColumn from "./ConfigurationDisplayCustomColumn"
 import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"

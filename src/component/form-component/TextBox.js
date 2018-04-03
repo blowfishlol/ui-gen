@@ -2,26 +2,18 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { labelCheck, placeholderCheck } from '../../util/InfoChecker'
-import get from '../../util/formDataGet'
+import { labelCheck, placeholderCheck } from "../../util/InfoChecker"
+import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
 class TextBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      label: labelCheck(this.props.form.label),
-      placeholder: placeholderCheck(this.props.form.value)
-    }
-  }
-
   render() {
     return <label className="k-form-field">
-      <span>{this.state.label}</span>
+      <span>{labelCheck(this.props.form.label)}</span>
       <input
         className={"k-textbox"}
-        placeholder={this.state.placeholder}
+        placeholder={placeholderCheck(this.props.form.value)}
         value={get(this.props.form.path, this.props.form.type)}
         onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
     </label>

@@ -2,25 +2,17 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper'
+import { TimePicker } from "@progress/kendo-dateinputs-react-wrapper"
 
-import { labelCheck } from '../../util/InfoChecker'
-import get from '../../util/formDataGet'
+import { labelCheck } from "../../util/InfoChecker"
+import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
 class TimeBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      label: labelCheck(this.props.form.label),
-      // required: this.props.form.required ? "required" : "",
-    }
-  }
-
   render() {
     return <div className="k-form-field">
-      <p>{this.state.label}</p>
+      <span>{labelCheck(this.props.form.label)}</span>
       <TimePicker
         value={get(this.props.form.path, this.props.form.type)}
         dateInput={true}

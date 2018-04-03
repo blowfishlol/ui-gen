@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { GridCell } from '@progress/kendo-react-grid';
+import { GridCell } from "@progress/kendo-react-grid"
 
 import { dialogOpen } from "../Dialog"
 import ActionList from "../../reducer/actionList"
@@ -78,4 +78,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(ConfigurationDisplayCustomColumn);
+)(ConfigurationDisplayCustomColumn)

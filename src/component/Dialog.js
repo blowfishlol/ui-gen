@@ -2,9 +2,9 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import $ from 'jquery'
+import $ from "jquery"
 import "@progress/kendo-ui"
-import { Dialog } from '@progress/kendo-dialog-react-wrapper'
+import { Dialog } from "@progress/kendo-dialog-react-wrapper"
 
 import ActionList from "../reducer/actionList"
 

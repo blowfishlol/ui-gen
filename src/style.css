@@ -12,7 +12,10 @@
 }
 
 .k-form-field {
-  padding: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 0px;
 }
 
 .mapChild {
@@ -24,11 +27,14 @@
   position:relative;
 }
 
-.bottom-right {
+.deleteElementButton {
   font-size: 10px;
   position: absolute;
-  right:    0;
-  bottom:   0;
+  right: 0;
+  bottom: 0;
+  height: 35px;
+  width: 35px;
+  margin: 5px;
 }
 
 .formHighlightLight {

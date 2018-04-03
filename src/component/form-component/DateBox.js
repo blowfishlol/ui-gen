@@ -2,26 +2,17 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
+import { DatePicker } from "@progress/kendo-dateinputs-react-wrapper"
 
-import { labelCheck } from '../../util/InfoChecker'
-import get from '../../util/formDataGet'
+import { labelCheck } from "../../util/InfoChecker"
+import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
 class DateBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      label: labelCheck(this.props.form.label),
-      value: get(this.props.form.path, this.props.form.type),
-      // required: this.props.form.required ? "required" : "",
-    }
-  }
-
   render() {
     return <div className="k-form-field ">
-      <p>{this.state.label}</p>
+      <span>{labelCheck(this.props.form.label)}</span>
       <DatePicker
         format={"dd MMMM yyyy"}
         value={get(this.props.form.path, this.props.form.type)}

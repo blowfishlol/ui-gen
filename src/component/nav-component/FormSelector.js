@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { DropDownList } from "@progress/kendo-react-dropdowns"
 import PageNavigator from "./PageNavigator"
 
 import { setByIndex } from "../../util/formDataGet"
@@ -102,8 +102,8 @@ class FormSelector extends React.Component {
             <td>
               <DropDownList
                 data={this.props.descriptions}
-                textField={'version'}
-                valueField={'id'}
+                textField={"version"}
+                valueField={"id"}
                 value={this.state.selectedDescriptionId}
                 onChange={(evt) => {
                   this.setState({
