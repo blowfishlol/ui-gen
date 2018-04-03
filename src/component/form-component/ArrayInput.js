@@ -6,6 +6,7 @@ import Form from './Form'
 import ErrorBox from '../ErrorBox'
 
 import get from '../../util/formDataGet'
+import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {
 
@@ -26,10 +27,10 @@ class ArrayInput extends React.Component {
       ...this.state,
       childData: this.state.childData.concat(["just to replicate child"])
     })
-
   }
 
   render() {
+    console.log("debug", get(this.props.form.path, this.props.form.type))
     if(!this.props.hasOwnProperty("form")) {
       return <ErrorBox message="Config is missing" />
     } else if(!this.props.form.hasOwnProperty("child_content")) {

@@ -1,22 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
+import React from "react"
+import { connect } from "react-redux"
+import { compose } from "recompose"
 
-import Form from './Form';
-import ErrorBox from '../ErrorBox';
+import Form from './Form'
+import ErrorBox from '../ErrorBox'
 
 import get from '../../util/formDataGet'
-import getLayoutString from '../../util/LayoutProcessor';
+import getLayoutString from '../../util/LayoutProcessor'
+import ActionList from "../../reducer/actionList"
 
 class MapInput extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     // console.log(this.props.form.path, get(this.props.form.path, this.props.form.type))
     this.state = {
       childData: Array(get(this.props.form.path, this.props.form.type).length).fill("this data is just a filler"),
       layout: getLayoutString(this.props.form.layout)
-    };
+    }
   }
 
   /**
@@ -30,7 +31,7 @@ class MapInput extends React.Component {
     this.setState({
       ...this.state,
       childData: this.state.childData.concat(["just to replicate child"])
-    });
+    })
   }
 
   clone(obj) {
@@ -55,7 +56,7 @@ class MapInput extends React.Component {
       return <div key={this.props.form.path + "." + index} className={style + " mapChild"}>
         <Form form={childElement} evenChild={isEvenChild}/>
       </div>
-    });
+    })
 
     return <div className="k-form-field">
       <span>{this.props.form.label}</span>
@@ -74,6 +75,13 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updateState: (path,value) => dispatch({
+      type: ActionList.SET_DATA,
+      payload: {
+        "path": path,
+        "value": value,
+      }
+    })
   }
 }
 
