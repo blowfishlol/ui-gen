@@ -5,8 +5,8 @@ import { compose } from "recompose";
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 import { labelCheck } from '../../util/InfoChecker';
-import  ActionList  from "../../reducer/actionList"
 import get from '../../util/formDataGet';
+import  ActionList  from "../../reducer/actionList"
 
 class DropDownBox extends React.Component {
 

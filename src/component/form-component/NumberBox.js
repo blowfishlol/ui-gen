@@ -5,9 +5,8 @@ import { compose } from "recompose";
 import { NumericTextBox } from '@progress/kendo-react-inputs';
 
 import { labelCheck, placeholderCheck } from '../../util/InfoChecker';
-import  ActionList  from "../../reducer/actionList"
-
 import get from '../../util/formDataGet';
+import  ActionList  from "../../reducer/actionList"
 
 class NumberBox extends React.Component{
 

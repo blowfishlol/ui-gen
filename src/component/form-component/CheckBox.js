@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { labelCheck } from '../../util/InfoChecker';
-import  ActionList  from "../../reducer/actionList"
-
 import get from '../../util/formDataGet';
 import getLayoutString from '../../util/LayoutProcessor';
+import  ActionList  from "../../reducer/actionList"
 
 class CheckBox extends React.Component {
 

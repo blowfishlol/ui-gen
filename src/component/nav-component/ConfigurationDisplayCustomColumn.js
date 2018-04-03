@@ -4,8 +4,8 @@ import { compose } from "recompose"
 
 import { GridCell } from '@progress/kendo-react-grid';
 
-import ActionList from "../../reducer/actionList"
 import { dialogOpen } from "../Dialog"
+import ActionList from "../../reducer/actionList"
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 

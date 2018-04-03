@@ -5,8 +5,8 @@ import { compose } from "recompose";
 import { TimePicker } from '@progress/kendo-dateinputs-react-wrapper';
 
 import { labelCheck } from '../../util/InfoChecker';
-import  ActionList  from "../../reducer/actionList"
 import get from '../../util/formDataGet';
+import  ActionList  from "../../reducer/actionList"
 
 class TimeBox extends React.Component {
 

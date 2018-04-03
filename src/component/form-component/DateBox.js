@@ -1,13 +1,12 @@
 import React from "react";
-
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper'
-import { labelCheck } from '../../util/InfoChecker';
 
-import  ActionList  from "../../reducer/actionList"
+import { labelCheck } from '../../util/InfoChecker';
 import get from '../../util/formDataGet';
+import  ActionList  from "../../reducer/actionList"
 
 class DateBox extends React.Component {
 

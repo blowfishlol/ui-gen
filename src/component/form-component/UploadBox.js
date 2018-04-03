@@ -4,14 +4,15 @@ import { compose } from "recompose"
 import axios from "axios"
 
 import "./UploadBox.css"
-import { Upload } from "@progress/kendo-upload-react-wrapper"
 import emptyFileIcon from "../../file-empty-icon.png"
+
+import { Upload } from "@progress/kendo-upload-react-wrapper"
 
 import { dialogOpen } from "../Dialog"
 import { labelCheck } from "../../util/InfoChecker"
+import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
-import get from "../../util/formDataGet"
 
 const fetchFileById = (id, context, userId, token) => {
   axios.post(server + "/file/request", {

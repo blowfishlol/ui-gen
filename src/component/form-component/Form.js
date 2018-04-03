@@ -14,11 +14,11 @@ import MapInput from './MapInput';
 import ArrayInput from './ArrayInput';
 import ErrorBox from '../ErrorBox';
 
-import ComponentType from "../ComponentType"
 import evaluator from "../../util/evaluator"
 import getLayoutString from '../../util/LayoutProcessor'
+import ComponentType from "../ComponentType"
 
-class App extends Component {
+class Form extends Component {
   render() {
     var elements = this.props.form.map(element => {
       if(element.hasOwnProperty("rendered")) {
@@ -85,4 +85,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   )
-)(App)
+)(Form)

@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 
-import App from './App';
+import Form from './Form';
 import ErrorBox from '../ErrorBox';
+
 import get from '../../util/formDataGet'
 import getLayoutString from '../../util/LayoutProcessor';
 
@@ -32,11 +33,6 @@ class MapInput extends React.Component {
     });
   }
 
-  /**
-   * [MOTI]
-   * TODO
-   * modify this clone function with a better way to clone an object
-   */
   clone(obj) {
     return JSON.parse(JSON.stringify(obj))
   }
@@ -57,7 +53,7 @@ class MapInput extends React.Component {
       var style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
 
       return <div key={this.props.form.path + "." + index} className={style + " mapChild"}>
-        <App form={childElement} evenChild={isEvenChild}/>
+        <Form form={childElement} evenChild={isEvenChild}/>
       </div>
     });
 

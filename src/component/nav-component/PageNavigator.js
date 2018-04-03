@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import App from '../form-component/App'
+import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
+import Form from '../form-component/Form'
 import BlankSpace from '../BlankSpace'
 
 import { dialogOpen } from "../Dialog"
 import evaluator from "../../util/evaluator"
 import { fetchAllData } from "../../util/formDataGet"
 import ActionList from "../../reducer/actionList"
-
-import { TabStrip, TabStripTab } from '@progress/kendo-react-layout'
 
 class PageNavigator extends Component {
 
@@ -22,41 +21,32 @@ class PageNavigator extends Component {
     return this.props.description[this.getLastAppState()]
   }
 
+  isLastPage(navBar) {
+    return navBar.findIndex(navbar => navbar.props.hasOwnProperty("current")) === navBar.length - 1
+  }
+
   render() {
-    var isLastPage = false
-    const current = this.getCurrentDescription()
-    const content = <div>
-      <h2>{current.pagename}</h2>
-      <App form={current.form} />
-    </div>
     const navBar = this.props.description.map((page, index) => {
+      const current = this.getCurrentDescription()
+      const content = <div>
+        <h2>{current.pagename}</h2>
+        <Form form={current.form} />
+      </div>
+
+      if(page.hasOwnProperty("rendered")) {
+        if(!evaluator(page.rendered)) {
+          this.props.popData(index)
+          /**
+           * return 0, will be filtered later
+           */
+          return 0
+        }
+      }
       if(index === this.getLastAppState()) {
-        isLastPage = true
         return <TabStripTab key={index} current={true} disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
-        if(page.hasOwnProperty("rendered")) {
-          if(!evaluator(page.rendered)) {
-            this.props.popData(index)
-            /**
-             * returns an empty element
-             */
-            return 0
-          }
-        }
-        if(isLastPage) {
-          isLastPage = false
-        }
         return <TabStripTab key={index}  disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else {
-        if(page.hasOwnProperty("rendered")) {
-          if(!evaluator(page.rendered)) {
-            this.props.popData(index)
-            /**
-             * returns an empty element
-             */
-            return 0
-          }
-        }
         return <TabStripTab key={index} title={page.pagename}>{content}</TabStripTab>
       }
     }).filter(nav => nav !== 0)
@@ -69,7 +59,7 @@ class PageNavigator extends Component {
       </TabStrip>
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
-        <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{isLastPage ? "FINISH" : "NEXT"}</button>
+        <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{this.isLastPage(navBar) ? "FINISH" : "NEXT"}</button>
         {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""}
       </div>
     </div>
