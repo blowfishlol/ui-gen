@@ -10,6 +10,7 @@ import { labelCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 import { colorList } from "../../util/colorSource"
+import BlankSpace from "../BlankSpace"
 
 
 /**
@@ -72,10 +73,10 @@ class ColorPicker extends React.Component {
     this.setState({
       ...this.state,
       palette: colorValue,
-      base: baseVal,
-      hue1: hue1Val,
-      hue2: hue2Val,
-      hue3: hue3Val
+      base: baseVal.toString(),
+      hue1: hue1Val.toString(),
+      hue2: hue2Val.toString(),
+      hue3: hue3Val.toString()
     })
   } 
 
@@ -86,7 +87,7 @@ class ColorPicker extends React.Component {
     const styles = {
       backgroundColor: pair.hex,
       width: 30,
-      height: 50,
+      height: 30,
     };
     const check = (pair.value===this.state.palette) ? this.getCheck() : "";
     return <div className="col-*-3" key={props.form.path+"."+"palette."+pair.value}><Tooltip content={pair.text} position={"top"}>
@@ -107,8 +108,8 @@ class ColorPicker extends React.Component {
     const boxes = palettePair.map(pair => {
       const styles = {
         backgroundColor: colorList[this.state.palette][pair.value],
-        width: 30,
-        height: 50,
+        width: 40.71,
+        height: 30,
       };
 
       const check = (pair.value.toString()===this.state[source].toString()) ? this.getCheck() : "";
@@ -175,30 +176,47 @@ class ColorPicker extends React.Component {
       preparedPalette = mainPalettePair.concat(altPalettePair);
     }
 
+    const padding = {
+      padding: "5px"
+    }
+
+    const bgcolor = {
+      backgroundColor: "#eeeeee"
+    }
 
     return <div className="k-form-field ">
     <h3>{generateLabel(this.props.form)}</h3>
-    <div className="container">
+    <div className="container" style={bgcolor}>
       <div className="row">
         <div className="col-*">
-          <span>Color selection: {this.state.palette}</span>
-          <div className="container"><div className="row">{this.generateColorBoxes(mainColorPair,this.props)}</div></div>
+          <div style={padding}>
+            <span>Color selection: {this.state.palette}</span>
+            <div className="container"><div className="row">{this.generateColorBoxes(mainColorPair,this.props)}</div></div>
+          </div>
         </div>
         <div className="col-*">
-          <span>Base Color Selection: {this.state.base}</span>
-          <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"base",this.props)}</div></div>
+          <div style={padding}>
+            <span>Base Color Selection: {this.state.base}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"base",this.props)}</div></div>
+          </div>
         </div>
         <div className="col-*"> 
-          <span>Hue 1 Color Selection: {this.state.hue1}</span>
-          <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue1",this.props)}</div></div>
+          <div style={padding}> 
+            <span>Hue 1 Color Selection: {this.state.hue1}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue1",this.props)}</div></div>
+          </div>
         </div>
         <div className="col-*">
-          <span>Hue 2 Color Selection: {this.state.hue2}</span>
-          <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue2",this.props)}</div></div>
+          <div style={padding}>
+            <span>Hue 2 Color Selection: {this.state.hue2}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue2",this.props)}</div></div>
+          </div>
         </div>
         <div className="col-*">
-          <span>Hue 3 Color Selection: {this.state.hue3}</span>
-          <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue3",this.props)}</div></div>
+          <div style={padding}>
+            <span>Hue 3 Color Selection: {this.state.hue3}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue3",this.props)}</div></div>
+          </div>
         </div>
       </div>
     </div>

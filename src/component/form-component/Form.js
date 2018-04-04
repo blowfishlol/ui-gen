@@ -57,6 +57,10 @@ class Form extends Component {
         return <div key={element.path} className="col-sm-12 com-md-12 col-lg-12">
           {elementRendered}
         </div>
+      } else if(element.type === ComponentType.COLOR) {
+        return <div key={element.path} className="col-sm-12 com-md-6 col-lg-6">
+          {elementRendered}
+        </div>
       } else {
         return <div key={element.path} className={getLayoutString(element.layout)}>
           {elementRendered}
