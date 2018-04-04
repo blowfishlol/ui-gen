@@ -8,7 +8,6 @@ import PageNavigator from "./PageNavigator"
 import { setByIndex } from "../../util/formDataGet"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
-import ComponentType from "../ComponentType"
 
 class FormSelector extends React.Component {
 
@@ -20,6 +19,9 @@ class FormSelector extends React.Component {
       selectedDescriptionId: this.getDefaultDescription()
     }
     this.props.setFormConfig(this.props.currentConfig.configContent.data)
+    if(this.props.currentConfig.configContent.hasOwnProperty("version")) {
+      this.props.setNewFormFlag(false)
+    }
     this.prepareFormData()
   }
 
@@ -44,6 +46,13 @@ class FormSelector extends React.Component {
     }).data
   }
 
+  renderCheck(obj) {
+    if(obj.hasOwnProperty("rendered")) {
+      return evaluator(obj.rendered)
+    }
+    return true
+  }
+
   /**
    * Have to be performed everytime this component re render
    * otherwise some data may not be available (when it should be)
@@ -56,19 +65,12 @@ class FormSelector extends React.Component {
     this.props.cleanState()
     this.props.setDescription(this.getSelectedDescription())
     this.getSelectedDescription().forEach((page, index) => {
-      if(page.hasOwnProperty("rendered")) {
-        if(!evaluator(page.rendered)) {
-          return
-        }
+      if(this.renderCheck(page) === false) {
+        return
       }
       page.form.forEach(element => {
-        if(element.type === ComponentType.ARRAY || element.type === ComponentType.MAP) {
+        if(this.renderCheck(element) === false) {
           return
-        }
-        if(element.hasOwnProperty("rendered")) {
-          if(!evaluator(element.rendered)) {
-            return
-          }
         }
         setByIndex(element.path, element.type, index)
       })
@@ -153,6 +155,10 @@ const mapDispatchToProps = (dispatch) => {
     setDescription: (desc) => dispatch({
       type: ActionList.SET_DESCRIPTION,
       payload: desc
+    }),
+    setNewFormFlag: (flag) => dispatch({
+      type: ActionList.SET_NEW_FORM_FLAG,
+      payload: flag
     }),
     cleanData: () => dispatch({
       type: ActionList.CLEAR_DATA,

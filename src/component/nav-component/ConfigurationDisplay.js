@@ -25,8 +25,11 @@ class ConfigurationDisplay extends React.Component {
         <ErrorBox message={this.props.errorMessage} />
       </div>
     } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched) {
-      return <div className="col-sm-12 alert alert-info">
-        Loading data
+      return <div>
+        {configTableHeader}
+        <div className="col-sm-12 alert alert-info">
+          Loading data
+        </div>
       </div>
     }
 
@@ -37,17 +40,18 @@ class ConfigurationDisplay extends React.Component {
       </div>
     } else {
       configTable = <Grid data={this.props.configs} >
-        <Column field="name" width="50%" title="Cofiguration Name" />
-        <Column field="configContent.version" width="15%" title="Version" />
-        <Column field="id" width="35%" title="Option" cell={ConfigurationDisplayCustomColumn} />
+        <Column field="name" width="45%" title="Configuration Name" />
+        <Column field="configContent.version" width="10%" title="Version" />
+        <Column field="id" width="45%" title="Option" cell={ConfigurationDisplayCustomColumn} />
       </Grid>
     }
     return <div>
       {configTableHeader}
-        {configTable}
+      {configTable}
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
         <button className="k-button k-primary" onClick={() => this.props.setSelectedConfig(this.props.default_config)}>NEW CONFIG</button>
+        <button className="k-button" onClick={() => this.props.gotoImportConfigForm()}>IMPORT CONFIG</button>
       </div>
     </div>
   }
@@ -86,6 +90,9 @@ const mapDispatchToProps = function(dispatch) {
     setSelectedConfig: (config) => dispatch({
       type: ActionList.ASSIGN_CONFIG,
       payload: config
+    }),
+    gotoImportConfigForm: () => dispatch({
+      type: ActionList.ON_GOTO_IMPORT_CONFIG
     })
   }
 }

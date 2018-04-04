@@ -23,6 +23,7 @@
     "@progress/kendo-upload-react-wrapper": "^2018.1.221",
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
+    "js-file-download": "^0.4.1",
     "jsdom": "^11.6.2",
     "kendo-ui-react-jquery-tabstrip": "^1.0.3",
     "material-ui": "^1.0.0-beta.40",
