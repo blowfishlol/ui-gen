@@ -14,7 +14,7 @@ function defaultForPath(arg) {
  * in the given route by path
  * by returning new instance of state.data to overwrite the old one
  */
-function set(path, value, ptr) {
+export function set(path, value, ptr) {
   if(path.length === 1) {
     ptr[path[0]] = value
     return ptr
@@ -57,11 +57,13 @@ function lastElement(obj) {
 const defaultState = {
   data: [],
   app_state: [],
-  notifier: 1, // --> used to force re rendering on form components (ex: on data change)
   description: [],
   config: {},
   ext_file_ids: [],
-  removed_ext_file_ids: []
+  removed_ext_file_ids: [],
+  notifier: 1, // --> used to force re rendering on form components (ex: on data change)
+  isNewForm: true,
+  isAllowedToJumpFoward: false
 }
 
 export default function reducer(state = defaultState, action) {
@@ -80,7 +82,8 @@ export default function reducer(state = defaultState, action) {
             set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
        }),
-      notifier: (state.notifier + 1) % 10
+      notifier: (state.notifier + 1) % 10,
+      isAllowedToJumpFoward: false
     }
   } else if(action.type === ActionList.SET_DATA_BY_INDEX) {
     return {
@@ -121,7 +124,8 @@ export default function reducer(state = defaultState, action) {
      */
     return {
       ...state,
-      app_state: state.app_state.concat(action.payload.index)
+      app_state: state.app_state.concat(action.payload.index),
+      isAllowedToJumpFoward: false
     }
   } else if(action.type === ActionList.POP_APP_STATE) {
     /**
@@ -147,6 +151,16 @@ export default function reducer(state = defaultState, action) {
       data: state.data.map((d, index) => {
         return index === action.payload.index ? {} : d
       })
+    }
+  } else if(action.type === ActionList.SET_NEW_FORM_FLAG) {
+    return {
+      ...state,
+      isNewForm: action.payload
+    }
+  } else if(action.type === ActionList.ALLOW_JUMP) {
+    return {
+      ...state,
+      isAllowedToJumpFoward: true
     }
   } else if(action.type === ActionList.ADD_EXT_FILE_REF) {
     return {

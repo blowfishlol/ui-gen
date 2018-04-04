@@ -18,6 +18,10 @@
   padding-bottom: 0px;
 }
 
+.k-state-disabled {
+  color: #000000 !important;
+}
+
 .mapChild {
   margin-top: 15px;
   margin-bottom: 10px;
@@ -28,13 +32,20 @@
 }
 
 .deleteElementButton {
-  font-size: 10px;
+  font-size: 12px;
   position: absolute;
   right: 0;
   bottom: 0;
   height: 35px;
   width: 35px;
   margin: 5px;
+  padding: 0px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
 }
 
 .formHighlightLight {
@@ -55,6 +66,7 @@
   border-top: 1px solid #96D8FF;
   background-color: #ECF8FF;
   padding-top: 10px;
+  padding-bottom: 10px;
   padding-right: 25px;
   margin-left: -15px;
   position: fixed;
@@ -66,6 +78,7 @@
 
 .navFooter button {
   float: right;
+  margin-left: 2px;
 }
 
 .descSelectorTable {
@@ -80,6 +93,19 @@
 
 .loginFormStyle button {
   float: right;
+}
+
+.importConfigStyle {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.importConfigStyle textarea {
+  height: 200px;
+  width: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 .configDisplayHeader {

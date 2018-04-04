@@ -55,6 +55,18 @@ export default function reducer(state={
       location: NavKey.CONFIGURATION_MENU,
       error_message: ""
     }
+  } else if(action.type === ActionList.ON_GOTO_IMPORT_CONFIG) {
+    return {
+      ...state,
+      location: NavKey.IMPORT_CONFIG_PAGE,
+      error_message: ""
+    }
+  } else if(action.type === ActionList.ON_CONFIG_IMPORT_FAIL) {
+    return {
+      ...state,
+      location: NavKey.IMPORT_CONFIG_PAGE,
+      error_message: JSON.stringify(action.payload)
+    }
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
     return {
       ...state,

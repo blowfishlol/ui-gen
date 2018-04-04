@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
+// import { Input } from "@progress/kendo-react-inputs"
 import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
@@ -62,13 +63,13 @@ class LoginPage extends React.Component {
   updateUsername(evt) {
     this.setState({
       username: evt.target.value
-    });
+    })
   }
 
   updatePassword(evt) {
     this.setState({
       password: evt.target.value
-    });
+    })
   }
 }
 
@@ -92,4 +93,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(LoginPage);
+)(LoginPage)

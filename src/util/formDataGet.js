@@ -37,6 +37,11 @@ function validateType(result, type) {
     if(result.constructor !== Array) {
       throw new Error()
     }
+    result.forEach(res => {
+      if(typeof res !== "number") {
+        throw new Error()
+      }
+    })
   } else if(type === ComponentType.CHECKBOX) {
     if(typeof result !== "object") {
       throw new Error()
@@ -88,6 +93,18 @@ export function setByIndex(path, type, index) {
       "index": index
     }
   })
+}
+
+export function getNoDispatch(path, type) {
+  try {
+    return get(fetchAllData(), path.split("."))
+  } catch(error) {
+    try {
+      return findInConfig(path, type)
+    } catch(error2) {
+      return defaultValue(type)
+    }
+  }
 }
 
 function set(path, type) {
@@ -161,7 +178,6 @@ function mergeDeep(obj1, obj2) {
 
 export function fetchAllData() {
   const data = storage.getState().form.data
-  // return data[data.length-1]
   var merged = {}
   data.forEach(element => {
     merged = mergeDeep(merged, element)

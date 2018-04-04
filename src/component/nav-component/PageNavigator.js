@@ -8,7 +8,8 @@ import BlankSpace from "../BlankSpace"
 
 import { dialogOpen } from "../Dialog"
 import evaluator from "../../util/evaluator"
-import { fetchAllData } from "../../util/formDataGet"
+import { fetchAllData, getNoDispatch } from "../../util/formDataGet"
+import { set } from "../../reducer/formReducer"
 import ActionList from "../../reducer/actionList"
 
 class PageNavigator extends Component {
@@ -23,6 +24,29 @@ class PageNavigator extends Component {
 
   isLastPage(navBar) {
     return navBar.findIndex(navbar => navbar.props.hasOwnProperty("current")) === navBar.length - 1
+  }
+
+  renderCheck(obj) {
+    if(obj.hasOwnProperty("rendered")) {
+      return evaluator(obj.rendered)
+    }
+    return true
+  }
+
+  fetchRemainingData() {
+    var currentData = fetchAllData()
+    this.props.description.slice(this.getLastAppState(), this.props.description.length).forEach(page => {
+      if(this.renderCheck(page) === false) {
+        return
+      }
+      page.form.forEach(element => {
+        if(this.renderCheck(element) === false) {
+          return
+        }
+        currentData = set(element.path.split("."), getNoDispatch(element.path, element.type), currentData)
+      })
+    })
+    return currentData
   }
 
   render() {
@@ -43,33 +67,44 @@ class PageNavigator extends Component {
         }
       }
       if(index === this.getLastAppState()) {
-        console.log("debug", 2, content)
         return <TabStripTab key={index} current={true} disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
-        console.log("debug", 3)
-        return <TabStripTab key={index}  disabled={true} title={page.pagename}>{content}</TabStripTab>
+        return <TabStripTab key={index}  disabled={!this.props.isAllowedToJumpFoward} title={page.pagename}>{content}</TabStripTab>
       } else {
-        console.log("debug", 1)
         return <TabStripTab key={index} title={page.pagename}>{content}</TabStripTab>
       }
     }).filter(nav => nav !== 0)
 
     return <div>
+      <p>{this.props.isAllowedToJumpFoward ? "boleh" : "gaboleh"}</p>
       <TabStrip
         selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
-        onSelect={(e) => this.jumpButtonListener(e.selected, navBar)}>
+        onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
           {navBar}
       </TabStrip>
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
+        {!this.props.isNewForm && !this.isLastPage(navBar) ? <button className="k-button k-primary" onClick={() => this.finishButtonListener()}>FINISH</button> : ""}
         <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{this.isLastPage(navBar) ? "FINISH" : "NEXT"}</button>
         {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""}
       </div>
     </div>
   }
-
-  jumpButtonListener(index, navBar) {
+        // onSelect={(e) => this.jumpBackwardButtonListener(e.selected, navBar)}>
+  onTabStripSelectedListener(index, navBar) {
     index = parseInt(navBar[index].key, 10)
+    if(index > navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))) {
+      this.jumpFowardButtonListener(index)
+    } else {
+      this.jumpBackwardButtonListener(index, navBar)
+    }
+  }
+
+  jumpFowardButtonListener(index) {
+    this.props.pushState(index)
+  }
+
+  jumpBackwardButtonListener(index, navBar) {
     var target = this.props.appState.findIndex(element => {
       return element === index
     })
@@ -92,22 +127,28 @@ class PageNavigator extends Component {
         return
       }
     }
-    this.showConfirmationDialog()
+    this.showConfirmationDialog({
+      onFinish: () => this.saveConfig(JSON.stringify(fetchAllData()))
+    })
   }
 
-  showConfirmationDialog() {
-    this.props.setDialogMessage("Save this configuration as \"" + this.props.configName + "\"?")
-    this.props.setDialogFinishFunction({
-      onFinish: () => this.saveConfig()
+  finishButtonListener() {
+    this.showConfirmationDialog({
+      onFinish: () => this.saveConfig(JSON.stringify(this.fetchRemainingData()))
     })
+  }
+
+  showConfirmationDialog(finishFunction) {
+    this.props.setDialogMessage("Save this configuration as \"" + this.props.configName + "\"?")
+    this.props.setDialogFinishFunction(finishFunction)
     dialogOpen()
   }
 
-  saveConfig() {
+  saveConfig(finalData) {
     var finalConfig = {
       name: this.props.currentConfig.name,
       id: this.props.userId,
-      data: JSON.stringify(fetchAllData()),
+      data: finalData,
       description_id: this.props.descriptionId,
       file_id: this.props.extFileRef,
       removed_file_id: this.props.removedExtFileRef,
@@ -125,6 +166,8 @@ const mapStateToProps = function(storage) {
     notifier: storage.form.notifier,
     appState: storage.form.app_state,
     description: storage.form.description,
+    isNewForm: storage.form.isNewForm,
+    isAllowedToJumpFoward: storage.form.isAllowedToJumpFoward,
 
     userId: storage.user.id,
     token: storage.user.token,

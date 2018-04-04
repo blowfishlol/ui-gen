@@ -12,7 +12,7 @@ class Header extends React.Component {
         <div className="row menuBar">
           <div className="col-sm-6">
             {
-              this.props.location === NavKey.FORM_PAGE ?
+              this.props.location === NavKey.FORM_PAGE || this.props.location === NavKey.IMPORT_CONFIG_PAGE ?
               <button className="k-button k-primary col-sm-2" onClick={() => this.props.back()}>Back</button> :
               ""
             }

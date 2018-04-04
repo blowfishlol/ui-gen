@@ -20,6 +20,7 @@ export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.FETCH_CONFIGS) {
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
+        console.log(response)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
       })
       .catch((err) => {
@@ -88,6 +89,18 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       current_config: {}
+    }
+  } else if(action.type === ActionList.IMPORT_CONFIG) {
+    return {
+      ...state,
+    }
+  } else if(action.type === ActionList.ON_CONFIG_IMPORTED) {
+    return {
+      ...state,
+    }
+  } else if(action.type === ActionList.ON_CONFIG_IMPORT_FAIL) {
+    return {
+      ...state,
     }
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
     return {

@@ -4,6 +4,7 @@ import { compose } from "recompose"
 
 import { GridCell } from "@progress/kendo-react-grid"
 
+import fileDownload from "js-file-download"
 import { dialogOpen } from "../Dialog"
 import ActionList from "../../reducer/actionList"
 
@@ -23,11 +24,16 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     dialogOpen()
   }
 
+  onEditButtonClick() {
+    this.props.allowJump()
+    this.props.setSelectedConfig(this.findConfig())
+  }
+
   render() {
     return <td>
       <button
         className="k-button k-primary"
-        onClick={() => this.props.setSelectedConfig(this.findConfig())}>
+        onClick={() => this.onEditButtonClick()}>
           EDIT
       </button>
       &nbsp;
@@ -35,6 +41,12 @@ class ConfigurationDisplayCustomColumn extends GridCell {
         className="k-button k-primary"
         onClick={() => this.showConfirmationDialog()}>
           DELETE
+      </button>
+      &nbsp;
+      <button
+        className="k-button k-primary"
+        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + "txt")}>
+          EXPORT
       </button>
     </td>
   }
@@ -50,6 +62,9 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    allowJump: () => dispatch({
+      type: ActionList.ALLOW_JUMP
+    }),
     setSelectedConfig: (config) => dispatch({
       type: ActionList.ASSIGN_CONFIG,
       payload: config

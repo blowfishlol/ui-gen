@@ -12,6 +12,10 @@ export default({
   ON_CONFIG_SAVED:            "config_saved",
   ON_CONFIG_SAVE_FAIL:        "config_save_fail",
   ON_BACK_PRESSED_CONFIG:     "cancel_config",
+  ON_GOTO_IMPORT_CONFIG:      "goto_import_config",
+  IMPORT_CONFIG:              "import_config",
+  ON_CONFIG_IMPORTED:         "config_imported",
+  ON_CONFIG_IMPORT_FAIL:      "config_import_fail",
 
   SET_DATA:                   "set_data",
   SET_DATA_BY_INDEX:          "set_data_by_index",
@@ -22,6 +26,8 @@ export default({
   POP_APP_STATE:              "pop_state",
   CLEAR_STATE:                "pop_all_state",
   POP_DATA_BY_INDEX:          "destroy_data",
+  SET_NEW_FORM_FLAG:          "set_new_form_flag",
+  ALLOW_JUMP:                 "allow_jump",
   CLEAR_DATA:                 "destroy_all_data",
   ADD_EXT_FILE_REF:           "add_external_file_reference",
   REMOVE_EXT_FILE_REF:        "remove_external_file_reference",
@@ -44,5 +50,6 @@ export default({
 export const NavKey = {
   CONFIGURATION_MENU: "configuration",
   FORM_PAGE:          "form",
-  LOGIN_PAGE:         "login"
+  LOGIN_PAGE:         "login",
+  IMPORT_CONFIG_PAGE: "import_config"
 }
