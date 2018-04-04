@@ -7,6 +7,7 @@ var ActionList = {
   TOGGLE:   "toggle",
   DATE:     "date",
   TIME:     "time",
+  COLOR:    "color", 
   ARRAY:    "array",
   MAP:      "map"
 };

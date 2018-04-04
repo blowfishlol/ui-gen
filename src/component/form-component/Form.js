@@ -13,6 +13,7 @@ import CheckBox from "./CheckBox"
 import MapInput from "./MapInput"
 import ArrayInput from "./ArrayInput"
 import ErrorBox from "../ErrorBox"
+import ColorPicker from "./ColorPicker"
 
 import evaluator from "../../util/evaluator"
 import getLayoutString from "../../util/LayoutProcessor"
@@ -47,6 +48,7 @@ class Form extends Component {
         case ComponentType.TOGGLE:   elementRendered = <ToggleBox form={element} />;                       break
         case ComponentType.DATE:     elementRendered = <DateBox form={element} />;                         break
         case ComponentType.TIME:     elementRendered = <TimeBox form={element} />;                         break
+        case ComponentType.COLOR:    elementRendered = <ColorPicker form={element} />;                     break
         case ComponentType.ARRAY:    elementRendered = <ArrayInput form={element} />;                      break
         case ComponentType.MAP:      elementRendered = <MapInput form={element} evenChild={isEvenChild}/>; break
         default:                     elementRendered = <ErrorBox message={'Unrecognized element type "' + element.type + '"'} />
