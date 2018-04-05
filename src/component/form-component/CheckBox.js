@@ -2,10 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { Tooltip } from '@progress/kendo-popups-react-wrapper';
+import LabelTooltip from "./LabelTooltip"
 
-import { generateLabel } from "./LabelTooltipGenerator"
-import { labelCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
@@ -40,7 +38,7 @@ class CheckBox extends React.Component {
     })
 
     return <div className="k-form-field">
-      {generateLabel(this.props.form)}
+      <LabelTooltip form={this.props.form} />
       {checkboxes}
     </div>
   }

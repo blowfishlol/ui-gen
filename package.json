@@ -33,6 +33,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
+    "react-scroll-to-component": "^1.0.2",
     "reactjs-popup": "^1.0.5",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",

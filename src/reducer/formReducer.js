@@ -61,6 +61,8 @@ const defaultState = {
   config: {},
   ext_file_ids: [],
   removed_ext_file_ids: [],
+  labels: [],
+  element_refs: [],
   notifier: 1, // --> used to force re rendering on form components (ex: on data change)
   isNewForm: true,
   isAllowedToJumpFoward: false
@@ -82,6 +84,8 @@ export default function reducer(state = defaultState, action) {
             set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
        }),
+      labels: [],
+      element_refs: [],
       notifier: (state.notifier + 1) % 10,
       isAllowedToJumpFoward: false
     }
@@ -92,8 +96,7 @@ export default function reducer(state = defaultState, action) {
         return index === action.payload.index ?
             set(action.payload.path.split("."), action.payload.value, clone(d)) :
             d
-       }),
-      notifier: (state.notifier + 1) % 10
+       })
     }
   } else if(action.type === ActionList.POP_DATA) {
     return {
@@ -125,6 +128,8 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       app_state: state.app_state.concat(action.payload.index),
+      labels: [],
+      element_refs: [],
       isAllowedToJumpFoward: false
     }
   } else if(action.type === ActionList.POP_APP_STATE) {
@@ -133,7 +138,9 @@ export default function reducer(state = defaultState, action) {
      */
     return {
       ...state,
-      app_state: state.app_state.slice(0, state.app_state.length - action.payload.index)
+      app_state: state.app_state.slice(0, state.app_state.length - action.payload.index),
+      labels: [],
+      element_refs: []
     }
   } else if(action.type === ActionList.CLEAR_STATE) {
     return {
@@ -178,6 +185,18 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       removed_ext_file_ids: state.removed_ext_file_ids.concat(action.payload)
+    }
+  } else if(action.type === ActionList.ADD_ELELEMENT_REF) {
+    return {
+      ...state,
+      labels: state.labels.concat(action.payload.props.label),
+      element_refs: state.element_refs.concat(action.payload)
+    }
+  } else if(action.type === ActionList.CLEAR_ELEMENT_REF) {
+    return {
+      ...state,
+      labels: [],
+      element_refs: []
     }
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {

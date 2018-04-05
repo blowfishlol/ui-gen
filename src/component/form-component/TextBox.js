@@ -2,9 +2,9 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { generateLabel } from "./LabelTooltipGenerator"
+import LabelTooltip from "./LabelTooltip"
 
-import { labelCheck, placeholderCheck } from "../../util/InfoChecker"
+import { placeholderCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
@@ -12,7 +12,7 @@ class TextBox extends React.Component {
 
   render() {
     return <label className="k-form-field">
-     {generateLabel(this.props.form)}
+     <LabelTooltip form={this.props.form} />
       <input
         className={"k-textbox"}
         placeholder={placeholderCheck(this.props.form.value)}

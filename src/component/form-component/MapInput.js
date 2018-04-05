@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import Form from "./Form"
+import LabelTooltip from "./LabelTooltip"
 import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
@@ -42,7 +43,7 @@ class MapInput extends React.Component {
     })
 
     return <div className="k-form-field">
-      <span>{this.props.form.label}</span>
+      <LabelTooltip form={this.props.form} />
       <div>
         {elements}
       </div>
