@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import { DropDownList } from "@progress/kendo-react-dropdowns"
 import { Tooltip } from '@progress/kendo-popups-react-wrapper';
 
-import { generateLabel } from "./LabelTooltipGenerator"
+import LabelTooltip from "./LabelTooltip"
 import { labelCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
@@ -50,8 +50,8 @@ class ColorPicker extends React.Component {
       [source]: paletteValue.toString()
     })
 
-    
-  } 
+
+  }
 
 
   /**
@@ -78,7 +78,7 @@ class ColorPicker extends React.Component {
       hue2: hue2Val.toString(),
       hue3: hue3Val.toString()
     })
-  } 
+  }
 
 
   generateColorBoxes(mainColorPair, props) {
@@ -127,7 +127,7 @@ class ColorPicker extends React.Component {
 
   render() {
     console.log(this.state);
-    const mainColorPair = [ 
+    const mainColorPair = [
       { text: 'Red', value: 'red', hex: '#e53935' },
       { text: 'Pink', value: 'pink', hex: '#d81b60'},
       { text: 'Purple', value: 'purple', hex: '#8e24aa'},
@@ -149,7 +149,7 @@ class ColorPicker extends React.Component {
       { text: 'Blue Grey', value: 'bluegrey', hex: '#607d8b' } ,
     ];
 
-    const mainPalettePair = [ 
+    const mainPalettePair = [
       { text: 50, value: 50 },
       { text: 100, value: 100 },
       { text: 200, value: 200 },
@@ -159,14 +159,14 @@ class ColorPicker extends React.Component {
       { text: 600, value: 600 },
       { text: 700, value: 700 },
       { text: 800, value: 800 },
-      { text: 900, value: 900 } 
+      { text: 900, value: 900 }
     ]
 
-    const altPalettePair = [ 
+    const altPalettePair = [
       { text: 'A100', value: 'a100' },
       { text: 'A200', value: 'a200' },
       { text: 'A400', value: 'a400' },
-      { text: 'A700', value: 'a700' } 
+      { text: 'A700', value: 'a700' }
     ]
 
     let preparedPalette = [];
@@ -185,7 +185,7 @@ class ColorPicker extends React.Component {
     }
 
     return <div className="k-form-field ">
-    <h3>{generateLabel(this.props.form)}</h3>
+    <LabelTooltip form={this.props.form} />
     <div className="container" style={bgcolor}>
       <div className="row">
         <div className="col-*">
@@ -200,8 +200,8 @@ class ColorPicker extends React.Component {
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"base",this.props)}</div></div>
           </div>
         </div>
-        <div className="col-*"> 
-          <div style={padding}> 
+        <div className="col-*">
+          <div style={padding}>
             <span>Hue 1 Color Selection: {this.state.hue1}</span>
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette,"hue1",this.props)}</div></div>
           </div>

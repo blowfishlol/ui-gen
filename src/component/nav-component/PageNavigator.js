@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import { TabStrip, TabStripTab } from "@progress/kendo-react-layout"
+import PageNavigatorSearchBox from "./PageNavigatorSearchBox"
 import Form from "../form-component/Form"
 import BlankSpace from "../BlankSpace"
 
@@ -49,11 +50,26 @@ class PageNavigator extends Component {
     return currentData
   }
 
+  componentWillUpdate(a, b) {
+    console.log("update!", a)
+    // this.props.clearElementRefs()
+  }
+
   render() {
+    console.log("re-render!")
     const navBar = this.props.description.map((page, index) => {
       const current = this.getCurrentDescription()
       const content = <div>
-        <h2>{current.pagename}</h2>
+        <table width="100%">
+          <tbody>
+            <tr>
+              <td><h2>{current.pagename}</h2></td>
+              <td className="float-right">
+                <PageNavigatorSearchBox />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <Form form={current.form} />
       </div>
 
@@ -76,7 +92,6 @@ class PageNavigator extends Component {
     }).filter(nav => nav !== 0)
 
     return <div>
-      <p>{this.props.isAllowedToJumpFoward ? "boleh" : "gaboleh"}</p>
       <TabStrip
         selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
         onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
@@ -90,7 +105,7 @@ class PageNavigator extends Component {
       </div>
     </div>
   }
-        // onSelect={(e) => this.jumpBackwardButtonListener(e.selected, navBar)}>
+
   onTabStripSelectedListener(index, navBar) {
     index = parseInt(navBar[index].key, 10)
     if(index > navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))) {
@@ -208,6 +223,9 @@ const mapDispatchToProps = (dispatch) => {
     setDialogFinishFunction: (methods) => dispatch({
       type: ActionList.SET_ADDITIONAL_METHOD,
       payload: methods
+    }),
+    clearElementRefs: () => dispatch({
+      type: ActionList.CLEAR_ELEMENT_REF
     })
   }
 }

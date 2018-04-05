@@ -3,9 +3,8 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import { DatePicker } from "@progress/kendo-dateinputs-react-wrapper"
+import LabelTooltip from "./LabelTooltip"
 
-import { generateLabel } from "./LabelTooltipGenerator"
-import { labelCheck } from "../../util/InfoChecker"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
@@ -13,7 +12,7 @@ class DateBox extends React.Component {
 
   render() {
     return <div className="k-form-field ">
-    {generateLabel(this.props.form)}
+    <LabelTooltip form={this.props.form} />
       <DatePicker
         format={"dd MMMM yyyy"}
         value={get(this.props.form.path, this.props.form.type)}

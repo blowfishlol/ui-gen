@@ -20,7 +20,6 @@ export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.FETCH_CONFIGS) {
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
-        console.log(response)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
       })
       .catch((err) => {
