@@ -40,7 +40,7 @@ class ColorPicker extends React.Component {
 
 
   /**
-   * To handle child of color change
+   * To handle if a pallette changes. source is the (hue1, hue2, hue3, or base)
    **/
   handlePaletteChange(paletteValue,source,event) {
     console.log("PaletteChange!" ,source, paletteValue);
