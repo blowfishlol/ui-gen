@@ -50,13 +50,7 @@ class PageNavigator extends Component {
     return currentData
   }
 
-  componentWillUpdate(a, b) {
-    console.log("update!", a)
-    // this.props.clearElementRefs()
-  }
-
   render() {
-    console.log("re-render!")
     const navBar = this.props.description.map((page, index) => {
       const current = this.getCurrentDescription()
       const content = <div>

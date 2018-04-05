@@ -1,4 +1,4 @@
-export const colorList = {
+export default({
   "red": {
     "50": "#ffebee",
     "100": "#ffcdd2",
@@ -291,4 +291,46 @@ export const colorList = {
     "800": "#37474f",
     "900": "#263238"
   }
-}
+})
+
+export const mainColor = [
+  { text: "Red",         value: "red",        hex: "#e53935" },
+  { text: "Pink",        value: "pink",       hex: "#d81b60" },
+  { text: "Purple",      value: "purple",     hex: "#8e24aa" },
+  { text: "Deep Purple", value: "deeppurple", hex: "#5e35b1" },
+  { text: "Indigo",      value: "indigo",     hex: "#3949ab" },
+  { text: "Blue",        value: "blue",       hex: "#1e88e5" },
+  { text: "Light Blue",  value: "lightblue",  hex: "#039be5" },
+  { text: "Cyan",        value: "cyan",       hex: "#00acc1" },
+  { text: "Teal",        value: "teal",       hex: "#00897b" },
+  { text: "Green",       value: "green",      hex: "#43a047" },
+  { text: "Light Green", value: "lightgreen", hex: "#7cb342" },
+  { text: "Lime",        value: "lime",       hex: "#cddc39" },
+  { text: "Yellow",      value: "yellow",     hex: "#ffeb3b" },
+  { text: "Amber",       value: "amber" ,     hex: "#ffc107" },
+  { text: "Orange",      value: "orange" ,    hex: "#ff9800" },
+  { text: "Deep Orange", value: "deeporange", hex: "#ff5722" },
+  { text: "Brown",       value: "brown",      hex: "#795548" },
+  { text: "Grey",        value: "grey",       hex: "#9e9e9e" },
+  { text: "Blue Grey",   value: "bluegrey",   hex: "#607d8b" }
+]
+
+export const mainPalette = [
+  { text:  50, value:  50 },
+  { text: 100, value: 100 },
+  { text: 200, value: 200 },
+  { text: 300, value: 300 },
+  { text: 400, value: 400 },
+  { text: 500, value: 500 },
+  { text: 600, value: 600 },
+  { text: 700, value: 700 },
+  { text: 800, value: 800 },
+  { text: 900, value: 900 }
+]
+
+export const altPalette = [
+  { text: "A100", value: "a100" },
+  { text: "A200", value: "a200" },
+  { text: "A400", value: "a400" },
+  { text: "A700", value: "a700" }
+]

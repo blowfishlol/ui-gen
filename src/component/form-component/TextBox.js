@@ -10,26 +10,24 @@ import  ActionList  from "../../reducer/actionList"
 
 class TextBox extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: get(this.props.form.path, this.props.form.type)
+    }
+  }
+
   render() {
     return <label className="k-form-field">
      <LabelTooltip form={this.props.form} />
       <input
         className={"k-textbox"}
         placeholder={placeholderCheck(this.props.form.value)}
-        value={get(this.props.form.path, this.props.form.type)}
-        onChange={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
-
+        value={this.state.value}
+        onChange={evt => this.setState({value: evt.target.value})}
+        onBlur={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
     </label>
   }
-
-  handleChange(path, val){
-      this.setState({
-          ...this.state,
-          default_value: val,
-      })
-      this.props.updateState(path,val)
-  }
-
 }
 
 const mapStateToProps = function(storage) {

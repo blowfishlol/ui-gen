@@ -64,6 +64,14 @@ function validateType(result, type) {
     if(typeof result !== "number") {
       throw new Error()
     }
+  } else if(type === ComponentType.COLOR) {
+    if(!(!!result) || !(result.constructor === Object)) {
+      throw new Error()
+    }
+    if(!result.hasOwnProperty("pallete") || !result.hasOwnProperty("base") ||
+       !result.hasOwnProperty("hue1") || !result.hasOwnProperty("hue2") || !result.hasOwnProperty("hue3")) {
+      throw new Error()
+    }
   } else if(type === ComponentType.ARRAY) {
     if(result.constructor !== Array) {
       throw new Error()
@@ -134,6 +142,15 @@ function get(ptr, path) {
   return get(ptr[path[0]], path.slice(1))
 }
 
+const COLOR_DEFAULT = {
+  palette : "red",
+  base: "50",
+  hue1: "50",
+  hue2: "50",
+  hue3: "50",
+  contrastDefaultColor: ""
+}
+
 export function defaultValue(type) {
   switch(type) {
     case ComponentType.TEXT:     return ""
@@ -144,6 +161,7 @@ export function defaultValue(type) {
     case ComponentType.TOGGLE:   return false
     case ComponentType.DROPDOWN: return ""
     case ComponentType.NUMBER:   return 0
+    case ComponentType.COLOR:    return COLOR_DEFAULT
     case ComponentType.ARRAY:    return []
     case ComponentType.MAP:      return []
     default:                     return ""

@@ -27,7 +27,7 @@ class LabelTooltip extends React.Component{
 
   render() {
 		if(this.props.form.tooltip) {
-		  return <Tooltip content={this.props.form.tooltip} position={"top"}>
+		  return <Tooltip content={this.props.form.tooltip} position={"asd ngasal"}>
 		    <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} />
 		  </Tooltip>
 		} else {
