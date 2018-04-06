@@ -13,6 +13,7 @@ import ActionList from "../../reducer/actionList"
 
 import { windowOpen } from "../Window"
 
+import "../../style/ColorBox.css"
 /**
  * Each color have their own palette.
  * example: Color: red have the palette: red50, red100, red200, etc
@@ -106,8 +107,6 @@ class ColorPicker extends React.Component {
   }
 
   generateMenuBoxes(data) {
-    const width = 10
-    const height = 20
 
     const palette = data.palette;
     var buffer = [];
@@ -120,11 +119,14 @@ class ColorPicker extends React.Component {
         console.log(palette, data[key])
         var styles = {
           backgroundColor: colorList[palette][data[key]],
-          width: width,
-          height: height
+          width: 10,
+          height: 20,
         }
 
-        buffer.push(<div style={styles}></div>);
+        buffer.push(
+          <Tooltip content={key + " value"} position={"top"}>
+            <div style={styles}></div>
+          </Tooltip>);
       } 
     }
 
@@ -187,10 +189,13 @@ class ColorPicker extends React.Component {
 
   render() {
     const data = get(this.props.form.path, this.props.form.type);
+    const buttonStyle = {
+      width: "50%"
+    }
     return <div>  
       <label className="k-form-field">
         <LabelTooltip form={this.props.form} />
-        <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))} className="k-button">
+        <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))} className="k-button" style={buttonStyle}>
           {this.generateMenuBoxes(data)} Change Color 
         </button>
       </label>
