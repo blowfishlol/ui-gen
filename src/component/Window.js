@@ -16,6 +16,12 @@ export function windowOpen() {
 
 class WindowComponent extends React.Component {
 
+	componentDidMount() {
+		$("[data-role='window']").each(function (index) {
+			$(this).data("kendoWindow").close()
+		})
+  }
+
 	render() {
 		return <div>
 			<Window title={this.props.title}>

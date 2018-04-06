@@ -15,19 +15,19 @@ export default class ComponentTemplate extends React.Component{
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
   }
 
-  componentDidMount(){
+  componentDidMount() {
   }
 
-  componentWillUpdate(){
+  componentWillUpdate() {
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
   }
 
   render() {
