@@ -27,27 +27,106 @@ class PageNavigator extends Component {
     return navBar.findIndex(navbar => navbar.props.hasOwnProperty("current")) === navBar.length - 1
   }
 
-  renderCheck(obj) {
+  isRendered(obj) {
     if(obj.hasOwnProperty("rendered")) {
       return evaluator(obj.rendered)
     }
     return true
   }
 
+  jumpFoward(index) {
+    this.props.pushState(index)
+  }
+
+  jumpBackward(index, navBar) {
+    var target = this.props.appState.findIndex(element => {
+      return element === index
+    })
+    this.props.popState((this.props.appState.length-1) - target)
+  }
+
   fetchRemainingData() {
     var currentData = fetchAllData()
     this.props.description.slice(this.getLastAppState(), this.props.description.length).forEach(page => {
-      if(this.renderCheck(page) === false) {
+      if(this.isRendered(page) === false) {
         return
       }
       page.form.forEach(element => {
-        if(this.renderCheck(element) === false) {
+        if(this.isRendered(element) === false) {
           return
         }
         currentData = set(element.path.split("."), getNoDispatch(element.path, element.type), currentData)
       })
     })
     return currentData
+  }
+
+  onTabStripSelectedListener(index, navBar) {
+    index = parseInt(navBar[index].key, 10)
+    if(index > navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))) {
+      this.jumpFoward(index)
+    } else {
+      this.jumpBackward(index, navBar)
+    }
+  }
+
+  onPrevBtnClickedListener() {
+    for(var i = this.getLastAppState() - 1; i >= 0 ; i--) {
+      if(this.props.description[i].hasOwnProperty("rendered")) {
+        if(evaluator(this.props.description[i].rendered)) {
+          this.props.pushState(i)
+          return
+        }
+      } else {
+        this.props.pushState(i)
+        return
+      }
+    }
+  }
+
+  onNextBtnClickedListener() {
+    for(var i = this.getLastAppState() + 1; i < this.props.description.length; i++) {
+      if(this.props.description[i].hasOwnProperty("rendered")) {
+        if(evaluator(this.props.description[i].rendered)) {
+          this.props.pushState(i)
+          return
+        }
+      } else {
+        this.props.pushState(i)
+        return
+      }
+    }
+    this.showConfirmationDialog({
+      onFinish: () => this.saveConfig(JSON.stringify(fetchAllData()))
+    })
+  }
+
+  onFinishBtnClickedListener() {
+    this.showConfirmationDialog({
+      onFinish: () => this.saveConfig(JSON.stringify(this.fetchRemainingData()))
+    })
+  }
+
+  showConfirmationDialog(finishFunction) {
+    this.props.setDialogMessage("Save this configuration as \"" + this.props.configName + "\"?")
+    this.props.setDialogFinishFunction(finishFunction)
+    dialogOpen()
+  }
+
+  saveConfig(finalData) {
+    var finalConfig = {
+      name: this.props.currentConfig.name,
+      id: this.props.userId,
+      data: finalData,
+      description_id: this.props.descriptionId,
+      file_id: this.props.extFileRef,
+      removed_file_id: this.props.removedExtFileRef,
+      token: this.props.token
+    }
+    if(this.props.currentConfig.hasOwnProperty("id")) {
+      finalConfig.config_id = this.props.currentConfig.id
+    }
+    this.props.saveConfig(finalConfig)
   }
 
   render() {
@@ -92,91 +171,17 @@ class PageNavigator extends Component {
           {navBar}
       </TabStrip>
       <BlankSpace space="75px" />
-      <div className="k-form-field navFooter">
-        {!this.props.isNewForm && !this.isLastPage(navBar) ? <button className="k-button k-primary" onClick={() => this.finishButtonListener()}>FINISH</button> : ""}
-        <button className="k-button k-primary" onClick={() => this.nextButtonListener()}>{this.isLastPage(navBar) ? "FINISH" : "NEXT"}</button>
-        {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.prevButtonListener()}>PREV</button> : ""}
+      <div className="k-form-field navFooter row">
+        <div className="col-6">
+          <PageNavigatorSearchBox />
+        </div>
+        <div className="col-6 float-right">
+          {!this.props.isNewForm && !this.isLastPage(navBar) ? <button className="k-button k-primary" onClick={() => this.onFinishBtnClickedListener()}>FINISH</button> : ""}
+          <button className="k-button k-primary" onClick={() => this.onNextBtnClickedListener()}>{this.isLastPage(navBar) ? "FINISH" : "NEXT"}</button>
+          {this.props.appState.length > 1 ? <button className="k-button" onClick={() => this.onPrevBtnClickedListener()}>PREV</button> : ""}
+        </div>
       </div>
     </div>
-  }
-
-  onTabStripSelectedListener(index, navBar) {
-    index = parseInt(navBar[index].key, 10)
-    if(index > navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))) {
-      this.jumpFowardButtonListener(index)
-    } else {
-      this.jumpBackwardButtonListener(index, navBar)
-    }
-  }
-
-  jumpFowardButtonListener(index) {
-    this.props.pushState(index)
-  }
-
-  jumpBackwardButtonListener(index, navBar) {
-    var target = this.props.appState.findIndex(element => {
-      return element === index
-    })
-    this.props.popState((this.props.appState.length-1) - target)
-  }
-
-  prevButtonListener() {
-    for(var i = this.getLastAppState() - 1; i >= 0 ; i--) {
-      if(this.props.description[i].hasOwnProperty("rendered")) {
-        if(evaluator(this.props.description[i].rendered)) {
-          this.props.pushState(i)
-          return
-        }
-      } else {
-        this.props.pushState(i)
-        return
-      }
-    }
-  }
-
-  nextButtonListener() {
-    for(var i = this.getLastAppState() + 1; i < this.props.description.length; i++) {
-      if(this.props.description[i].hasOwnProperty("rendered")) {
-        if(evaluator(this.props.description[i].rendered)) {
-          this.props.pushState(i)
-          return
-        }
-      } else {
-        this.props.pushState(i)
-        return
-      }
-    }
-    this.showConfirmationDialog({
-      onFinish: () => this.saveConfig(JSON.stringify(fetchAllData()))
-    })
-  }
-
-  finishButtonListener() {
-    this.showConfirmationDialog({
-      onFinish: () => this.saveConfig(JSON.stringify(this.fetchRemainingData()))
-    })
-  }
-
-  showConfirmationDialog(finishFunction) {
-    this.props.setDialogMessage("Save this configuration as \"" + this.props.configName + "\"?")
-    this.props.setDialogFinishFunction(finishFunction)
-    dialogOpen()
-  }
-
-  saveConfig(finalData) {
-    var finalConfig = {
-      name: this.props.currentConfig.name,
-      id: this.props.userId,
-      data: finalData,
-      description_id: this.props.descriptionId,
-      file_id: this.props.extFileRef,
-      removed_file_id: this.props.removedExtFileRef,
-      token: this.props.token
-    }
-    if(this.props.currentConfig.hasOwnProperty("id")) {
-      finalConfig.config_id = this.props.currentConfig.id
-    }
-    this.props.saveConfig(finalConfig)
   }
 }
 

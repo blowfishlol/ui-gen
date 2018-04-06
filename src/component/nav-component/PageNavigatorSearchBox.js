@@ -10,21 +10,22 @@ import ActionList from "../../reducer/actionList"
 
 class PageNavigatorSearchBox extends React.Component {
 
+  onSearchBoxSelectedListener(evt) {
+    var target = this.props.elements.find(element => element.props.label === evt.dataItem)
+    scrollToComponent(target, {offset: -100, align: "top", duration: 1500, ease: "out-quart"})
+  }
+
   render() {
     var dataSource = new kendo.data.DataSource({
         data: this.props.labels
     })
-	  return <div>
+    console.log("debug", "elements registered:", this.props.labels.length)
+    return <div>
       <AutoComplete
         dataSource={dataSource}
         placeholder="search..."
-        select={(evt) => this.onSearchBoxSelected(evt)}/>
+        select={(evt) => this.onSearchBoxSelectedListener(evt)}/>
     </div>
-  }
-
-  onSearchBoxSelected(evt) {
-    var target = this.props.elements.find(element => element.props.label === evt.dataItem)
-    scrollToComponent(target, {offset: -100, align: 'top', duration: 1500})
   }
 }
 

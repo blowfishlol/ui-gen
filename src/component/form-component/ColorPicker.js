@@ -69,7 +69,6 @@ class ColorPicker extends React.Component {
    * To handle child of color change
    **/
   handlePaletteChange(paletteValue, source, event, data) {
-    console.log("PaletteChange!" ,source, paletteValue)
     this.props.updateState(this.props.form.path, {
       ...data,
       [source]: paletteValue.toString()
@@ -104,11 +103,10 @@ class ColorPicker extends React.Component {
 
   render() {
     const data = get(this.props.form.path, this.props.form.type)
-    console.log("debug", data)
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="k-form-field ">
       <LabelTooltip form={this.props.form} />
-      <div className="container" style={{backgroundColor: "#eeeeee"}}>
+      <div className="container alert" style={{backgroundColor: "#eeeeee"}}>
         <div className="row">
           <div className="col-*">
             <div style={{padding: "5px"}}>

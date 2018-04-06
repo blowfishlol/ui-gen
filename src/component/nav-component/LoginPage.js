@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-// import { Input } from "@progress/kendo-react-inputs"
 import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
@@ -16,6 +15,18 @@ class LoginPage extends React.Component {
       username: "blowfish",
       password: "yeah"
     }
+  }
+
+  onUsernameChangedListener(evt) {
+    this.setState({
+      username: evt.target.value
+    })
+  }
+
+  onPasswordChangedListener(evt) {
+    this.setState({
+      password: evt.target.value
+    })
   }
 
   render() {
@@ -36,7 +47,7 @@ class LoginPage extends React.Component {
               className={"k-textbox"}
               placeholder={"Username"}
               value={this.state.username}
-              onChange={evt => this.updateUsername(evt)} />
+              onChange={evt => this.onUsernameChangedListener(evt)} />
           </label>
           <label className="k-form-field col-sm-12">
             <span>Password</span>
@@ -45,7 +56,7 @@ class LoginPage extends React.Component {
               className={"k-textbox"}
               placeholder={"Password"}
               value={this.state.password}
-              onChange={evt => this.updatePassword(evt)} />
+              onChange={evt => this.onPasswordChangedListener(evt)} />
           </label>
 
           <div className="col-sm-12">
@@ -59,18 +70,6 @@ class LoginPage extends React.Component {
       </div>
       <div className="col-md-3 col-sm-3 col-xs-12" />
     </div>
-  }
-
-  updateUsername(evt) {
-    this.setState({
-      username: evt.target.value
-    })
-  }
-
-  updatePassword(evt) {
-    this.setState({
-      password: evt.target.value
-    })
   }
 }
 

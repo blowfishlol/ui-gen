@@ -128,6 +128,11 @@ class UploadBox extends React.Component {
       return
     }
     this.clickedImageId = file.id // -> param pass, put to the state due to some problem
+
+    /**
+     * Open a confirmation dialog
+     * before proceeding to delete the image
+     **/
     this.props.setDialogMessage("Delete \"" + file.originalFileName + "\"?")
     this.props.setDialogFinishFunction({
       onFinish: () => this.deleteImageById()

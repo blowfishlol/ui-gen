@@ -18,6 +18,30 @@ class ImportConfigForm extends React.Component {
     }
   }
 
+  onConfigNameChangedListener(evt) {
+    this.setState({
+      configName: evt.target.value
+    })
+  }
+
+  onDataChangedListener(evt) {
+    this.setState({
+      data: evt.target.value
+    })
+  }
+
+  onImportBtnClickedListener() {
+    this.props.saveConfig({
+      name: this.state.configName,
+      id: this.props.userId,
+      data: this.state.data,
+      description_id: this.state.descriptionId,
+      file_id: [],
+      removed_file_id: [],
+      token: this.props.token
+    })
+  }
+
   render() {
     if(this.props.errorMessage !== "") {
       var error = <ErrorBox message={this.props.errorMessage} />
@@ -33,7 +57,7 @@ class ImportConfigForm extends React.Component {
           className={"k-textbox"}
           placeholder={"Configuration name"}
           value={this.state.configName}
-          onChange={evt => this.updateConfigName(evt)} />
+          onChange={evt => this.onConfigNameChangedListener(evt)} />
       </label>
       <label className="k-form-field col-sm-12">
         <span>Config Data</span>
@@ -41,7 +65,7 @@ class ImportConfigForm extends React.Component {
           className={"k-textbox"}
           placeholder={"Data"}
           value={this.state.data}
-          onChange={evt => this.updateData(evt)} />
+          onChange={evt => this.onDataChangedListener(evt)} />
       </label>
       <label className="k-form-field col-sm-12">
         <span>Description Version</span>
@@ -62,33 +86,9 @@ class ImportConfigForm extends React.Component {
       </div>
 
       <div className="col-sm-12">
-        <button className="k-button k-primary" onClick={() => this.saveConfig()}> IMPORT </button>
+        <button className="k-button k-primary" onClick={() => this.onImportBtnClickedListener()}> IMPORT </button>
       </div>
     </div>
-  }
-
-  updateConfigName(evt) {
-    this.setState({
-      configName: evt.target.value
-    })
-  }
-
-  updateData(evt) {
-    this.setState({
-      data: evt.target.value
-    })
-  }
-
-  saveConfig() {
-    this.props.saveConfig({
-      name: this.state.configName,
-      id: this.props.userId,
-      data: this.state.data,
-      description_id: this.state.descriptionId,
-      file_id: [],
-      removed_file_id: [],
-      token: this.props.token
-    })
   }
 }
 
