@@ -81,40 +81,8 @@ class UploadBox extends React.Component {
     })
   }
 
-  setDefaultImage(id) {
+  setImageDefault(id) {
     document.getElementById(id).src = emptyFileIcon
-  }
-
-  render() {
-    var storedFile = ""
-    if(this.state.files) {
-      storedFile = this.state.files.map((file, index) => {
-        return <img
-          width={100} height={100}
-          key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
-          className="img-thumbnail"
-          src={server+ "/file/download/" + file.id + "?id=" + this.props.userId + "&token=" + this.props.token}
-          alt=""
-          onError={() => this.setDefaultImage(this.props.form.path+"."+index)}
-          onClick={() => this.showDeleteConfirmDialog(file)} />
-      })
-    }
-
-    return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
-      <Upload
-        className="col-*-3"
-        async={this.async}
-        dropZone=".dropZoneElement"
-        complete={event => this.completeHandler(event)}
-        upload={event => this.uploadHandler(event)}
-        success={event => this.successHandler(event)}
-        select={event => this.selectHandler(event)}
-        clear={event => this.clearHandler(event)}
-        remove={event => this.removeHandler(event)} />
-      <div className="dropZoneElement col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
-      <div>{storedFile}</div>
-    </div>
   }
 
   completeHandler(event) {
@@ -155,20 +123,19 @@ class UploadBox extends React.Component {
     }
   }
 
-  showDeleteConfirmDialog(file) {
+  onImageClickedListener(file) {
     if(this.idsFromDB.find(idFromDB => idFromDB === file.id) === undefined) {
       return
     }
-    this.clickedImageId = file.id
+    this.clickedImageId = file.id // -> param pass, put to the state due to some problem
     this.props.setDialogMessage("Delete \"" + file.originalFileName + "\"?")
     this.props.setDialogFinishFunction({
-      onFinish: () => this.deleteImage()
+      onFinish: () => this.deleteImageById()
     })
     dialogOpen()
   }
 
-  deleteImage() {
-    console.log("mboi");
+  deleteImageById() {
     this.setState({
       ...this.state,
       ids: this.state.ids.filter(id => {
@@ -181,6 +148,38 @@ class UploadBox extends React.Component {
     this.props.updateState(this.props.form.path, this.state.ids)
     this.props.removeExtFileRef(this.clickedImageId)
     this.props.addRemovedExtFileRef(this.clickedImageId)
+  }
+
+  render() {
+    var storedFile = ""
+    if(this.state.files) {
+      storedFile = this.state.files.map((file, index) => {
+        return <img
+          width={100} height={100}
+          key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
+          className="img-thumbnail"
+          src={server+ "/file/download/" + file.id + "?id=" + this.props.userId + "&token=" + this.props.token}
+          alt=""
+          onError={() => this.setImageDefault(this.props.form.path+"."+index)}
+          onClick={() => this.onImageClickedListener(file)} />
+      })
+    }
+
+    return <div className="k-form-field">
+      <LabelTooltip form={this.props.form} />
+      <Upload
+        className="col-*-3"
+        async={this.async}
+        dropZone=".dropZoneElement"
+        complete={event => this.completeHandler(event)}
+        upload={event => this.uploadHandler(event)}
+        success={event => this.successHandler(event)}
+        select={event => this.selectHandler(event)}
+        clear={event => this.clearHandler(event)}
+        remove={event => this.removeHandler(event)} />
+      <div className="dropZoneElement col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
+      <div>{storedFile}</div>
+    </div>
   }
 }
 
