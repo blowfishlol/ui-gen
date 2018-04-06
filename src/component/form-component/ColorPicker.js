@@ -23,6 +23,25 @@ class ColorPicker extends React.Component {
     return <img width={30} height={30} src={checkmark} alt="V" />
   }
 
+<<<<<<< HEAD
+
+  /**
+   * To handle if a pallette changes. source is the (hue1, hue2, hue3, or base)
+   **/
+  handlePaletteChange(paletteValue,source,event) {
+    console.log("PaletteChange!" ,source, paletteValue);
+
+    this.setState({
+      ...this.state,
+      [source]: paletteValue.toString()
+    })
+
+
+  }
+
+
+=======
+>>>>>>> a8bbf2373d6e9aa367a1e690c49d9ccc891b9106
   /**
    * To handle color (Red, blue, cyan, etc) change
    **/
