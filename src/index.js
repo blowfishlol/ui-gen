@@ -10,6 +10,7 @@ import "./style/style.css"
 import { Ripple } from "@progress/kendo-react-ripple"
 import Navigator from "./component/nav-component/Navigator"
 import Dialog from "./component/Dialog"
+import Window from "./component/Window"
 
 import storage from "./storage"
 
@@ -20,6 +21,7 @@ ReactDOM.render(<Provider store={storage}>
     <Ripple>
       <Navigator />
       <Dialog />
+      <Window />
     </Ripple>
   </div>
 </Provider>, document.getElementById("root"))

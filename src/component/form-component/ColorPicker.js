@@ -11,6 +11,8 @@ import get from "../../util/formDataGet"
 import colorList, { mainColor, mainPalette, altPalette }  from "./colorDef"
 import ActionList from "../../reducer/actionList"
 
+import { windowOpen } from "../Window"
+
 /**
  * Each color have their own palette.
  * example: Color: red have the palette: red50, red100, red200, etc
@@ -101,7 +103,7 @@ class ColorPicker extends React.Component {
     return data.palette === "brown" || data.palette === "grey"  || data.palette === "bluegrey"
   }
 
-  render() {
+  generateColorPicker() {
     const data = get(this.props.form.path, this.props.form.type)
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="k-form-field ">
@@ -142,6 +144,16 @@ class ColorPicker extends React.Component {
       </div>
     </div>
   }
+
+  handleButtonClick(content) {
+    console.log("handleButtonClick");
+    this.props.setWindowContent(content);
+    windowOpen();
+  }
+
+  render() {
+    return <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))}>Oi!</button>
+  }
 }
 
 const mapStateToProps = function(storage) {
@@ -159,7 +171,14 @@ const mapDispatchToProps = (dispatch) => {
         "value": value,
         "nullable": nullable
       }
-    })
+    }),
+    setWindowContent: (content) => {
+      console.log("Called.");
+      dispatch({
+        type: ActionList.SET_WINDOW_CONTENT, //TODO TAMBAHIN DI REDUXNYA
+        payload: content
+      })
+    }
   }
 }
 

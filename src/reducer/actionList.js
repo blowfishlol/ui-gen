@@ -46,7 +46,10 @@ export default({
 
   SET_DIALOG_MESSAGE:          "set_dialog_message",
   SET_ADDITIONAL_METHOD:       "set_methods",
-  SET_DIALOG_DEFAULT:          "revert_default"
+  SET_DIALOG_DEFAULT:          "revert_default",
+
+  SET_WINDOW_CONTENT:          "set_window_content", 
+  SET_WINDOW_DEFAULT:          "set_window_default", 
 })
 
 export const NavKey = {
