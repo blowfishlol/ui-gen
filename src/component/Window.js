@@ -21,7 +21,7 @@ class WindowComponent extends React.Component {
 	render() {
 		return (
 		<div>
-			<Window>
+			<Window title={"Color Picker"} close={this.props.done}>
 				{this.props.content}
 			</Window>
 		</div>
