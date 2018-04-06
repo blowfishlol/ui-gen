@@ -24,7 +24,7 @@ class MapInput extends React.Component {
     if(!this.props.hasOwnProperty("form")) {
       return <ErrorBox message="Config is missing" />
     } else if(!this.props.form.hasOwnProperty("child_content")) {
-      return <ErrorBox message="Content is missing" />
+      return <ErrorBox message={"Content is missing."} />
     }
 
     var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
