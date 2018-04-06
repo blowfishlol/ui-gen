@@ -1,12 +1,18 @@
 import ActionList from "./actionList"
 
 const defaultState = {
-  content: "",
+  title: "",
+  content: ""
 }
 
 export default function reducer(state = defaultState, action) {
 
-  if(action.type === ActionList.SET_WINDOW_CONTENT) {
+  if(action.type === ActionList.SET_WINDOW_TITLE) {
+    return {
+      ...state,
+      title: action.payload
+    }
+  } else if(action.type === ActionList.SET_WINDOW_CONTENT) {
     return {
       ...state,
       content: action.payload

@@ -16,7 +16,11 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     })
   }
 
-  showConfirmationDialog() {
+  onDeleteBtnClickedListener() {
+    /**
+     * Open a confirmation dialog
+     * before proceeding to delete existing configuration
+     **/
     this.props.setDialogMessage("Delete configuration \"" + this.props.dataItem.name + "\"?")
     this.props.setDialogFinishFunction({
       onFinish: () => this.props.deleteConfig(this.props.dataItem.id, this.props.userId, this.props.token)
@@ -24,7 +28,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     dialogOpen()
   }
 
-  onEditButtonClick() {
+  onEditBtnClickedListener() {
     this.props.allowJump()
     this.props.setSelectedConfig(this.findConfig())
   }
@@ -33,13 +37,13 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     return <td>
       <button
         className="k-button k-primary"
-        onClick={() => this.onEditButtonClick()}>
+        onClick={() => this.onEditBtnClickedListener()}>
           EDIT
       </button>
       &nbsp;
       <button
         className="k-button k-primary"
-        onClick={() => this.showConfirmationDialog()}>
+        onClick={() => this.onDeleteBtnClickedListener()}>
           DELETE
       </button>
       &nbsp;

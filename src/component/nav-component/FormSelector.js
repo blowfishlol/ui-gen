@@ -46,7 +46,7 @@ class FormSelector extends React.Component {
     }).data
   }
 
-  renderCheck(obj) {
+  isRendered(obj) {
     if(obj.hasOwnProperty("rendered")) {
       return evaluator(obj.rendered)
     }
@@ -65,15 +65,32 @@ class FormSelector extends React.Component {
     this.props.cleanState()
     this.props.setDescription(this.getSelectedDescription())
     this.getSelectedDescription().forEach((page, index) => {
-      if(this.renderCheck(page) === false) {
+      if(this.isRendered(page) === false) {
         return
       }
       page.form.forEach(element => {
-        if(this.renderCheck(element) === false) {
+        if(this.isRendered(element) === false) {
           return
         }
         setByIndex(element.path, element.type, index)
       })
+    })
+  }
+
+  onConfigNameChangedListener(evt) {
+    this.setState({
+      ...this.state,
+      configName: evt.target.value
+    })
+  }
+
+  onConfigNameEditBtnClicked() {
+    if(this.state.isEditNameMode) {
+      this.props.changeConfigName(this.state.configName)
+    }
+    this.setState({
+      ...this.state,
+      isEditNameMode: !this.state.isEditNameMode
     })
   }
 
@@ -85,14 +102,14 @@ class FormSelector extends React.Component {
           className="k-textbox"
           type="text"
           value={this.state.configName}
-          onChange={evt => this.updateConfigName(evt)} />
-        <button className="k-button" onClick={() => this.onTopButtonClicked()}>CHANGE</button>
+          onChange={evt => this.onConfigNameChangedListener(evt)} />
+        <button className="k-button" onClick={() => this.onConfigNameEditBtnClicked()}>CHANGE</button>
       </div>
     } else {
       formSelectorHeader = <h1 className="formSelectorHeader">
         {this.props.currentConfig.name}
         &nbsp;&nbsp;
-        <button className="k-button" onClick={() => this.onTopButtonClicked()}>EDIT</button>
+        <button className="k-button" onClick={() => this.onConfigNameEditBtnClicked()}>EDIT</button>
       </h1>
     }
     return <div className="pageRoot">
@@ -119,23 +136,6 @@ class FormSelector extends React.Component {
       </table>
       <PageNavigator descriptionId={this.state.selectedDescriptionId} configName={this.state.configName}/>
     </div>
-  }
-
-  updateConfigName(evt) {
-    this.setState({
-      ...this.state,
-      configName: evt.target.value
-    })
-  }
-
-  onTopButtonClicked() {
-    if(this.state.isEditNameMode) {
-      this.props.changeConfigName(this.state.configName)
-    }
-    this.setState({
-      ...this.state,
-      isEditNameMode: !this.state.isEditNameMode
-    })
   }
 }
 
