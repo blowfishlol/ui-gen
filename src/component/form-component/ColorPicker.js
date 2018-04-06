@@ -105,6 +105,33 @@ class ColorPicker extends React.Component {
     return boxes
   }
 
+  generateMenuBoxes(data) {
+    const width = 10
+    const height = 20
+
+    const palette = data.palette;
+    var buffer = [];
+
+
+    for(var key in data) {
+      if(key === "palette"){
+        continue;
+      } else {
+        console.log(palette, data[key])
+        var styles = {
+          backgroundColor: colorList[palette][data[key]],
+          width: width,
+          height: height
+        }
+
+        buffer.push(<div style={styles}></div>);
+      } 
+    }
+
+    return buffer;
+
+  }
+
   isSpecialPalette(data) {
     return data.palette === "brown" || data.palette === "grey"  || data.palette === "bluegrey"
   }
@@ -159,9 +186,14 @@ class ColorPicker extends React.Component {
   }
 
   render() {
-    return <div className="k-form-field ">
-      <LabelTooltip form={this.props.form} />
-      <button onClick={() => (this.handleButtonClick())}>Oi!</button>
+    const data = get(this.props.form.path, this.props.form.type);
+    return <div>  
+      <label className="k-form-field">
+        <LabelTooltip form={this.props.form} />
+        <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))} className="k-button">
+          {this.generateMenuBoxes(data)} Change Color 
+        </button>
+      </label>
     </div>
   }
 }

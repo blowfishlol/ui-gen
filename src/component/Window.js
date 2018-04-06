@@ -29,6 +29,12 @@ class WindowComponent extends React.Component {
 			</Window>
 		</div>
 	}
+
+	componentDidMount() {
+		$("[data-role='window']").each(function (index) {
+			$(this).data("kendoWindow").close()
+		})
+	}
 }
 
 
