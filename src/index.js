@@ -26,6 +26,11 @@ ReactDOM.render(<Provider store={storage}>
 registerServiceWorker()
 
 /*
+              ========================
+              ||  [MOTI]            ||
+              ||  reference gw,     ||
+              ||  jangan di apus dl ||
+              ========================
 
 <div className='main'>
   <div className='button_group'>

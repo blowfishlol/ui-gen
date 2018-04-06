@@ -31,7 +31,12 @@ class ArrayInput extends React.Component {
           form={[{
             label: "",
             type: this.props.form.child_content.type,
-            path: this.props.form.path + "." + index
+            path: this.props.form.path + "." + index,
+            layout: {
+              mobile: 12,
+              tablet: 12,
+              desktop: 12
+            }
           }]} />
         <BlankSpace space="35px" />
         <button className="k-button deleteElementButton" onClick={() => this.deleteElement(index)}>X</button>

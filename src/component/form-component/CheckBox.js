@@ -29,7 +29,7 @@ class CheckBox extends React.Component {
       return <div key={childPath}>
         <input
           type="checkbox"
-          className="k-checkbox "
+          className="k-checkbox"
           id={childPath}
           defaultChecked={content.checked}
           onClick={(event) => this.props.updateState(childPath, event.target.checked)} />

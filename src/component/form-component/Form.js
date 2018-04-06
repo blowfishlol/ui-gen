@@ -23,6 +23,7 @@ import ActionList from "../../reducer/actionList"
 
 class Form extends Component {
   render() {
+    var groups = []
     var elements = this.props.form.map(element => {
       if(!element.hasOwnProperty("type")) {
         return <ErrorBox key={element.path} message={'Invalid form file format "' + JSON.stringify(element) + '". Type is missing'} />
@@ -36,6 +37,9 @@ class Form extends Component {
           }
           return 0
         }
+      }
+      if(element.hasOwnProperty("group")) {
+        groups = groups.concat(element.group).filter((name, index) => groups.indexOf(name) === index) // -> NO DUPLICATE KEY
       }
       var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
       var elementRendered
@@ -72,7 +76,18 @@ class Form extends Component {
       elements = "Form is empty"
     }
 
+    const groupedElements = groups.map(name => {
+      return <div>
+        <div className="k-panel k-header k-state-selected">{name}</div>
+        <div className="k-panel k-shadow">{elements.filter(element => element.props.children.props.form.group === name)}</div>
+      </div>
+    })
+
+    elements = elements.filter(element => !element.props.children.props.form.hasOwnProperty("group"))
+
+    console.log("NOTICE MEEEEE", elements, groupedElements)
     return <div className="k-form row">
+      {groupedElements}
       {elements}
     </div>
   }

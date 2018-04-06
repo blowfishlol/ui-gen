@@ -33,7 +33,7 @@ class MapInput extends React.Component {
         childElement[i].path = this.props.form.path + "." + index + "." + childElement[i].path
       }
       const isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
-      const style = isEvenChild ? "k-form formHighlightLight" : "k-form formHighlightDark"
+      const style = isEvenChild ? "k-form alert formHighlightLight" : "k-form alert formHighlightDark"
 
       return <div key={this.props.form.path + "." + index} className={style + " mapChild multipleElementComponent"}>
         <Form form={childElement} evenChild={isEvenChild} />
