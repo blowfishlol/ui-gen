@@ -100,6 +100,33 @@ class ColorPicker extends React.Component {
     return boxes
   }
 
+  generateMenuBoxes(data) {
+    const width = 30
+    const height = 30
+
+    const palette = data.palette;
+    var buffer = [];
+
+
+    for(var key in data) {
+      if(key === "palette"){
+        continue;
+      } else {
+        console.log(palette, data[key])
+        var styles = {
+          backgroundColor: colorList[palette][data[key]],
+          width: width,
+          height: height
+        }
+
+        buffer.push(<div style={styles}></div>);
+      } 
+    }
+
+    return buffer;
+
+  }
+
   isSpecialPalette(data) {
     return data.palette === "brown" || data.palette === "grey"  || data.palette === "bluegrey"
   }
@@ -108,7 +135,6 @@ class ColorPicker extends React.Component {
     const data = get(this.props.form.path, this.props.form.type)
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="k-form-field ">
-      <LabelTooltip form={this.props.form} />
       <div className="container" style={{backgroundColor: "#eeeeee"}}>
         <div className="row">
           <div className="col-*">
@@ -153,7 +179,15 @@ class ColorPicker extends React.Component {
   }
 
   render() {
-    return <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))}>Oi!</button>
+    const data = get(this.props.form.path, this.props.form.type);
+    return <div>  
+      <LabelTooltip form={this.props.form} />
+      <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))} className="k-button k-primary">
+        Change Color 
+        {this.generateMenuBoxes(data)}
+
+      </button>
+    </div>
   }
 }
 
