@@ -5,6 +5,7 @@ import { compose } from "recompose"
 import LabelTooltip from "./LabelTooltip"
 
 import { placeholderCheck } from "../../util/InfoChecker"
+import nullInfo from  "../../util/nullableInfo"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 
@@ -25,7 +26,7 @@ class TextBox extends React.Component {
         placeholder={placeholderCheck(this.props.form.value)}
         value={this.state.value}
         onChange={evt => this.setState({value: evt.target.value})}
-        onBlur={evt => this.props.updateState(this.props.form.path, evt.target.value)} />
+        onBlur={evt => this.props.updateState(this.props.form.path, evt.target.value, nullInfo(this.props.form))} />
     </label>
   }
 }
@@ -38,11 +39,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path, value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
-        "value": value
+        "value": value,
+        "nullable": nullable
       }
     })
   }

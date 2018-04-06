@@ -22,7 +22,7 @@ class ImportConfigForm extends React.Component {
     if(this.props.errorMessage !== "") {
       var error = <ErrorBox message={this.props.errorMessage} />
     }
-    return <div className="row k-form importConfigStyle">
+    return <div className="row k-form importConfigStyle pageRoot">
       <div className="col-sm-12">
         <center><h1><b> Import Configuration </b></h1></center>
       </div>

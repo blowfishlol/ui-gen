@@ -2,6 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
+import "../../style/Header.css"
+
 import ActionList, { NavKey } from "../../reducer/actionList"
 
 class Header extends React.Component {
@@ -31,12 +33,12 @@ class Header extends React.Component {
               <tr>
                 <td>
                   {
-                    this.props.location === NavKey.FORM_PAGE ?
+                    this.props.location === NavKey.FORM_PAGE || this.props.location === NavKey.IMPORT_CONFIG_PAGE ?
                     <button className="k-button k-primary" onClick={() => this.props.back()}>Back</button> :
                     ""
                   }
                 </td>
-                <td align="right" className="userDisplay2">
+                <td align="right" className="userDisplay">
                   <label>{this.props.username}</label>
                 </td>
                 <td className="shrinkToFit" align="right">

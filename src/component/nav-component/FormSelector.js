@@ -95,7 +95,7 @@ class FormSelector extends React.Component {
         <button className="k-button" onClick={() => this.onTopButtonClicked()}>EDIT</button>
       </h1>
     }
-    return <div>
+    return <div className="pageRoot">
       {formSelectorHeader}
       <table className="descSelectorTable">
         <tbody>

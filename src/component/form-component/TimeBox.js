@@ -6,9 +6,17 @@ import { TimePicker } from "@progress/kendo-dateinputs-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
+import nullInfo from  "../../util/nullableInfo"
 import  ActionList  from "../../reducer/actionList"
 
 class TimeBox extends React.Component {
+
+  timeFormat(evt) {
+    if(evt.sender.value === null) {
+      return null
+    }
+    return evt.sender.value().getHours() + ":" + evt.sender.value().getMinutes()
+  }
 
   render() {
     return <div className="k-form-field">
@@ -17,12 +25,8 @@ class TimeBox extends React.Component {
         value={get(this.props.form.path, this.props.form.type)}
         dateInput={true}
         format={"HH:mm"}
-        change={evt => this.props.updateState(this.props.form.path, this.timeFormat(evt))}/>
+        change={evt => this.props.updateState(this.props.form.path, this.timeFormat(evt), nullInfo(this.props.form))}/>
     </div>
-  }
-
-  timeFormat(evt) {
-    return evt.sender.value().getHours() + ":" + evt.sender.value().getMinutes()
   }
 }
 
@@ -34,11 +38,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path, value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     })
   }

@@ -329,8 +329,8 @@ export const mainPalette = [
 ]
 
 export const altPalette = [
-  { text: "A100", value: "a100" },
-  { text: "A200", value: "a200" },
-  { text: "A400", value: "a400" },
-  { text: "A700", value: "a700" }
+  { text: "A100", value: "A100" },
+  { text: "A200", value: "A200" },
+  { text: "A400", value: "A400" },
+  { text: "A700", value: "A700" }
 ]

@@ -11,14 +11,14 @@ import ComponentType from "../component/ComponentType"
  */
 export default function f(path, type) {
   try {
-    return get(fetchAllData(), path.split("."))
+    return get(fetchAllData(), path.split("."), type)
   } catch(error) {
     return set(path, type)
   }
 }
 
 function findInConfig(path, type) {
-  var result = get(storage.getState().form.config, path.split("."))
+  var result = get(storage.getState().form.config, path.split("."), type)
   return validateType(result, type)
 }
 
@@ -68,7 +68,7 @@ function validateType(result, type) {
     if(!(!!result) || !(result.constructor === Object)) {
       throw new Error()
     }
-    if(!result.hasOwnProperty("pallete") || !result.hasOwnProperty("base") ||
+    if(!result.hasOwnProperty("palette") || !result.hasOwnProperty("base") ||
        !result.hasOwnProperty("hue1") || !result.hasOwnProperty("hue2") || !result.hasOwnProperty("hue3")) {
       throw new Error()
     }
@@ -105,7 +105,7 @@ export function setByIndex(path, type, index) {
 
 export function getNoDispatch(path, type) {
   try {
-    return get(fetchAllData(), path.split("."))
+    return get(fetchAllData(), path.split("."), type)
   } catch(error) {
     try {
       return findInConfig(path, type)
@@ -132,14 +132,17 @@ function set(path, type) {
   return result
 }
 
-function get(ptr, path) {
+function get(ptr, path, type) {
   if(ptr[path[0]] === undefined) {
     throw new Error()
   }
   if(path.length === 1) {
+    if(ptr[path[0]] === null) {
+      return defaultValue(type)
+    }
     return ptr[path[0]]
   }
-  return get(ptr[path[0]], path.slice(1))
+  return get(ptr[path[0]], path.slice(1), type)
 }
 
 const COLOR_DEFAULT = {
@@ -212,7 +215,7 @@ export function fetchAllData() {
  */
 export function check(path) {
   try {
-    get(fetchAllData(), path.split("."))
+    get(fetchAllData(), path.split("."), "")
     return true
   } catch(error) {
     return false

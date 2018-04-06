@@ -39,7 +39,8 @@ class Form extends Component {
         }
       }
       if(element.hasOwnProperty("group")) {
-        groups = groups.concat(element.group).filter((name, index) => groups.indexOf(name) === index) // -> NO DUPLICATE KEY
+        groups = groups.concat(element.group)
+        groups = groups.filter((name, index) => groups.indexOf(name) === index) // -> NO DUPLICATE KEY
       }
       var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
       var elementRendered
@@ -77,18 +78,25 @@ class Form extends Component {
     }
 
     const groupedElements = groups.map(name => {
-      return <div>
-        <div className="k-panel k-header k-state-selected">{name}</div>
-        <div className="k-panel k-shadow">{elements.filter(element => element.props.children.props.form.group === name)}</div>
+      return <div className="col-sm-12">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="k-panel k-header k-state-selected">{name}</div>
+            <div className="k-panel k-shadow">
+              <div className="row">
+                {elements.filter(element => element.props.children.props.form.group === name)}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     })
 
     elements = elements.filter(element => !element.props.children.props.form.hasOwnProperty("group"))
 
-    console.log("NOTICE MEEEEE", elements, groupedElements)
     return <div className="k-form row">
-      {groupedElements}
       {elements}
+      {groupedElements}
     </div>
   }
 }

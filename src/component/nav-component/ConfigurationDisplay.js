@@ -18,7 +18,7 @@ class ConfigurationDisplay extends React.Component {
   }
 
   render() {
-    const configTableHeader = <h1 className="col-sm-10 configDisplayHeader">Configurations</h1>
+    const configTableHeader = <h1>Configurations</h1>
     if(this.props.errorMessage !== "") {
       return <div>
         {configTableHeader}
@@ -33,7 +33,7 @@ class ConfigurationDisplay extends React.Component {
       </div>
     }
 
-    var configTable
+    let configTable
     if(this.props.configs.length === 0) {
       configTable = <div className="col-sm-12 alert alert-warning">
         No saved configuration exist.
@@ -45,7 +45,7 @@ class ConfigurationDisplay extends React.Component {
         <Column field="id" width="45%" title="Option" cell={ConfigurationDisplayCustomColumn} />
       </Grid>
     }
-    return <div>
+    return <div className="pageRoot">
       {configTableHeader}
       {configTable}
       <BlankSpace space="75px" />

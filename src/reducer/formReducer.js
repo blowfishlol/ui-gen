@@ -1,4 +1,5 @@
 import ActionList from "./actionList"
+import ComponentType from "../component/ComponentType"
 
 function isInteger(arg) {
   return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
@@ -8,24 +9,47 @@ function defaultForPath(arg) {
   return isInteger(arg) ? [] : {}
 }
 
+function isNullValue(value, type) {
+  switch (type) {
+    case ComponentType.TEXT:      return value === ""
+    case ComponentType.DATE:      return value === null
+    case ComponentType.IMAGE:     return value.length === 0
+    case ComponentType.CHECKBOX:  return false
+    case ComponentType.TIME:      return value === null
+    case ComponentType.TOGGLE:    return false
+    case ComponentType.DROPDOWN:  return value === ""
+    case ComponentType.NUMBER:    return value === ""
+    case ComponentType.COLOR:     return false
+    case ComponentType.ARRAY:     return value.length === 0
+    case ComponentType.MAP:       return value.length === 0
+    default:                      return false
+  }
+}
+
 /**
  * function set
  * set the given value to this reducer state.data
  * in the given route by path
  * by returning new instance of state.data to overwrite the old one
  */
-export function set(path, value, ptr) {
+export function set(path, value, ptr, nullable) {
   if(path.length === 1) {
+    if(nullable) {
+      if(nullable.isNullable && isNullValue(value, nullable.type)) {
+        ptr[path[0]] = null
+        return ptr
+      }
+    }
     ptr[path[0]] = value
     return ptr
   } else {
     if(isInteger(path[0])) {
-      ptr[parseInt(path[0], 10)] = set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]))
+      ptr[parseInt(path[0], 10)] = set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]), nullable)
       return ptr
     }
     return {
       ...ptr,
-      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]))
+      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]), nullable)
     }
   }
 }
@@ -81,7 +105,7 @@ export default function reducer(state = defaultState, action) {
       ...state,
       data: state.data.map((d, index) => {
         return index === lastElement(state.app_state) ?
-            set(action.payload.path.split("."), action.payload.value, clone(d)) :
+            set(action.payload.path.split("."), action.payload.value, clone(d), action.payload.nullable) :
             d
        }),
       labels: [],

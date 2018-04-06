@@ -1,0 +1,68 @@
+.menuBar {
+  background-color: #007bff;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.menuBar button {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.userDisplay button {
+  float: right;
+}
+
+.userDisplay label {
+  float: right;
+  padding: 6px 0;
+}
+
+.narrow {
+  display: none;
+}
+
+.narrow table {
+  width: 100%;
+}
+
+.shrinkToFit {
+  width:1%;
+  white-space:nowrap;
+}
+
+@media only screen and (max-width: 575px) {
+  .wide {
+    display: none;
+  }
+
+  .narrow {
+    display: inline-block;
+  }
+
+  .menuBar button {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  .userDisplay button {
+    float: none;
+  }
+
+  .userDisplay label {
+    float: none;
+    padding: 6px 0;
+  }
+}

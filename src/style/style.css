@@ -22,6 +22,14 @@
   color: #000000 !important;
 }
 
+.k-header {
+  margin-top: 5px;
+}
+
+.k-shadow {
+  margin-bottom: 5px;
+}
+
 .mapChild {
   margin-top: 15px;
   margin-bottom: 10px;
@@ -68,7 +76,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 25px;
-  margin-left: -15px;
+  margin-left: -30px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -95,11 +103,6 @@
   float: right;
 }
 
-.importConfigStyle {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .importConfigStyle textarea {
   height: 200px;
   width: 100%;
@@ -108,77 +111,23 @@
   box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.configDisplayHeader {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: 20px;
-}
-
 .formSelectorHeader {
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
-.menuBar {
-  background-color: #007bff;
-  padding-top: 15px;
+.pageRoot {
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
   padding-bottom: 10px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  color: #fff;
-  font-size: 16px;
-  overflow: hidden;
-  z-index: 999;
-}
-
-.menuBar button {
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.userDisplay button {
-  float: right;
-}
-
-.userDisplay label {
-  float: right;
-  padding: 6px 0;
-}
-
-.userDisplay2 label {
-  padding: 6px 0;
-}
-
-.narrow {
-  display: none;
-}
-
-.narrow table {
-  width: 100%;
-}
-
-.shrinkToFit {
-  width:1%;
-  white-space:nowrap;
 }
 
 @media only screen and (max-width: 575px) {
-  .wide {
-    display: none;
-  }
-
-  .narrow {
-    display: inline-block;
-  }
-
-  .menuBar button {
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
+  .pageRoot {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

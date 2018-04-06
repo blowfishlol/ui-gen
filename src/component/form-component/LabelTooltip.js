@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { Tooltip } from '@progress/kendo-popups-react-wrapper';
+import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import Label from "./Label"
 
 import { labelCheck } from "../../util/InfoChecker"

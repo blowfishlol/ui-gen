@@ -32,10 +32,10 @@ class ColorPicker extends React.Component {
     var hue2Val = data.hue2
     var hue3Val = data.hue3
     if(colorValue === "brown" || colorValue === "grey" || colorValue === "bluegrey") {
-      baseVal = (data.base.indexOf("a") >= 0) ? "50" : baseVal
-      hue1Val = (data.hue1.indexOf("a") >= 0) ? "50" : hue1Val
-      hue2Val = (data.hue2.indexOf("a") >= 0) ? "50" : hue2Val
-      hue3Val = (data.hue3.indexOf("a") >= 0) ? "50" : hue3Val
+      baseVal = (data.base.indexOf("A") >= 0) ? "50" : baseVal
+      hue1Val = (data.hue1.indexOf("A") >= 0) ? "50" : hue1Val
+      hue2Val = (data.hue2.indexOf("A") >= 0) ? "50" : hue2Val
+      hue3Val = (data.hue3.indexOf("A") >= 0) ? "50" : hue3Val
     }
 
     this.props.updateState(this.props.form.path, {
@@ -76,9 +76,11 @@ class ColorPicker extends React.Component {
     })
   }
 
-  //depends on color chosen, the palette pair might be different
-  //Except for brown, bluegrey, and grey, palette pair will contain A100, A200, A400, A700.
-  //source is hue1, hue2, base, etc
+  /**
+   * depends on color chosen, the palette pair might be different
+   * Except for brown, bluegrey, and grey, palette pair will contain A100, A200, A400, A700.
+   * source is hue1, hue2, base, etc
+   **/
   generatePaletteBoxes(palettePair, source, data) {
     const boxes = palettePair.map(pair => {
       const styles = {
@@ -102,6 +104,7 @@ class ColorPicker extends React.Component {
 
   render() {
     const data = get(this.props.form.path, this.props.form.type)
+    console.log("debug", data)
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="k-form-field ">
       <LabelTooltip form={this.props.form} />
@@ -151,11 +154,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     })
   }

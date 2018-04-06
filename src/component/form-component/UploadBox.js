@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 import axios from "axios"
 
-import "./UploadBox.css"
+import "../../style/UploadBox.css"
 import emptyFileIcon from "../../file-empty-icon.png"
 
 import { Upload } from "@progress/kendo-upload-react-wrapper"
@@ -11,6 +11,7 @@ import LabelTooltip from "./LabelTooltip"
 
 import { dialogOpen } from "../Dialog"
 import { labelCheck } from "../../util/InfoChecker"
+import nullInfo from  "../../util/nullableInfo"
 import get from "../../util/formDataGet"
 import  ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
@@ -138,7 +139,7 @@ class UploadBox extends React.Component {
       ids: this.state.ids.concat(event.response.data),
       files: this.state.files.concat(event.files[0])
     })
-    this.props.updateState(this.props.form.path, this.state.ids)
+    this.props.updateState(this.props.form.path, this.state.ids, nullInfo(this.props.form))
     this.props.addExtFileRef(event.response.data)
   }
 
@@ -194,11 +195,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path, value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     }),
     addExtFileRef: (ids) => dispatch({

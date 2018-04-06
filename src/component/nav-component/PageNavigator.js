@@ -121,7 +121,17 @@ class PageNavigator extends Component {
   }
 
   prevButtonListener() {
-    this.props.popState(1)
+    for(var i = this.getLastAppState() - 1; i >= 0 ; i--) {
+      if(this.props.description[i].hasOwnProperty("rendered")) {
+        if(evaluator(this.props.description[i].rendered)) {
+          this.props.pushState(i)
+          return
+        }
+      } else {
+        this.props.pushState(i)
+        return
+      }
+    }
   }
 
   nextButtonListener() {

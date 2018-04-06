@@ -6,6 +6,7 @@ import { DropDownList } from "@progress/kendo-react-dropdowns"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
+import nullInfo from  "../../util/nullableInfo"
 import  ActionList  from "../../reducer/actionList"
 
 class DropDownBox extends React.Component {
@@ -18,7 +19,7 @@ class DropDownBox extends React.Component {
         textField={"text"}
         valueField={"value"}
         value={get(this.props.form.path, this.props.form.type)}
-        onChange={(evt) => this.props.updateState(this.props.form.path, evt.target.value)} />
+        onChange={(evt) => this.props.updateState(this.props.form.path, evt.target.value, nullInfo(this.props.form))} />
     </div>
   }
 }
@@ -31,11 +32,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     })
   }

@@ -8,12 +8,24 @@ import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
 import get, { defaultValue } from "../../util/formDataGet"
+import nullInfo from  "../../util/nullableInfo"
 import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {
 
   nextPath() {
     return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
+  }
+
+  onAddBtnClickedListener() {
+    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
+  }
+
+  onDeleteBtnClickedListener(index) {
+    const currentData = get(this.props.form.path, this.props.form.type)
+    this.props.updateState(this.props.form.path,
+                           currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)),
+                           nullInfo(this.props.form))
   }
 
   render() {
@@ -39,7 +51,7 @@ class ArrayInput extends React.Component {
             }
           }]} />
         <BlankSpace space="35px" />
-        <button className="k-button deleteElementButton" onClick={() => this.deleteElement(index)}>X</button>
+        <button className="k-button deleteElementButton" onClick={() => this.onDeleteBtnClickedListener(index)}>X</button>
       </div>
     })
 
@@ -48,17 +60,8 @@ class ArrayInput extends React.Component {
       <div>
         {elements}
       </div>
-      <button className="k-button k-primary" onClick={() => this.add()}>ADD</button>
+      <button className="k-button k-primary" onClick={() => this.onAddBtnClickedListener()}>ADD</button>
     </div>
-  }
-
-  add() {
-    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
-  }
-
-  deleteElement(index) {
-    const currentData = get(this.props.form.path, this.props.form.type)
-    this.props.updateState(this.props.form.path, currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)))
   }
 }
 
@@ -70,11 +73,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path,value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     })
   }

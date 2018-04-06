@@ -10,6 +10,7 @@ import ActionList from "../../reducer/actionList"
 class LoginPage extends React.Component {
 
   constructor(props) {
+
     super(props)
     this.state = {
       username: "blowfish",
@@ -21,7 +22,7 @@ class LoginPage extends React.Component {
     if(this.props.errorMessage !== "") {
       var error = <ErrorBox message={this.props.errorMessage} />
     }
-    return <div className="row">
+    return <div className="row pageRoot">
       <div className="col-md-3 col-sm-3 col-xs-12" />
       <div className="k-form col-md-6 col-sm-6 col-xs-12">
         <div className="row loginFormStyle">

@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
-import  ActionList  from "../../reducer/actionList"
+import ActionList  from "../../reducer/actionList"
 
 class CheckBox extends React.Component {
 
@@ -52,11 +52,12 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updateState: (path,value) => dispatch({
+    updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
         "path": path,
         "value": value,
+        "nullable": nullable
       }
     })
   }
