@@ -21,11 +21,12 @@ class WindowComponent extends React.Component {
 	render() {
 		return (
 		<div>
-			<Window>
+			<Window
+				visible={false}>
 				{this.props.content}
 			</Window>
 		</div>
-		)	
+		)
 	}
 
 }
