@@ -21,6 +21,12 @@ import { windowOpen } from "../Window"
  **/
 class ColorPicker extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.handleColorChange = this.handleColorChange.bind(this)
+    this.handlePaletteChange = this.handlePaletteChange.bind(this)
+  }
+
   getCheck(){
     return <img width={30} height={30} src={checkmark} alt="V" />
   }
@@ -106,53 +112,57 @@ class ColorPicker extends React.Component {
   generateColorPicker() {
     const data = get(this.props.form.path, this.props.form.type)
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
-    return <div className="k-form-field ">
-      <LabelTooltip form={this.props.form} />
-      <div className="container alert" style={{backgroundColor: "#eeeeee"}}>
-        <div className="row">
-          <div className="col-*">
-            <div style={{padding: "5px"}}>
-              <span>Color selection: {data.palette}</span>
-              <div className="container"><div className="row">{this.generateColorBoxes(data)}</div></div>
-            </div>
+    return <div className="container alert" style={{backgroundColor: "#eeeeee"}}>
+      <div className="row">
+        <div className="col-*">
+          <div style={{padding: "5px"}}>
+            <span>Color selection: {data.palette}</span>
+            <div className="container"><div className="row">{this.generateColorBoxes(data)}</div></div>
           </div>
-          <div className="col-*">
-            <div style={{padding: "5px"}}>
-              <span>Base Color Selection: {data.base}</span>
-              <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "base", data)}</div></div>
-            </div>
+        </div>
+        <div className="col-*">
+          <div style={{padding: "5px"}}>
+            <span>Base Color Selection: {data.base}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "base", data)}</div></div>
           </div>
-          <div className="col-*">
-            <div style={{padding: "5px"}}>
-              <span>Hue 1 Color Selection: {data.hue1}</span>
-              <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue1", data)}</div></div>
-            </div>
+        </div>
+        <div className="col-*">
+          <div style={{padding: "5px"}}>
+            <span>Hue 1 Color Selection: {data.hue1}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue1", data)}</div></div>
           </div>
-          <div className="col-*">
-            <div style={{padding: "5px"}}>
-              <span>Hue 2 Color Selection: {data.hue2}</span>
-              <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue2", data)}</div></div>
-            </div>
+        </div>
+        <div className="col-*">
+          <div style={{padding: "5px"}}>
+            <span>Hue 2 Color Selection: {data.hue2}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue2", data)}</div></div>
           </div>
-          <div className="col-*">
-            <div style={{padding: "5px"}}>
-              <span>Hue 3 Color Selection: {data.hue3}</span>
-              <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue3", data)}</div></div>
-            </div>
+        </div>
+        <div className="col-*">
+          <div style={{padding: "5px"}}>
+            <span>Hue 3 Color Selection: {data.hue3}</span>
+            <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue3", data)}</div></div>
           </div>
         </div>
       </div>
     </div>
   }
 
-  handleButtonClick(content) {
-    console.log("handleButtonClick");
-    this.props.setWindowContent(content);
-    windowOpen();
+  handleButtonClick() {
+    this.props.setWindowTitle(this.props.form.label)
+    this.props.setWindowContent(this.generateColorPicker())
+    windowOpen()
+  }
+
+  componentDidUpdate() {
+    this.props.setWindowContent(this.generateColorPicker())
   }
 
   render() {
-    return <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))}>Oi!</button>
+    return <div className="k-form-field ">
+      <LabelTooltip form={this.props.form} />
+      <button onClick={() => (this.handleButtonClick())}>Oi!</button>
+    </div>
   }
 }
 
@@ -163,7 +173,7 @@ const mapStateToProps = function(storage) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {
@@ -172,13 +182,14 @@ const mapDispatchToProps = (dispatch) => {
         "nullable": nullable
       }
     }),
-    setWindowContent: (content) => {
-      console.log("Called.");
-      dispatch({
-        type: ActionList.SET_WINDOW_CONTENT, //TODO TAMBAHIN DI REDUXNYA
-        payload: content
-      })
-    }
+    setWindowTitle: (title) => dispatch({
+      type: ActionList.SET_WINDOW_TITLE,
+      payload: title
+    }),
+    setWindowContent: (content) => dispatch({
+      type: ActionList.SET_WINDOW_CONTENT,
+      payload: content
+    })
   }
 }
 

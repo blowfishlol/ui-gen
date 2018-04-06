@@ -6,7 +6,7 @@ import form from "./formReducer"
 import user from "./userReducer"
 import dialog from "./dialogReducer"
 import nav from "./navigatorReducer"
-import windowReducer from "./windowReducer" //window is a @##%(@*##E) reserved word
+import win from "./windowReducer"
 
 export default combineReducers({
   config,
@@ -14,6 +14,6 @@ export default combineReducers({
   form,
   user,
   dialog,
-  nav,
-  windowReducer
+  win,
+  nav
 })
