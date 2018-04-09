@@ -113,13 +113,13 @@ class ColorPicker extends React.Component {
 
 
     for(var key in data) {
-      if(key === "palette"){
+      if(key === "palette" || key==="contrastDefaultColor"){
         continue;
       } else {
         console.log(palette, data[key])
         var styles = {
           backgroundColor: colorList[palette][data[key]],
-          width: 10,
+          width: 20,
           height: 20,
         }
 
@@ -129,6 +129,10 @@ class ColorPicker extends React.Component {
           </Tooltip>);
       } 
     }
+
+    buffer.push(
+      <div style={{width:30}}></div>
+    )
 
     return buffer;
 
@@ -190,7 +194,7 @@ class ColorPicker extends React.Component {
   render() {
     const data = get(this.props.form.path, this.props.form.type);
     const buttonStyle = {
-      width: "50%"
+
     }
     return <div>  
       <label className="k-form-field">

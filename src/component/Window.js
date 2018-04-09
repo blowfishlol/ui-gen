@@ -10,7 +10,8 @@ import ActionList from "../reducer/actionList"
 
 export function windowOpen() {
 	$("[data-role='window']").each(function (index) {
-		$(this).data("kendoWindow").open()
+		$(this).data("kendoWindow").open();
+		$(this).data("kendoWindow").center();
 	})
 }
 
@@ -18,7 +19,7 @@ class WindowComponent extends React.Component {
 
 	render() {
 		return <div>
-			<Window title={this.props.title}>
+			<Window title={this.props.title} height={"50%"} width={"300px"}>
 				{this.props.content}
 			</Window>
 		</div>
@@ -26,7 +27,8 @@ class WindowComponent extends React.Component {
 
 	componentDidMount() {
 		$("[data-role='window']").each(function (index) {
-			$(this).data("kendoWindow").close()
+			$(this).data("kendoWindow").close();
+			$(this).data("kendoWindow").center();
 		})
 	}
 }
