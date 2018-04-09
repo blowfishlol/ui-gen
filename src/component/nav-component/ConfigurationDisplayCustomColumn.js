@@ -49,7 +49,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
       &nbsp;
       <button
         className="k-button k-primary"
-        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + "txt")}>
+        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")}>
           EXPORT
       </button>
     </td>
