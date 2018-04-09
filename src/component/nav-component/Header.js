@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
-import $ from "jquery"
 
 import { windowClose } from "../Window"
 
@@ -66,7 +65,7 @@ const mapStateToProps = function(storage) {
 const mapDispatchToProps = function(dispatch) {
   return {
     back: () => {
-      windowClose();
+      windowClose()
       dispatch({type: ActionList.ON_BACK_PRESSED_CONFIG})
     },
     logout: () => dispatch({
@@ -80,4 +79,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(Header);
+)(Header)
