@@ -22,16 +22,22 @@ class LabelTooltip extends React.Component{
 		if(element.props.label === "") {
 			return
 		}
+		// console.debug("add", element.props.label)
 		this.props.addElement(element)
   }
+
+	componentWillUnmount() {
+		// console.debug("unmount", this.props.form.label)
+		this.props.removeElement(this.props.form.path + "/label")
+	}
 
   render() {
 		if(this.props.form.tooltip) {
 		  return <Tooltip content={this.props.form.tooltip} position={"asd ngasal"}>
-		    <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} />
+		    <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} path={this.props.form.path + "/label"}/>
 		  </Tooltip>
 		} else {
-		  return <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} />
+		  return <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} path={this.props.form.path + "/label"}/>
 		}
   }
 }
@@ -46,6 +52,10 @@ const mapDispatchToProps = (dispatch) => {
 		addElement: (element) => dispatch({
       type: ActionList.ADD_ELELEMENT_REF,
       payload: element
+    }),
+		removeElement: (path) => dispatch({
+      type: ActionList.CLEAR_ELEMENT_REF,
+      payload: path
     })
   }
 }

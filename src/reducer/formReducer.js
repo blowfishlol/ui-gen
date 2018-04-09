@@ -108,8 +108,6 @@ export default function reducer(state = defaultState, action) {
             set(action.payload.path.split("."), action.payload.value, clone(d), action.payload.nullable) :
             d
        }),
-      labels: [],
-      element_refs: [],
       notifier: (state.notifier + 1) % 10,
       isAllowedToJumpFoward: false
     }
@@ -217,15 +215,18 @@ export default function reducer(state = defaultState, action) {
       element_refs: state.element_refs.concat(action.payload)
     }
   } else if(action.type === ActionList.CLEAR_ELEMENT_REF) {
+    let index = state.element_refs.findIndex(element => element.props.path === action.payload)
     return {
       ...state,
-      labels: [],
-      element_refs: []
+      labels: state.labels.slice(0, index).concat(state.labels.slice(index + 1, state.labels.length)),
+      element_refs: state.element_refs.slice(0, index).concat(state.element_refs.slice(index + 1, state.element_refs.length))
     }
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {
       ...state,
       data: [],
+      labels: [],
+      element_refs: [],
       ext_file_ids: [],
       removed_ext_file_ids: []
     }

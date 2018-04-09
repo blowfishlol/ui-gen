@@ -19,7 +19,7 @@ class PageNavigatorSearchBox extends React.Component {
     var dataSource = new kendo.data.DataSource({
         data: this.props.labels
     })
-    console.log("debug", "elements registered:", this.props.labels.length)
+    // console.debug("elements registered:", this.props.labels.length, this.props.labels)
     return <div>
       <AutoComplete
         dataSource={dataSource}

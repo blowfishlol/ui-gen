@@ -9,7 +9,6 @@ import ActionList from "../../reducer/actionList"
 class LoginPage extends React.Component {
 
   constructor(props) {
-
     super(props)
     this.state = {
       username: "blowfish",

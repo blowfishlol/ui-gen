@@ -108,66 +108,59 @@ class ColorPicker extends React.Component {
   generateMenuBoxes(data) {
     const width = 10
     const height = 20
-
-    const palette = data.palette;
-    var buffer = [];
-
+    const palette = data.palette
+    var buffer = []
 
     for(var key in data) {
       if(key === "palette"){
-        continue;
+        continue
       } else {
-        console.log(palette, data[key])
         var styles = {
           backgroundColor: colorList[palette][data[key]],
           width: width,
           height: height
         }
-
-        buffer.push(<div style={styles}></div>);
-      } 
+        buffer.push(<div key={this.props.form.path + "." + key} style={styles}></div>)
+      }
     }
-
-    return buffer;
-
+    return buffer
   }
 
   isSpecialPalette(data) {
     return data.palette === "brown" || data.palette === "grey"  || data.palette === "bluegrey"
   }
 
-  generateColorPicker() {
-    const data = get(this.props.form.path, this.props.form.type)
+  generateColorPicker(data) {
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="container alert" style={{backgroundColor: "#eeeeee"}}>
       <div className="row">
         <div className="col-*">
           <div style={{padding: "5px"}}>
-            <span>Color selection: {data.palette}</span>
+            <span>Color: {mainColor.find(color => color.value === data.palette).text}</span>
             <div className="container"><div className="row">{this.generateColorBoxes(data)}</div></div>
           </div>
         </div>
         <div className="col-*">
           <div style={{padding: "5px"}}>
-            <span>Base Color Selection: {data.base}</span>
+            <span>Base Color: {data.base}</span>
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "base", data)}</div></div>
           </div>
         </div>
         <div className="col-*">
           <div style={{padding: "5px"}}>
-            <span>Hue 1 Color Selection: {data.hue1}</span>
+            <span>Hue 1 Color: {data.hue1}</span>
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue1", data)}</div></div>
           </div>
         </div>
         <div className="col-*">
           <div style={{padding: "5px"}}>
-            <span>Hue 2 Color Selection: {data.hue2}</span>
+            <span>Hue 2 Color: {data.hue2}</span>
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue2", data)}</div></div>
           </div>
         </div>
         <div className="col-*">
           <div style={{padding: "5px"}}>
-            <span>Hue 3 Color Selection: {data.hue3}</span>
+            <span>Hue 3 Color: {data.hue3}</span>
             <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue3", data)}</div></div>
           </div>
         </div>
@@ -175,23 +168,23 @@ class ColorPicker extends React.Component {
     </div>
   }
 
-  handleButtonClick() {
+  handleButtonClick(data) {
     this.props.setWindowTitle(this.props.form.label)
-    this.props.setWindowContent(this.generateColorPicker())
+    this.props.setWindowContent(this.generateColorPicker(data))
     windowOpen()
   }
 
   componentDidUpdate() {
-    this.props.setWindowContent(this.generateColorPicker())
+    this.props.setWindowContent(this.generateColorPicker(get(this.props.form.path, this.props.form.type)))
   }
 
   render() {
-    const data = get(this.props.form.path, this.props.form.type);
-    return <div>  
+    const data = get(this.props.form.path, this.props.form.type)
+    return <div>
       <label className="k-form-field">
         <LabelTooltip form={this.props.form} />
-        <button onClick={() => (this.handleButtonClick(this.generateColorPicker()))} className="k-button">
-          {this.generateMenuBoxes(data)} Change Color 
+        <button className="k-button" onClick={() => (this.handleButtonClick(data))}>
+          {this.generateMenuBoxes(data)} Change Color
         </button>
       </label>
     </div>
@@ -221,6 +214,10 @@ const mapDispatchToProps = (dispatch) => {
     setWindowContent: (content) => dispatch({
       type: ActionList.SET_WINDOW_CONTENT,
       payload: content
+    }),
+    setWindowOpen: (isOpen) => dispatch({
+      type: ActionList.OPEN_WINDOW,
+      payload: isOpen
     })
   }
 }

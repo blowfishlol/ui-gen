@@ -148,7 +148,9 @@ class PageNavigator extends Component {
 
       if(page.hasOwnProperty("rendered")) {
         if(!evaluator(page.rendered)) {
-          this.props.popData(index)
+          if(JSON.stringify(this.props.data[index]) !== JSON.stringify({})) {
+            this.props.popData(index)
+          }
           /**
            * return 0, will be filtered later
            */
@@ -188,6 +190,7 @@ class PageNavigator extends Component {
 const mapStateToProps = function(storage) {
   return {
     notifier: storage.form.notifier,
+    data: storage.form.data,
     appState: storage.form.app_state,
     description: storage.form.description,
     isNewForm: storage.form.isNewForm,

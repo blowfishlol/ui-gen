@@ -4,7 +4,7 @@ import { compose } from "recompose"
 
 /**
  * [TEMPLATE]
- * Usage: ctrl-c, crtl-v
+ * Usage: ctrl-a, ctrl-c, crtl-v
  */
 
 export default class ComponentTemplate extends React.Component{
