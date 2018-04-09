@@ -15,6 +15,13 @@ export function windowOpen() {
 	})
 }
 
+export function windowClose() {
+	$("[data-role='window']").each(function (index) {
+		$(this).data("kendoWindow").close()
+		// $(this).data("kendoWindow").center()
+	})
+}
+
 class WindowComponent extends React.Component {
 
 	componentDidMount() {

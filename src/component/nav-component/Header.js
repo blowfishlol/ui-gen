@@ -1,6 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
+import $ from "jquery"
+
+import { windowClose } from "../Window"
 
 import "../../style/Header.css"
 
@@ -62,9 +65,10 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    back: () => dispatch({
-      type: ActionList.ON_BACK_PRESSED_CONFIG
-    }),
+    back: () => {
+      windowClose();
+      dispatch({type: ActionList.ON_BACK_PRESSED_CONFIG})
+    },
     logout: () => dispatch({
       type: ActionList.ON_LOGOUT
     })
