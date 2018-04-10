@@ -26,7 +26,10 @@ export default function reducer(state = defaultState, action) {
         console.error("ERROR", err)
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
-    return state
+    return {
+      ...state,
+      fetched: false
+    }
   } else if(action.type === ActionList.ON_CONFIGS_FETCHED) {
     return {
       ...state,

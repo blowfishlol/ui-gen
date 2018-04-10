@@ -134,6 +134,17 @@
   }
 
   .navFooter {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
     margin-left: -15px;
+  }
+
+  .navFooter button {
+    font-size: 12px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 8px;
   }
 }

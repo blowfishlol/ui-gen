@@ -23,17 +23,17 @@ class LabelTooltip extends React.Component{
 		if(element.props.label === "") {
 			return
 		}
-		// console.debug("add", element.props.label)
-		this.props.addElement(element)
+		let index = getElementRefs().findIndex(element => element.props.path === this.props.form.path + "/label")
+    if(index === -1) {
+			this.props.addElement(element)
+    }
   }
 
 	componentWillUnmount() {
-		// console.debug("unmount", this.props.form.label)
 		let index = getElementRefs().findIndex(element => element.props.path === this.props.form.path + "/label")
-    if(index === -1) {
-      return
+    if(index !== -1) {
+			this.props.removeElement(index)
     }
-		this.props.removeElement(index)
 	}
 
   render() {

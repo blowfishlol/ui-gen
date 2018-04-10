@@ -35,7 +35,7 @@ for(let i = 0; i < size; i++) {
     if(isPrintCond(i, j, 0, size - 1)) {
       buffer += "#"
     } else {
-      buffer += "."
+      buffer += " "
     }
   }
   buffer += "\n"

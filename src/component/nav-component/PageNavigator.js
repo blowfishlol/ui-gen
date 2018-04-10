@@ -2,7 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { TabStrip, TabStripTab } from "@progress/kendo-react-layout"
+import { TabStrip, TabStripTab, PanelBar, PanelBarItem } from "@progress/kendo-react-layout"
+// import { PanelBar, PanelItem, SubItems } from "@progress/kendo-layout-react-wrapper"
 import PageNavigatorSearchBox from "./PageNavigatorSearchBox"
 import Form from "../form-component/Form"
 import BlankSpace from "../BlankSpace"
@@ -14,6 +15,13 @@ import { set } from "../../reducer/formReducer"
 import ActionList from "../../reducer/actionList"
 
 class PageNavigator extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      isPanelExpanded: false
+    }
+  }
 
   getLastAppState() {
     return this.props.appState[this.props.appState.length - 1]
@@ -38,11 +46,12 @@ class PageNavigator extends Component {
     this.props.pushState(index)
   }
 
-  jumpBackward(index, navBar) {
-    var target = this.props.appState.findIndex(element => {
-      return element === index
-    })
-    this.props.popState((this.props.appState.length-1) - target)
+  jumpBackward(index) {
+    this.props.pushState(index)
+    // var target = this.props.appState.findIndex(value => {
+    //   return value === index
+    // })
+    // this.props.popState((this.props.appState.length-1) - target)
   }
 
   fetchRemainingData() {
@@ -66,7 +75,20 @@ class PageNavigator extends Component {
     if(index > navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))) {
       this.jumpFoward(index)
     } else {
-      this.jumpBackward(index, navBar)
+      this.jumpBackward(index)
+    }
+  }
+
+  onPanelBarSeletedListener(index, panelBar) {
+    this.setState({
+      isPanelExpanded: false
+    })
+    if(index !== undefined) {
+      if(index > panelBar.findIndex(panel => panel.props.hasOwnProperty("current"))) {
+        this.jumpFoward(index)
+      } else {
+        this.jumpBackward(index)
+      }
     }
   }
 
@@ -130,48 +152,75 @@ class PageNavigator extends Component {
   }
 
   render() {
-    const navBar = this.props.description.map((page, index) => {
-      const current = this.getCurrentDescription()
-      const content = <div>
-        <table width="100%">
-          <tbody>
-            <tr>
-              <td><h2>{current.pagename}</h2></td>
-              <td className="float-right">
+    const current = this.getCurrentDescription()
+    const content = <div>
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td><h2>{current.pagename}</h2></td>
+            <td className="float-right">
+              <div className="d-none d-md-block">
                 <PageNavigatorSearchBox />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Form form={current.form} />
-      </div>
-
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <Form form={current.form} />
+    </div>
+    const navBar = this.props.description.map((page, index) => {
       if(page.hasOwnProperty("rendered")) {
         if(!evaluator(page.rendered)) {
           if(JSON.stringify(this.props.data[index]) !== JSON.stringify({})) {
             this.props.popData(index)
           }
-          /**
-           * return 0, will be filtered later
-           */
           return 0
         }
       }
       if(index === this.getLastAppState()) {
         return <TabStripTab key={index} current={true} disabled={true} title={page.pagename}>{content}</TabStripTab>
       } else if(index >= this.getLastAppState()) {
-        return <TabStripTab key={index}  disabled={!this.props.isAllowedToJumpFoward} title={page.pagename}>{content}</TabStripTab>
+        return <TabStripTab key={index} disabled={!this.props.isAllowedToJumpFoward} title={page.pagename}>{content}</TabStripTab>
       } else {
         return <TabStripTab key={index} title={page.pagename}>{content}</TabStripTab>
       }
     }).filter(nav => nav !== 0)
 
+    const panelBar = this.props.description.map((page, index) => {
+      if(page.hasOwnProperty("rendered")) {
+        if(!evaluator(page.rendered)) {
+          if(JSON.stringify(this.props.data[index]) !== JSON.stringify({})) {
+            this.props.popData(index)
+          }
+          return 0
+        }
+      }
+      if(index === this.getLastAppState()) {
+        return <PanelBarItem index={index} disabled={true} current={true} title={page.pagename} selected={true} className="k-state-selected"/>
+      } else if(index >= this.getLastAppState()) {
+        return <PanelBarItem index={index} disabled={!this.props.isAllowedToJumpFoward} title={page.pagename} />
+      } else {
+        return <PanelBarItem index={index} title={page.pagename} />
+      }
+    }).filter(nav => nav !== 0)
+
     return <div>
-      <TabStrip
-        selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
-        onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
-          {navBar}
-      </TabStrip>
+      <div className="d-block d-md-none">
+        <PanelBar onSelect={(evt) => this.onPanelBarSeletedListener(evt.target.props.index, panelBar)}>
+            <PanelBarItem expanded={this.state.isPanelExpanded} title="Menu">
+              {panelBar}
+            </PanelBarItem>
+        </PanelBar>
+        <BlankSpace space="15px" />
+        {content}
+      </div>
+      <div className="d-none d-md-block">
+        <TabStrip
+          selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
+          onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
+            {navBar}
+        </TabStrip>
+      </div>
       <BlankSpace space="200px" />
       <div className="k-form-field navFooter row">
         <div className="col-6">
