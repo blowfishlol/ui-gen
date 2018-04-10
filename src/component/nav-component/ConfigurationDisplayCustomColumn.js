@@ -36,19 +36,19 @@ class ConfigurationDisplayCustomColumn extends GridCell {
   render() {
     return <td>
       <button
-        className="k-button k-primary"
+        className="k-button k-primary configButton"
         onClick={() => this.onEditBtnClickedListener()}>
           EDIT
       </button>
       &nbsp;
       <button
-        className="k-button k-primary"
+        className="k-button k-primary configButton"
         onClick={() => this.onDeleteBtnClickedListener()}>
           DELETE
       </button>
       &nbsp;
       <button
-        className="k-button k-primary"
+        className="k-button k-primary configButton"
         onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")}>
           EXPORT
       </button>

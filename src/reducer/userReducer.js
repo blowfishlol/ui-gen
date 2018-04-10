@@ -11,6 +11,13 @@ const defaultState = {
 }
 
 export default function reducer(state = defaultState, action) {
+  /**
+   * @param (in action.payload)
+   * Object {
+   *   string username
+   *   string password
+   * }
+   **/
   if(action.type === ActionList.ON_LOGIN) {
     axios.post(server + "/user/login", action.payload)
       .then((response) => {
@@ -21,6 +28,11 @@ export default function reducer(state = defaultState, action) {
         storage.dispatch({type: ActionList.ON_LOGIN_FAIL, payload: err.response ? err.response.data.message : err.message})
       })
     return state
+  /**
+   * @param (in action.payload)
+   * [data from server]
+   * not intended to be called manually
+   **/
   } else if(action.type === ActionList.ON_LOGIN_SUCCESS) {
     return {
       ...state,
@@ -28,6 +40,11 @@ export default function reducer(state = defaultState, action) {
       username: action.payload.username,
       token: action.payload.token
     }
+  /**
+   * @param (in action.payload)
+   * [empty]
+   * used to reset this reducer back to default
+   **/
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState
   } else {

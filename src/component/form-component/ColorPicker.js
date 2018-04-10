@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import checkmark from "../../checkmark.png"
+import "../../style/ColorBox.css"
 
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
@@ -13,7 +14,6 @@ import ActionList from "../../reducer/actionList"
 
 import { windowOpen } from "../Window"
 
-import "../../style/ColorBox.css"
 /**
  * Each color have their own palette.
  * example: Color: red have the palette: red50, red100, red200, etc
@@ -185,7 +185,7 @@ class ColorPicker extends React.Component {
       <label className="k-form-field">
         <LabelTooltip form={this.props.form} />
         <button className="k-button" onClick={() => (this.onColorBtnClickedListener(data))}>
-          {this.generateMenuBoxes(data)}&nbsp;&nbsp;Change Color
+          {this.generateMenuBoxes(data)}&nbsp;&nbsp;{mainColor.find(color => color.value === data.palette).text}
         </button>
       </label>
     </div>

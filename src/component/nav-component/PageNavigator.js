@@ -196,11 +196,11 @@ class PageNavigator extends Component {
         }
       }
       if(index === this.getLastAppState()) {
-        return <PanelBarItem index={index} disabled={true} current={true} title={page.pagename} selected={true} className="k-state-selected"/>
+        return <PanelBarItem key={index} index={index} disabled={true} current={true} title={page.pagename} selected={true} className="k-state-selected"/>
       } else if(index >= this.getLastAppState()) {
-        return <PanelBarItem index={index} disabled={!this.props.isAllowedToJumpFoward} title={page.pagename} />
+        return <PanelBarItem key={index} index={index} disabled={!this.props.isAllowedToJumpFoward} title={page.pagename} />
       } else {
-        return <PanelBarItem index={index} title={page.pagename} />
+        return <PanelBarItem key={index} index={index} title={page.pagename} />
       }
     }).filter(nav => nav !== 0)
 

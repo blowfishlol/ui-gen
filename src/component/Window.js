@@ -33,7 +33,7 @@ class WindowComponent extends React.Component {
 
 	render() {
 		return <div>
-			<Window title={this.props.title} width={"50%"}>
+			<Window close={() => this.props.done()} title={this.props.title} width={"100%"} height={"50%"}>
 				{this.props.content}
 			</Window>
 		</div>

@@ -50,11 +50,12 @@
   }
 
   .menuBar button {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 5px;
+    font-size: 14px;
   }
 
   .userDisplay button {

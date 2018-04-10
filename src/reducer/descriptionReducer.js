@@ -10,6 +10,13 @@ const defaultState = {
 }
 
 export default function reducer(state = defaultState, action) {
+  /**
+   * @param (in action.payload)
+   * Object {
+   *   number id (user's id),
+   *   string token
+   * }
+   **/
   if(action.type === ActionList.FETCH_DESCRIPTIONS) {
     axios.post(server + "/description/list", action.payload)
       .then((response) => {
@@ -23,6 +30,11 @@ export default function reducer(state = defaultState, action) {
       ...state,
       fetched: false
     }
+  /**
+   * @param (in action.payload)
+   * [data from server]
+   * not intended to be called manually
+   **/
   } else if(action.type === ActionList.ON_DESCRIPTIONS_FETCHED) {
     return {
       ...state,
@@ -34,11 +46,21 @@ export default function reducer(state = defaultState, action) {
       }),
       fetched: true
     }
+  /**
+   * @param (in action.payload)
+   * Object containing error message from server (used in another reducer)
+   * not intended to be called manually
+   **/
   } else if(action.type === ActionList.ON_DESCRIPTIONS_FETCH_FAIL) {
     return {
       ...state,
       fetched: true
     }
+  /**
+   * @param (in action.payload)
+   * [empty]
+   * used to reset this reducer back to default
+   **/
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState
   } else {
