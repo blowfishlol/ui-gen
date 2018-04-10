@@ -5,6 +5,7 @@ import { compose } from "recompose"
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import Label from "./Label"
 
+import { getElementRefs } from "../../util/formDataGet"
 import { labelCheck } from "../../util/InfoChecker"
 import ActionList from "../../reducer/actionList"
 
@@ -28,7 +29,11 @@ class LabelTooltip extends React.Component{
 
 	componentWillUnmount() {
 		// console.debug("unmount", this.props.form.label)
-		this.props.removeElement(this.props.form.path + "/label")
+		let index = getElementRefs().findIndex(element => element.props.path === this.props.form.path + "/label")
+    if(index === -1) {
+      return
+    }
+		this.props.removeElement(index)
 	}
 
   render() {
@@ -53,9 +58,9 @@ const mapDispatchToProps = (dispatch) => {
       type: ActionList.ADD_ELELEMENT_REF,
       payload: element
     }),
-		removeElement: (path) => dispatch({
-      type: ActionList.CLEAR_ELEMENT_REF,
-      payload: path
+		removeElement: (index) => dispatch({
+      type: ActionList.REMOVE_ELEMENT_REF,
+      payload: index
     })
   }
 }

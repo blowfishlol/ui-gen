@@ -65,15 +65,13 @@ class FormSelector extends React.Component {
     this.props.cleanState()
     this.props.setDescription(this.getSelectedDescription())
     this.getSelectedDescription().forEach((page, index) => {
-      if(this.isRendered(page) === false) {
-        return
+      if(this.isRendered(page)) {
+        page.form.forEach(element => {
+          if(this.isRendered(element)) {
+            setByIndex(element.path, element.type, index)
+          }
+        })
       }
-      page.form.forEach(element => {
-        if(this.isRendered(element) === false) {
-          return
-        }
-        setByIndex(element.path, element.type, index)
-      })
     })
   }
 

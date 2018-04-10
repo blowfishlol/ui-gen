@@ -172,7 +172,7 @@ class PageNavigator extends Component {
         onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
           {navBar}
       </TabStrip>
-      <BlankSpace space="75px" />
+      <BlankSpace space="200px" />
       <div className="k-form-field navFooter row">
         <div className="col-6">
           <PageNavigatorSearchBox />

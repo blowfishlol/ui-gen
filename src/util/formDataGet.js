@@ -92,15 +92,17 @@ export function setByIndex(path, type, index) {
     result = findInConfig(path, type)
   } catch(error) {
   }
-  result = result ? result : defaultValue(type)
-  storage.dispatch({
-    type: ActionList.SET_DATA_BY_INDEX,
-    payload: {
-      "path": path,
-      "value": result,
-      "index": index
-    }
-  })
+  // result = result ? result : defaultValue(type)
+  if(result) {
+    storage.dispatch({
+      type: ActionList.SET_DATA_BY_INDEX,
+      payload: {
+        "path": path,
+        "value": result,
+        "index": index
+      }
+    })
+  }
 }
 
 export function getNoDispatch(path, type) {
@@ -220,4 +222,8 @@ export function check(path) {
   } catch(error) {
     return false
   }
+}
+
+export function getElementRefs() {
+  return storage.getState().form.element_refs
 }

@@ -33,7 +33,7 @@ export default({
   REMOVE_EXT_FILE_REF:        "remove_external_file_reference",
   ADD_REMOVED_EXT_FILE_REF:   "add_removed_external_file_reference",
   ADD_ELELEMENT_REF:          "add_element_reference",
-  CLEAR_ELEMENT_REF:          "clear_element_reference",
+  REMOVE_ELEMENT_REF:         "remove_element_reference",
 
   FETCH_DESCRIPTIONS:         "fetch_descs",
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",

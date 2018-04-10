@@ -8,7 +8,7 @@ import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
-import colorList, { mainColor, mainPalette, altPalette }  from "./colorDef"
+import colorList, { mainColor, mainPalette, altPalette }  from "../../util/color"
 import ActionList from "../../reducer/actionList"
 
 import { windowOpen } from "../Window"
@@ -24,8 +24,8 @@ class ColorPicker extends React.Component {
 
   constructor(props) {
     super(props)
-    this.handleColorChange = this.handleColorChange.bind(this)
-    this.handlePaletteChange = this.handlePaletteChange.bind(this)
+    this.onColorChangedListener = this.onColorChangedListener.bind(this)
+    this.onPaletteChangedListener = this.onPaletteChangedListener.bind(this)
   }
 
   getCheck(){
@@ -35,7 +35,7 @@ class ColorPicker extends React.Component {
   /**
    * To handle color (Red, blue, cyan, etc) change
    **/
-  handleColorChange(colorValue, event, data) {
+  onColorChangedListener(colorValue, event, data) {
     var baseVal = data.base
     var hue1Val = data.hue1
     var hue2Val = data.hue2
@@ -65,9 +65,9 @@ class ColorPicker extends React.Component {
         height: 30,
       }
       const check = (pair.value === data.palette) ? this.getCheck() : ""
-      return <div className="col-*-3" key={this.props.form.path + ".palette." + pair.value}>
+      return <div className="col-*-3" key={this.props.form.path + "/palette/" + pair.value}>
         <Tooltip content={pair.text} position={"top"}>
-          <div style={styles} onClick={(event) => {this.handleColorChange(pair.value, event, data)}}>{check}</div>
+          <div style={styles} onClick={(event) => {this.onColorChangedListener(pair.value, event, data)}}>{check}</div>
         </Tooltip>
       </div>
     })
@@ -77,7 +77,7 @@ class ColorPicker extends React.Component {
   /**
    * To handle child of color change
    **/
-  handlePaletteChange(paletteValue, source, event, data) {
+  onPaletteChangedListener(paletteValue, source, event, data) {
     this.props.updateState(this.props.form.path, {
       ...data,
       [source]: paletteValue.toString()
@@ -97,9 +97,9 @@ class ColorPicker extends React.Component {
         height: 30,
       }
       const check = (pair.value.toString() === data[source].toString()) ? this.getCheck() : ""
-      return <div className="col-*-3" key={this.props.form.path + "." + source + "." + pair.value}>
+      return <div className="col-*-3" key={this.props.form.path + "/" + source + "/" + pair.value}>
         <Tooltip content={pair.text} position={"top"}>
-          <div style={styles} onClick={(event) => {this.handlePaletteChange(pair.value, source, event, data)}}>{check}</div>
+          <div style={styles} onClick={(event) => {this.onPaletteChangedListener(pair.value, source, event, data)}}>{check}</div>
         </Tooltip>
       </div>
     })
@@ -119,7 +119,7 @@ class ColorPicker extends React.Component {
           width: 10,
           height: 20,
         }
-        buffer.push(<Tooltip content={key + " value"} position={"top"}>
+        buffer.push(<Tooltip content={key + " value"} position={"top"} key={this.props.form.path + "/" + key}>
           <div style={styles}></div>
         </Tooltip>)
       }
@@ -169,7 +169,7 @@ class ColorPicker extends React.Component {
     </div>
   }
 
-  handleButtonClick(data) {
+  onColorBtnClickedListener(data) {
     this.props.setWindowTitle(this.props.form.label)
     this.props.setWindowContent(this.generateColorPicker(data))
     windowOpen()
@@ -184,7 +184,7 @@ class ColorPicker extends React.Component {
     return <div>
       <label className="k-form-field">
         <LabelTooltip form={this.props.form} />
-        <button className="k-button" onClick={() => (this.handleButtonClick(data))}>
+        <button className="k-button" onClick={() => (this.onColorBtnClickedListener(data))}>
           {this.generateMenuBoxes(data)}&nbsp;&nbsp;Change Color
         </button>
       </label>

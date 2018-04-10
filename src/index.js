@@ -27,7 +27,6 @@ ReactDOM.render(<Provider store={storage}>
 </Provider>, document.getElementById("root"))
 registerServiceWorker()
 
-
 var size = 21
 var buffer = ""
 
@@ -36,7 +35,7 @@ for(let i = 0; i < size; i++) {
     if(isPrintCond(i, j, 0, size - 1)) {
       buffer += "#"
     } else {
-      buffer += " "
+      buffer += "."
     }
   }
   buffer += "\n"

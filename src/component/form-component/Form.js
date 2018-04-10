@@ -78,7 +78,7 @@ class Form extends Component {
     }
 
     const groupedElements = groups.map(name => {
-      return <div className="col-sm-12">
+      return <div key={"group/" + name} className="col-sm-12">
         <div className="row">
           <div className="col-sm-12">
             <div className="k-panel k-header k-state-selected">{name}</div>

@@ -214,12 +214,15 @@ export default function reducer(state = defaultState, action) {
       labels: state.labels.concat(action.payload.props.label),
       element_refs: state.element_refs.concat(action.payload)
     }
-  } else if(action.type === ActionList.CLEAR_ELEMENT_REF) {
-    let index = state.element_refs.findIndex(element => element.props.path === action.payload)
+  } else if(action.type === ActionList.REMOVE_ELEMENT_REF) {
+    // let index = state.element_refs.findIndex(element => element.props.path === action.payload)
+    // if(index === -1) {
+    //   return state
+    // }
     return {
       ...state,
-      labels: state.labels.slice(0, index).concat(state.labels.slice(index + 1, state.labels.length)),
-      element_refs: state.element_refs.slice(0, index).concat(state.element_refs.slice(index + 1, state.element_refs.length))
+      labels: state.labels.slice(0, action.payload).concat(state.labels.slice(action.payload + 1, state.labels.length)),
+      element_refs: state.element_refs.slice(0, action.payload).concat(state.element_refs.slice(action.payload + 1, state.element_refs.length))
     }
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {
