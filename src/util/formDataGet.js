@@ -2,6 +2,7 @@ import storage from "../storage"
 import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
 import { isObject, lastElementOf, mergeDeep } from "./toolbox"
+
 const COLOR_DEFAULT = {
   palette : "red",
   base: "50",

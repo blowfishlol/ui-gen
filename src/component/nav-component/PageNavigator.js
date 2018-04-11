@@ -204,6 +204,12 @@ class PageNavigator extends Component {
       }
     }).filter(nav => nav !== 0)
 
+    /**
+     * The panel bar make the search feature does not work
+     * because display:none still would be detected and "rendered"
+     * and will make the scroll go to "invisible" element reference :(
+     * Workaround will be implemented later
+     */
     return <div>
       <div className="d-block d-md-none">
         <PanelBar onSelect={(evt) => this.onPanelBarSeletedListener(evt.target.props.index, panelBar)}>

@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-// import Scroll, { Element, scroller } from "react-scroll"
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import Label from "./Label"
 
