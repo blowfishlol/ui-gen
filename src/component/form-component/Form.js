@@ -16,7 +16,7 @@ import ErrorBox from "../ErrorBox"
 import ColorPicker from "./ColorPicker"
 
 import evaluator from "../../util/evaluator"
-import getLayoutString from "../../util/LayoutProcessor"
+import getLayoutString from "../../util/layoutProcessor"
 import { check } from "../../util/formDataGet"
 import ComponentType from "../ComponentType"
 import ActionList from "../../reducer/actionList"

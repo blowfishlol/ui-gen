@@ -8,17 +8,14 @@ import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
 import get from "../../util/formDataGet"
-import nullInfo from  "../../util/nullableInfo"
+import { clone } from "../../util/toolbox"
+import { nullInfo } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
 
 class MapInput extends React.Component {
 
   nextPath() {
     return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
-  }
-
-  clone(obj) {
-    return JSON.parse(JSON.stringify(obj))
   }
 
   onAddBtnClickedListener() {
@@ -40,7 +37,7 @@ class MapInput extends React.Component {
     }
 
     var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
-      const childElement = this.clone(this.props.form.child_content)
+      const childElement = clone(this.props.form.child_content)
       for(var i = 0; i < childElement.length; i++) {
         childElement[i].path = this.props.form.path + "." + index + "." + childElement[i].path
       }

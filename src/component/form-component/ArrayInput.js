@@ -8,7 +8,7 @@ import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
 import get, { defaultValue } from "../../util/formDataGet"
-import nullInfo from  "../../util/nullableInfo"
+import { nullInfo } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {

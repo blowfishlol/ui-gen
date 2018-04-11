@@ -10,10 +10,10 @@ import { Upload } from "@progress/kendo-upload-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 
 import { dialogOpen } from "../Dialog"
-import { labelCheck } from "../../util/InfoChecker"
-import nullInfo from  "../../util/nullableInfo"
+import { labelCheck } from "../../util/infoChecker"
+import { nullInfo } from "../../util/infoChecker"
 import get from "../../util/formDataGet"
-import  ActionList  from "../../reducer/actionList"
+import ActionList  from "../../reducer/actionList"
 import server from "../../util/server"
 
 const fetchFileById = (id, context, userId, token) => {

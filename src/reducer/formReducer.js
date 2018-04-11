@@ -1,5 +1,6 @@
 import ActionList from "./actionList"
 import ComponentType from "../component/ComponentType"
+import { clone, lastElementOf } from "../util/toolbox"
 
 function isInteger(arg) {
   return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
@@ -70,14 +71,6 @@ function pop(path, ptr) {
   }
 }
 
-function clone(obj) {
-  return JSON.parse(JSON.stringify(obj))
-}
-
-function lastElement(obj) {
-  return obj[obj.length - 1]
-}
-
 const defaultState = {
   data: [],
   app_state: [],
@@ -111,7 +104,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       data: state.data.map((d, index) => {
-        return index === lastElement(state.app_state) ?
+        return index === lastElementOf(state.app_state) ?
             set(action.payload.path.split("."), action.payload.value, clone(d), action.payload.nullable) :
             d
        }),
@@ -148,7 +141,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       data: state.data.map((d, index) => {
-        return index === lastElement(state.app_state) ?
+        return index === lastElementOf(state.app_state) ?
             pop(action.payload.path.split("."), clone(d)) :
             d
        }),

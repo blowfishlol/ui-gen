@@ -6,7 +6,7 @@ import { Switch } from "@progress/kendo-inputs-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
-import  ActionList  from "../../reducer/actionList"
+import ActionList  from "../../reducer/actionList"
 
 class ToggleBox extends React.Component {
 

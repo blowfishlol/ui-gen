@@ -1,7 +1,7 @@
 import storage from "../storage"
 import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
-
+import { isObject, lastElementOf, mergeDeep } from "./toolbox"
 const COLOR_DEFAULT = {
   palette : "red",
   base: "50",
@@ -15,6 +15,9 @@ export function getElementRefs() {
   return storage.getState().form.element_refs
 }
 
+/**
+ * return a defined default value for given type(ComponentType)
+ */
 export function defaultValue(type) {
   switch(type) {
     case ComponentType.TEXT:     return ""
@@ -32,6 +35,9 @@ export function defaultValue(type) {
   }
 }
 
+/**
+ * fetch data from all form.data indexes merged together into a single object
+ */
 export function fetchAllData() {
   const data = storage.getState().form.data
   let merged = {}
@@ -41,6 +47,9 @@ export function fetchAllData() {
   return merged
 }
 
+/**
+ * get the data from form.data or form.config or form.description or default value
+ */
 export function getNoDispatch(path, type) {
   try {
     return get(fetchAllData(), path.split("."), type)
@@ -48,11 +57,19 @@ export function getNoDispatch(path, type) {
     try {
       return findInConfig(path, type)
     } catch(error2) {
-      return defaultValue(type)
+      try {
+        return findInDesc(path)
+      } catch(error3) {
+        return defaultValue(type)
+      }
     }
   }
 }
 
+/**
+ * find data from current config (form.config)
+ * and set the value to a specific index in the form.data
+ */
 export function setByIndex(path, type, index) {
   let result
   try {
@@ -112,36 +129,6 @@ export default function f(path, type) {
  * validateType -> check if given value match criteria of the given type(ComponentType)
  *                 throw Error if criteria is not met
  */
-function isObject(obj) {
-  return (obj && typeof obj === 'object' && !Array.isArray(obj));
-}
-
-function lastElement(arr) {
-  return arr[arr.length-1]
-}
-
-function mergeDeep(obj1, obj2) {
-  let output = {...obj1}
-  Object.keys(obj2).forEach(key => {
-    if(isObject(obj2[key])) {
-      if(!(key in obj1)) {
-        output = {
-          ...output,
-          [key]: obj2[key]
-        }
-      } else {
-        output[key] = mergeDeep(obj1[key], obj2[key])
-      }
-    } else {
-      output = {
-        ...output,
-        [key]: obj2[key]
-      }
-    }
-  })
-  return output;
-}
-
 function validateType(result, type) {
   if(type === ComponentType.TEXT) {
     if(typeof result !== "string") {
@@ -163,7 +150,8 @@ function validateType(result, type) {
       }
     })
   } else if(type === ComponentType.CHECKBOX) {
-    if(typeof result !== "object") {
+    if(!isObject(result)) {
+      console.debug("something is wrong!")
       throw new Error()
     }
   } else if(type === ComponentType.TIME) {
@@ -185,7 +173,8 @@ function validateType(result, type) {
       throw new Error()
     }
   } else if(type === ComponentType.COLOR) {
-    if(!(!!result) || !(result.constructor === Object)) {
+    if(!isObject(result)) {
+      console.debug("something is wrong!")
       throw new Error()
     }
     if(!result.hasOwnProperty("palette") || !result.hasOwnProperty("base") ||
@@ -217,9 +206,10 @@ function findInConfig(path, type) {
 
 /**
  * find value of given path inside current description default value
+ * throw Error if path not found or no value.default property to the element with given path
  */
 function findInDesc(path) {
-  let appState = lastElement(storage.getState().form.app_state)
+  let appState = lastElementOf(storage.getState().form.app_state)
   let form = storage.getState().form.description[appState].form
   form.forEach(element => {
     if(element.path === path) {

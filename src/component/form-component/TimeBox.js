@@ -6,8 +6,8 @@ import { TimePicker } from "@progress/kendo-dateinputs-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
-import nullInfo from  "../../util/nullableInfo"
-import  ActionList  from "../../reducer/actionList"
+import { nullInfo } from "../../util/infoChecker"
+import ActionList  from "../../reducer/actionList"
 
 class TimeBox extends React.Component {
 

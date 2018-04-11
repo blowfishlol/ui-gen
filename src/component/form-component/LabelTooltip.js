@@ -6,7 +6,7 @@ import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import Label from "./Label"
 
 import { getElementRefs } from "../../util/formDataGet"
-import { labelCheck } from "../../util/InfoChecker"
+import { labelCheck } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
 
 class LabelTooltip extends React.Component{

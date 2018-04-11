@@ -6,6 +6,7 @@ import { DropDownList } from "@progress/kendo-react-dropdowns"
 import PageNavigator from "./PageNavigator"
 
 import { setByIndex } from "../../util/formDataGet"
+import { lastElementOf } from "../../util/toolbox"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
 
@@ -25,10 +26,6 @@ class FormSelector extends React.Component {
     this.prepareFormData()
   }
 
-  lastElementOf(arr) {
-    return arr[arr.length - 1]
-  }
-
   getDefaultDescription() {
     if(this.props.currentConfig.hasOwnProperty("configContent")) {
       if(this.props.currentConfig.configContent.hasOwnProperty("description")) {
@@ -37,7 +34,7 @@ class FormSelector extends React.Component {
         }
       }
     }
-    return this.lastElementOf(this.props.descriptions).id
+    return lastElementOf(this.props.descriptions).id
   }
 
   getSelectedDescription() {

@@ -6,8 +6,8 @@ import { DropDownList } from "@progress/kendo-react-dropdowns"
 import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
-import nullInfo from  "../../util/nullableInfo"
-import  ActionList  from "../../reducer/actionList"
+import { nullInfo } from "../../util/infoChecker"
+import ActionList  from "../../reducer/actionList"
 
 class DropDownBox extends React.Component {
 

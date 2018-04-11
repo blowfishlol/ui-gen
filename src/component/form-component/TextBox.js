@@ -4,10 +4,10 @@ import { compose } from "recompose"
 
 import LabelTooltip from "./LabelTooltip"
 
-import { placeholderCheck } from "../../util/InfoChecker"
-import nullInfo from  "../../util/nullableInfo"
+import { placeholderCheck } from "../../util/infoChecker"
+import { nullInfo } from "../../util/infoChecker"
 import get from "../../util/formDataGet"
-import  ActionList  from "../../reducer/actionList"
+import ActionList  from "../../reducer/actionList"
 
 class TextBox extends React.Component {
 
