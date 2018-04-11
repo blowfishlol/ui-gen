@@ -106,7 +106,7 @@ export default function reducer(state = defaultState, action) {
    *     string  type
    *   }
    * }
-   **/
+   */
   if(action.type === ActionList.SET_DATA) {
     return {
       ...state,
@@ -126,7 +126,7 @@ export default function reducer(state = defaultState, action) {
    *          value, (value that desired to be stored in designated path)
    *   number index
    * }
-   **/
+   */
   } else if(action.type === ActionList.SET_DATA_BY_INDEX) {
     return {
       ...state,
@@ -143,7 +143,7 @@ export default function reducer(state = defaultState, action) {
    * Object {
    *   string path
    * }
-   **/
+   */
   } else if(action.type === ActionList.POP_DATA) {
     return {
       ...state,
@@ -161,7 +161,7 @@ export default function reducer(state = defaultState, action) {
    * Object {
    *   number index
    * }
-   **/
+   */
   } else if(action.type === ActionList.POP_DATA_BY_INDEX) {
     return {
       ...state,
@@ -172,7 +172,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * JSON Object containing config data
-   **/
+   */
   } else if(action.type === ActionList.SET_CONFIG) {
     return {
       ...state,
@@ -181,7 +181,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * JSON Array containing description data
-   **/
+   */
   } else if(action.type === ActionList.SET_DESCRIPTION) {
     return {
       ...state,
@@ -195,7 +195,7 @@ export default function reducer(state = defaultState, action) {
    * Object {
    *   number index
    * }
-   **/
+   */
   } else if(action.type === ActionList.PUSH_APP_STATE) {
     return {
       ...state,
@@ -209,7 +209,7 @@ export default function reducer(state = defaultState, action) {
    * Object {
    *   number index (represent how many index will be pop out of the stack)
    * }
-   **/
+   */
   } else if(action.type === ActionList.POP_APP_STATE) {
     return {
       ...state,
@@ -220,7 +220,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * [empty]
-   **/
+   */
   } else if(action.type === ActionList.CLEAR_STATE) {
     return {
       ...state,
@@ -229,7 +229,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * boolean containing the flag
-   **/
+   */
   } else if(action.type === ActionList.SET_NEW_FORM_FLAG) {
     return {
       ...state,
@@ -238,7 +238,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * boolean containing the flag
-   **/
+   */
   } else if(action.type === ActionList.ALLOW_JUMP) {
     return {
       ...state,
@@ -247,7 +247,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * number containing desired file id
-   **/
+   */
   } else if(action.type === ActionList.ADD_EXT_FILE_REF) {
     return {
       ...state,
@@ -256,7 +256,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * number containing desired file id
-   **/
+   */
   } else if(action.type === ActionList.REMOVE_EXT_FILE_REF) {
     return {
       ...state,
@@ -267,7 +267,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * number containing desired file id
-   **/
+   */
   } else if(action.type === ActionList.ADD_REMOVED_EXT_FILE_REF) {
     return {
       ...state,
@@ -276,7 +276,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * HTML ref containing reference to a rendered <Label> element
-   **/
+   */
   } else if(action.type === ActionList.ADD_ELELEMENT_REF) {
     return {
       ...state,
@@ -286,7 +286,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * number containing index of element_refs desired to be deleted
-   **/
+   */
   } else if(action.type === ActionList.REMOVE_ELEMENT_REF) {
     return {
       ...state,
@@ -297,7 +297,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to partially clear reducer data
-   **/
+   */
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {
       ...state,
@@ -311,7 +311,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to reset this reducer back to default
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIG_SAVED || action.type === ActionList.ON_BACK_PRESSED_CONFIG ||
             action.type === ActionList.ON_LOGOUT) {
     return defaultState

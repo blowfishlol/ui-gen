@@ -9,7 +9,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * string containing window title
-   **/
+   */
   if(action.type === ActionList.SET_WINDOW_TITLE) {
     return {
       ...state,
@@ -18,7 +18,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * string containing windo body
-   **/
+   */
   } else if(action.type === ActionList.SET_WINDOW_CONTENT) {
     return {
       ...state,
@@ -28,7 +28,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to reset this reducer back to default
-   **/
+   */
   } else if(action.type === ActionList.SET_WINDOW_DEFAULT) {
     return defaultState
   } else {

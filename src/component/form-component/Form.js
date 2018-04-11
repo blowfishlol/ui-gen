@@ -23,8 +23,8 @@ import ActionList from "../../reducer/actionList"
 
 class Form extends Component {
   render() {
-    var groups = []
-    var elements = this.props.form.map(element => {
+    let groups = []
+    let elements = this.props.form.map(element => {
       if(!element.hasOwnProperty("type")) {
         return <ErrorBox key={element.path} message={'Invalid form file format "' + JSON.stringify(element) + '". Type is missing'} />
       } else if(!element.hasOwnProperty("path")) {
@@ -42,8 +42,8 @@ class Form extends Component {
         groups = groups.concat(element.group)
         groups = groups.filter((name, index) => groups.indexOf(name) === index) // -> NO DUPLICATE KEY
       }
-      var isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
-      var elementRendered
+      const isEvenChild = this.props.hasOwnProperty("evenChild") ? this.props.evenChild : false
+      let elementRendered
       switch(element.type) {
         case ComponentType.TEXT:     elementRendered = <TextBox form={element} />;                         break
         case ComponentType.NUMBER:   elementRendered = <NumberBox form={element} />;                       break

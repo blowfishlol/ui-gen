@@ -10,7 +10,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * not intended to be called manually
-   **/
+   */
   if(action.type === ActionList.ON_LOGIN_SUCCESS) {
     return {
       ...state,
@@ -20,7 +20,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * JSON Object containing config data (used in another reducer)
-   **/
+   */
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
     return {
       ...state,
@@ -31,7 +31,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * not intended to be called manually
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
     return {
       ...state,
@@ -41,7 +41,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * [empty]
-   **/
+   */
   } else if(action.type === ActionList.ON_GOTO_IMPORT_CONFIG) {
     return {
       ...state,
@@ -51,7 +51,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * [empty]
-   **/
+   */
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
     return {
       ...state,
@@ -66,7 +66,7 @@ export default function reducer(state = defaultState, action) {
    *
    * set the error message in this reducer, to be displayed
    * move the current position back to the point where the error triggered originally
-   **/
+   */
   } else if(action.type === ActionList.ON_LOGIN_FAIL) {
     return {
       ...state,
@@ -107,7 +107,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to reset this reducer back to default
-   **/
+   */
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState
   } else {

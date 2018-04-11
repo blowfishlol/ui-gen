@@ -23,7 +23,7 @@ export default function reducer(state = defaultState, action) {
    *   number id (user's id),
    *   string token
    * }
-   **/
+   */
   if(action.type === ActionList.FETCH_CONFIGS) {
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
@@ -41,7 +41,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [data from server]
    * not intended to be called manually
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIGS_FETCHED) {
     return {
       ...state,
@@ -60,7 +60,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * Object containing error message from server (used in another reducer)
    * not intended to be called manually
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIGS_FETCH_FAIL) {
     return {
       ...state,
@@ -69,7 +69,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * JSON Object containing config data
-   **/
+   */
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
     return {
       ...state,
@@ -78,7 +78,7 @@ export default function reducer(state = defaultState, action) {
   /**
    * @param (in action.payload)
    * string containing the new config config name
-   **/
+   */
   } else if(action.type === ActionList.CHANGE_CURRENT_CONFIG_NAME) {
     return {
       ...state,
@@ -94,7 +94,7 @@ export default function reducer(state = defaultState, action) {
    *   number id (user's id),
    *   string token
    * }
-   **/
+   */
   } else if(action.type === ActionList.DELETE_CONFIG) {
     axios.post(server + "/config/delete", action.payload)
       .then((response) => {
@@ -109,7 +109,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [data from server]
    * not intended to be called manually
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIG_DELETED) {
     return {
       ...state,
@@ -127,7 +127,7 @@ export default function reducer(state = defaultState, action) {
    *   token
    *   [config_id] (only for existing config)
    * }
-   **/
+   */
   } else if(action.type === ActionList.SAVE_CONFIG) {
     axios.post(server + "/config/create", action.payload)
       .then((response) => {
@@ -142,7 +142,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * not intended to be called manually
-   **/
+   */
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
     return {
       ...state,
@@ -152,7 +152,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to clear curent active config
-   **/
+   */
   } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
     return {
       ...state,
@@ -162,7 +162,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * [empty]
    * used to reset this reducer back to default
-   **/
+   */
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState
   } else {

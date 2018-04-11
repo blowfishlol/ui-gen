@@ -37,7 +37,7 @@ class ArrayInput extends React.Component {
       return <ErrorBox message="Content type is missing" />
     }
 
-    var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
+    let elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
       return <div key={this.props.form.path + "." + index} className="multipleElementComponent">
         <Form
           form={[{

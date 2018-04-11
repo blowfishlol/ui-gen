@@ -21,7 +21,7 @@ class DateBox extends React.Component {
 
   render() {
     return <div className="k-form-field ">
-    <LabelTooltip form={this.props.form} />
+      <LabelTooltip form={this.props.form} />
       <DatePicker
         format={"dd MMMM yyyy"}
         value={get(this.props.form.path, this.props.form.type)}

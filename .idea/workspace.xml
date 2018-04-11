@@ -2,21 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b56da7c4-5f83-4eff-922e-1f077f6205c5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/style/Header.css" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" afterPath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/BlankSpace.js" afterPath="$PROJECT_DIR$/src/component/BlankSpace.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/Window.js" afterPath="$PROJECT_DIR$/src/component/Window.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" afterPath="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/form-component/DateBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/DateBox.js" />
       <change beforePath="$PROJECT_DIR$/src/component/form-component/Form.js" afterPath="$PROJECT_DIR$/src/component/form-component/Form.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/UploadBox.css" afterPath="$PROJECT_DIR$/src/style/UploadBox.css" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/UploadBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/UploadBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/colorDef.js" afterPath="$PROJECT_DIR$/src/component/form-component/colorDef.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplay.js" afterPath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplay.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" afterPath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/form-component/Label.js" afterPath="$PROJECT_DIR$/src/component/form-component/Label.js" />
       <change beforePath="$PROJECT_DIR$/src/component/nav-component/Header.js" afterPath="$PROJECT_DIR$/src/component/nav-component/Header.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js" afterPath="$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" afterPath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/nav-component/Navigator.js" afterPath="$PROJECT_DIR$/src/component/nav-component/Navigator.js" />
       <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/style.css" afterPath="$PROJECT_DIR$/src/style/style.css" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/configReducer.js" afterPath="$PROJECT_DIR$/src/reducer/configReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/descriptionReducer.js" afterPath="$PROJECT_DIR$/src/reducer/descriptionReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/dialogReducer.js" afterPath="$PROJECT_DIR$/src/reducer/dialogReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/formReducer.js" afterPath="$PROJECT_DIR$/src/reducer/formReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/navigatorReducer.js" afterPath="$PROJECT_DIR$/src/reducer/navigatorReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/userReducer.js" afterPath="$PROJECT_DIR$/src/reducer/userReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/windowReducer.js" afterPath="$PROJECT_DIR$/src/reducer/windowReducer.js" />
+      <change beforePath="$PROJECT_DIR$/src/util/formDataGet.js" afterPath="$PROJECT_DIR$/src/util/formDataGet.js" />
       <change beforePath="$PROJECT_DIR$/src/util/server.js" afterPath="$PROJECT_DIR$/src/util/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,14 +34,126 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Form.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
+      <file leaf-file-name="ColorPicker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/DateBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/example.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ToggleBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/ToggleBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimeBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/TimeBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formDataGet.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/formDataGet.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#158#263#0" expanded="false" />
+                <element signature="n#!!block;n#getElementRefs#0" expanded="false" />
+                <element signature="n#!!block;n#defaultValue#0" expanded="false" />
+                <element signature="n#!!block;n#fetchAllData#0" expanded="false" />
+                <element signature="n#!!block;n#getNoDispatch#0" expanded="false" />
+                <element signature="n#!!block;n#setByIndex#0" expanded="false" />
+                <element signature="n#!!block;n#check#0" expanded="false" />
+                <element signature="e#2482#2597#0" expanded="false" />
+                <element signature="n#!!block;n#isObject#0" expanded="false" />
+                <element signature="n#!!block;n#lastElement#0" expanded="false" />
+                <element signature="n#!!block;n#mergeDeep#0" expanded="false" />
+                <element signature="n#!!block;n#validateType#0" expanded="false" />
+                <element signature="n#!!block;n#findInConfig#0" expanded="false" />
+                <element signature="n#!!block;n#findInDesc#0" expanded="false" />
+                <element signature="n#!!block;n#set#0" expanded="false" />
+                <element signature="n#!!block;n#get#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reducer/formReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-850">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DropDownBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/DropDownBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reducer/configReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="100" column="65" lean-forward="false" selection-start-line="100" selection-start-column="65" selection-end-line="100" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/UploadBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,17 +178,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js" />
         <option value="$PROJECT_DIR$/src/style.css" />
-        <option value="$PROJECT_DIR$/src/util/server.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplay.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" />
         <option value="$PROJECT_DIR$/src/style/Header.css" />
         <option value="$PROJECT_DIR$/src/style/style.css" />
         <option value="$PROJECT_DIR$/src/component/nav-component/Header.js" />
+        <option value="$PROJECT_DIR$/src/component/Window.js" />
+        <option value="$PROJECT_DIR$/src/util/server.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/Form.js" />
+        <option value="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" />
+        <option value="$PROJECT_DIR$/src/component/form-component/DateBox.js" />
+        <option value="$PROJECT_DIR$/src/reducer/configReducer.js" />
+        <option value="$PROJECT_DIR$/src/component/form-component/ToggleBox.js" />
+        <option value="$PROJECT_DIR$/src/util/formDataGet.js" />
       </list>
     </option>
   </component>
@@ -230,20 +351,21 @@
       <updated>1522155738272</updated>
       <workItem from="1522155742646" duration="912000" />
       <workItem from="1522996032493" duration="3203000" />
+      <workItem from="1523430808921" duration="3787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4115000" />
+    <option name="totallyTimeSpent" value="7902000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
+    <frame x="411" y="-4" width="1368" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -256,6 +378,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -266,35 +389,17 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/reducer/formReducer.js">
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/DropDownBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#25#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -303,7 +408,7 @@
         <state relative-caret-position="-306">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -312,37 +417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/UploadBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/nav-component/FormSelector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="97" column="35" lean-forward="false" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -351,16 +425,8 @@
         <state relative-caret-position="-8">
           <caret line="24" column="64" lean-forward="false" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -369,7 +435,7 @@
         <state relative-caret-position="-8">
           <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -379,7 +445,7 @@
         <state relative-caret-position="170">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -388,7 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-442">
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="10" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -405,6 +470,52 @@
         <state relative-caret-position="340">
           <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding>
+            <element signature="e#0#25#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/Window.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-358">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#25#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/nav-component/FormSelector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="97" column="35" lean-forward="false" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/evaluator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
@@ -412,10 +523,132 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        <state relative-caret-position="595">
+          <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/CheckBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/ArrayInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="39" column="7" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/DropDownBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/DateBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/example.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducer/configReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="100" column="65" lean-forward="false" selection-start-line="100" selection-start-column="65" selection-end-line="100" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/UploadBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/ToggleBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/TimeBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducer/formReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/formDataGet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#158#263#0" expanded="false" />
+            <element signature="n#!!block;n#getElementRefs#0" expanded="false" />
+            <element signature="n#!!block;n#defaultValue#0" expanded="false" />
+            <element signature="n#!!block;n#fetchAllData#0" expanded="false" />
+            <element signature="n#!!block;n#getNoDispatch#0" expanded="false" />
+            <element signature="n#!!block;n#setByIndex#0" expanded="false" />
+            <element signature="n#!!block;n#check#0" expanded="false" />
+            <element signature="e#2482#2597#0" expanded="false" />
+            <element signature="n#!!block;n#isObject#0" expanded="false" />
+            <element signature="n#!!block;n#lastElement#0" expanded="false" />
+            <element signature="n#!!block;n#mergeDeep#0" expanded="false" />
+            <element signature="n#!!block;n#validateType#0" expanded="false" />
+            <element signature="n#!!block;n#findInConfig#0" expanded="false" />
+            <element signature="n#!!block;n#findInDesc#0" expanded="false" />
+            <element signature="n#!!block;n#set#0" expanded="false" />
+            <element signature="n#!!block;n#get#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -24,6 +24,10 @@ export function windowClose() {
 
 class WindowComponent extends React.Component {
 
+	/**
+	 * Temporary method to set default window to invisible
+	 * As adding props visible={false} to it make it unable to open
+	 */
 	componentDidMount() {
 		$("[data-role='window']").each(function (index) {
 			$(this).data("kendoWindow").close()

@@ -27,7 +27,7 @@ ReactDOM.render(<Provider store={storage}>
 </Provider>, document.getElementById("root"))
 registerServiceWorker()
 
-var size = 21
+var size = 20
 var buffer = ""
 
 for(let i = 0; i < size; i++) {
@@ -46,6 +46,6 @@ function isPrintCond(i, j, min, max) {
   // return i === j || i === 0 || j === 0 || i === max || j === max || i+j === max
   // return Math.pow(i - max/2, 2) + Math.pow(j - max/2, 2) < Math.pow(max/2, 2)
   // return Math.floor(max/2) >= Math.abs(Math.floor(max/2) - i) + Math.abs(Math.floor(max/2) - j)
-  // return min > max || !(min <= i && i <= max) || !(min <= j && j <= max) ? false : i === min || i === max || j === min || j === max || isPrintCond(i, j, min+2, max-2)
-  return (min > max || !(min <= i && i <= max) || !(min <= j && j <= max)) && !(i === min && j === min-1) ? false : ((i === min || i === max || j === min || j === max || (i === min && j === min-1)) && !(i === min+1 && j === min)) || isPrintCond(i, j, min+2, max-2)
+  return min > max || !(min <= i && i <= max) || !(min <= j && j <= max) ? false : i === min || i === max || j === min || j === max || isPrintCond(i, j, min+2, max-2)
+  // return (min > max || !(min <= i && i <= max) || !(min <= j && j <= max)) && !(i === min && j === min-1) ? false : ((i === min || i === max || j === min || j === max || (i === min && j === min-1)) && !(i === min+1 && j === min)) || isPrintCond(i, j, min+2, max-2)
 }

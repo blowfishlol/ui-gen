@@ -68,9 +68,10 @@ const mapDispatchToProps = function(dispatch) {
       windowClose()
       dispatch({type: ActionList.ON_BACK_PRESSED_CONFIG})
     },
-    logout: () => dispatch({
-      type: ActionList.ON_LOGOUT
-    })
+    logout: () => {
+      windowClose()
+      dispatch({type: ActionList.ON_LOGOUT})
+    }
   }
 }
 

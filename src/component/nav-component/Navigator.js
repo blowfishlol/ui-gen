@@ -49,7 +49,6 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-
   }
 }
 
