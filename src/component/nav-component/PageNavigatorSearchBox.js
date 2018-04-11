@@ -14,7 +14,7 @@ class PageNavigatorSearchBox extends React.Component {
   onSearchBoxSelectedListener(evt) {
     let target = this.props.elements.find(element => element.props.label === evt.dataItem)
     console.debug(target)
-    scrollToComponent(target, { offset: -100, align: 'top', duration: 500, ease:'inExpo'})
+    scrollToComponent(target, {offset: -100, align: "top", duration: 1500, ease: "out-quart"})
     // window.scrollTo(500, 500)
     // scroller.scrollTo(target, {
     //   duration: 1500,
