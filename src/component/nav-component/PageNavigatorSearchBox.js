@@ -6,20 +6,28 @@ import kendo from "@progress/kendo-ui"
 import { AutoComplete } from "@progress/kendo-dropdowns-react-wrapper"
 
 import scrollToComponent from "react-scroll-to-component"
+// import Scroll, { Element, scroller } from "react-scroll"
 import ActionList from "../../reducer/actionList"
 
 class PageNavigatorSearchBox extends React.Component {
 
   onSearchBoxSelectedListener(evt) {
-    var target = this.props.elements.find(element => element.props.label === evt.dataItem)
-    scrollToComponent(target, {offset: -100, align: "top", duration: 1500, ease: "out-quart"})
+    let target = this.props.elements.find(element => element.props.label === evt.dataItem)
+    console.debug(target)
+    scrollToComponent(target, { offset: -100, align: 'top', duration: 500, ease:'inExpo'})
+    // window.scrollTo(500, 500)
+    // scroller.scrollTo(target, {
+    //   duration: 1500,
+    //   delay: 100,
+    //   smooth: true,
+    //   offset: 100
+    // })
   }
 
   render() {
-    var dataSource = new kendo.data.DataSource({
+    let dataSource = new kendo.data.DataSource({
         data: this.props.labels
     })
-    // console.debug("elements registered:", this.props.labels.length, this.props.labels)
     return <div>
       <AutoComplete
         dataSource={dataSource}

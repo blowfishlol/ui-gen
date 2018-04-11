@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
+// import Scroll, { Element, scroller } from "react-scroll"
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import Label from "./Label"
 
@@ -25,6 +26,7 @@ class LabelTooltip extends React.Component{
 		}
 		let index = getElementRefs().findIndex(element => element.props.path === this.props.form.path + "/label")
     if(index === -1) {
+			console.debug(element)
 			this.props.addElement(element)
     }
   }
@@ -37,12 +39,13 @@ class LabelTooltip extends React.Component{
 	}
 
   render() {
+	  let label = <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} path={this.props.form.path + "/label"}/>
 		if(this.props.form.tooltip) {
-		  return <Tooltip content={this.props.form.tooltip} position={"asd ngasal"}>
-		    <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} path={this.props.form.path + "/label"}/>
+		  return <Tooltip content={this.props.form.tooltip} position={""}>
+        {label}
 		  </Tooltip>
 		} else {
-		  return <Label ref={this.refCallback} label={labelCheck(this.props.form.label)} path={this.props.form.path + "/label"}/>
+      return <div>{label}</div>
 		}
   }
 }
