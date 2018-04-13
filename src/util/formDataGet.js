@@ -1,7 +1,8 @@
 import storage from "../storage"
+import { isObject, lastElementOf, mergeDeep } from "./toolbox"
+import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "./activeDataGet"
 import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
-import { isObject, lastElementOf, mergeDeep } from "./toolbox"
 
 const COLOR_DEFAULT = {
   palette : "red",
@@ -10,10 +11,6 @@ const COLOR_DEFAULT = {
   hue2: "50",
   hue3: "50",
   contrastDefaultColor: ""
-}
-
-export function getElementRefs() {
-  return storage.getState().form.element_refs
 }
 
 /**
@@ -40,12 +37,7 @@ export function defaultValue(type) {
  * fetch data from all form.data indexes merged together into a single object
  */
 export function fetchAllData() {
-  const data = storage.getState().form.data
-  let merged = {}
-  data.forEach(element => {
-    merged = mergeDeep(merged, element)
-  })
-  return merged
+  return storage.getState().form.data
 }
 
 /**
@@ -64,29 +56,6 @@ export function getNoDispatch(path, type) {
         return defaultValue(type)
       }
     }
-  }
-}
-
-/**
- * find data from current config (form.config)
- * and set the value to a specific index in the form.data
- */
-export function setByIndex(path, type, index) {
-  let result
-  try {
-    result = findInConfig(path, type)
-  } catch(error) {
-  }
-  // result = result ? result : defaultValue(type)
-  if(result !== undefined) {
-    storage.dispatch({
-      type: ActionList.SET_DATA_BY_INDEX,
-      payload: {
-        "path": path,
-        "value": result,
-        "index": index
-      }
-    })
   }
 }
 
@@ -201,7 +170,7 @@ function validateType(result, type) {
  * then validate the value data
  */
 function findInConfig(path, type) {
-  let result = get(storage.getState().form.config, path.split("."), type)
+  let result = get(getSelectedConfig(), path, type)
   return validateType(result, type)
 }
 
@@ -209,19 +178,13 @@ function findInConfig(path, type) {
  * find value of given path inside current description default value
  * throw Error if path not found or no value.default property to the element with given path
  */
-function findInDesc(path) {
-  let appState = lastElementOf(storage.getState().form.app_state)
-  let form = storage.getState().form.description[appState].form
-  form.forEach(element => {
-    if(element.path === path) {
-      if(element.hasOwnProperty("value")) {
-        if(element.value.hasOwnProperty("default")) {
-          return element.value.default
-        }
-      }
-    }
-  })
-  throw new Error()
+function findInDesc(path, type) {
+  if(type === ComponentType.CHECKBOX) {
+    let childPath = path[path.length - 1]
+    path = path.slice(0, path.length - 1)
+    return get(getSelectedDescription(), path, type).value.contents.find(c => c.value === childPath).checked
+  }
+  return get(getSelectedDescription(), path, type).value.default
 }
 
 /**
@@ -231,10 +194,10 @@ function findInDesc(path) {
 function set(path, type) {
   let result
   try {
-    result = findInConfig(path, type)
+    result = findInConfig(path.split("."), type)
   } catch(error) {
     try {
-      result = findInDesc(path)
+      result = findInDesc(path.split("."), type)
     } catch(error2) {
     }
   }

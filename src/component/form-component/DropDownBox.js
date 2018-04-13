@@ -13,13 +13,13 @@ class DropDownBox extends React.Component {
 
   render() {
     return <div className="k-form-field ">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       <DropDownList
-        data={this.props.form.value.contents}
+        data={this.props.desc.element.value.contents}
         textField={"text"}
         valueField={"value"}
-        value={get(this.props.form.path, this.props.form.type)}
-        onChange={(evt) => this.props.updateState(this.props.form.path, evt.target.value, nullInfo(this.props.form))} />
+        value={get(this.props.path, this.props.desc.element.type)}
+        onChange={(evt) => this.props.updateState(this.props.path, evt.target.value, nullInfo(this.props.desc.element))} />
     </div>
   }
 }

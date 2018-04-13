@@ -20,12 +20,12 @@ class TimeBox extends React.Component {
 
   render() {
     return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       <TimePicker
-        value={get(this.props.form.path, this.props.form.type)}
+        value={get(this.props.path, this.props.desc.element.type)}
         dateInput={true}
         format={"HH:mm"}
-        change={evt => this.props.updateState(this.props.form.path, this.timeFormat(evt), nullInfo(this.props.form))}/>
+        change={evt => this.props.updateState(this.props.path, this.timeFormat(evt), nullInfo(this.props.desc.element))}/>
     </div>
   }
 }

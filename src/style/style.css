@@ -8,7 +8,10 @@
 }
 
 .k-form {
-  padding: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .k-form-field {
@@ -16,6 +19,7 @@
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 0px;
+  margin-bottom: -3px !important;
 }
 
 .k-state-disabled {
@@ -27,31 +31,47 @@
 }
 
 .k-shadow {
-  margin-bottom: 5px;
+  margin: 0px;
+  padding-top: 5px;
+  padding-bottom: 20px;
 }
 
 .mapChild {
-  margin-top: 15px;
-  margin-bottom: 10px;
+  padding-top: 2px;
+  padding-bottom: 10px;
 }
 
 .multipleElementComponent {
   position:relative;
 }
 
-.deleteElementButton {
+.deleteElementButtonMap {
+  color: #ffffff;
   font-size: 12px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
   height: 35px;
   width: 35px;
-  margin: 5px;
+  margin-bottom: 10px;
+  margin-top: -5px;
   padding: 0px;
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
+  overflow: hidden;
+  outline:none;
+}
+
+.deleteElementButtonArray {
+  font-size: 12px;
+  height: 35px;
+  width: 35px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  padding: 0px;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
   overflow: hidden;
   outline:none;
 }

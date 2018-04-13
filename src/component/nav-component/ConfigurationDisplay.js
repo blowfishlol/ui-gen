@@ -24,7 +24,7 @@ class ConfigurationDisplay extends React.Component {
         {configTableHeader}
         <ErrorBox message={this.props.errorMessage} />
       </div>
-    } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched) {
+    } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched || !this.props.isTemplateFetched) {
       return <div>
         {configTableHeader}
         <div className="col-sm-12 alert alert-info">
@@ -50,7 +50,7 @@ class ConfigurationDisplay extends React.Component {
       {configTable}
       <BlankSpace space="75px" />
       <div className="k-form-field navFooter">
-        <button className="k-button k-primary" onClick={() => this.props.setSelectedConfig(this.props.default_config)}>NEW CONFIG</button>
+        <button className="k-button k-primary" onClick={() => this.props.newConfig()}>NEW CONFIG</button>
         <button className="k-button" onClick={() => this.props.gotoImportConfigForm()}>IMPORT CONFIG</button>
       </div>
     </div>
@@ -63,9 +63,8 @@ const mapStateToProps = function(storage) {
     username: storage.user.username,
     token: storage.user.token,
     configs: storage.config.configs,
-    default_config: storage.config.default_config,
-    descriptions: storage.description.descriptions,
     isConfigFetched: storage.config.fetched,
+    isTemplateFetched: storage.template.fetched,
     isDescriptionFetched: storage.description.fetched,
     errorMessage: storage.nav.error_message
   }
@@ -87,9 +86,8 @@ const mapDispatchToProps = function(dispatch) {
         "token": token
       }
     }),
-    setSelectedConfig: (config) => dispatch({
-      type: ActionList.ASSIGN_CONFIG,
-      payload: config
+    newConfig: () => dispatch({
+      type: ActionList.ADD_NEW_CONFIG
     }),
     gotoImportConfigForm: () => dispatch({
       type: ActionList.ON_GOTO_IMPORT_CONFIG

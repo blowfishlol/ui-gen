@@ -6,6 +6,7 @@ import ActionList from "./actionList"
 
 const defaultState = {
   descriptions: [],
+  selected_id: 0,
   fetched: false
 }
 
@@ -55,6 +56,11 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       fetched: true
+    }
+  } else if(action.type === ActionList.ASSIGN_DESCRIPTION) {
+    return {
+      ...state,
+      selected_id: action.payload
     }
   /**
    * @param (in action.payload)

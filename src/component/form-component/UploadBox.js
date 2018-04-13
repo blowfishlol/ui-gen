@@ -60,10 +60,10 @@ class UploadBox extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      label: labelCheck(this.props.form.label),
-      path: this.props.form.path,
+      label: labelCheck(this.props.desc.label),
+      path: this.props.path,
       names: [],
-      ids: get(this.props.form.path, this.props.form.type),
+      ids: get(this.props.path, this.props.desc.element.type),
       files: []
     }
     this.async = {
@@ -73,7 +73,7 @@ class UploadBox extends React.Component {
       saveField: "file"
     }
     this.clickedImageId = -1
-    this.idsFromDB = get(this.props.form.path, this.props.form.type)
+    this.idsFromDB = get(this.props.path, this.props.desc.element.type)
 
     this.props.addExtFileRef(this.state.ids)
     this.state.ids.forEach(id => {
@@ -107,7 +107,7 @@ class UploadBox extends React.Component {
       ids: this.state.ids.concat(event.response.data),
       files: this.state.files.concat(event.files[0])
     })
-    this.props.updateState(this.props.form.path, this.state.ids, nullInfo(this.props.form))
+    this.props.updateState(this.props.path, this.state.ids, nullInfo(this.props.desc.element))
     this.props.addExtFileRef(event.response.data)
   }
 
@@ -150,7 +150,7 @@ class UploadBox extends React.Component {
         return file.id !== this.clickedImageId
       })
     })
-    this.props.updateState(this.props.form.path, this.state.ids)
+    this.props.updateState(this.props.path, this.state.ids)
     this.props.removeExtFileRef(this.clickedImageId)
     this.props.addRemovedExtFileRef(this.clickedImageId)
   }
@@ -161,17 +161,17 @@ class UploadBox extends React.Component {
       storedFile = this.state.files.map((file, index) => {
         return <img
           width={100} height={100}
-          key={this.props.form.path+"."+index} id={this.props.form.path+"."+index}
+          key={this.props.path+"."+index} id={this.props.path+"."+index}
           className="img-thumbnail"
           src={server+ "/file/download/" + file.id + "?id=" + this.props.userId + "&token=" + this.props.token}
           alt=""
-          onError={() => this.setImageDefault(this.props.form.path+"."+index)}
+          onError={() => this.setImageDefault(this.props.path+"."+index)}
           onClick={() => this.onImageClickedListener(file)} />
       })
     }
 
     return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       <Upload
         className="col-*-3"
         async={this.async}

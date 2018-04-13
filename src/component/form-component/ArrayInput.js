@@ -13,53 +13,90 @@ import ActionList from "../../reducer/actionList"
 
 class ArrayInput extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.onDeleteBtnClickedListener = this.onDeleteBtnClickedListener.bind(this)
+  }
+
   nextPath() {
-    return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
+    return this.props.path + "." + get(this.props.path, this.props.desc.element.type).length
   }
 
   onAddBtnClickedListener() {
-    this.props.updateState(this.nextPath(), defaultValue(this.props.form.child_content.type))
+    this.props.updateState(this.nextPath(), defaultValue(this.props.desc.element.child.type))
   }
 
   onDeleteBtnClickedListener(index) {
-    const currentData = get(this.props.form.path, this.props.form.type)
-    this.props.updateState(this.props.form.path,
+    const currentData = get(this.props.path, this.props.desc.element.type)
+    this.props.updateState(this.props.path,
                            currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)),
-                           nullInfo(this.props.form))
+                           nullInfo(this.props.desc.element))
+  }
+
+  generateComponentObject() {
+    let data = get(this.props.path, this.props.desc.element.type)
+    let childDesc = {}
+    for(let i = 0; i < data.length; i++) {
+      childDesc[i+""] = {
+        label: "",
+        info: "",
+        element: {
+          type: this.props.desc.element.child,
+          nullable: false,
+          value: {},
+          layout: {
+            mobile: 11,
+            tablet: 11,
+            desktop: 11
+          }
+        }
+      }
+    }
+    return {
+      label: "",
+      info: "",
+      child: childDesc
+    }
   }
 
   render() {
-    if(!this.props.hasOwnProperty("form")) {
-      return <ErrorBox message="Config is missing" />
-    } else if(!this.props.form.hasOwnProperty("child_content")) {
+    if(!this.props.desc.element.hasOwnProperty("child")) {
       return <ErrorBox message="Content is missing" />
-    } else if(!this.props.form.child_content.hasOwnProperty("type")) {
-      return <ErrorBox message="Content type is missing" />
+    } else if(typeof this.props.desc.element.child !== "string") {
+      return <ErrorBox message={"Invalid content " + this.props.desc.child.toString()} />
     }
 
-    let elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
-      return <div key={this.props.form.path + "." + index} className="multipleElementComponent">
-        <Form
-          form={[{
-            label: "",
-            type: this.props.form.child_content.type,
-            path: this.props.form.path + "." + index,
-            layout: {
-              mobile: 12,
-              tablet: 12,
-              desktop: 12
-            }
-          }]} />
-        <BlankSpace space="35px" />
-        <button className="k-button deleteElementButton" onClick={() => this.onDeleteBtnClickedListener(index)}>X</button>
-      </div>
-    })
+    // let elements = get(this.props.path, this.props.desc.element.type).map((element, index) => {
+    //   return <div key={this.props.path + "." + index} className="multipleElementComponent">
+    //     <Form
+    //       path={this.props.path}
+    //       component={
+    //         {
+    //           [index]: {
+    //             label: "",
+    //             type: this.props.desc.element.child,
+    //             value: {},
+    //             layout: {
+    //               mobile: 11,
+    //               tablet: 11,
+    //               desktop: 11
+    //             }
+    //           }
+    //         }
+    //       } />
+    //     <BlankSpace space="35px" />
+    //     <button className="k-button deleteElementButton" onClick={() => this.onDeleteBtnClickedListener(index)}>X</button>
+    //   </div>
+    // })
 
     return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
-      <div>
-        {elements}
-      </div>
+      <LabelTooltip desc={this.props.desc} />
+      <Form
+        path={this.props.path}
+        component={this.generateComponentObject()}
+        array={true}
+        onDelete={this.onDeleteBtnClickedListener} />
+      <BlankSpace space="10px" />
       <button className="k-button k-primary" onClick={() => this.onAddBtnClickedListener()}>ADD</button>
     </div>
   }

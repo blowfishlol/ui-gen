@@ -6,9 +6,9 @@ export function placeholderCheck(value) {
   return value ? (value.hasOwnProperty("placeholder") ? value.placeholder : "" ) : ""
 }
 
-export function nullInfo(form) {
+export function nullInfo(element) {
   return {
-    isNullable: form.nullable,
-    type: form.type
+    isNullable: element.nullable,
+    type: element.type
   }
 }

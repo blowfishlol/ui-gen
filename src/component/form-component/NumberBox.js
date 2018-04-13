@@ -15,21 +15,21 @@ class NumberBox extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      value: get(this.props.form.path, this.props.form.type)
+      value: get(this.props.path, this.props.desc.element.type)
     }
   }
 
   render() {
     return <div className="k-form-field">
       <label>
-        <LabelTooltip form={this.props.form} />
+        <LabelTooltip desc={this.props.desc} />
         <input
           type="number"
           className="k-textbox k-widget k-numberictextbox"
-          placeholder={placeholderCheck(this.props.form.value)}
+          placeholder={placeholderCheck(this.props.desc.element.value)}
           value={this.state.value}
           onChange={evt => this.setState({value: evt.target.value})}
-          onBlur={evt => this.props.updateState(this.props.form.path, evt.target.value, nullInfo(this.props.form))} />
+          onBlur={evt => this.props.updateState(this.props.path, evt.target.value, nullInfo(this.props.desc.element))} />
       </label>
     </div>
   }

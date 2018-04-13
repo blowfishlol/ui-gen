@@ -39,7 +39,7 @@ const mapStateToProps = function(storage) {
 const mapDispatchToProps = (dispatch) => {
   return {
     addElement: (element) => dispatch({
-      type: ActionList.ADD_ELELEMENT_REF,
+      type: ActionList.ADD_ELEMENT_REF,
       payload: element
     })
   }

@@ -4,11 +4,15 @@ import { compose } from "recompose"
 
 import { DropDownList } from "@progress/kendo-react-dropdowns"
 import PageNavigator from "./PageNavigator"
+import Form from "../form-component/Form"
 
 import { setByIndex } from "../../util/formDataGet"
+import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "../../util/activeDataGet"
 import { lastElementOf } from "../../util/toolbox"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
+
+import sample from "../../example"
 
 class FormSelector extends React.Component {
 
@@ -16,31 +20,22 @@ class FormSelector extends React.Component {
     super(props)
     this.state = {
       isEditNameMode: false,
-      configName: this.props.currentConfig.name,
-      selectedDescriptionId: this.getDefaultDescription()
+      configName: this.getSelectedConfig().name
     }
-    this.props.setFormConfig(this.props.currentConfig.configContent.data)
-    if(this.props.currentConfig.configContent.hasOwnProperty("version")) {
-      this.props.setNewFormFlag(false)
-    }
-    this.prepareFormData()
+
+    this.props.assignDescription(this.getDefaultDescription()) // >.<
   }
 
   getDefaultDescription() {
-    if(this.props.currentConfig.hasOwnProperty("configContent")) {
-      if(this.props.currentConfig.configContent.hasOwnProperty("description")) {
-        if(this.props.currentConfig.configContent.description.hasOwnProperty("id")) {
-          return this.props.currentConfig.configContent.description.id
+    let currentConfig = this.getSelectedConfig()
+    if(currentConfig.hasOwnProperty("configContent")) {
+      if(currentConfig.configContent.hasOwnProperty("description")) {
+        if(currentConfig.configContent.description.hasOwnProperty("id")) {
+          return currentConfig.configContent.description.id
         }
       }
     }
     return lastElementOf(this.props.descriptions).id
-  }
-
-  getSelectedDescription() {
-    return this.props.descriptions.find(element => {
-      return this.state.selectedDescriptionId === element.id
-    }).data
   }
 
   isRendered(obj) {
@@ -48,28 +43,6 @@ class FormSelector extends React.Component {
       return evaluator(obj.rendered)
     }
     return true
-  }
-
-  /**
-   * Have to be performed everytime this component re render
-   * otherwise some data may not be available (when it should be)
-   * on evaluate() call in PageNavigator
-   * or some old data / app_state may remain when changing description
-   * resulting on some unexpected behaviour
-   */
-  prepareFormData() {
-    this.props.cleanData()
-    this.props.cleanState()
-    this.props.setDescription(this.getSelectedDescription())
-    this.getSelectedDescription().forEach((page, index) => {
-      if(this.isRendered(page)) {
-        page.form.forEach(element => {
-          if(this.isRendered(element)) {
-            setByIndex(element.path, element.type, index)
-          }
-        })
-      }
-    })
   }
 
   onConfigNameChangedListener(evt) {
@@ -89,8 +62,18 @@ class FormSelector extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.selectedDescription !== this.props.selectedDescription) {
+      this.props.cleanData()
+    }
+  }
+
+  onDescriptionDropDownSelectedListener(index) {
+    this.props.assignDescription(this.props.description[index].id)
+  }
+
   render() {
-    var formSelectorHeader
+    let formSelectorHeader
     if(this.state.isEditNameMode) {
       formSelectorHeader = <div className="formSelectorHeader">
         <input
@@ -102,7 +85,7 @@ class FormSelector extends React.Component {
       </div>
     } else {
       formSelectorHeader = <h1 className="formSelectorHeader">
-        {this.props.currentConfig.name}
+        {this.getSelectedConfig().name}
         &nbsp;&nbsp;
         <button className="k-button" onClick={() => this.onConfigNameEditBtnClicked()}>EDIT</button>
       </h1>
@@ -118,56 +101,51 @@ class FormSelector extends React.Component {
                 data={this.props.descriptions}
                 textField={"version"}
                 valueField={"id"}
-                value={this.state.selectedDescriptionId}
-                onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    selectedDescriptionId: evt.target.value
-                  }, () => this.prepareFormData())
-                }} />
+                value={this.props.selectedDescription}
+                onChange={evt => this.onDescriptionSelectorSelectedListener(evt.target.value)} />
+            </td>
+          </tr>
+          <tr>
+            <td>Template&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+              trus di sini ada drop down ceritanya
             </td>
           </tr>
         </tbody>
       </table>
-      <PageNavigator descriptionId={this.state.selectedDescriptionId} configName={this.state.configName}/>
+      <p>ini button buat milih description</p>
+      <Form path="user" component={sample} />
     </div>
   }
 }
 
 const mapStateToProps = function(storage) {
   return {
-    currentConfig: storage.config.current_config,
-    descriptions: storage.description.descriptions
+    configs: storage.config.configs,
+    selectedConfig: storage.config.selected_id,
+    templates: storage.template.templates,
+    selectedTemplate: storage.template.selected_id,
+    descriptions: storage.description.descriptions,
+    selectedDescription: storage.description.selected_id
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setFormConfig: (config) => dispatch({
-      type: ActionList.SET_CONFIG,
-      payload: config
-    }),
-    setDescription: (desc) => dispatch({
-      type: ActionList.SET_DESCRIPTION,
-      payload: desc
-    }),
-    setNewFormFlag: (flag) => dispatch({
-      type: ActionList.SET_NEW_FORM_FLAG,
-      payload: flag
-    }),
     cleanData: () => dispatch({
-      type: ActionList.CLEAR_DATA,
-      payload: {
-      }
-    }),
-    cleanState: () => dispatch({
-      type: ActionList.CLEAR_STATE,
-      payload: {
-      }
+      type: ActionList.CLEAR_DATA
     }),
     changeConfigName: (name) => dispatch({
       type: ActionList.CHANGE_CURRENT_CONFIG_NAME,
       payload: name
+    }),
+    assignDescription: (id) => dispatch({
+      type: ActionList.ASSIGN_DESCRIPTION,
+      payload: id
+    }),
+    assignTemplate: (id) => dispatch({
+      type: ActionList.ASSIGN_TEMPLATE,
+      payload: id
     })
   }
 }

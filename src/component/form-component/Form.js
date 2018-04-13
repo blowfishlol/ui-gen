@@ -15,6 +15,7 @@ import ArrayInput from "./ArrayInput"
 import ErrorBox from "../ErrorBox"
 import ColorPicker from "./ColorPicker"
 
+import { clone } from "../../util/toolbox";
 import evaluator from "../../util/evaluator"
 import getLayoutString from "../../util/layoutProcessor"
 import { check } from "../../util/formDataGet"
@@ -22,7 +23,106 @@ import ComponentType from "../ComponentType"
 import ActionList from "../../reducer/actionList"
 
 class Form extends Component {
+
+  /**
+   * <Form path="user.properties.vehicle" component={*parent node*} />
+   */
+
+  filterEnumerableChild(node) {
+    Object.keys(node).forEach(key => {
+      if(!node[key].hasOwnProperty("element")) {
+        delete node[key]
+      }
+    })
+    return node
+  }
+
   render() {
+    const components = this.filterEnumerableChild(clone(this.props.component.child))
+    let elements = Object.keys(components).map(key => {
+      const path = this.props.path + "." + key
+      if(!components[key].element.hasOwnProperty("type")) {
+        return <ErrorBox key={path} message={'Invalid form file format "' + JSON.stringify(components[key].element) + '". Type is missing'} />
+      } else if(components[key].element.hasOwnProperty("render")) {
+        if(!evaluator(components[key].element.render)) {
+          return 0
+        }
+      }
+
+      let renderedComponent = <ErrorBox key={path} message={'Unrecognized element type "' + components[key].element.type + '"'} />
+      switch(components[key].element.type) {
+        case ComponentType.TEXT:     renderedComponent = <TextBox path={path} desc={components[key]} />;     break
+        case ComponentType.NUMBER:   renderedComponent = <NumberBox path={path} desc={components[key]} />;   break
+        case ComponentType.IMAGE:    renderedComponent = <UploadBox path={path} desc={components[key]} />;   break
+        case ComponentType.DROPDOWN: renderedComponent = <DropDownBox path={path} desc={components[key]} />; break
+        case ComponentType.CHECKBOX: renderedComponent = <CheckBox path={path} desc={components[key]} />;    break
+        case ComponentType.TOGGLE:   renderedComponent = <ToggleBox path={path} desc={components[key]} />;   break
+        case ComponentType.DATE:     renderedComponent = <DateBox path={path} desc={components[key]} />;     break
+        case ComponentType.TIME:     renderedComponent = <TimeBox path={path} desc={components[key]} />;     break
+        case ComponentType.COLOR:    renderedComponent = <ColorPicker path={path} desc={components[key]} />; break
+        case ComponentType.ARRAY:    renderedComponent = <ArrayInput path={path} desc={components[key]} />;  break
+        case ComponentType.MAP:      renderedComponent = <MapInput path={path} desc={components[key]} />;    break
+      }
+
+      if(components[key].element.type === ComponentType.MAP) {
+        return <div key={path} className="col-sm-12 com-md-12 col-lg-12">
+          {renderedComponent}
+        </div>
+      } else {
+        return <div key={path} className={getLayoutString(components[key].element.layout)}>
+          {renderedComponent}
+        </div>
+      }
+    }).filter(element => element !== 0)
+
+    if(this.props.array) {
+      return <div>
+        {elements.map((element, index) => {
+          console.log(element)
+          return <div className="row">
+            {element}
+            <div className="col-sm-1 col-md-1 col-lg-1">
+              <button className="k-button deleteElementButtonArray" onClick={() => this.props.onDelete(index)}>X</button>
+            </div>
+          </div>
+        })}
+      </div>
+    }
+    let childStyle = this.props.mapIndex !== undefined ? "mapChild" : ""
+    return <div className="k-form">
+      <div className="k-panel k-header k-state-selected">
+        {
+          this.props.mapIndex !== undefined ?
+          <button className="k-button deleteElementButtonMap float-right" onClick={() => this.props.onDelete(this.props.mapIndex)}>X</button> :
+          ""
+        }
+        {this.props.component.label}
+      </div>
+      <div className={"k-panel k-shadow " + childStyle}>
+        <div className="row">
+          {elements}
+        </div>
+      </div>
+    </div>
+  }
+
+  // path2: {
+  //   label: "array",
+  //   info: "",
+  //   element: {
+  //     type: "array",
+  //     render: "[expr]"
+  //     nullable: true/false,
+  //     layout: {
+  //       desktop: 3,
+  //       tablet: 4,
+  //       phone: 12
+  //     }
+  //     child: "number"
+  //   }
+  // }
+
+  render_deprecated() {
     let groups = []
     let elements = this.props.form.map(element => {
       if(!element.hasOwnProperty("type")) {

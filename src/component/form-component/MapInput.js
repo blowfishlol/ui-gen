@@ -8,14 +8,19 @@ import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
 import get from "../../util/formDataGet"
-import { clone } from "../../util/toolbox"
+import { clone, isObject } from "../../util/toolbox"
 import { nullInfo } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
 
 class MapInput extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.onDeleteBtnClickedListener = this.onDeleteBtnClickedListener.bind(this)
+  }
+
   nextPath() {
-    return this.props.form.path + "." + get(this.props.form.path, this.props.form.type).length
+    return this.props.path + "." + get(this.props.path, this.props.desc.element.type).length
   }
 
   onAddBtnClickedListener() {
@@ -23,39 +28,38 @@ class MapInput extends React.Component {
   }
 
   onDeleteBtnClickedListener(index) {
-    const currentData = get(this.props.form.path, this.props.form.type)
-    this.props.updateState(this.props.form.path,
+    const currentData = get(this.props.path, this.props.desc.element.type)
+    this.props.updateState(this.props.path,
                            currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)),
-                           nullInfo(this.props.form))
+                           nullInfo(this.props.desc.element))
   }
 
   render() {
-    if(!this.props.hasOwnProperty("form")) {
-      return <ErrorBox message="Config is missing" />
-    } else if(!this.props.form.hasOwnProperty("child_content")) {
-      return <ErrorBox message={"Content is missing."} />
+    if(!this.props.desc.element.hasOwnProperty("child")) {
+      return <ErrorBox message="Content is missing" />
+    } else if(!isObject(this.props.desc.element.child)) {
+      return <ErrorBox message={"Invalid content " + this.props.desc.child.toString()} />
     }
 
-    var elements = get(this.props.form.path, this.props.form.type).map((element, index) => {
-      const childElement = clone(this.props.form.child_content)
-      for(var i = 0; i < childElement.length; i++) {
-        childElement[i].path = this.props.form.path + "." + index + "." + childElement[i].path
-      }
-      const isEvenChild = this.props.hasOwnProperty("evenChild") ? (this.props.evenChild ? false : true) : true
-      const style = isEvenChild ? "k-form alert formHighlightLight" : "k-form alert formHighlightDark"
+    let elements = get(this.props.path, this.props.desc.element.type).map((element, index) => {
+      let childDesc = clone(this.props.desc.element)
+      childDesc.label = this.props.desc.label + " " + (index+1)
 
-      return <div key={this.props.form.path + "." + index} className={style + " mapChild multipleElementComponent"}>
-        <Form form={childElement} evenChild={isEvenChild} />
-        <BlankSpace space="35px" />
-        <button className="k-button deleteElementButton" onClick={() => this.onDeleteBtnClickedListener(index)}>X</button>
+      return <div key={this.props.path + "." + index} >
+        <Form
+          path={this.props.path + "." + index}
+          component={childDesc}
+          mapIndex={index}
+          onDelete={this.onDeleteBtnClickedListener} />
       </div>
     })
 
     return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       <div>
         {elements}
       </div>
+      <BlankSpace space="10px" />
       <button className="k-button k-primary" onClick={() => this.onAddBtnClickedListener()}>ADD</button>
     </div>
   }

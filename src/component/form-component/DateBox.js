@@ -16,17 +16,17 @@ class DateBox extends React.Component {
     if(!date){
       alert("Not a proper date format. (DD MONTH YYYY)")
     }
-    this.props.updateState(this.props.form.path, date, nullInfo(this.props.form))
+    this.props.updateState(this.props.path, date, nullInfo(this.props.desc.element))
   }
 
   render() {
     return <div className="k-form-field ">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       <DatePicker
         format={"dd MMMM yyyy"}
-        value={get(this.props.form.path, this.props.form.type)}
+        value={get(this.props.path, this.props.desc.element.type)}
         change={() => this.onDateChangedListener}
-        id={this.props.form.path} />
+        id={this.props.path} />
     </div>
   }
 }

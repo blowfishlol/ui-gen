@@ -10,10 +10,10 @@ import ActionList from "../../reducer/actionList"
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 
-  findConfig() {
+  findConfigIndex() {
     return this.props.configs.find(element => {
       return element.id === this.props.dataItem.id
-    })
+    }).id
   }
 
   onDeleteBtnClickedListener() {
@@ -29,8 +29,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
   }
 
   onEditBtnClickedListener() {
-    this.props.allowJump()
-    this.props.setSelectedConfig(this.findConfig())
+    this.props.setSelectedConfig(this.findConfigIndex())
   }
 
   render() {
@@ -49,7 +48,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
       &nbsp;
       <button
         className="k-button k-primary configButton"
-        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")}>
+        onClick={() => fileDownload(JSON.stringify(this.findConfigIndex().configContent.data), this.findConfigIndex().name + ".json")}>
           EXPORT
       </button>
     </td>
@@ -66,12 +65,9 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    allowJump: () => dispatch({
-      type: ActionList.ALLOW_JUMP
-    }),
-    setSelectedConfig: (config) => dispatch({
+    setSelectedConfig: (id) => dispatch({
       type: ActionList.ASSIGN_CONFIG,
-      payload: config
+      payload: id
     }),
     deleteConfig: (configId, userId, token) => dispatch({
       type: ActionList.DELETE_CONFIG,

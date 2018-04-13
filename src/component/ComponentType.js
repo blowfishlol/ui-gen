@@ -3,11 +3,11 @@ var ActionList = {
   NUMBER:   "number",
   IMAGE:    "image",
   DROPDOWN: "dropdown",
-  CHECKBOX: "checkbox",
-  TOGGLE:   "toggle",
+  CHECKBOX: "checkbox", //
+  TOGGLE:   "toggle", //
   DATE:     "date",
   TIME:     "time",
-  COLOR:    "color", 
+  COLOR:    "color", //
   ARRAY:    "array",
   MAP:      "map"
 };

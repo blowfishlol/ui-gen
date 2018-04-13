@@ -19,11 +19,11 @@ class CheckBox extends React.Component {
   *
   * The path for each checkbox is:
   *  checkboxpath.value: where checkbox is the path stated in the config
-  *  value: is the value in the config for ecah checkbox
+  *  value: is the value in the config for each checkbox
   */
   render() {
-    const checkboxes = this.props.form.value.contents.map(content => {
-      const childPath = this.props.form.path + "." + content.value
+    const checkboxes = this.props.desc.element.value.contents.map(content => {
+      const childPath = this.props.path + "." + content.value
       content.checked = get(childPath, "toggle")
 
       return <div key={childPath}>
@@ -38,7 +38,7 @@ class CheckBox extends React.Component {
     })
 
     return <div className="k-form-field">
-      <LabelTooltip form={this.props.form} />
+      <LabelTooltip desc={this.props.desc} />
       {checkboxes}
     </div>
   }
