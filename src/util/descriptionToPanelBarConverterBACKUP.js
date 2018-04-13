@@ -29,7 +29,7 @@ function traverse(json,arr,path) {
 				const customStyle = {
 		            textAlign: 'center'
 		        }
-				arr[newLength-1].content = (<div style={customStyle}><button className="k-button " >{"Add " + getLabelFromPath(path+"."+key)}</button></div>);
+				//arr[newLength-1].content = (<div style={customStyle}><button className="k-button " >{"Add " + getLabelFromPath(path+"."+key)}</button></div>);
 			}
 		}
 		

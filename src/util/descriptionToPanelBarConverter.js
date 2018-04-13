@@ -3,8 +3,8 @@ import React from "react"
 export function getPanelBarChildObject(json) {
 
 	var arr = [];
-	var newArr = traverse(json,arr,"root");
-	return newArr;
+	traverse(json,arr,"root");
+	return arr;
 }
 
 function traverse(json,arr,path) {
@@ -22,7 +22,8 @@ function traverse(json,arr,path) {
 			
 			traverse(json[key].child, arr[newLength-1].children, path+"."+key);
 			
-
+			//dia gak punya anak. artinya dia leaf.
+			//TODO: orang tua nya harus tau kalo anak dia itu ada yang leaf.
 			if(arr[newLength-1].children.length === 0){
 				delete arr[newLength-1].children;
 
@@ -34,21 +35,33 @@ function traverse(json,arr,path) {
 				
 				if(!isGroup) {
 					isGroup = true;
-					arr[newLength-1].title = (<div style={customStyle}><button className="k-button " >{"Add " + getLabelFromPath(path)}</button></div>);
+					arr[newLength-1].title ="!leaf";
 					arr[newLength-1].id = path;
 				} else {
 					//pop karena kalo udh dibuatin tombolnya gak usah dibuat lagi.
-					delete arr.pop();
+					arr.pop();
 				}
 
 
 			}
 
+			if(arr[newLength-1] && arr[newLength-1].children) {
+				var childArr = arr[newLength-1].children;
+				for(let i = 0 ; i < childArr.length ; i++) {
+					if(childArr[i].title === "!leaf") {
+						arr[newLength-1].title = <div onClick={alert}> {arr[newLength-1].title}</div>;
+						childArr.splice(i);
+					}
+				}
+			}
+
+
+
 		}
 		
 	}
 
-	return arr;
+	//return arr;
 }
 
 
