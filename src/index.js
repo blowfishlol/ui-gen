@@ -15,6 +15,7 @@ import Window from "./component/Window"
 import storage from "./storage"
 
 import Form from "./component/form-component/Form"
+import PanelNavigator from "./component/nav-component/PanelNavigator"
 import sample from "./example"
 
 import registerServiceWorker from "./registerServiceWorker"
@@ -22,9 +23,10 @@ import registerServiceWorker from "./registerServiceWorker"
 ReactDOM.render(<Provider store={storage}>
   <div className="container-fluid">
     <Ripple>
+      <PanelNavigator />
       {/*<Navigator />*/}
-      <Form path="user" component={sample.user} />
-      <Form path="user" component={sample.user} />
+      {/*<Form path="user" component={sample.user} />*/}
+      {/*<Form path="user" component={sample.user} />*/}
       <Dialog />
       <Window />
     </Ripple>

@@ -4,8 +4,6 @@ import { compose } from "recompose"
 
 import ErrorBox from "../ErrorBox"
 
-import { PanelNavigator } from "./PanelNavigator"
-
 import ActionList from "../../reducer/actionList"
 
 class LoginPage extends React.Component {
@@ -35,9 +33,6 @@ class LoginPage extends React.Component {
       var error = <ErrorBox message={this.props.errorMessage} />
     }
     return <div className="row pageRoot">
-      <div className="col-md-3 col-sm-3 col-xs-12">
-            <PanelNavigator/>
-      </div>
       <div className="col-md-3 col-sm-3 col-xs-12" />
       <div className="k-form col-md-6 col-sm-6 col-xs-12">
         <div className="row loginFormStyle">

@@ -2,39 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b56da7c4-5f83-4eff-922e-1f077f6205c5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/reducer/templateReducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/activeDataGet.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/component/ComponentType.js" afterPath="$PROJECT_DIR$/src/component/ComponentType.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" afterPath="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/CheckBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/CheckBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" afterPath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/DateBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/DateBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/DropDownBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/DropDownBox.js" />
       <change beforePath="$PROJECT_DIR$/src/component/form-component/Form.js" afterPath="$PROJECT_DIR$/src/component/form-component/Form.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/Label.js" afterPath="$PROJECT_DIR$/src/component/form-component/Label.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/LabelTooltip.js" afterPath="$PROJECT_DIR$/src/component/form-component/LabelTooltip.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/MapInput.js" afterPath="$PROJECT_DIR$/src/component/form-component/MapInput.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/NumberBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/NumberBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/TextBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/TextBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/TimeBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/TimeBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/ToggleBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/ToggleBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/form-component/UploadBox.js" afterPath="$PROJECT_DIR$/src/component/form-component/UploadBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplay.js" afterPath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplay.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplayCustomColumn.js" afterPath="$PROJECT_DIR$/src/component/nav-component/ConfigurationDisplayCustomColumn.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" afterPath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/PageNavigatorSearchBox.js" afterPath="$PROJECT_DIR$/src/component/nav-component/PageNavigatorSearchBox.js" />
-      <change beforePath="$PROJECT_DIR$/src/example.js" afterPath="$PROJECT_DIR$/src/example.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" afterPath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" afterPath="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" />
       <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/actionList.js" afterPath="$PROJECT_DIR$/src/reducer/actionList.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/configReducer.js" afterPath="$PROJECT_DIR$/src/reducer/configReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/descriptionReducer.js" afterPath="$PROJECT_DIR$/src/reducer/descriptionReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/formReducer.js" afterPath="$PROJECT_DIR$/src/reducer/formReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/index.js" afterPath="$PROJECT_DIR$/src/reducer/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/style/style.css" afterPath="$PROJECT_DIR$/src/style/style.css" />
-      <change beforePath="$PROJECT_DIR$/src/util/formDataGet.js" afterPath="$PROJECT_DIR$/src/util/formDataGet.js" />
-      <change beforePath="$PROJECT_DIR$/src/util/infoChecker.js" afterPath="$PROJECT_DIR$/src/util/infoChecker.js" />
-      <change beforePath="$PROJECT_DIR$/src/util/server.js" afterPath="$PROJECT_DIR$/src/util/server.js" />
+      <change beforePath="$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js" afterPath="$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,7 +20,92 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="descriptionOriginal.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/descriptionOriginal.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="descriptionPanelBar.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/descriptionPanelBar.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-11149">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportConfigForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="492">
+              <caret line="118" column="2" lean-forward="false" selection-start-line="118" selection-start-column="2" selection-end-line="118" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="20" column="51" lean-forward="false" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PanelNavigator.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Form.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="45" column="46" lean-forward="false" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="descriptionToPanelBarConverter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComponentTemplate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ComponentTemplate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -65,6 +123,7 @@
       <find>this.props.toke</find>
       <find>this.props.component</find>
       <find>this.props</find>
+      <find>this.state</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -107,13 +166,15 @@
         <option value="$PROJECT_DIR$/src/component/form-component/NumberBox.js" />
         <option value="$PROJECT_DIR$/src/util/formDataGet.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/LabelTooltip.js" />
-        <option value="$PROJECT_DIR$/src/component/form-component/Form.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/ArrayInput.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/MapInput.js" />
         <option value="$PROJECT_DIR$/src/style/style.css" />
         <option value="$PROJECT_DIR$/src/example.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/component/form-component/Form.js" />
+        <option value="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" />
+        <option value="$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js" />
       </list>
     </option>
   </component>
@@ -273,20 +334,22 @@
       <workItem from="1523430808921" duration="11075000" />
       <workItem from="1523445506859" duration="2517000" />
       <workItem from="1523516692983" duration="29203000" />
-      <workItem from="1523600208808" duration="18577000" />
+      <workItem from="1523600208808" duration="24834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67972000" />
+    <option name="totallyTimeSpent" value="74229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="38" y="262" width="1368" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -299,7 +362,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -316,46 +378,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/nav-component/PageNavigatorSearchBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/LabelTooltip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#25#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/nav-component/PageNavigator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="51" lean-forward="false" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="78" lean-forward="false" selection-start-line="29" selection-start-column="78" selection-end-line="29" selection-end-column="78" />
           <folding>
-            <element signature="e#0#25#0" expanded="false" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -372,16 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="24" column="64" lean-forward="false" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#25#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -449,13 +467,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ComponentTemplate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="63" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -655,14 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="95" column="60" lean-forward="false" selection-start-line="95" selection-start-column="60" selection-end-line="95" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/component/form-component/ArrayInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -745,11 +748,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/nav-component/ImportConfigForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="118" column="2" lean-forward="false" selection-start-line="118" selection-start-column="2" selection-end-line="118" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="20" column="51" lean-forward="false" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ComponentTemplate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/descriptionPanelBar.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11149">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/descriptionOriginal.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/Form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="45" column="46" lean-forward="false" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

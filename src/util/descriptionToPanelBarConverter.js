@@ -1,5 +1,41 @@
 import React from "react"
 
+function generatePath(carry, current) {
+  return carry ? carry + "." + current : current
+}
+
+function isLeafNode(node) {
+  return node.hasOwnProperty("element")
+}
+
+function isAllChildLeafNode(node) {
+  for(let key in node) {
+    if(!isLeafNode(node[key])) {
+      return false
+    }
+  }
+  return true
+}
+
+export function esrevart(node, carryPath) {
+  return Object.keys(node).map(key => {
+    if(isLeafNode(node[key])) {
+      return 0
+    }
+    if(isAllChildLeafNode(node[key].child)) {
+      return {
+        id: generatePath(carryPath, key),
+        title: node[key].label
+      }
+    }
+    return {
+      id: generatePath(carryPath, key),
+      title: node[key].label,
+      children: esrevart(node[key].child, generatePath(carryPath, key))
+    }
+  }).filter(node => node !== 0)
+}
+
 export function getPanelBarChildObject(json) {
 
 	var arr = [];

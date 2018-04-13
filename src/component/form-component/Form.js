@@ -49,7 +49,7 @@ class Form extends Component {
         }
       }
 
-      let renderedComponent = <ErrorBox key={path} message={'Unrecognized element type "' + components[key].element.type + '"'} />
+      let renderedComponent
       switch(components[key].element.type) {
         case ComponentType.TEXT:     renderedComponent = <TextBox path={path} desc={components[key]} />;     break
         case ComponentType.NUMBER:   renderedComponent = <NumberBox path={path} desc={components[key]} />;   break
@@ -62,6 +62,7 @@ class Form extends Component {
         case ComponentType.COLOR:    renderedComponent = <ColorPicker path={path} desc={components[key]} />; break
         case ComponentType.ARRAY:    renderedComponent = <ArrayInput path={path} desc={components[key]} />;  break
         case ComponentType.MAP:      renderedComponent = <MapInput path={path} desc={components[key]} />;    break
+        default: renderedComponent = <ErrorBox key={path} message={'Unrecognized element type "' + components[key].element.type + '"'} />
       }
 
       if(components[key].element.type === ComponentType.MAP) {
