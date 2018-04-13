@@ -1,0 +1,4904 @@
+{
+	"device": {
+		"label": "root: Device",
+		"info": "root.device still have child.",
+		"child": {
+			"common": {
+				"label": "root/device: Common",
+				"info": "root.device.common still have child.",
+				"child": {
+					"name": {
+						"label": "root/device/common: Name",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"splash": {
+						"label": "root/device/common: Splash",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"appicon": {
+						"label": "root/device/common: Appicon",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"defaultLanguage": {
+						"label": "root/device/common: Default Language",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"numberInputType": {
+						"label": "root/device/common: Number Input Type",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"projectModule": {
+						"label": "root/device/common: Project Module",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					}
+				}
+			},
+			"style": {
+				"label": "root/device: Style",
+				"info": "root.device.style still have child.",
+				"child": {
+					"color": {
+						"label": "root/device/style: Color",
+						"info": "root.device.style.color still have child.",
+						"child": {
+							"primary": {
+								"label": "root/device/style/color: Primary",
+								"info": "root.device.style.color.primary -is color component",
+								"element": {
+									"type": "color"
+								}
+							},
+							"accent": {
+								"label": "root/device/style/color: Accent",
+								"info": "root.device.style.color.accent -is color component",
+								"element": {
+									"type": "color"
+								}
+							},
+							"background": {
+								"label": "root/device/style/color: Background",
+								"info": "root.device.style.color.background -is color component",
+								"element": {
+									"type": "color"
+								}
+							},
+							"button": {
+								"label": "root/device/style/color: Button",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"logic": {
+		"label": "root: Logic",
+		"info": "root.logic still have child.",
+		"child": {
+			"modules": {
+				"label": "root/logic: Modules",
+				"info": "root.logic.modules still have child.",
+				"child": {
+					"returnableStock": {
+						"label": "root/logic/modules: Returnable Stock",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"newCustomerOrder": {
+						"label": "root/logic/modules: New Customer Order",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"sdcardBackup": {
+						"label": "root/logic/modules: Sdcard Backup",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"inventory": {
+						"label": "root/logic/modules: Inventory",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"emptyTransfer": {
+						"label": "root/logic/modules: Empty Transfer",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"serialnumbers": {
+						"label": "root/logic/modules: Serialnumbers",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"photoNote": {
+						"label": "root/logic/modules: Photo Note",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"vehicleTracking": {
+						"label": "root/logic/modules: Vehicle Tracking",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"pickup": {
+						"label": "root/logic/modules: Pickup",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"beerTax": {
+						"label": "root/logic/modules: Beer Tax",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"dropShipment": {
+						"label": "root/logic/modules: Drop Shipment",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					}
+				}
+			},
+			"common": {
+				"label": "root/logic: Common",
+				"info": "root.logic.common still have child.",
+				"child": {
+					"root": {
+						"label": "root/logic/common: Root",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"filterClientId": {
+						"label": "root/logic/common: Filter Client Id",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"defaultClientId": {
+						"label": "root/logic/common: Default Client Id",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"materialNrLength": {
+						"label": "root/logic/common: Material Nr Length",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "number"
+						}
+					},
+					"confirmPin": {
+						"label": "root/logic/common: Confirm Pin",
+						"info": "root.logic.common.confirmPin still have child.",
+						"child": {
+							"changeMacAdress": {
+								"label": "root/logic/common/confirmPin: Change Mac Adress",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"deleteTour": {
+								"label": "root/logic/common/confirmPin: Delete Tour",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"inventory": {
+								"label": "root/logic/common/confirmPin: Inventory",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"pickup": {
+								"label": "root/logic/common/confirmPin: Pickup",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"inventorySupervisor": {
+								"label": "root/logic/common/confirmPin: Inventory Supervisor",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"skipPrinting": {
+								"label": "root/logic/common/confirmPin: Skip Printing",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					}
+				}
+			},
+			"start": {
+				"label": "root/logic: Start",
+				"info": "root.logic.start still have child.",
+				"child": {
+					"initialPassword": {
+						"label": "root/logic/start: Initial Password",
+						"info": "root.logic.start.initialPassword still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/logic/start/initialPassword: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"value": {
+								"label": "root/logic/start/initialPassword: Value",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"serviceUser": {
+						"label": "root/logic/start: Service User",
+						"info": "root.logic.start.serviceUser still have child.",
+						"child": {
+							"name": {
+								"label": "root/logic/start/serviceUser: Name",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"password": {
+								"label": "root/logic/start/serviceUser: Password",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"setLastTourNumberAsDefault": {
+						"label": "root/logic/start: Set Last Tour Number As Default",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					}
+				}
+			},
+			"masterdata": {
+				"label": "root/logic: Masterdata",
+				"info": "root.logic.masterdata still have child.",
+				"child": {
+					"sync": {
+						"label": "root/logic/masterdata: Sync",
+						"info": "root.logic.masterdata.sync still have child.",
+						"child": {
+							"assortment": {
+								"label": "root/logic/masterdata/sync: Assortment",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"open_item": {
+								"label": "root/logic/masterdata/sync: Open_item",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"empty_stock": {
+								"label": "root/logic/masterdata/sync: Empty_stock",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"units": {
+								"label": "root/logic/masterdata/sync: Units",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"tax": {
+								"label": "root/logic/masterdata/sync: Tax",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"payment": {
+								"label": "root/logic/masterdata/sync: Payment",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"pay_cond": {
+								"label": "root/logic/masterdata/sync: Pay_cond",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"group_prices": {
+								"label": "root/logic/masterdata/sync: Group_prices",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"cust_prices": {
+								"label": "root/logic/masterdata/sync: Cust_prices",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"beer_tax": {
+								"label": "root/logic/masterdata/sync: Beer_tax",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"cust_matnr": {
+								"label": "root/logic/masterdata/sync: Cust_matnr",
+								"info": "root.logic.masterdata.sync.cust_matnr still have child.",
+								"child": {
+									"enabled": {
+										"label": "root/logic/masterdata/sync/cust_matnr: Enabled",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"tour_filter": {
+										"label": "root/logic/masterdata/sync/cust_matnr: Tour_filter",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"tour": {
+				"label": "root/logic: Tour",
+				"info": "root.logic.tour still have child.",
+				"child": {
+					"newCustomerOrder": {
+						"label": "root/logic/tour: New Customer Order",
+						"info": "root.logic.tour.newCustomerOrder still have child.",
+						"child": {
+							"searchBase": {
+								"label": "root/logic/tour/newCustomerOrder: Search Base",
+								"info": "root.logic.tour.newCustomerOrder.searchBase still have child.",
+								"child": {
+									"filterFields": {
+										"label": "root/logic/tour/newCustomerOrder/searchBase: Filter Fields",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"minLength": {
+										"label": "root/logic/tour/newCustomerOrder/searchBase: Min Length",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									},
+									"limit": {
+										"label": "root/logic/tour/newCustomerOrder/searchBase: Limit",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"disruption": {
+						"label": "root/logic/tour: Disruption",
+						"info": "root.logic.tour.disruption still have child.",
+						"child": {
+							"breakTypeSelection": {
+								"label": "root/logic/tour/disruption: Break Type Selection",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"cashing": {
+						"label": "root/logic/tour: Cashing",
+						"info": "root.logic.tour.cashing still have child.",
+						"child": {
+							"reCalculationBase": {
+								"label": "root/logic/tour/cashing: Re Calculation Base",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"disablePriceCalculation": {
+								"label": "root/logic/tour/cashing: Disable Price Calculation",
+								"info": "root.logic.tour.cashing.disablePriceCalculation still have child.",
+								"child": {
+									"newReturnPos": {
+										"label": "root/logic/tour/cashing/disablePriceCalculation: New Return Pos",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"payByCheque": {
+								"label": "root/logic/tour/cashing: Pay By Cheque",
+								"info": "root.logic.tour.cashing.payByCheque still have child.",
+								"child": {
+									"available": {
+										"label": "root/logic/tour/cashing/payByCheque: Available",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"handlingList": {
+										"label": "root/logic/tour/cashing/payByCheque: Handling List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							},
+							"deliveryPriceList": {
+								"label": "root/logic/tour/cashing: Delivery Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"customerPriceList": {
+								"label": "root/logic/tour/cashing: Customer Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"groupPriceList": {
+								"label": "root/logic/tour/cashing: Group Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"fallbackPriceList": {
+								"label": "root/logic/tour/cashing: Fallback Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"fallbackPriceNet": {
+								"label": "root/logic/tour/cashing: Fallback Price Net",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"fallbackPriceGross": {
+								"label": "root/logic/tour/cashing: Fallback Price Gross",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"emptyPriceList": {
+								"label": "root/logic/tour/cashing: Empty Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"emptyFallbackPriceList": {
+								"label": "root/logic/tour/cashing: Empty Fallback Price List",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"emptyFallbackPriceNet": {
+								"label": "root/logic/tour/cashing: Empty Fallback Price Net",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"emptyFallbackPriceGross": {
+								"label": "root/logic/tour/cashing: Empty Fallback Price Gross",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"disableReturnFullEmpties": {
+								"label": "root/logic/tour/cashing: Disable Return Full Empties",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"deliveredEmpty": {
+								"label": "root/logic/tour/cashing: Delivered Empty",
+								"info": "root.logic.tour.cashing.deliveredEmpty still have child.",
+								"child": {
+									"empty": {
+										"label": "root/logic/tour/cashing/deliveredEmpty: Empty",
+										"info": "root.logic.tour.cashing.deliveredEmpty.empty still have child.",
+										"child": {
+											"preferEmptyPacking": {
+												"label": "root/logic/tour/cashing/deliveredEmpty/empty: Prefer Empty Packing",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"fulls": {
+										"label": "root/logic/tour/cashing/deliveredEmpty: Fulls",
+										"info": "root.logic.tour.cashing.deliveredEmpty.fulls still have child.",
+										"child": {
+											"preferEmptyPacking": {
+												"label": "root/logic/tour/cashing/deliveredEmpty/fulls: Prefer Empty Packing",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									}
+								}
+							},
+							"underpaymentReasons": {
+								"label": "root/logic/tour/cashing: Underpayment Reasons",
+								"info": "root.logic.tour.cashing.underpaymentReasons still have child.",
+								"child": {
+									"variant": {
+										"label": "root/logic/tour/cashing/underpaymentReasons: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"commitColumn": {
+										"label": "root/logic/tour/cashing/underpaymentReasons: Commit Column",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"textModule": {
+										"label": "root/logic/tour/cashing/underpaymentReasons: Text Module",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"values": {
+										"label": "root/logic/tour/cashing/underpaymentReasons: Values",
+										"info": "root.logic.tour.cashing.underpaymentReasons.values -Map containing child",
+										"element": {
+											"type": "map",
+											"array": true,
+											"child": {
+												"textNr": {
+													"label": "root/logic/tour/cashing/underpaymentReasons/values: Text Nr",
+													"info": "MapChild of root.logic.tour.cashing.underpaymentReasons.values",
+													"element": {
+														"type": "number"
+													}
+												},
+												"text": {
+													"label": "root/logic/tour/cashing/underpaymentReasons/values: Text",
+													"info": "MapChild of root.logic.tour.cashing.underpaymentReasons.values",
+													"element": {
+														"type": "text"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"overpayment": {
+								"label": "root/logic/tour/cashing: Overpayment",
+								"info": "root.logic.tour.cashing.overpayment still have child.",
+								"child": {
+									"type": {
+										"label": "root/logic/tour/cashing/overpayment: Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"defaultValue": {
+										"label": "root/logic/tour/cashing/overpayment: Default Value",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"underpayment": {
+								"label": "root/logic/tour/cashing: Underpayment",
+								"info": "root.logic.tour.cashing.underpayment still have child.",
+								"child": {
+									"onlyCash": {
+										"label": "root/logic/tour/cashing/underpayment: Only Cash",
+										"info": "root.logic.tour.cashing.underpayment.onlyCash still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/cashing/underpayment/onlyCash: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"showReason": {
+												"label": "root/logic/tour/cashing/underpayment/onlyCash: Show Reason",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"possibleCash": {
+										"label": "root/logic/tour/cashing/underpayment: Possible Cash",
+										"info": "root.logic.tour.cashing.underpayment.possibleCash still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/cashing/underpayment/possibleCash: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"showReason": {
+												"label": "root/logic/tour/cashing/underpayment/possibleCash: Show Reason",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"stepByStep": {
+										"label": "root/logic/tour/cashing/underpayment: Step By Step",
+										"info": "root.logic.tour.cashing.underpayment.stepByStep still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/cashing/underpayment/stepByStep: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"showReason": {
+												"label": "root/logic/tour/cashing/underpayment/stepByStep: Show Reason",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									}
+								}
+							},
+							"openItem": {
+								"label": "root/logic/tour/cashing: Open Item",
+								"info": "root.logic.tour.cashing.openItem still have child.",
+								"child": {
+									"diffRecipReference": {
+										"label": "root/logic/tour/cashing/openItem: Diff Recip Reference",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"beerTaxCountryList": {
+								"label": "root/logic/tour/cashing: Beer Tax Country List",
+								"info": "root.logic.tour.cashing.beerTaxCountryList -Primitive array",
+								"element": {
+									"type": "array",
+									"child": "text"
+								}
+							}
+						}
+					},
+					"proposal": {
+						"label": "root/logic/tour: Proposal",
+						"info": "root.logic.tour.proposal still have child.",
+						"child": {
+							"variant": {
+								"label": "root/logic/tour/proposal: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"horizon": {
+								"label": "root/logic/tour/proposal: Horizon",
+								"info": "root.logic.tour.proposal.horizon still have child.",
+								"child": {
+									"future": {
+										"label": "root/logic/tour/proposal/horizon: Future",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									},
+									"past": {
+										"label": "root/logic/tour/proposal/horizon: Past",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"sortField": {
+								"label": "root/logic/tour/proposal: Sort Field",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"single": {
+								"label": "root/logic/tour/proposal: Single",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"directTourStart": {
+								"label": "root/logic/tour/proposal: Direct Tour Start",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"tourMappingEnabled": {
+								"label": "root/logic/tour/proposal: Tour Mapping Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"documents": {
+						"label": "root/logic/tour: Documents",
+						"info": "root.logic.tour.documents still have child.",
+						"child": {
+							"voucher": {
+								"label": "root/logic/tour/documents: Voucher",
+								"info": "root.logic.tour.documents.voucher still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/voucher: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/voucher: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/voucher: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"matDescriptionField": {
+										"label": "root/logic/tour/documents/voucher: Mat Description Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/voucher: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/voucher: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"indexFileFields": {
+										"label": "root/logic/tour/documents/voucher: Index File Fields",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									},
+									"clientGenPrefix": {
+										"label": "root/logic/tour/documents/voucher: Client Gen Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"archiveNameFields": {
+										"label": "root/logic/tour/documents/voucher: Archive Name Fields",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/voucher: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"seperator": {
+										"label": "root/logic/tour/documents/voucher: Seperator",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"datePattern": {
+										"label": "root/logic/tour/documents/voucher: Date Pattern",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							},
+							"unloadList": {
+								"label": "root/logic/tour/documents: Unload List",
+								"info": "root.logic.tour.documents.unloadList still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/unloadList: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/unloadList: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/unloadList: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/unloadList: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"matDescriptionField": {
+										"label": "root/logic/tour/documents/unloadList: Mat Description Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/unloadList: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/unloadList: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"stockList": {
+								"label": "root/logic/tour/documents: Stock List",
+								"info": "root.logic.tour.documents.stockList still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/stockList: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/stockList: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/stockList: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/stockList: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"matDescriptionField": {
+										"label": "root/logic/tour/documents/stockList: Mat Description Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/stockList: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"negativeStockAllowed": {
+										"label": "root/logic/tour/documents/stockList: Negative Stock Allowed",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"sortVariant": {
+										"label": "root/logic/tour/documents/stockList: Sort Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printTourEnd": {
+										"label": "root/logic/tour/documents/stockList: Print Tour End",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"tourData": {
+								"label": "root/logic/tour/documents: Tour Data",
+								"info": "root.logic.tour.documents.tourData still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/tourData: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/tourData: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/tourData: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/tourData: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/tourData: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"disruptionTimes": {
+								"label": "root/logic/tour/documents: Disruption Times",
+								"info": "root.logic.tour.documents.disruptionTimes still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/disruptionTimes: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/disruptionTimes: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/disruptionTimes: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/disruptionTimes: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/disruptionTimes: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/disruptionTimes: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"inkasso": {
+								"label": "root/logic/tour/documents: Inkasso",
+								"info": "root.logic.tour.documents.inkasso still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/inkasso: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/inkasso: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/inkasso: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/inkasso: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/inkasso: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printNoCash": {
+										"label": "root/logic/tour/documents/inkasso: Print No Cash",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/inkasso: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archiveNameFields": {
+										"label": "root/logic/tour/documents/inkasso: Archive Name Fields",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									},
+									"seperator": {
+										"label": "root/logic/tour/documents/inkasso: Seperator",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"deliveryNotes": {
+								"label": "root/logic/tour/documents: Delivery Notes",
+								"info": "root.logic.tour.documents.deliveryNotes still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/deliveryNotes: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/deliveryNotes: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/deliveryNotes: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/deliveryNotes: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/deliveryNotes: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printNoCash": {
+										"label": "root/logic/tour/documents/deliveryNotes: Print No Cash",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"reprint": {
+										"label": "root/logic/tour/documents/deliveryNotes: Reprint",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"inventory": {
+								"label": "root/logic/tour/documents: Inventory",
+								"info": "root.logic.tour.documents.inventory still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/inventory: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"matDescriptionField": {
+										"label": "root/logic/tour/documents/inventory: Mat Description Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/inventory: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/inventory: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/inventory: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/inventory: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"returnItem": {
+								"label": "root/logic/tour/documents: Return Item",
+								"info": "root.logic.tour.documents.returnItem still have child.",
+								"child": {
+									"print": {
+										"label": "root/logic/tour/documents/returnItem: Print",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"archive": {
+										"label": "root/logic/tour/documents/returnItem: Archive",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"subfolder": {
+										"label": "root/logic/tour/documents/returnItem: Subfolder",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"prefix": {
+										"label": "root/logic/tour/documents/returnItem: Prefix",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"matDescriptionField": {
+										"label": "root/logic/tour/documents/returnItem: Mat Description Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"customerField": {
+										"label": "root/logic/tour/documents/returnItem: Customer Field",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sendMail": {
+										"label": "root/logic/tour/documents/returnItem: Send Mail",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"reprint": {
+										"label": "root/logic/tour/documents/returnItem: Reprint",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"filter": {
+										"label": "root/logic/tour/documents/returnItem: Filter",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"commit": {
+						"label": "root/logic/tour: Commit",
+						"info": "root.logic.tour.commit still have child.",
+						"child": {
+							"commitIdOffset": {
+								"label": "root/logic/tour/commit: Commit Id Offset",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "number"
+								}
+							},
+							"accountnumber": {
+								"label": "root/logic/tour/commit: Accountnumber",
+								"info": "root.logic.tour.commit.accountnumber still have child.",
+								"child": {
+									"1": {
+										"label": "root/logic/tour/commit/accountnumber: 1",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"stockUpdate": {
+								"label": "root/logic/tour/commit: Stock Update",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"driverUpdate": {
+								"label": "root/logic/tour/commit: Driver Update",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"disableCanceledOrder": {
+								"label": "root/logic/tour/commit: Disable Canceled Order",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"tourStatistic": {
+								"label": "root/logic/tour/commit: Tour Statistic",
+								"info": "root.logic.tour.commit.tourStatistic still have child.",
+								"child": {
+									"enabled": {
+										"label": "root/logic/tour/commit/tourStatistic: Enabled",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"drivingTime": {
+										"label": "root/logic/tour/commit/tourStatistic: Driving Time",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"orderTimeUpdate": {
+								"label": "root/logic/tour/commit: Order Time Update",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"seperateInstalment": {
+								"label": "root/logic/tour/commit: Seperate Instalment",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"instalmentOrderNr": {
+								"label": "root/logic/tour/commit: Instalment Order Nr",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"errorMail": {
+								"label": "root/logic/tour/commit: Error Mail",
+								"info": "root.logic.tour.commit.errorMail still have child.",
+								"child": {
+									"DEV": {
+										"label": "root/logic/tour/commit/errorMail:  D E V",
+										"info": "root.logic.tour.commit.errorMail.DEV still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/errorMail/DEV: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"recipient": {
+												"label": "root/logic/tour/commit/errorMail/DEV: Recipient",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									},
+									"TEST": {
+										"label": "root/logic/tour/commit/errorMail:  T E S T",
+										"info": "root.logic.tour.commit.errorMail.TEST still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/errorMail/TEST: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"recipient": {
+												"label": "root/logic/tour/commit/errorMail/TEST: Recipient",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									},
+									"PROD": {
+										"label": "root/logic/tour/commit/errorMail:  P R O D",
+										"info": "root.logic.tour.commit.errorMail.PROD still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/errorMail/PROD: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"recipient": {
+												"label": "root/logic/tour/commit/errorMail/PROD: Recipient",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									}
+								}
+							},
+							"enableRollback": {
+								"label": "root/logic/tour/commit: Enable Rollback",
+								"info": "root.logic.tour.commit.enableRollback still have child.",
+								"child": {
+									"DEV": {
+										"label": "root/logic/tour/commit/enableRollback:  D E V",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"TEST": {
+										"label": "root/logic/tour/commit/enableRollback:  T E S T",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"PROD": {
+										"label": "root/logic/tour/commit/enableRollback:  P R O D",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"orderSendMail": {
+								"label": "root/logic/tour/commit: Order Send Mail",
+								"info": "root.logic.tour.commit.orderSendMail still have child.",
+								"child": {
+									"1": {
+										"label": "root/logic/tour/commit/orderSendMail: 1",
+										"info": "root.logic.tour.commit.orderSendMail.1 still have child.",
+										"child": {
+											"senderMail": {
+												"label": "root/logic/tour/commit/orderSendMail/1: Sender Mail",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"senderName": {
+												"label": "root/logic/tour/commit/orderSendMail/1: Sender Name",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"subject": {
+												"label": "root/logic/tour/commit/orderSendMail/1: Subject",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"text": {
+												"label": "root/logic/tour/commit/orderSendMail/1: Text",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									}
+								}
+							},
+							"archive": {
+								"label": "root/logic/tour/commit: Archive",
+								"info": "root.logic.tour.commit.archive still have child.",
+								"child": {
+									"DEV": {
+										"label": "root/logic/tour/commit/archive:  D E V",
+										"info": "root.logic.tour.commit.archive.DEV still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/archive/DEV: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"tempFolder": {
+												"label": "root/logic/tour/commit/archive/DEV: Temp Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"folder": {
+												"label": "root/logic/tour/commit/archive/DEV: Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"xslFile": {
+												"label": "root/logic/tour/commit/archive/DEV: Xsl File",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"cleanUpInterval": {
+												"label": "root/logic/tour/commit/archive/DEV: Clean Up Interval",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									},
+									"TEST": {
+										"label": "root/logic/tour/commit/archive:  T E S T",
+										"info": "root.logic.tour.commit.archive.TEST still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/archive/TEST: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"tempFolder": {
+												"label": "root/logic/tour/commit/archive/TEST: Temp Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"folder": {
+												"label": "root/logic/tour/commit/archive/TEST: Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"xslFile": {
+												"label": "root/logic/tour/commit/archive/TEST: Xsl File",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"cleanUpInterval": {
+												"label": "root/logic/tour/commit/archive/TEST: Clean Up Interval",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									},
+									"PROD": {
+										"label": "root/logic/tour/commit/archive:  P R O D",
+										"info": "root.logic.tour.commit.archive.PROD still have child.",
+										"child": {
+											"enabled": {
+												"label": "root/logic/tour/commit/archive/PROD: Enabled",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"tempFolder": {
+												"label": "root/logic/tour/commit/archive/PROD: Temp Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"folder": {
+												"label": "root/logic/tour/commit/archive/PROD: Folder",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"xslFile": {
+												"label": "root/logic/tour/commit/archive/PROD: Xsl File",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"cleanUpInterval": {
+												"label": "root/logic/tour/commit/archive/PROD: Clean Up Interval",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											}
+										}
+									}
+								}
+							},
+							"setServerSyncedState": {
+								"label": "root/logic/tour/commit: Set Server Synced State",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"storage": {
+								"label": "root/logic/tour/commit: Storage",
+								"info": "root.logic.tour.commit.storage still have child.",
+								"child": {
+									"returnableItem": {
+										"label": "root/logic/tour/commit/storage: Returnable Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							}
+						}
+					},
+					"start": {
+						"label": "root/logic/tour: Start",
+						"info": "root.logic.tour.start still have child.",
+						"child": {
+							"setStartKm": {
+								"label": "root/logic/tour/start: Set Start Km",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"state": {
+								"label": "root/logic/tour/start: State",
+								"info": "root.logic.tour.start.state still have child.",
+								"child": {
+									"backend": {
+										"label": "root/logic/tour/start/state: Backend",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"client": {
+										"label": "root/logic/tour/start/state: Client",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"driver": {
+								"label": "root/logic/tour/start: Driver",
+								"info": "root.logic.tour.start.driver still have child.",
+								"child": {
+									"typeFilterActive": {
+										"label": "root/logic/tour/start/driver: Type Filter Active",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"codriver": {
+								"label": "root/logic/tour/start: Codriver",
+								"info": "root.logic.tour.start.codriver still have child.",
+								"child": {
+									"typeFilterActive": {
+										"label": "root/logic/tour/start/codriver: Type Filter Active",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"complete": {
+						"label": "root/logic/tour: Complete",
+						"info": "root.logic.tour.complete still have child.",
+						"child": {
+							"state": {
+								"label": "root/logic/tour/complete: State",
+								"info": "root.logic.tour.complete.state still have child.",
+								"child": {
+									"backend": {
+										"label": "root/logic/tour/complete/state: Backend",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"maxKmDifference": {
+								"label": "root/logic/tour/complete: Max Km Difference",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "error"
+								}
+							},
+							"ignoreWlanConfirm": {
+								"label": "root/logic/tour/complete: Ignore Wlan Confirm",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"deleted": {
+						"label": "root/logic/tour: Deleted",
+						"info": "root.logic.tour.deleted still have child.",
+						"child": {
+							"state": {
+								"label": "root/logic/tour/deleted: State",
+								"info": "root.logic.tour.deleted.state still have child.",
+								"child": {
+									"backend": {
+										"label": "root/logic/tour/deleted/state: Backend",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"client": {
+										"label": "root/logic/tour/deleted/state: Client",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"detail": {
+						"label": "root/logic/tour: Detail",
+						"info": "root.logic.tour.detail still have child.",
+						"child": {
+							"disruptionReasons": {
+								"label": "root/logic/tour/detail: Disruption Reasons",
+								"info": "root.logic.tour.detail.disruptionReasons still have child.",
+								"child": {
+									"tour": {
+										"label": "root/logic/tour/detail/disruptionReasons: Tour",
+										"info": "root.logic.tour.detail.disruptionReasons.tour still have child.",
+										"child": {
+											"commitColumn": {
+												"label": "root/logic/tour/detail/disruptionReasons/tour: Commit Column",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"variant": {
+												"label": "root/logic/tour/detail/disruptionReasons/tour: Variant",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"textModule": {
+												"label": "root/logic/tour/detail/disruptionReasons/tour: Text Module",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"values": {
+												"label": "root/logic/tour/detail/disruptionReasons/tour: Values",
+												"info": "root.logic.tour.detail.disruptionReasons.tour.values -Map containing child",
+												"element": {
+													"type": "map",
+													"array": true,
+													"child": {
+														"textNr": {
+															"label": "root/logic/tour/detail/disruptionReasons/tour/values: Text Nr",
+															"info": "MapChild of root.logic.tour.detail.disruptionReasons.tour.values",
+															"element": {
+																"type": "number"
+															}
+														},
+														"text": {
+															"label": "root/logic/tour/detail/disruptionReasons/tour/values: Text",
+															"info": "MapChild of root.logic.tour.detail.disruptionReasons.tour.values",
+															"element": {
+																"type": "text"
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"customer": {
+										"label": "root/logic/tour/detail/disruptionReasons: Customer",
+										"info": "root.logic.tour.detail.disruptionReasons.customer still have child.",
+										"child": {
+											"commitColumn": {
+												"label": "root/logic/tour/detail/disruptionReasons/customer: Commit Column",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"variant": {
+												"label": "root/logic/tour/detail/disruptionReasons/customer: Variant",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"textModule": {
+												"label": "root/logic/tour/detail/disruptionReasons/customer: Text Module",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"values": {
+												"label": "root/logic/tour/detail/disruptionReasons/customer: Values",
+												"info": "root.logic.tour.detail.disruptionReasons.customer.values -Map containing child",
+												"element": {
+													"type": "map",
+													"array": true,
+													"child": {
+														"textNr": {
+															"label": "root/logic/tour/detail/disruptionReasons/customer/values: Text Nr",
+															"info": "MapChild of root.logic.tour.detail.disruptionReasons.customer.values",
+															"element": {
+																"type": "number"
+															}
+														},
+														"text": {
+															"label": "root/logic/tour/detail/disruptionReasons/customer/values: Text",
+															"info": "MapChild of root.logic.tour.detail.disruptionReasons.customer.values",
+															"element": {
+																"type": "text"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"fullGoods": {
+						"label": "root/logic/tour: Full Goods",
+						"info": "root.logic.tour.fullGoods still have child.",
+						"child": {
+							"additionalDeliveryEmpties": {
+								"label": "root/logic/tour/fullGoods: Additional Delivery Empties",
+								"info": "root.logic.tour.fullGoods.additionalDeliveryEmpties -automatically converted",
+								"element": {
+									"type": "array",
+									"child": "text"
+								}
+							},
+							"newItemDisabled": {
+								"label": "root/logic/tour/fullGoods: New Item Disabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"showOrderCancellation": {
+								"label": "root/logic/tour/fullGoods: Show Order Cancellation",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"textItemType": {
+								"label": "root/logic/tour/fullGoods: Text Item Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"deliveryRentItemType": {
+								"label": "root/logic/tour/fullGoods: Delivery Rent Item Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"returnableItemType": {
+								"label": "root/logic/tour/fullGoods: Returnable Item Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"sortVariant": {
+								"label": "root/logic/tour/fullGoods: Sort Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"newItemDefaultType": {
+								"label": "root/logic/tour/fullGoods: New Item Default Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"searchBase": {
+								"label": "root/logic/tour/fullGoods: Search Base",
+								"info": "root.logic.tour.fullGoods.searchBase still have child.",
+								"child": {
+									"limit": {
+										"label": "root/logic/tour/fullGoods/searchBase: Limit",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sortOrder": {
+										"label": "root/logic/tour/fullGoods/searchBase: Sort Order",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							},
+							"toplist": {
+								"label": "root/logic/tour/fullGoods: Toplist",
+								"info": "root.logic.tour.fullGoods.toplist still have child.",
+								"child": {
+									"materialNr": {
+										"label": "root/logic/tour/fullGoods/toplist: Material Nr",
+										"info": "root.logic.tour.fullGoods.toplist.materialNr -automatically converted",
+										"element": {
+											"type": "array",
+											"child": "text"
+										}
+									},
+									"grpNr": {
+										"label": "root/logic/tour/fullGoods/toplist: Grp Nr",
+										"info": "root.logic.tour.fullGoods.toplist.grpNr -automatically converted",
+										"element": {
+											"type": "array",
+											"child": "text"
+										}
+									},
+									"operator": {
+										"label": "root/logic/tour/fullGoods/toplist: Operator",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"limit": {
+										"label": "root/logic/tour/fullGoods/toplist: Limit",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"reason": {
+								"label": "root/logic/tour/fullGoods: Reason",
+								"info": "root.logic.tour.fullGoods.reason still have child.",
+								"child": {
+									"commitColumn": {
+										"label": "root/logic/tour/fullGoods/reason: Commit Column",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"variant": {
+										"label": "root/logic/tour/fullGoods/reason: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"textModule": {
+										"label": "root/logic/tour/fullGoods/reason: Text Module",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"values": {
+										"label": "root/logic/tour/fullGoods/reason: Values",
+										"info": "root.logic.tour.fullGoods.reason.values -Map containing child",
+										"element": {
+											"type": "map",
+											"array": true,
+											"child": {
+												"text": {
+													"label": "root/logic/tour/fullGoods/reason/values: Text",
+													"info": "MapChild of root.logic.tour.fullGoods.reason.values",
+													"element": {
+														"type": "text"
+													}
+												},
+												"textNr": {
+													"label": "root/logic/tour/fullGoods/reason/values: Text Nr",
+													"info": "MapChild of root.logic.tour.fullGoods.reason.values",
+													"element": {
+														"type": "text"
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"emptyGoods": {
+						"label": "root/logic/tour: Empty Goods",
+						"info": "root.logic.tour.emptyGoods still have child.",
+						"child": {
+							"deliveryItemType": {
+								"label": "root/logic/tour/emptyGoods: Delivery Item Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"maxAmountArticle": {
+								"label": "root/logic/tour/emptyGoods: Max Amount Article",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"maxAmountTour": {
+								"label": "root/logic/tour/emptyGoods: Max Amount Tour",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"maxAmountArticleList": {
+								"label": "root/logic/tour/emptyGoods: Max Amount Article List",
+								"info": "root.logic.tour.emptyGoods.maxAmountArticleList still have child.",
+								"child": {
+									"variant": {
+										"label": "root/logic/tour/emptyGoods/maxAmountArticleList: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"values": {
+										"label": "root/logic/tour/emptyGoods/maxAmountArticleList: Values",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							},
+							"verifyStockAmount": {
+								"label": "root/logic/tour/emptyGoods: Verify Stock Amount",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"ignoreVerificationList": {
+								"label": "root/logic/tour/emptyGoods: Ignore Verification List",
+								"info": "root.logic.tour.emptyGoods.ignoreVerificationList -automatically converted",
+								"element": {
+									"type": "array",
+									"child": "text"
+								}
+							},
+							"returnItemType": {
+								"label": "root/logic/tour/emptyGoods: Return Item Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"incrementNewItems": {
+								"label": "root/logic/tour/emptyGoods: Increment New Items",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"printEmptyGoodsNettoPrice": {
+								"label": "root/logic/tour/emptyGoods: Print Empty Goods Netto Price",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"searchBase": {
+								"label": "root/logic/tour/emptyGoods: Search Base",
+								"info": "root.logic.tour.emptyGoods.searchBase still have child.",
+								"child": {
+									"variant": {
+										"label": "root/logic/tour/emptyGoods/searchBase: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"limit": {
+										"label": "root/logic/tour/emptyGoods/searchBase: Limit",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"filter": {
+										"label": "root/logic/tour/emptyGoods/searchBase: Filter",
+										"info": "root.logic.tour.emptyGoods.searchBase.filter still have child.",
+										"child": {
+											"operator": {
+												"label": "root/logic/tour/emptyGoods/searchBase/filter: Operator",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"group": {
+												"label": "root/logic/tour/emptyGoods/searchBase/filter: Group",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"article": {
+												"label": "root/logic/tour/emptyGoods/searchBase/filter: Article",
+												"info": "root.logic.tour.emptyGoods.searchBase.filter.article still have child.",
+												"child": {
+													"from": {
+														"label": "root/logic/tour/emptyGoods/searchBase/filter/article: From",
+														"info": "Primitive Type Element",
+														"element": {
+															"type": "text"
+														}
+													},
+													"to": {
+														"label": "root/logic/tour/emptyGoods/searchBase/filter/article: To",
+														"info": "Primitive Type Element",
+														"element": {
+															"type": "text"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"toplist": {
+								"label": "root/logic/tour/emptyGoods: Toplist",
+								"info": "root.logic.tour.emptyGoods.toplist still have child.",
+								"child": {
+									"materialNr": {
+										"label": "root/logic/tour/emptyGoods/toplist: Material Nr",
+										"info": "root.logic.tour.emptyGoods.toplist.materialNr -automatically converted",
+										"element": {
+											"type": "array",
+											"child": "text"
+										}
+									},
+									"grpNr": {
+										"label": "root/logic/tour/emptyGoods/toplist: Grp Nr",
+										"info": "root.logic.tour.emptyGoods.toplist.grpNr -automatically converted",
+										"element": {
+											"type": "array",
+											"child": "text"
+										}
+									},
+									"operator": {
+										"label": "root/logic/tour/emptyGoods/toplist: Operator",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"listBase": {
+								"label": "root/logic/tour/emptyGoods: List Base",
+								"info": "root.logic.tour.emptyGoods.listBase still have child.",
+								"child": {
+									"stock": {
+										"label": "root/logic/tour/emptyGoods/listBase: Stock",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"delivered": {
+										"label": "root/logic/tour/emptyGoods/listBase: Delivered",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"additional": {
+										"label": "root/logic/tour/emptyGoods/listBase: Additional",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"orderType": {
+						"label": "root/logic/tour: Order Type",
+						"info": "root.logic.tour.orderType still have child.",
+						"child": {
+							"01": {
+								"label": "root/logic/tour/orderType: 01",
+								"info": "root.logic.tour.orderType.01 still have child.",
+								"child": {
+									"key": {
+										"label": "root/logic/tour/orderType/01: Key",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"assortmentFullGoods": {
+										"label": "root/logic/tour/orderType/01: Assortment Full Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"assortmentEmptyGoods": {
+										"label": "root/logic/tour/orderType/01: Assortment Empty Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"quantityMapping": {
+										"label": "root/logic/tour/orderType/01: Quantity Mapping",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"newItemAllowed": {
+										"label": "root/logic/tour/orderType/01: New Item Allowed",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"02": {
+								"label": "root/logic/tour/orderType: 02",
+								"info": "root.logic.tour.orderType.02 still have child.",
+								"child": {
+									"key": {
+										"label": "root/logic/tour/orderType/02: Key",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"assortmentFullGoods": {
+										"label": "root/logic/tour/orderType/02: Assortment Full Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"assortmentEmptyGoods": {
+										"label": "root/logic/tour/orderType/02: Assortment Empty Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"quantityMapping": {
+										"label": "root/logic/tour/orderType/02: Quantity Mapping",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"newItemAllowed": {
+										"label": "root/logic/tour/orderType/02: New Item Allowed",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"03": {
+								"label": "root/logic/tour/orderType: 03",
+								"info": "root.logic.tour.orderType.03 still have child.",
+								"child": {
+									"key": {
+										"label": "root/logic/tour/orderType/03: Key",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"assortmentFullGoods": {
+										"label": "root/logic/tour/orderType/03: Assortment Full Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"assortmentEmptyGoods": {
+										"label": "root/logic/tour/orderType/03: Assortment Empty Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"quantityMapping": {
+										"label": "root/logic/tour/orderType/03: Quantity Mapping",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"newItemAllowed": {
+										"label": "root/logic/tour/orderType/03: New Item Allowed",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"04": {
+								"label": "root/logic/tour/orderType: 04",
+								"info": "root.logic.tour.orderType.04 still have child.",
+								"child": {
+									"key": {
+										"label": "root/logic/tour/orderType/04: Key",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"assortmentFullGoods": {
+										"label": "root/logic/tour/orderType/04: Assortment Full Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"assortmentEmptyGoods": {
+										"label": "root/logic/tour/orderType/04: Assortment Empty Goods",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"quantityMapping": {
+										"label": "root/logic/tour/orderType/04: Quantity Mapping",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"newItemAllowed": {
+										"label": "root/logic/tour/orderType/04: New Item Allowed",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"priceHandling": {
+						"label": "root/logic/tour: Price Handling",
+						"info": "root.logic.tour.priceHandling still have child.",
+						"child": {
+							"0": {
+								"label": "root/logic/tour/priceHandling: 0",
+								"info": "root.logic.tour.priceHandling.0 still have child.",
+								"child": {
+									"additionQuantity": {
+										"label": "root/logic/tour/priceHandling/0: Addition Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"minimizeQuantity": {
+										"label": "root/logic/tour/priceHandling/0: Minimize Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"newItem": {
+										"label": "root/logic/tour/priceHandling/0: New Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"1": {
+								"label": "root/logic/tour/priceHandling: 1",
+								"info": "root.logic.tour.priceHandling.1 still have child.",
+								"child": {
+									"additionQuantity": {
+										"label": "root/logic/tour/priceHandling/1: Addition Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"minimizeQuantity": {
+										"label": "root/logic/tour/priceHandling/1: Minimize Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"newItem": {
+										"label": "root/logic/tour/priceHandling/1: New Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"2": {
+								"label": "root/logic/tour/priceHandling: 2",
+								"info": "root.logic.tour.priceHandling.2 still have child.",
+								"child": {
+									"additionQuantity": {
+										"label": "root/logic/tour/priceHandling/2: Addition Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"minimizeQuantity": {
+										"label": "root/logic/tour/priceHandling/2: Minimize Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"newItem": {
+										"label": "root/logic/tour/priceHandling/2: New Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"3": {
+								"label": "root/logic/tour/priceHandling: 3",
+								"info": "root.logic.tour.priceHandling.3 still have child.",
+								"child": {
+									"additionQuantity": {
+										"label": "root/logic/tour/priceHandling/3: Addition Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"minimizeQuantity": {
+										"label": "root/logic/tour/priceHandling/3: Minimize Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"newItem": {
+										"label": "root/logic/tour/priceHandling/3: New Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"dropShipment": {
+								"label": "root/logic/tour/priceHandling: Drop Shipment",
+								"info": "root.logic.tour.priceHandling.dropShipment still have child.",
+								"child": {
+									"additionQuantity": {
+										"label": "root/logic/tour/priceHandling/dropShipment: Addition Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"minimizeQuantity": {
+										"label": "root/logic/tour/priceHandling/dropShipment: Minimize Quantity",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"newItem": {
+										"label": "root/logic/tour/priceHandling/dropShipment: New Item",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"syncCleanUpTables": {
+						"label": "root/logic/tour: Sync Clean Up Tables",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					}
+				}
+			},
+			"stop": {
+				"label": "root/logic: Stop",
+				"info": "root.logic.stop still have child.",
+				"child": {
+					"grouping": {
+						"label": "root/logic/stop: Grouping",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"overwriteInfoText": {
+						"label": "root/logic/stop: Overwrite Info Text",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"detail": {
+						"label": "root/logic/stop: Detail",
+						"info": "root.logic.stop.detail still have child.",
+						"child": {
+							"reactivateCanceledOrders": {
+								"label": "root/logic/stop/detail: Reactivate Canceled Orders",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"cancelReasons": {
+								"label": "root/logic/stop/detail: Cancel Reasons",
+								"info": "root.logic.stop.detail.cancelReasons still have child.",
+								"child": {
+									"commitColumn": {
+										"label": "root/logic/stop/detail/cancelReasons: Commit Column",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"variant": {
+										"label": "root/logic/stop/detail/cancelReasons: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"textModule": {
+										"label": "root/logic/stop/detail/cancelReasons: Text Module",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"values": {
+										"label": "root/logic/stop/detail/cancelReasons: Values",
+										"info": "root.logic.stop.detail.cancelReasons.values -Map containing child",
+										"element": {
+											"type": "map",
+											"array": true,
+											"child": {
+												"text": {
+													"label": "root/logic/stop/detail/cancelReasons/values: Text",
+													"info": "MapChild of root.logic.stop.detail.cancelReasons.values",
+													"element": {
+														"type": "text"
+													}
+												},
+												"textNr": {
+													"label": "root/logic/stop/detail/cancelReasons/values: Text Nr",
+													"info": "MapChild of root.logic.stop.detail.cancelReasons.values",
+													"element": {
+														"type": "text"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"receiver_sign": {
+								"label": "root/logic/stop/detail: Receiver_sign",
+								"info": "root.logic.stop.detail.receiver_sign still have child.",
+								"child": {
+									"refusedSignReasons": {
+										"label": "root/logic/stop/detail/receiver_sign: Refused Sign Reasons",
+										"info": "root.logic.stop.detail.receiver_sign.refusedSignReasons still have child.",
+										"child": {
+											"commitColumn": {
+												"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons: Commit Column",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"variant": {
+												"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons: Variant",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "text"
+												}
+											},
+											"textModule": {
+												"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons: Text Module",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "error"
+												}
+											},
+											"values": {
+												"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons: Values",
+												"info": "root.logic.stop.detail.receiver_sign.refusedSignReasons.values -Map containing child",
+												"element": {
+													"type": "map",
+													"array": true,
+													"child": {
+														"text": {
+															"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons/values: Text",
+															"info": "MapChild of root.logic.stop.detail.receiver_sign.refusedSignReasons.values",
+															"element": {
+																"type": "text"
+															}
+														},
+														"textNr": {
+															"label": "root/logic/stop/detail/receiver_sign/refusedSignReasons/values: Text Nr",
+															"info": "MapChild of root.logic.stop.detail.receiver_sign.refusedSignReasons.values",
+															"element": {
+																"type": "text"
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"refusedSignIgnoreName": {
+										"label": "root/logic/stop/detail/receiver_sign: Refused Sign Ignore Name",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"createOrder": {
+				"label": "root/logic: Create Order",
+				"info": "root.logic.createOrder still have child.",
+				"child": {
+					"suggestedOrderNumber": {
+						"label": "root/logic/createOrder: Suggested Order Number",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"immediatelyStart": {
+						"label": "root/logic/createOrder: Immediately Start",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"equaliseOrderTimes": {
+						"label": "root/logic/createOrder: Equalise Order Times",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"fullGood": {
+						"label": "root/logic/createOrder: Full Good",
+						"info": "root.logic.createOrder.fullGood still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/logic/createOrder/fullGood: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"priceCalculation": {
+								"label": "root/logic/createOrder/fullGood: Price Calculation",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"emptyGood": {
+						"label": "root/logic/createOrder: Empty Good",
+						"info": "root.logic.createOrder.emptyGood still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/logic/createOrder/emptyGood: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"priceCalculation": {
+								"label": "root/logic/createOrder/emptyGood: Price Calculation",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					}
+				}
+			},
+			"inventory": {
+				"label": "root/logic: Inventory",
+				"info": "root.logic.inventory still have child.",
+				"child": {
+					"waitForInventory": {
+						"label": "root/logic/inventory: Wait For Inventory",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"commitInventory": {
+						"label": "root/logic/inventory: Commit Inventory",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"printInventory": {
+						"label": "root/logic/inventory: Print Inventory",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"directStart": {
+						"label": "root/logic/inventory: Direct Start",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"itemTypeIrrelevant": {
+						"label": "root/logic/inventory: Item Type Irrelevant",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"differenceMaxCount": {
+						"label": "root/logic/inventory: Difference Max Count",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "number"
+						}
+					},
+					"defaultItemType": {
+						"label": "root/logic/inventory: Default Item Type",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"presetCountQuantity": {
+						"label": "root/logic/inventory: Preset Count Quantity",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"emptyCountType": {
+						"label": "root/logic/inventory: Empty Count Type",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"commitOrder": {
+						"label": "root/logic/inventory: Commit Order",
+						"info": "root.logic.inventory.commitOrder still have child.",
+						"child": {
+							"customerNumber": {
+								"label": "root/logic/inventory/commitOrder: Customer Number",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					}
+				}
+			},
+			"pickup": {
+				"label": "root/logic: Pickup",
+				"info": "root.logic.pickup still have child.",
+				"child": {
+					"emptyGoods": {
+						"label": "root/logic/pickup: Empty Goods",
+						"info": "root.logic.pickup.emptyGoods still have child.",
+						"child": {
+							"listBase": {
+								"label": "root/logic/pickup/emptyGoods: List Base",
+								"info": "root.logic.pickup.emptyGoods.listBase still have child.",
+								"child": {
+									"additional": {
+										"label": "root/logic/pickup/emptyGoods/listBase: Additional",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"additionalList": {
+										"label": "root/logic/pickup/emptyGoods/listBase: Additional List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "error"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"ui": {
+		"label": "root: Ui",
+		"info": "root.ui still have child.",
+		"child": {
+			"pin": {
+				"label": "root/ui: Pin",
+				"info": "root.ui.pin still have child.",
+				"child": {
+					"inputType": {
+						"label": "root/ui/pin: Input Type",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					}
+				}
+			},
+			"start": {
+				"label": "root/ui: Start",
+				"info": "root.ui.start still have child.",
+				"child": {
+					"tour": {
+						"label": "root/ui/start: Tour",
+						"info": "root.ui.start.tour still have child.",
+						"child": {
+							"inputType": {
+								"label": "root/ui/start/tour: Input Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"trip": {
+						"label": "root/ui/start: Trip",
+						"info": "root.ui.start.trip still have child.",
+						"child": {
+							"inputType": {
+								"label": "root/ui/start/trip: Input Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"password": {
+						"label": "root/ui/start: Password",
+						"info": "root.ui.start.password still have child.",
+						"child": {
+							"visible": {
+								"label": "root/ui/start/password: Visible",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"inputType": {
+								"label": "root/ui/start/password: Input Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"contextMenu": {
+						"label": "root/ui/start: Context Menu",
+						"info": "root.ui.start.contextMenu still have child.",
+						"child": {
+							"changeMacAddress": {
+								"label": "root/ui/start/contextMenu: Change Mac Address",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					}
+				}
+			},
+			"tour": {
+				"label": "root/ui: Tour",
+				"info": "root.ui.tour still have child.",
+				"child": {
+					"start": {
+						"label": "root/ui/tour: Start",
+						"info": "root.ui.tour.start still have child.",
+						"child": {
+							"starttime": {
+								"label": "root/ui/tour/start: Starttime",
+								"info": "root.ui.tour.start.starttime still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/start/starttime: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/start/starttime: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"daystart": {
+								"label": "root/ui/tour/start: Daystart",
+								"info": "root.ui.tour.start.daystart still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/start/daystart: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/start/daystart: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"end": {
+						"label": "root/ui/tour: End",
+						"info": "root.ui.tour.end still have child.",
+						"child": {
+							"startkm": {
+								"label": "root/ui/tour/end: Startkm",
+								"info": "root.ui.tour.end.startkm still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/end/startkm: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"endtime": {
+								"label": "root/ui/tour/end: Endtime",
+								"info": "root.ui.tour.end.endtime still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/end/endtime: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/end/endtime: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"workEnd": {
+								"label": "root/ui/tour/end: Work End",
+								"info": "root.ui.tour.end.workEnd still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/end/workEnd: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/end/workEnd: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"disruption": {
+						"label": "root/ui/tour: Disruption",
+						"info": "root.ui.tour.disruption still have child.",
+						"child": {
+							"useDisruptionTimeDiff": {
+								"label": "root/ui/tour/disruption: Use Disruption Time Diff",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"previewList": {
+						"label": "root/ui/tour: Preview List",
+						"info": "root.ui.tour.previewList still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/tour/previewList: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "number"
+								}
+							},
+							"backbutton": {
+								"label": "root/ui/tour/previewList: Backbutton",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"contextMenu": {
+								"label": "root/ui/tour/previewList: Context Menu",
+								"info": "root.ui.tour.previewList.contextMenu still have child.",
+								"child": {
+									"changeMacAddress": {
+										"label": "root/ui/tour/previewList/contextMenu: Change Mac Address",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"loadNewTour": {
+										"label": "root/ui/tour/previewList/contextMenu: Load New Tour",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"previewDetail": {
+						"label": "root/ui/tour: Preview Detail",
+						"info": "root.ui.tour.previewDetail still have child.",
+						"child": {
+							"header": {
+								"label": "root/ui/tour/previewDetail: Header",
+								"info": "root.ui.tour.previewDetail.header still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/previewDetail/header: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"driver": {
+								"label": "root/ui/tour/previewDetail: Driver",
+								"info": "root.ui.tour.previewDetail.driver still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/previewDetail/driver: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/previewDetail/driver: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"codriver": {
+								"label": "root/ui/tour/previewDetail: Codriver",
+								"info": "root.ui.tour.previewDetail.codriver still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/previewDetail/codriver: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/previewDetail/codriver: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"vehicle": {
+								"label": "root/ui/tour/previewDetail: Vehicle",
+								"info": "root.ui.tour.previewDetail.vehicle still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/previewDetail/vehicle: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/previewDetail/vehicle: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"trailer": {
+								"label": "root/ui/tour/previewDetail: Trailer",
+								"info": "root.ui.tour.previewDetail.trailer still have child.",
+								"child": {
+									"visible": {
+										"label": "root/ui/tour/previewDetail/trailer: Visible",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"readonly": {
+										"label": "root/ui/tour/previewDetail/trailer: Readonly",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"tourList": {
+								"label": "root/ui/tour/previewDetail: Tour List",
+								"info": "root.ui.tour.previewDetail.tourList still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/previewDetail/tourList: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"unloadList": {
+								"label": "root/ui/tour/previewDetail: Unload List",
+								"info": "root.ui.tour.previewDetail.unloadList still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/previewDetail/unloadList: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									}
+								}
+							},
+							"backbutton": {
+								"label": "root/ui/tour/previewDetail: Backbutton",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"flowActionButton": {
+								"label": "root/ui/tour/previewDetail: Flow Action Button",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"contextMenu": {
+								"label": "root/ui/tour/previewDetail: Context Menu",
+								"info": "root.ui.tour.previewDetail.contextMenu still have child.",
+								"child": {
+									"print": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Print",
+										"info": "root.ui.tour.previewDetail.contextMenu.print still have child.",
+										"child": {
+											"unloadList": {
+												"label": "root/ui/tour/previewDetail/contextMenu/print: Unload List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"stockList": {
+												"label": "root/ui/tour/previewDetail/contextMenu/print: Stock List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"deliveryNotes": {
+												"label": "root/ui/tour/previewDetail/contextMenu/print: Delivery Notes",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"stockList": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Stock List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"deleteTour": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Delete Tour",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"sortCustomer": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Sort Customer",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"changeMacAddress": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Change Mac Address",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"addDisruption": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Add Disruption",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"createOrder": {
+										"label": "root/ui/tour/previewDetail/contextMenu: Create Order",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"detail": {
+						"label": "root/ui/tour: Detail",
+						"info": "root.ui.tour.detail still have child.",
+						"child": {
+							"contextMenu": {
+								"label": "root/ui/tour/detail: Context Menu",
+								"info": "root.ui.tour.detail.contextMenu still have child.",
+								"child": {
+									"print": {
+										"label": "root/ui/tour/detail/contextMenu: Print",
+										"info": "root.ui.tour.detail.contextMenu.print still have child.",
+										"child": {
+											"unloadList": {
+												"label": "root/ui/tour/detail/contextMenu/print: Unload List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"stockList": {
+												"label": "root/ui/tour/detail/contextMenu/print: Stock List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"deliveryNotes": {
+												"label": "root/ui/tour/detail/contextMenu/print: Delivery Notes",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"stockList": {
+										"label": "root/ui/tour/detail/contextMenu: Stock List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"unloadList": {
+										"label": "root/ui/tour/detail/contextMenu: Unload List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"deleteTour": {
+										"label": "root/ui/tour/detail/contextMenu: Delete Tour",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"changeMacAddress": {
+										"label": "root/ui/tour/detail/contextMenu: Change Mac Address",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"addDisruption": {
+										"label": "root/ui/tour/detail/contextMenu: Add Disruption",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"createOrder": {
+										"label": "root/ui/tour/detail/contextMenu: Create Order",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"skipPrinting": {
+										"label": "root/ui/tour/detail/contextMenu: Skip Printing",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"newCustomerOrder": {
+						"label": "root/ui/tour: New Customer Order",
+						"info": "root.ui.tour.newCustomerOrder still have child.",
+						"child": {
+							"customerList": {
+								"label": "root/ui/tour/newCustomerOrder: Customer List",
+								"info": "root.ui.tour.newCustomerOrder.customerList still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/newCustomerOrder/customerList: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"orderList": {
+						"label": "root/ui/tour: Order List",
+						"info": "root.ui.tour.orderList still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/tour/orderList: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"articleSearch": {
+						"label": "root/ui/tour: Article Search",
+						"info": "root.ui.tour.articleSearch still have child.",
+						"child": {
+							"list": {
+								"label": "root/ui/tour/articleSearch: List",
+								"info": "root.ui.tour.articleSearch.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/articleSearch/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"scanBarcode": {
+								"label": "root/ui/tour/articleSearch: Scan Barcode",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"fullGoods": {
+						"label": "root/ui/tour: Full Goods",
+						"info": "root.ui.tour.fullGoods still have child.",
+						"child": {
+							"header": {
+								"label": "root/ui/tour/fullGoods: Header",
+								"info": "root.ui.tour.fullGoods.header still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/fullGoods/header: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"list": {
+								"label": "root/ui/tour/fullGoods: List",
+								"info": "root.ui.tour.fullGoods.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/fullGoods/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"detail": {
+								"label": "root/ui/tour/fullGoods: Detail",
+								"info": "root.ui.tour.fullGoods.detail still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/fullGoods/detail: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"add": {
+								"label": "root/ui/tour/fullGoods: Add",
+								"info": "root.ui.tour.fullGoods.add still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/fullGoods/add: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"materialInputType": {
+										"label": "root/ui/tour/fullGoods/add: Material Input Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"serial": {
+								"label": "root/ui/tour/fullGoods: Serial",
+								"info": "root.ui.tour.fullGoods.serial still have child.",
+								"child": {
+									"inputType": {
+										"label": "root/ui/tour/fullGoods/serial: Input Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"returnableStock": {
+								"label": "root/ui/tour/fullGoods: Returnable Stock",
+								"info": "root.ui.tour.fullGoods.returnableStock still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/fullGoods/returnableStock: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"grouping": {
+										"label": "root/ui/tour/fullGoods/returnableStock: Grouping",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"charge": {
+								"label": "root/ui/tour/fullGoods: Charge",
+								"info": "root.ui.tour.fullGoods.charge still have child.",
+								"child": {
+									"inputType": {
+										"label": "root/ui/tour/fullGoods/charge: Input Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"bbd": {
+								"label": "root/ui/tour/fullGoods: Bbd",
+								"info": "root.ui.tour.fullGoods.bbd still have child.",
+								"child": {
+									"inputType": {
+										"label": "root/ui/tour/fullGoods/bbd: Input Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"unit": {
+								"label": "root/ui/tour/fullGoods: Unit",
+								"info": "root.ui.tour.fullGoods.unit still have child.",
+								"child": {
+									"selectable": {
+										"label": "root/ui/tour/fullGoods/unit: Selectable",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"itemTypes": {
+								"label": "root/ui/tour/fullGoods: Item Types",
+								"info": "root.ui.tour.fullGoods.itemTypes still have child.",
+								"child": {
+									"displayConfigLabel": {
+										"label": "root/ui/tour/fullGoods/itemTypes: Display Config Label",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"emptyGoods": {
+						"label": "root/ui/tour: Empty Goods",
+						"info": "root.ui.tour.emptyGoods still have child.",
+						"child": {
+							"list": {
+								"label": "root/ui/tour/emptyGoods: List",
+								"info": "root.ui.tour.emptyGoods.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/emptyGoods/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sortVariant": {
+										"label": "root/ui/tour/emptyGoods/list: Sort Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"add": {
+								"label": "root/ui/tour/emptyGoods: Add",
+								"info": "root.ui.tour.emptyGoods.add still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/tour/emptyGoods/add: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"materialInputType": {
+										"label": "root/ui/tour/emptyGoods/add: Material Input Type",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"stop": {
+				"label": "root/ui: Stop",
+				"info": "root.ui.stop still have child.",
+				"child": {
+					"displayPallet": {
+						"label": "root/ui/stop: Display Pallet",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"showDeliveryTime": {
+						"label": "root/ui/stop: Show Delivery Time",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"showKeyword": {
+						"label": "root/ui/stop: Show Keyword",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					},
+					"list": {
+						"label": "root/ui/stop: List",
+						"info": "root.ui.stop.list still have child.",
+						"child": {
+							"showOrderCount": {
+								"label": "root/ui/stop/list: Show Order Count",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"starttime": {
+						"label": "root/ui/stop: Starttime",
+						"info": "root.ui.stop.starttime still have child.",
+						"child": {
+							"visible": {
+								"label": "root/ui/stop/starttime: Visible",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"readonly": {
+								"label": "root/ui/stop/starttime: Readonly",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"endtime": {
+						"label": "root/ui/stop: Endtime",
+						"info": "root.ui.stop.endtime still have child.",
+						"child": {
+							"visible": {
+								"label": "root/ui/stop/endtime: Visible",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"readonly": {
+								"label": "root/ui/stop/endtime: Readonly",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"header": {
+						"label": "root/ui/stop: Header",
+						"info": "root.ui.stop.header still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/stop/header: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"detail": {
+						"label": "root/ui/stop: Detail",
+						"info": "root.ui.stop.detail still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/stop/detail: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"backbutton": {
+								"label": "root/ui/stop/detail: Backbutton",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"contextMenu": {
+								"label": "root/ui/stop/detail: Context Menu",
+								"info": "root.ui.stop.detail.contextMenu still have child.",
+								"child": {
+									"changeMacAddress": {
+										"label": "root/ui/stop/detail/contextMenu: Change Mac Address",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"addDisruption": {
+										"label": "root/ui/stop/detail/contextMenu: Add Disruption",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"unloadList": {
+										"label": "root/ui/stop/detail/contextMenu: Unload List",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"pauseStop": {
+										"label": "root/ui/stop/detail/contextMenu: Pause Stop",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							}
+						}
+					},
+					"cashier": {
+						"label": "root/ui/stop: Cashier",
+						"info": "root.ui.stop.cashier still have child.",
+						"child": {
+							"numberInputType": {
+								"label": "root/ui/stop/cashier: Number Input Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"variant": {
+								"label": "root/ui/stop/cashier: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"headerVariant": {
+								"label": "root/ui/stop/cashier: Header Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"nocashInstalment": {
+								"label": "root/ui/stop/cashier: Nocash Instalment",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"testPrintActive": {
+								"label": "root/ui/stop/cashier: Test Print Active",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"hideOpenItemSum": {
+								"label": "root/ui/stop/cashier: Hide Open Item Sum",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"stepByStepHideCurrent": {
+								"label": "root/ui/stop/cashier: Step By Step Hide Current",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"deactiveFinishConfirm": {
+								"label": "root/ui/stop/cashier: Deactive Finish Confirm",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"stepByStepMinOneOp": {
+								"label": "root/ui/stop/cashier: Step By Step Min One Op",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"contextMenu": {
+								"label": "root/ui/stop/cashier: Context Menu",
+								"info": "root.ui.stop.cashier.contextMenu still have child.",
+								"child": {
+									"print": {
+										"label": "root/ui/stop/cashier/contextMenu: Print",
+										"info": "root.ui.stop.cashier.contextMenu.print still have child.",
+										"child": {
+											"unloadList": {
+												"label": "root/ui/stop/cashier/contextMenu/print: Unload List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"stockList": {
+												"label": "root/ui/stop/cashier/contextMenu/print: Stock List",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"deliveryNotes": {
+												"label": "root/ui/stop/cashier/contextMenu/print: Delivery Notes",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"testPrint": {
+												"label": "root/ui/stop/cashier/contextMenu/print: Test Print",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									},
+									"changeMacAddress": {
+										"label": "root/ui/stop/cashier/contextMenu: Change Mac Address",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									}
+								}
+							},
+							"driver_sign": {
+								"label": "root/ui/stop/cashier: Driver_sign",
+								"info": "root.ui.stop.cashier.driver_sign still have child.",
+								"child": {
+									"required": {
+										"label": "root/ui/stop/cashier/driver_sign: Required",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"height": {
+										"label": "root/ui/stop/cashier/driver_sign: Height",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									},
+									"contextMenu": {
+										"label": "root/ui/stop/cashier/driver_sign: Context Menu",
+										"info": "root.ui.stop.cashier.driver_sign.contextMenu still have child.",
+										"child": {
+											"clearSignature": {
+												"label": "root/ui/stop/cashier/driver_sign/contextMenu: Clear Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"acceptSignature": {
+												"label": "root/ui/stop/cashier/driver_sign/contextMenu: Accept Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									}
+								}
+							},
+							"receiver_sign": {
+								"label": "root/ui/stop/cashier: Receiver_sign",
+								"info": "root.ui.stop.cashier.receiver_sign still have child.",
+								"child": {
+									"required": {
+										"label": "root/ui/stop/cashier/receiver_sign: Required",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"height": {
+										"label": "root/ui/stop/cashier/receiver_sign: Height",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "number"
+										}
+									},
+									"showInfoText": {
+										"label": "root/ui/stop/cashier/receiver_sign: Show Info Text",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"infoText": {
+										"label": "root/ui/stop/cashier/receiver_sign: Info Text",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"contextMenu": {
+										"label": "root/ui/stop/cashier/receiver_sign: Context Menu",
+										"info": "root.ui.stop.cashier.receiver_sign.contextMenu still have child.",
+										"child": {
+											"clearSignature": {
+												"label": "root/ui/stop/cashier/receiver_sign/contextMenu: Clear Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"acceptSignature": {
+												"label": "root/ui/stop/cashier/receiver_sign/contextMenu: Accept Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									}
+								}
+							},
+							"receiver_name": {
+								"label": "root/ui/stop/cashier: Receiver_name",
+								"info": "root.ui.stop.cashier.receiver_name still have child.",
+								"child": {
+									"required": {
+										"label": "root/ui/stop/cashier/receiver_name: Required",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "toggle"
+										}
+									},
+									"contextMenu": {
+										"label": "root/ui/stop/cashier/receiver_name: Context Menu",
+										"info": "root.ui.stop.cashier.receiver_name.contextMenu still have child.",
+										"child": {
+											"clearSignature": {
+												"label": "root/ui/stop/cashier/receiver_name/contextMenu: Clear Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"acceptSignature": {
+												"label": "root/ui/stop/cashier/receiver_name/contextMenu: Accept Signature",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											},
+											"changeMacAddress": {
+												"label": "root/ui/stop/cashier/receiver_name/contextMenu: Change Mac Address",
+												"info": "Primitive Type Element",
+												"element": {
+													"type": "toggle"
+												}
+											}
+										}
+									}
+								}
+							},
+							"underpayment": {
+								"label": "root/ui/stop/cashier: Underpayment",
+								"info": "root.ui.stop.cashier.underpayment still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/stop/cashier/underpayment: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"createOrder": {
+						"label": "root/ui/stop: Create Order",
+						"info": "root.ui.stop.createOrder still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/ui/stop/createOrder: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"reprint": {
+						"label": "root/ui/stop: Reprint",
+						"info": "root.ui.stop.reprint still have child.",
+						"child": {
+							"orderSelection": {
+								"label": "root/ui/stop/reprint: Order Selection",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					},
+					"testprint": {
+						"label": "root/ui/stop: Testprint",
+						"info": "root.ui.stop.testprint still have child.",
+						"child": {
+							"orderSelection": {
+								"label": "root/ui/stop/testprint: Order Selection",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							}
+						}
+					}
+				}
+			},
+			"createOrder": {
+				"label": "root/ui: Create Order",
+				"info": "root.ui.createOrder still have child.",
+				"child": {
+					"suggestedOrderNumberEditable": {
+						"label": "root/ui/createOrder: Suggested Order Number Editable",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					}
+				}
+			},
+			"inventory": {
+				"label": "root/ui: Inventory",
+				"info": "root.ui.inventory still have child.",
+				"child": {
+					"displayType": {
+						"label": "root/ui/inventory: Display Type",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"sign": {
+						"label": "root/ui/inventory: Sign",
+						"info": "root.ui.inventory.sign still have child.",
+						"child": {
+							"height": {
+								"label": "root/ui/inventory/sign: Height",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "number"
+								}
+							}
+						}
+					},
+					"header": {
+						"label": "root/ui/inventory: Header",
+						"info": "root.ui.inventory.header still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/inventory/header: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"tourList": {
+						"label": "root/ui/inventory: Tour List",
+						"info": "root.ui.inventory.tourList still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/inventory/tourList: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"detail": {
+						"label": "root/ui/inventory: Detail",
+						"info": "root.ui.inventory.detail still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/inventory/detail: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"differenceList": {
+						"label": "root/ui/inventory: Difference List",
+						"info": "root.ui.inventory.differenceList still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/inventory/differenceList: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"displayType": {
+								"label": "root/ui/inventory/differenceList: Display Type",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"fullGoods": {
+						"label": "root/ui/inventory: Full Goods",
+						"info": "root.ui.inventory.fullGoods still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/ui/inventory/fullGoods: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"list": {
+								"label": "root/ui/inventory/fullGoods: List",
+								"info": "root.ui.inventory.fullGoods.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/inventory/fullGoods/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sortVariant": {
+										"label": "root/ui/inventory/fullGoods/list: Sort Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"detail": {
+								"label": "root/ui/inventory/fullGoods: Detail",
+								"info": "root.ui.inventory.fullGoods.detail still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/inventory/fullGoods/detail: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"add": {
+								"label": "root/ui/inventory/fullGoods: Add",
+								"info": "root.ui.inventory.fullGoods.add still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/inventory/fullGoods/add: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"emptyGoods": {
+						"label": "root/ui/inventory: Empty Goods",
+						"info": "root.ui.inventory.emptyGoods still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/ui/inventory/emptyGoods: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"list": {
+								"label": "root/ui/inventory/emptyGoods: List",
+								"info": "root.ui.inventory.emptyGoods.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/inventory/emptyGoods/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sortVariant": {
+										"label": "root/ui/inventory/emptyGoods/list: Sort Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"detail": {
+								"label": "root/ui/inventory/emptyGoods: Detail",
+								"info": "root.ui.inventory.emptyGoods.detail still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/inventory/emptyGoods/detail: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"vehicleTracking": {
+				"label": "root/ui: Vehicle Tracking",
+				"info": "root.ui.vehicleTracking still have child.",
+				"child": {
+					"breakradius": {
+						"label": "root/ui/vehicleTracking: Breakradius",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"breakduration": {
+						"label": "root/ui/vehicleTracking: Breakduration",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"maxposcount": {
+						"label": "root/ui/vehicleTracking: Maxposcount",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"maxbreakcount": {
+						"label": "root/ui/vehicleTracking: Maxbreakcount",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"measureInterval": {
+						"label": "root/ui/vehicleTracking: Measure Interval",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					},
+					"minaccuracy": {
+						"label": "root/ui/vehicleTracking: Minaccuracy",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "error"
+						}
+					}
+				}
+			},
+			"pickup": {
+				"label": "root/ui: Pickup",
+				"info": "root.ui.pickup still have child.",
+				"child": {
+					"start": {
+						"label": "root/ui/pickup: Start",
+						"info": "root.ui.pickup.start still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/pickup/start: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"header": {
+						"label": "root/ui/pickup: Header",
+						"info": "root.ui.pickup.header still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/pickup/header: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"detail": {
+						"label": "root/ui/pickup: Detail",
+						"info": "root.ui.pickup.detail still have child.",
+						"child": {
+							"variant": {
+								"label": "root/ui/pickup/detail: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"emptyGoods": {
+						"label": "root/ui/pickup: Empty Goods",
+						"info": "root.ui.pickup.emptyGoods still have child.",
+						"child": {
+							"list": {
+								"label": "root/ui/pickup/emptyGoods: List",
+								"info": "root.ui.pickup.emptyGoods.list still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/pickup/emptyGoods/list: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"sortVariant": {
+										"label": "root/ui/pickup/emptyGoods/list: Sort Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"detail": {
+								"label": "root/ui/pickup/emptyGoods: Detail",
+								"info": "root.ui.pickup.emptyGoods.detail still have child.",
+								"child": {
+									"variant": {
+										"label": "root/ui/pickup/emptyGoods/detail: Variant",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"print": {
+		"label": "root: Print",
+		"info": "root.print still have child.",
+		"child": {
+			"timeout": {
+				"label": "root/print: Timeout",
+				"info": "root.print.timeout still have child.",
+				"child": {
+					"standard": {
+						"label": "root/print/timeout: Standard",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "number"
+						}
+					},
+					"reprint": {
+						"label": "root/print/timeout: Reprint",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "number"
+						}
+					},
+					"voucher": {
+						"label": "root/print/timeout: Voucher",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "number"
+						}
+					}
+				}
+			},
+			"maxCharacter": {
+				"label": "root/print: Max Character",
+				"info": "Primitive Type Element",
+				"element": {
+					"type": "text"
+				}
+			},
+			"documentWidth": {
+				"label": "root/print: Document Width",
+				"info": "Primitive Type Element",
+				"element": {
+					"type": "text"
+				}
+			},
+			"voucher": {
+				"label": "root/print: Voucher",
+				"info": "root.print.voucher still have child.",
+				"child": {
+					"agb": {
+						"label": "root/print/voucher: Agb",
+						"info": "root.print.voucher.agb still have child.",
+						"child": {
+							"variant": {
+								"label": "root/print/voucher/agb: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"textModule": {
+								"label": "root/print/voucher/agb: Text Module",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"text": {
+								"label": "root/print/voucher/agb: Text",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"header": {
+						"label": "root/print/voucher: Header",
+						"info": "root.print.voucher.header still have child.",
+						"child": {
+							"variant": {
+								"label": "root/print/voucher/header: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"textModule": {
+								"label": "root/print/voucher/header: Text Module",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"text": {
+								"label": "root/print/voucher/header: Text",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"bankaccount": {
+						"label": "root/print/voucher: Bankaccount",
+						"info": "root.print.voucher.bankaccount still have child.",
+						"child": {
+							"variant": {
+								"label": "root/print/voucher/bankaccount: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"textModule": {
+								"label": "root/print/voucher/bankaccount: Text Module",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"text": {
+								"label": "root/print/voucher/bankaccount: Text",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"footer": {
+						"label": "root/print/voucher: Footer",
+						"info": "root.print.voucher.footer still have child.",
+						"child": {
+							"variant": {
+								"label": "root/print/voucher/footer: Variant",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"textModule": {
+								"label": "root/print/voucher/footer: Text Module",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							},
+							"text": {
+								"label": "root/print/voucher/footer: Text",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "text"
+								}
+							}
+						}
+					},
+					"glnNr": {
+						"label": "root/print/voucher: Gln Nr",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					},
+					"orderAcceptance": {
+						"label": "root/print/voucher: Order Acceptance",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					}
+				}
+			},
+			"unloadList": {
+				"label": "root/print: Unload List",
+				"info": "root.print.unloadList still have child.",
+				"child": {
+					"separateTypes": {
+						"label": "root/print/unloadList: Separate Types",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "toggle"
+						}
+					}
+				}
+			},
+			"serverSide": {
+				"label": "root/print: Server Side",
+				"info": "root.print.serverSide still have child.",
+				"child": {
+					"pickup": {
+						"label": "root/print/serverSide: Pickup",
+						"info": "root.print.serverSide.pickup still have child.",
+						"child": {
+							"enabled": {
+								"label": "root/print/serverSide/pickup: Enabled",
+								"info": "Primitive Type Element",
+								"element": {
+									"type": "toggle"
+								}
+							},
+							"DEV": {
+								"label": "root/print/serverSide/pickup:  D E V",
+								"info": "root.print.serverSide.pickup.DEV still have child.",
+								"child": {
+									"xslFile": {
+										"label": "root/print/serverSide/pickup/DEV: Xsl File",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printer": {
+										"label": "root/print/serverSide/pickup/DEV: Printer",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"TEST": {
+								"label": "root/print/serverSide/pickup:  T E S T",
+								"info": "root.print.serverSide.pickup.TEST still have child.",
+								"child": {
+									"xslFile": {
+										"label": "root/print/serverSide/pickup/TEST: Xsl File",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printer": {
+										"label": "root/print/serverSide/pickup/TEST: Printer",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							},
+							"PROD": {
+								"label": "root/print/serverSide/pickup:  P R O D",
+								"info": "root.print.serverSide.pickup.PROD still have child.",
+								"child": {
+									"xslFile": {
+										"label": "root/print/serverSide/pickup/PROD: Xsl File",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									},
+									"printer": {
+										"label": "root/print/serverSide/pickup/PROD: Printer",
+										"info": "Primitive Type Element",
+										"element": {
+											"type": "text"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"backup": {
+		"label": "root: Backup",
+		"info": "root.backup still have child.",
+		"child": {
+			"deviceDependedPath": {
+				"label": "root/backup: Device Depended Path",
+				"info": "Primitive Type Element",
+				"element": {
+					"type": "toggle"
+				}
+			},
+			"defaultPath": {
+				"label": "root/backup: Default Path",
+				"info": "Primitive Type Element",
+				"element": {
+					"type": "text"
+				}
+			},
+			"XCOVER": {
+				"label": "root/backup:  X C O V E R",
+				"info": "root.backup.XCOVER still have child.",
+				"child": {
+					"path": {
+						"label": "root/backup/XCOVER: Path",
+						"info": "Primitive Type Element",
+						"element": {
+							"type": "text"
+						}
+					}
+				}
+			}
+		}
+	}
+}
