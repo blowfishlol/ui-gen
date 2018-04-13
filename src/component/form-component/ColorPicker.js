@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import checkmark from "../../checkmark.png"
+import checkmarklite from "../../checkmarklite.png"
 import "../../style/ColorBox.css"
 
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
@@ -11,6 +12,7 @@ import LabelTooltip from "./LabelTooltip"
 import get from "../../util/formDataGet"
 import colorList, { mainColor, mainPalette, altPalette }  from "../../util/color"
 import ActionList from "../../reducer/actionList"
+import LightDarkDeterminator from "../../util/LightDarkDeterminator"
 
 import { windowOpen } from "../Window"
 
@@ -28,8 +30,19 @@ class ColorPicker extends React.Component {
     this.onPaletteChangedListener = this.onPaletteChangedListener.bind(this)
   }
 
-  getCheck(){
-    return <img width={30} height={30} src={checkmark} alt="V" />
+  getCheck(hexVal){
+    var boi = new LightDarkDeterminator();
+    if(!hexVal) {
+      hexVal = "#FFFFFF"
+    }
+    var hexResult = boi.getAccessibilityValuesFromHex(hexVal);
+    console.log(hexResult.preferredTitleColor);
+    if(hexResult.preferredTitleColor === "#ffffff"){
+      return <img width={30} height={30} src={checkmarklite} alt="V" />
+    } else {
+      return <img width={30} height={30} src={checkmark} alt="V" />
+    }
+
   }
 
   /**
@@ -96,7 +109,7 @@ class ColorPicker extends React.Component {
         width: 40.71,
         height: 30,
       }
-      const check = (pair.value.toString() === data[source].toString()) ? this.getCheck() : ""
+      const check = (pair.value.toString() === data[source].toString()) ? this.getCheck(styles.backgroundColor) : ""
       return <div className="col-*-3" key={this.props.form.path + "/" + source + "/" + pair.value}>
         <Tooltip content={pair.text} position={"top"}>
           <div style={styles} onClick={(event) => {this.onPaletteChangedListener(pair.value, source, event, data)}}>{check}</div>
