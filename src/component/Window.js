@@ -36,8 +36,9 @@ class WindowComponent extends React.Component {
   }
 
 	render() {
+    console.log("render ulang")
 		return <div>
-			<Window close={() => this.props.done()} title={this.props.title} width={"100%"} height={"50%"}>
+			<Window close={() => this.props.done()} title={this.props.title} width={this.props.width} height={this.props.height}>
 				{this.props.content}
 			</Window>
 		</div>
@@ -48,7 +49,9 @@ class WindowComponent extends React.Component {
 const mapStateToProps = function(storage) {
   return {
 		title: storage.win.title,
-    content: storage.win.content
+    content: storage.win.content,
+		width: storage.win.width,
+    height: storage.win.height
 	}
 }
 

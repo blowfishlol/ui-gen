@@ -5,6 +5,7 @@ import server from "../util/server"
 import ActionList from "./actionList"
 
 const default_config = {
+  id: -1,
   name: "New Configuration",
   configContent: {
     data: {}
@@ -55,7 +56,7 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       configs: state.configs.concat(default_config),
-      selected_id: state.configs.length
+      selected_id: -1
     }
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
     return {

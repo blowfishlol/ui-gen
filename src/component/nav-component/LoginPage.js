@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import ErrorBox from "../ErrorBox"
+import BlankSpace from "../BlankSpace"
 
 import ActionList from "../../reducer/actionList"
 
@@ -61,6 +62,7 @@ class LoginPage extends React.Component {
           <div className="col-sm-12">
             {error}
           </div>
+          <BlankSpace space="15px"/>
           <div className="col-sm-12">
             <button className="k-button k-primary" onClick={() => this.props.login(this.state)}> LOGIN </button>
           </div>

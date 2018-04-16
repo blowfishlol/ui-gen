@@ -1,5 +1,5 @@
 import storage from "../storage"
-import { isObject, lastElementOf, mergeDeep } from "./toolbox"
+import { isObject } from "./toolbox"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "./activeDataGet"
 import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"

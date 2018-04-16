@@ -21,7 +21,7 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * JSON Object containing config data (used in another reducer)
    */
-  } else if(action.type === ActionList.ASSIGN_CONFIG) {
+  } else if(action.type === ActionList.ASSIGN_CONFIG || action.type === ActionList.ADD_NEW_CONFIG) {
     return {
       ...state,
       location: NavKey.FORM_PAGE,

@@ -172,6 +172,7 @@ class ColorPicker extends React.Component {
   onColorBtnClickedListener(data) {
     this.props.setWindowTitle(this.props.desc.label)
     this.props.setWindowContent(this.generateColorPicker(data))
+    this.props.setWindowSize("100%", "40%")
     windowOpen()
   }
 
@@ -215,6 +216,13 @@ const mapDispatchToProps = (dispatch) => {
     setWindowContent: (content) => dispatch({
       type: ActionList.SET_WINDOW_CONTENT,
       payload: content
+    }),
+    setWindowSize: (width, height) => dispatch({
+      type: ActionList.SET_WINDOW_SIZE,
+      payload: {
+        "width": width,
+        "height": height
+      }
     }),
     setWindowOpen: (isOpen) => dispatch({
       type: ActionList.OPEN_WINDOW,

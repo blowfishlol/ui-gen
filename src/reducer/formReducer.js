@@ -73,7 +73,7 @@ function pop(path, ptr) {
 
 const defaultState = {
   data: {},
-  paths: {},
+  paths: [],
   ext_file_ids: [],
   removed_ext_file_ids: [],
   notifier: 1, // --> used to force re rendering on form components (ex: on data change)
@@ -117,7 +117,7 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ADD_PATH) {
     return {
       ...state,
-      paths: state.paths.concat(action.payload)
+      paths: state.paths.find(path => path === action.payload) ? state.paths : state.paths.concat(action.payload)
     }
   } else if(action.type === ActionList.REMOVE_PATH) {
     return {

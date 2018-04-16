@@ -2,7 +2,9 @@ import ActionList from "./actionList"
 
 const defaultState = {
   title: "",
-  content: ""
+  content: "",
+  width: "100%",
+  height: "50%"
 }
 
 export default function reducer(state = defaultState, action) {
@@ -23,6 +25,12 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       content: action.payload
+    }
+  } else if(action.type === ActionList.SET_WINDOW_SIZE) {
+    return {
+      ...state,
+      width: action.payload.width,
+      height: action.payload.height
     }
   /**
    * @param (in action.payload)

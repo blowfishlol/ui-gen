@@ -59,7 +59,8 @@ export default({
 
   SET_WINDOW_TITLE:            "set_window_title",
   SET_WINDOW_CONTENT:          "set_window_content",
-  SET_WINDOW_DEFAULT:          "set_window_default",
+  SET_WINDOW_SIZE:             "set_window_size",
+  SET_WINDOW_DEFAULT:          "set_window_default"
 })
 
 export const NavKey = {

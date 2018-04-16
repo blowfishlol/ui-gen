@@ -3,11 +3,13 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import { DropDownList } from "@progress/kendo-react-dropdowns"
+import PanelNavigator from "./PanelNavigator"
 import PageNavigator from "./PageNavigator"
 import Form from "../form-component/Form"
 
 import { setByIndex } from "../../util/formDataGet"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "../../util/activeDataGet"
+import { getNode } from "../../util/panelBarInfo";
 import { lastElementOf } from "../../util/toolbox"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
@@ -20,14 +22,14 @@ class FormSelector extends React.Component {
     super(props)
     this.state = {
       isEditNameMode: false,
-      configName: this.getSelectedConfig().name
+      configName: getSelectedConfig().name
     }
 
     this.props.assignDescription(this.getDefaultDescription()) // >.<
   }
 
   getDefaultDescription() {
-    let currentConfig = this.getSelectedConfig()
+    let currentConfig = getSelectedConfig()
     if(currentConfig.hasOwnProperty("configContent")) {
       if(currentConfig.configContent.hasOwnProperty("description")) {
         if(currentConfig.configContent.description.hasOwnProperty("id")) {
@@ -72,10 +74,9 @@ class FormSelector extends React.Component {
     this.props.assignDescription(this.props.description[index].id)
   }
 
-  render() {
-    let formSelectorHeader
+  renderHeader() {
     if(this.state.isEditNameMode) {
-      formSelectorHeader = <div className="formSelectorHeader">
+      return <div className="formSelectorHeader">
         <input
           className="k-textbox"
           type="text"
@@ -84,14 +85,20 @@ class FormSelector extends React.Component {
         <button className="k-button" onClick={() => this.onConfigNameEditBtnClicked()}>CHANGE</button>
       </div>
     } else {
-      formSelectorHeader = <h1 className="formSelectorHeader">
-        {this.getSelectedConfig().name}
+      return <h1 className="formSelectorHeader">
+        {getSelectedConfig().name}
         &nbsp;&nbsp;
         <button className="k-button" onClick={() => this.onConfigNameEditBtnClicked()}>EDIT</button>
       </h1>
     }
+  }
+
+  render() {
+    let forms = this.props.paths.map(path => {
+      return <Form path={path} component={getNode(getSelectedDescription(), path.split("."))} />
+    })
     return <div className="pageRoot">
-      {formSelectorHeader}
+      {this.renderHeader()}
       <table className="descSelectorTable">
         <tbody>
           <tr>
@@ -113,8 +120,8 @@ class FormSelector extends React.Component {
           </tr>
         </tbody>
       </table>
-      <p>ini button buat milih description</p>
-      <Form path="user" component={sample} />
+      <PanelNavigator />
+      {forms}
     </div>
   }
 }
@@ -126,7 +133,9 @@ const mapStateToProps = function(storage) {
     templates: storage.template.templates,
     selectedTemplate: storage.template.selected_id,
     descriptions: storage.description.descriptions,
-    selectedDescription: storage.description.selected_id
+    selectedDescription: storage.description.selected_id,
+
+    paths: storage.form.paths
   }
 }
 
