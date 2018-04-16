@@ -167,8 +167,6 @@ export default class LightDarkDeterminator {
     return t = t ? t.toFixed(2) : 1,
       "rgba(" + r.r + ", " + r.g + ", " + r.b + ", " + t + ")"
   }
-
-
 }
 
 

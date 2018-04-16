@@ -47,7 +47,7 @@ const deleteFileById = (id, context, userId, token) => {
           return file.id !== response.data
         })
       })
-      context.props.updateState(context.props.form.path, context.state.ids)
+      context.props.updateState(context.props.path, context.state.ids)
       context.props.removeExtFileRef(response.data)
     })
     .catch((err) => {

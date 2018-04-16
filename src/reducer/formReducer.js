@@ -61,9 +61,15 @@ function pop(path, ptr) {
     return ptr
   } else {
     if(ptr.hasOwnProperty(path[0])) {
-      return {
-        ...ptr,
-        [path[0]]: pop(path.slice(1), ptr[path[0]])
+      let val = pop(path.slice(1), ptr[path[0]])
+      if(Object.keys(val).length === 0) {
+        delete ptr[path[0]]
+        return ptr
+      } else {
+        return {
+          ...ptr,
+          [path[0]]: val
+        }
       }
     } else {
       return ptr
@@ -100,12 +106,8 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.POP_DATA) {
     return {
       ...state,
-      data: state.data.map((d, index) => {
-        return index === lastElementOf(state.app_state) ?
-            pop(action.payload.path.split("."), clone(d)) :
-            d
-       }),
-       notifier: (state.notifier + 1) % 10
+      data: pop(action.payload.split("."), clone(state.data)),
+      paths: state.paths.filter(path => path !== action.payload)
     }
   } else if(action.type === ActionList.POP_DATA_BY_INDEX) {
     return {
@@ -144,7 +146,7 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.CLEAR_DATA) {
     return {
       ...state,
-      data: [],
+      data: {},
       paths: [],
       ext_file_ids: [],
       removed_ext_file_ids: []

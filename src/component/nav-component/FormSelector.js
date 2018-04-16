@@ -7,7 +7,7 @@ import PanelNavigator from "./PanelNavigator"
 import PageNavigator from "./PageNavigator"
 import Form from "../form-component/Form"
 
-import { setByIndex } from "../../util/formDataGet"
+import { mergeAll } from "../../util/formDataGet"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "../../util/activeDataGet"
 import { getNode } from "../../util/panelBarInfo";
 import { lastElementOf } from "../../util/toolbox"
@@ -26,6 +26,7 @@ class FormSelector extends React.Component {
     }
 
     this.props.assignDescription(this.getDefaultDescription()) // >.<
+    this.props.assignTemplate(this.getDefaultTemplate()) // x_x
   }
 
   getDefaultDescription() {
@@ -38,6 +39,18 @@ class FormSelector extends React.Component {
       }
     }
     return lastElementOf(this.props.descriptions).id
+  }
+
+  getDefaultTemplate() {
+    let currentConfig = getSelectedConfig()
+    if(currentConfig.hasOwnProperty("configContent")) {
+      if(currentConfig.configContent.hasOwnProperty("template")) {
+        if(currentConfig.configContent.template.hasOwnProperty("id")) {
+          return currentConfig.configContent.template.id
+        }
+      }
+    }
+    return lastElementOf(getSelectedDescription().templates).id
   }
 
   isRendered(obj) {
@@ -74,6 +87,28 @@ class FormSelector extends React.Component {
     this.props.assignDescription(this.props.description[index].id)
   }
 
+  onTemplateSelectorSelectedListener(index) {
+    this.props.assignTemplate(index)
+  }
+
+  onFinishBtnClickedListener() {
+    let finalConfig = {
+      name: getSelectedConfig().name,
+      id: this.props.userId,
+      data: JSON.stringify(mergeAll()),
+      description_id: getSelectedDescription().id,
+      template_id: getSelectedTemplate().id,
+      file_id: this.props.extFileRef,
+      removed_file_id: this.props.removedExtFileRef,
+      token: this.props.token
+    }
+    if(getSelectedConfig().id !== -1) {
+      finalConfig.config_id = getSelectedConfig().id
+    }
+    // console.log("FINALLY", finalConfig)
+    this.props.saveConfig(finalConfig)
+  }
+
   renderHeader() {
     if(this.state.isEditNameMode) {
       return <div className="formSelectorHeader">
@@ -95,33 +130,35 @@ class FormSelector extends React.Component {
 
   render() {
     let forms = this.props.paths.map(path => {
-      return <Form path={path} component={getNode(getSelectedDescription(), path.split("."))} />
+      return <Form key={path} path={path} component={getNode(getSelectedDescription().data, path.split("."))} />
     })
     return <div className="pageRoot">
       {this.renderHeader()}
-      <table className="descSelectorTable">
-        <tbody>
-          <tr>
-            <td>Description Version&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td>
-              <DropDownList
-                data={this.props.descriptions}
-                textField={"version"}
-                valueField={"id"}
-                value={this.props.selectedDescription}
-                onChange={evt => this.onDescriptionSelectorSelectedListener(evt.target.value)} />
-            </td>
-          </tr>
-          <tr>
-            <td>Template&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td>
-              trus di sini ada drop down ceritanya
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <PanelNavigator />
-      {forms}
+      <div className="row descSelector">
+        <div className="col-lg-2 col-sm-4 col-12 descSelectorLabel">Description Version</div>
+        <div className="col-lg-4 col-sm-8 col-12">
+          <DropDownList
+            data={this.props.descriptions}
+            textField={"version"}
+            valueField={"id"}
+            value={this.props.selectedDescription}
+            onChange={evt => this.onDescriptionSelectorSelectedListener(evt.target.value)} />
+        </div>
+        <div className="col-lg-2 col-sm-4 col-12 descSelectorLabel">Template</div>
+        <div className="col-lg-4 col-sm-8 col-12">
+          <DropDownList
+            data={getSelectedDescription().templates}
+            textField={"name"}
+            valueField={"id"}
+            value={this.props.selectedTemplate}
+            onChange={evt => this.onTemplateSelectorSelectedListener(evt.target.value)} />
+        </div>
+      </div>
+      {forms.length ? forms : <div className="alert alert-success">No selected form exist</div> }
+      <div className="k-form-field navFooter float-right">
+        <button className="k-button k-primary" onClick={() => this.onFinishBtnClickedListener()}>FINISH</button>
+        <PanelNavigator />
+      </div>
     </div>
   }
 }
@@ -130,12 +167,15 @@ const mapStateToProps = function(storage) {
   return {
     configs: storage.config.configs,
     selectedConfig: storage.config.selected_id,
-    templates: storage.template.templates,
-    selectedTemplate: storage.template.selected_id,
     descriptions: storage.description.descriptions,
     selectedDescription: storage.description.selected_id,
+    selectedTemplate: storage.description.selected_template_id,
+    paths: storage.form.paths,
 
-    paths: storage.form.paths
+    userId: storage.user.id,
+    token: storage.user.token,
+    extFileRef: storage.form.ext_file_ids,
+    removedExtFileRef: storage.form.removed_ext_file_ids
   }
 }
 
@@ -155,6 +195,10 @@ const mapDispatchToProps = (dispatch) => {
     assignTemplate: (id) => dispatch({
       type: ActionList.ASSIGN_TEMPLATE,
       payload: id
+    }),
+    saveConfig: (config) => dispatch({
+      type: ActionList.SAVE_CONFIG,
+      payload: config
     })
   }
 }

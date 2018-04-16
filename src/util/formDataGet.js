@@ -1,5 +1,5 @@
 import storage from "../storage"
-import { isObject } from "./toolbox"
+import { isObject, mergeDeep } from "./toolbox"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "./activeDataGet"
 import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
@@ -72,6 +72,10 @@ export function check(path) {
   } catch(error) {
     return false
   }
+}
+
+export function mergeAll() {
+  return mergeDeep(mergeDeep(getSelectedTemplate().data, getSelectedConfig().configContent.data), fetchAllData())
 }
 
 /**
@@ -170,7 +174,12 @@ function validateType(result, type) {
  * then validate the value data
  */
 function findInConfig(path, type) {
-  let result = get(getSelectedConfig(), path, type)
+  let result = get(getSelectedConfig().configContent.data, path, type)
+  return validateType(result, type)
+}
+
+function findInTemplate(path, type) {
+  let result = get(getSelectedTemplate().data, path, type)
   return validateType(result, type)
 }
 
@@ -182,9 +191,9 @@ function findInDesc(path, type) {
   if(type === ComponentType.CHECKBOX) {
     let childPath = path[path.length - 1]
     path = path.slice(0, path.length - 1)
-    return get(getSelectedDescription(), path, type).value.contents.find(c => c.value === childPath).checked
+    return get(getSelectedDescription().data, path, type).value.contents.find(c => c.value === childPath).checked
   }
-  return get(getSelectedDescription(), path, type).value.default
+  return get(getSelectedDescription().data, path, type).value.default
 }
 
 /**
@@ -195,13 +204,21 @@ function set(path, type) {
   let result
   try {
     result = findInConfig(path.split("."), type)
+    console.log("berhasil", result)
   } catch(error) {
     try {
-      result = findInDesc(path.split("."), type)
-    } catch(error2) {
+      result = findInTemplate(path.split("."), type)
+      console.log("coba lagi", result)
+    } catch(errorAgain) {
+      try {
+        result = findInDesc(path.split("."), type)
+        console.log("masih gagal", result)
+      } catch (errorAgainAndAgain) {
+        result = defaultValue(type)
+        console.log("rip", result)
+      }
     }
   }
-  result = result !== undefined ? result : defaultValue(type)
   storage.dispatch({
     type: ActionList.SET_DATA,
     payload: {

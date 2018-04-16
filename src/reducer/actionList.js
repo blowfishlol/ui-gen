@@ -18,11 +18,6 @@ export default({
   ON_CONFIG_IMPORT_FAIL:      "config_import_fail",
   ADD_NEW_CONFIG:             "new_config",
 
-  FETCH_TEMPLATE:             "fetch_config_template",
-  ON_TEMPLATE_FETCHED:        "config_template_fetched",
-  ON_TEMPLATE_FETCH_FAIL:     "config_template_fetch_fail",
-  ASSIGN_TEMPLATE:            "assign_template",
-
   SET_DATA:                   "set_data",
   SET_DATA_BY_INDEX:          "set_data_by_index",
   POP_DATA:                   "remove_data",
@@ -47,6 +42,7 @@ export default({
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",
   ON_DESCRIPTIONS_FETCH_FAIL: "fetch_descs_fail",
   ASSIGN_DESCRIPTION:         "assign_description",
+  ASSIGN_TEMPLATE:            "assign_template",
 
   ON_LOGIN:                    "login",
   ON_LOGIN_SUCCESS:            "login_success",

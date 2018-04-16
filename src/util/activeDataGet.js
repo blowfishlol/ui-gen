@@ -6,7 +6,7 @@ export function getSelectedDescription() {
     let id = storage.getState().description.selected_id
     return descriptions.find(description => {
       return id === description.id
-    }).data
+    })
   }
   return {}
 }
@@ -23,12 +23,12 @@ export function getSelectedConfig() {
 }
 
 export function getSelectedTemplate() {
-  if(storage.getState().config.fetched) {
-    let templates = storage.getState().template.templates
-    let id = storage.getState().config.selected_id
+  if(storage.getState().description.fetched) {
+    let templates = getSelectedDescription().templates
+    let id = storage.getState().description.selected_template_id
     return templates.find(template => {
       return id === template.id
-    }).data // --> edited later
+    })
   }
   return {}
 }

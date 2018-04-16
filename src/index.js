@@ -26,3 +26,5 @@ ReactDOM.render(<Provider store={storage}>
   </div>
 </Provider>, document.getElementById("root"))
 registerServiceWorker()
+
+console.log(Object.keys({}))

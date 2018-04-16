@@ -4,10 +4,11 @@ import { compose } from "recompose"
 
 import { PanelBar, PanelBarItem, PanelBarUtils } from "@progress/kendo-react-layout"
 import { isHaveAChildLeafNode, getNode } from "../../util/panelBarInfo"
-import { getSelectedDescription } from "../../util/activeDataGet";
+import { getSelectedDescription } from "../../util/activeDataGet"
+import { windowClose } from "../Window"
 import ActionList from "../../reducer/actionList"
 
-class PanelNavigator extends React.Component {
+class PanelNavigatorComponent extends React.Component {
 
   constructor(props) {
     super(props)
@@ -19,7 +20,7 @@ class PanelNavigator extends React.Component {
 
   handleChange(event) {
     let path = event.target.props.id.split(".")
-    let node = getNode(getSelectedDescription(), path)
+    let node = getNode(getSelectedDescription().data, path)
     this.setState({
       ...this.state,
       selectedPath: event.target.props.id,
@@ -29,11 +30,11 @@ class PanelNavigator extends React.Component {
 
   onAddBtnClickedListener() {
     this.props.addPath(this.state.selectedPath)
+    windowClose()
   }
 
   render() {
-    let node = getNode(getSelectedDescription(), this.state.selectedPath.split("."))
-    console.log(node)
+    let node = getNode(getSelectedDescription().data, this.state.selectedPath.split("."))
     return <div>
       <PanelBar
         children={this.props.items}
@@ -65,4 +66,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps,
   )
-)(PanelNavigator)
+)(PanelNavigatorComponent)

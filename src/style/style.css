@@ -111,9 +111,14 @@
   margin-top: 5px;
 }
 
-.descSelectorTable {
+.descSelector {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.descSelectorLabel {
+  padding-top: 11px;
+  padding-bottom: 6px;
 }
 
 .loginFormStyle {

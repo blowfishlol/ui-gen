@@ -10,10 +10,10 @@ import ActionList from "../../reducer/actionList"
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 
-  findConfigIndex() {
+  findConfig() {
     return this.props.configs.find(element => {
       return element.id === this.props.dataItem.id
-    }).id
+    })
   }
 
   onDeleteBtnClickedListener() {
@@ -29,7 +29,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
   }
 
   onEditBtnClickedListener() {
-    this.props.setSelectedConfig(this.findConfigIndex())
+    this.props.setSelectedConfig(this.findConfig().id)
   }
 
   render() {
@@ -48,7 +48,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
       &nbsp;
       <button
         className="k-button k-primary configButton"
-        onClick={() => fileDownload(JSON.stringify(this.findConfigIndex().configContent.data), this.findConfigIndex().name + ".json")}>
+        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")}>
           EXPORT
       </button>
     </td>

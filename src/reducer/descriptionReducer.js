@@ -7,6 +7,7 @@ import ActionList from "./actionList"
 const defaultState = {
   descriptions: [],
   selected_id: 0,
+  selected_template_id: 0,
   fetched: false
 }
 
@@ -42,7 +43,13 @@ export default function reducer(state = defaultState, action) {
       descriptions: action.payload.map(description => {
         return {
           ...description,
-          data: JSON.parse(description.data)
+          data: JSON.parse(description.data),
+          templates: description.templates.map(template => {
+            return {
+              ...template,
+              data: JSON.parse(template.data)
+            }
+          })
         }
       }),
       fetched: true
@@ -61,6 +68,11 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       selected_id: action.payload
+    }
+  } else if(action.type === ActionList.ASSIGN_TEMPLATE) {
+    return {
+      ...state,
+      selected_template_id: action.payload
     }
   /**
    * @param (in action.payload)

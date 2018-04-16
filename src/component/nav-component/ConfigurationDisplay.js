@@ -24,7 +24,7 @@ class ConfigurationDisplay extends React.Component {
         {configTableHeader}
         <ErrorBox message={this.props.errorMessage} />
       </div>
-    } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched || !this.props.isTemplateFetched) {
+    } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched) {
       return <div>
         {configTableHeader}
         <div className="col-sm-12 alert alert-info">
@@ -64,7 +64,6 @@ const mapStateToProps = function(storage) {
     token: storage.user.token,
     configs: storage.config.configs,
     isConfigFetched: storage.config.fetched,
-    isTemplateFetched: storage.template.fetched,
     isDescriptionFetched: storage.description.fetched,
     errorMessage: storage.nav.error_message
   }

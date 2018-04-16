@@ -17,7 +17,7 @@ class ToggleBox extends React.Component {
         checked={get(this.props.path, this.props.desc.element.type)}
         offLabel="No"
         onLabel="Yes"
-        change={evt => this.props.updateState(this.props.form.path, evt.checked)}/>
+        change={evt => this.props.updateState(this.props.path, evt.checked)}/>
     </label>
   }
 }

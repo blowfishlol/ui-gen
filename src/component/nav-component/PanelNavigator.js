@@ -14,7 +14,7 @@ class PanelNavigator extends React.Component {
 
 	renderPanelNavigatorComponent() {
     return <div>
-      <PanelNavigatorComponent items={PanelBarUtils.mapItemsToComponents(transform(getSelectedDescription()))}/>
+      <PanelNavigatorComponent items={PanelBarUtils.mapItemsToComponents(transform(getSelectedDescription().data))}/>
     </div>
   }
 
