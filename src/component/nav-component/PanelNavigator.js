@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import { PanelBar, PanelBarItem, PanelBarUtils } from '@progress/kendo-react-layout';
-import { getPanelBarChildObject } from '../../util/descriptionToPanelBarConverter';
+import { PanelBar, PanelBarUtils } from '@progress/kendo-react-layout';
 
 export class PanelNavigator extends React.Component {
 
@@ -104,12 +102,6 @@ export class PanelNavigator extends React.Component {
 				if(arr[newLength-1].children.length === 0){
 					delete arr[newLength-1].children;
 
-					const customStyle = {
-			            textAlign: 'center',
-			            width: "100%",
-			            height: "100%"
-			        }
-					
 					if(!isGroup) {
 						isGroup = true;
 						arr[newLength-1].title ="!leaf";
@@ -126,18 +118,14 @@ export class PanelNavigator extends React.Component {
 					var childArr = arr[newLength-1].children;
 					for(let i = 0 ; i < childArr.length ; i++) {
 						if(childArr[i].title === "!leaf") {
-							arr[newLength-1].title = <div onClick={() => this.handleLeafClick(arr[newLength-1].id)}> {arr[newLength-1].title} </div>;
+							arr[newLength-1].title = <div onClick={this.handleLeafClick(arr[newLength-1].id)}> {arr[newLength-1].title} </div>;
 							childArr.splice(i,1);
 						}
 					}
 				}
-
-
-
 			}
 			
 		}
-
 		//return arr;
 	}
 

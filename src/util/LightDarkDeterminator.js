@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import _ from 'lodash';
 
 export default class LightDarkDeterminator {
