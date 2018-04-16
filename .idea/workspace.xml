@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b56da7c4-5f83-4eff-922e-1f077f6205c5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/nav-component/PanelNavigatorComponent.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/checkmarklite.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/util/LightDarkDeterminator.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/component/Window.js" afterPath="$PROJECT_DIR$/src/component/Window.js" />
       <change beforePath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" afterPath="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" afterPath="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" afterPath="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" />
       <change beforePath="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" afterPath="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/actionList.js" afterPath="$PROJECT_DIR$/src/reducer/actionList.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/configReducer.js" afterPath="$PROJECT_DIR$/src/reducer/configReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/formReducer.js" afterPath="$PROJECT_DIR$/src/reducer/formReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/navigatorReducer.js" afterPath="$PROJECT_DIR$/src/reducer/navigatorReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/windowReducer.js" afterPath="$PROJECT_DIR$/src/reducer/windowReducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/util/activeDataGet.js" afterPath="$PROJECT_DIR$/src/util/activeDataGet.js" />
-      <change beforePath="$PROJECT_DIR$/src/util/descriptionOriginal.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/util/descriptionPanelBar.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js" afterPath="$PROJECT_DIR$/src/util/panelBarInfo.js" />
-      <change beforePath="$PROJECT_DIR$/src/util/descriptionToPanelBarConverterBACKUP.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/util/formDataGet.js" afterPath="$PROJECT_DIR$/src/util/formDataGet.js" />
       <change beforePath="$PROJECT_DIR$/src/util/server.js" afterPath="$PROJECT_DIR$/src/util/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,21 +33,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+      <file leaf-file-name="PanelNavigator.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="-664">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PanelNavigator.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-476">
-              <caret line="8" column="65" lean-forward="false" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -108,14 +96,14 @@
       <file leaf-file-name="ColorPicker.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="174" column="40" lean-forward="false" selection-start-line="174" selection-start-column="40" selection-end-line="174" selection-end-column="40" />
+            <state relative-caret-position="169">
+              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Window.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Window.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/Window.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -218,25 +206,25 @@
         <option value="$PROJECT_DIR$/src/example.js" />
         <option value="$PROJECT_DIR$/src/component/form-component/Form.js" />
         <option value="$PROJECT_DIR$/src/util/descriptionToPanelBarConverter.js" />
-        <option value="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
         <option value="$PROJECT_DIR$/src/reducer/windowReducer.js" />
         <option value="$PROJECT_DIR$/src/component/Window.js" />
         <option value="$PROJECT_DIR$/src/reducer/panelReducer.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/DescriptionPanel.js" />
-        <option value="$PROJECT_DIR$/src/util/server.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/LoginPage.js" />
         <option value="$PROJECT_DIR$/src/util/activeDataGet.js" />
         <option value="$PROJECT_DIR$/src/reducer/index.js" />
         <option value="$PROJECT_DIR$/src/reducer/actionList.js" />
         <option value="$PROJECT_DIR$/src/reducer/navigatorReducer.js" />
         <option value="$PROJECT_DIR$/src/reducer/configReducer.js" />
-        <option value="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/PanelNavigatorComponent.js" />
         <option value="$PROJECT_DIR$/src/reducer/formReducer.js" />
         <option value="$PROJECT_DIR$/src/component/nav-component/FormSelector.js" />
         <option value="$PROJECT_DIR$/src/util/panelBarInfo.js" />
         <option value="$PROJECT_DIR$/src/util/formDataGet.js" />
+        <option value="$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js" />
+        <option value="$PROJECT_DIR$/src/util/server.js" />
+        <option value="$PROJECT_DIR$/src/component/form-component/ColorPicker.js" />
       </list>
     </option>
   </component>
@@ -397,12 +385,12 @@
       <workItem from="1523445506859" duration="2517000" />
       <workItem from="1523516692983" duration="29203000" />
       <workItem from="1523600208808" duration="27085000" />
-      <workItem from="1523862811012" duration="12220000" />
+      <workItem from="1523862811012" duration="12521000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88700000" />
+    <option name="totallyTimeSpent" value="89001000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="38" y="262" width="1368" height="780" extended-state="6" />
@@ -605,6 +593,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-816">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -731,14 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducer/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -815,14 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-476">
-          <caret line="8" column="65" lean-forward="false" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigatorComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -867,19 +840,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="174" column="40" lean-forward="false" selection-start-line="174" selection-start-column="40" selection-end-line="174" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/component/Window.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="38" column="31" lean-forward="false" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/form-component/ColorPicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/nav-component/PanelNavigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-664">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
