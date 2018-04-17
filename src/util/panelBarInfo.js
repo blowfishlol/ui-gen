@@ -50,24 +50,26 @@ export function getNode(node, path) {
   return getNode(node[path[0]].child, path.slice(1, path.length))
 }
 
-function mapPanelBarItems(ptr, carryKey, storage) {
-  ptr.forEach((item, index) => {
-    storage.labels = storage.labels.concat(item.props.title)
-    storage.keys = storage.keys.concat(carryKey + "." + index)
-    storage.paths = storage.paths.concat(item.props.id)
+function formatPath(path) {
+  return path.split(".").slice(0, path.split(".").length - 1).join(".")
+}
 
+function filterPanelBarItems(ptr, storage, filter) {
+  ptr.forEach(item => {
+    if(item.props.title.toLowerCase().includes(filter.toLowerCase())) {
+      storage[storage.length] = {
+        id: item.props.id,
+        title: formatPath(item.props.id) + ": " + item.props.title
+      }
+    }
     if(item.props.children) {
-      mapPanelBarItems(item.props.children, carryKey + "." + index, storage)
+      filterPanelBarItems(item.props.children, storage, filter)
     }
   })
 }
 
-export function panelBarItemToDataSource(items) {
-  let output = {
-    labels: [],
-    keys: [],
-    paths: []
-  }
-  mapPanelBarItems(items, "", output)
+export function descToPanelBarItemFiltered(items, filter) {
+  let output = []
+  filterPanelBarItems(items, output, filter)
   return output
 }

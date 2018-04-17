@@ -2,10 +2,9 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { PanelBar } from "@progress/kendo-react-layout"
-import { AutoComplete } from "@progress/kendo-dropdowns-react-wrapper"
+import { PanelBar, PanelBarUtils } from "@progress/kendo-react-layout"
 
-import { isHaveAChildLeafNode, getNode, panelBarItemToDataSource } from "../../util/panelBarInfo"
+import { isHaveAChildLeafNode, getNode, descToPanelBarItemFiltered } from "../../util/panelBarInfo"
 import { getSelectedDescription } from "../../util/activeDataGet"
 import { windowClose } from "../Window"
 import ActionList from "../../reducer/actionList"
@@ -16,16 +15,11 @@ class PanelNavigatorComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      items: this.props.items,
       selectedPath: "",
       isSelectable: false,
-      selectedKey: ""
+      searchBoxValue: ""
     }
-    this.dataSource = panelBarItemToDataSource(this.props.items)
-  }
-
-  findKey(label, path) {
-    let index = label ? this.dataSource.labels.findIndex(l => l === label) : this.dataSource.paths.findIndex(p => p === path)
-    return this.dataSource.keys[index]
   }
 
   handleChange(event) {
@@ -35,7 +29,6 @@ class PanelNavigatorComponent extends React.Component {
       ...this.state,
       selectedPath: event.target.props.id,
       isSelectable: isHaveAChildLeafNode(node.child),
-      selectedKey: this.findKey(undefined, event.target.props.id)
     })
   }
 
@@ -44,28 +37,36 @@ class PanelNavigatorComponent extends React.Component {
     windowClose()
   }
 
-  onSearchBoxSelectedListener(evt) {
-    this.setState({
-      ...this.state,
-      selectedKey: this.findKey(evt.dataItem)
-    })
+  onSearchBoxChangedListener(evt) {
+    if(evt.target.value === "") {
+      this.setState({
+        ...this.state,
+        searchBoxValue: evt.target.value,
+        items: this.props.items
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        searchBoxValue: evt.target.value,
+        items: PanelBarUtils.mapItemsToComponents(descToPanelBarItemFiltered(this.props.items, evt.target.value))
+      })
+    }
   }
 
   render() {
     let node = getNode(getSelectedDescription().data, this.state.selectedPath.split("."))
     return <div>
       <PanelBar
-        children={this.props.items}
-        selected={this.state.selectedKey}
-        focused={this.state.selectedKey}
-        expanded={[this.state.selectedKey]}
+        expandMode="single"
+        children={this.state.items}
         onSelect={(evt) => this.handleChange(evt)} />
       <BlankSpace space="75px"/>
       <div className="page-footer footer-bg-white">
-        <AutoComplete
-          dataSource={this.dataSource.labels}
+        <input
+          className="k-textbox"
           placeholder="search..."
-          select={(evt) => this.onSearchBoxSelectedListener(evt)}/>
+          value={this.state.searchBoxValue}
+          onChange={evt => this.onSearchBoxChangedListener(evt)} />
         <button className="k-button k-primary float-right" disabled={!this.state.isSelectable} onClick={() => this.onAddBtnClickedListener()}>
           {"Add " + (node ? node.label : "")}
         </button>
