@@ -2,20 +2,14 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import checkmark from "../../checkmark.png"
-import checkmarklite from "../../checkmarklite.png"
-import "../../style/ColorBox.css"
-
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
 import LabelTooltip from "./LabelTooltip"
 import ColorPickerComponent from "./ColorPickerComponent"
 
 import get from "../../util/formDataGet"
-import colorList, { mainColor, mainPalette, altPalette }  from "../../util/color"
-import ActionList from "../../reducer/actionList"
-import LightDarkDeterminator from "../../util/lightDarkDeterminator"
-
 import { windowOpen } from "../Window"
+import colorList, { mainColor }  from "../../util/color"
+import ActionList from "../../reducer/actionList"
 
 /**
  * Each color have their own palette.
@@ -80,14 +74,6 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateState: (path, value, nullable) => dispatch({
-      type: ActionList.SET_DATA,
-      payload: {
-        "path": path,
-        "value": value,
-        "nullable": nullable
-      }
-    }),
     setWindowTitle: (title) => dispatch({
       type: ActionList.SET_WINDOW_TITLE,
       payload: title

@@ -29,7 +29,7 @@ const mapStateToProps = function(storage) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     updateState: (path, value, nullable) => dispatch({
       type: ActionList.SET_DATA,
       payload: {

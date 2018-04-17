@@ -45,13 +45,13 @@ class ConfigurationDisplay extends React.Component {
         <Column field="id" width="45%" title="Option" cell={ConfigurationDisplayCustomColumn} />
       </Grid>
     }
-    return <div className="pageRoot">
+    return <div className="page-root">
       {configTableHeader}
       {configTable}
       <BlankSpace space="75px" />
-      <div className="k-form-field navFooter">
-        <button className="k-button k-primary" onClick={() => this.props.newConfig()}>NEW CONFIG</button>
-        <button className="k-button" onClick={() => this.props.gotoImportConfigForm()}>IMPORT CONFIG</button>
+      <div className="k-form-field page-footer footer-bg-style">
+        <button className="k-button k-primary float-right" onClick={() => this.props.newConfig()}>NEW CONFIG</button>
+        <button className="k-button float-right" onClick={() => this.props.gotoImportConfigForm()}>IMPORT CONFIG</button>
       </div>
     </div>
   }

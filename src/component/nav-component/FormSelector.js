@@ -4,7 +4,6 @@ import { compose } from "recompose"
 
 import { DropDownList } from "@progress/kendo-react-dropdowns"
 import PanelNavigator from "./PanelNavigator"
-import PageNavigator from "./PageNavigator"
 import Form from "../form-component/Form"
 
 import { mergeAll } from "../../util/formDataGet"
@@ -13,8 +12,7 @@ import { getNode } from "../../util/panelBarInfo";
 import { lastElementOf } from "../../util/toolbox"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
-
-import sample from "../../example"
+import BlankSpace from "../BlankSpace";
 
 class FormSelector extends React.Component {
 
@@ -105,7 +103,6 @@ class FormSelector extends React.Component {
     if(getSelectedConfig().id !== -1) {
       finalConfig.config_id = getSelectedConfig().id
     }
-    // console.log("FINALLY", finalConfig)
     this.props.saveConfig(finalConfig)
   }
 
@@ -132,10 +129,10 @@ class FormSelector extends React.Component {
     let forms = this.props.paths.map(path => {
       return <Form key={path} path={path} component={getNode(getSelectedDescription().data, path.split("."))} />
     })
-    return <div className="pageRoot">
+    return <div className="page-root">
       {this.renderHeader()}
-      <div className="row descSelector">
-        <div className="col-lg-2 col-sm-4 col-12 descSelectorLabel">Description Version</div>
+      <div className="row form-selector-padding">
+        <div className="col-lg-2 col-sm-4 col-12 form-selector-label">Description Version</div>
         <div className="col-lg-4 col-sm-8 col-12">
           <DropDownList
             data={this.props.descriptions}
@@ -144,7 +141,7 @@ class FormSelector extends React.Component {
             value={this.props.selectedDescription}
             onChange={evt => this.onDescriptionSelectorSelectedListener(evt.target.value)} />
         </div>
-        <div className="col-lg-2 col-sm-4 col-12 descSelectorLabel">Template</div>
+        <div className="col-lg-2 col-sm-4 col-12 form-selector-label">Template</div>
         <div className="col-lg-4 col-sm-8 col-12">
           <DropDownList
             data={getSelectedDescription().templates}
@@ -155,8 +152,9 @@ class FormSelector extends React.Component {
         </div>
       </div>
       {forms.length ? forms : <div className="alert alert-success">No selected form exist</div> }
-      <div className="k-form-field navFooter float-right">
-        <button className="k-button k-primary" onClick={() => this.onFinishBtnClickedListener()}>FINISH</button>
+      <BlankSpace space="200px"/>
+      <div className="k-form-field page-footer footer-bg-style">
+        <button className="k-button k-primary float-right" onClick={() => this.onFinishBtnClickedListener()}>FINISH</button>
         <PanelNavigator />
       </div>
     </div>

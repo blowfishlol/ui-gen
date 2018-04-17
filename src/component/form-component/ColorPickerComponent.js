@@ -7,12 +7,11 @@ import checkmarklite from "../../checkmarklite.png"
 import "../../style/ColorBox.css"
 
 import { Tooltip } from "@progress/kendo-popups-react-wrapper"
-import LabelTooltip from "./LabelTooltip"
 
 import get from "../../util/formDataGet"
 import colorList, { mainColor, mainPalette, altPalette }  from "../../util/color"
+import detColor, { WHITE } from "../../util/colorBoxCheckmarkDet"
 import ActionList from "../../reducer/actionList"
-import LightDarkDeterminator from "../../util/lightDarkDeterminator"
 
 import { windowClose } from "../Window"
 
@@ -24,13 +23,8 @@ import { windowClose } from "../Window"
  **/
 class ColorPickerComponent extends React.Component {
 
-  getCheck(hexVal){
-    var boi = new LightDarkDeterminator();
-    if(!hexVal) {
-      hexVal = "#FFFFFF"
-    }
-    var hexResult = boi.getAccessibilityValuesFromHex(hexVal)
-    if(hexResult.preferredTitleColor === "#ffffff"){
+  getCheck(hexVal) {
+    if(detColor(hexVal) === WHITE){
       return <img width={30} height={30} src={checkmarklite} alt="V" />
     } else {
       return <img width={30} height={30} src={checkmark} alt="V" />
@@ -70,7 +64,7 @@ class ColorPickerComponent extends React.Component {
         width: 30,
         height: 30,
       }
-      const check = (pair.value === data.palette) ? this.getCheck() : ""
+      const check = (pair.value === data.palette) ? this.getCheck(styles.backgroundColor) : ""
       return <div className="col-*-3" key={this.props.path + "/palette/" + pair.value}>
         <Tooltip content={pair.text} position={"top"}>
           <div style={styles} onClick={(event) => {this.onColorChangedListener(pair.value, event, data)}}>{check}</div>

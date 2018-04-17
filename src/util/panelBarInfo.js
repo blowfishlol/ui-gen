@@ -24,7 +24,7 @@ export function isAllChildLeafNode(node) {
   return true
 }
 
-export function transform(node, carryPath) {
+export function descToPanelBarItem(node, carryPath) {
   return Object.keys(node).map(key => {
     if(isLeafNode(node[key])) {
       return 0
@@ -38,7 +38,7 @@ export function transform(node, carryPath) {
     return {
       id: generatePath(carryPath, key),
       title: node[key].label,
-      children: transform(node[key].child, generatePath(carryPath, key))
+      children: descToPanelBarItem(node[key].child, generatePath(carryPath, key))
     }
   }).filter(node => node !== 0)
 }
@@ -48,4 +48,26 @@ export function getNode(node, path) {
     return node[path[0]]
   }
   return getNode(node[path[0]].child, path.slice(1, path.length))
+}
+
+function mapPanelBarItems(ptr, carryKey, storage) {
+  ptr.forEach((item, index) => {
+    storage.labels = storage.labels.concat(item.props.title)
+    storage.keys = storage.keys.concat(carryKey + "." + index)
+    storage.paths = storage.paths.concat(item.props.id)
+
+    if(item.props.children) {
+      mapPanelBarItems(item.props.children, carryKey + "." + index, storage)
+    }
+  })
+}
+
+export function panelBarItemToDataSource(items) {
+  let output = {
+    labels: [],
+    keys: [],
+    paths: []
+  }
+  mapPanelBarItems(items, "", output)
+  return output
 }

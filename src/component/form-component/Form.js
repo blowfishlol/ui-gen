@@ -18,7 +18,6 @@ import ColorPicker from "./ColorPicker"
 import { clone } from "../../util/toolbox";
 import evaluator from "../../util/evaluator"
 import getLayoutString from "../../util/layoutProcessor"
-import { check } from "../../util/formDataGet"
 import ComponentType from "../ComponentType"
 import ActionList from "../../reducer/actionList"
 
@@ -83,20 +82,19 @@ class Form extends Component {
     if(this.props.array) {
       return <div>
         {elements.map((element, index) => {
-          console.log(element)
           return <div className="row">
             {element}
             <div className="col-sm-1 col-md-1 col-lg-1">
-              <button className="k-button deleteElementButtonArray" onClick={() => this.props.onDelete(index)}>X</button>
+              <button className="k-button transparent-button delete-array-button" onClick={() => this.props.onDelete(index)}>X</button>
             </div>
           </div>
         })}
       </div>
     }
-    let childStyle = this.props.mapIndex !== undefined ? "mapChild" : ""
+    let childStyle = this.props.mapIndex !== undefined ? "map-child" : ""
     return <div className="k-form">
       <div className="k-panel k-header k-state-selected">
-        <button className="k-button deleteElementButtonMap float-right" onClick={() => this.onDeleteBtnClickedListener()}>X</button>
+        <button className="k-button transparent-button delete-element-button color-white float-right" onClick={() => this.onDeleteBtnClickedListener()}>X</button>
         {this.props.component.label}
       </div>
       <div className={"k-panel k-shadow " + childStyle}>

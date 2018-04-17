@@ -2,11 +2,14 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { PanelBar, PanelBarItem, PanelBarUtils } from "@progress/kendo-react-layout"
-import { isHaveAChildLeafNode, getNode } from "../../util/panelBarInfo"
+import { PanelBar } from "@progress/kendo-react-layout"
+import { AutoComplete } from "@progress/kendo-dropdowns-react-wrapper"
+
+import { isHaveAChildLeafNode, getNode, panelBarItemToDataSource } from "../../util/panelBarInfo"
 import { getSelectedDescription } from "../../util/activeDataGet"
 import { windowClose } from "../Window"
 import ActionList from "../../reducer/actionList"
+import BlankSpace from "../BlankSpace";
 
 class PanelNavigatorComponent extends React.Component {
 
@@ -14,8 +17,15 @@ class PanelNavigatorComponent extends React.Component {
     super(props)
     this.state = {
       selectedPath: "",
-      isSelectable: false
+      isSelectable: false,
+      selectedKey: ""
     }
+    this.dataSource = panelBarItemToDataSource(this.props.items)
+  }
+
+  findKey(label, path) {
+    let index = label ? this.dataSource.labels.findIndex(l => l === label) : this.dataSource.paths.findIndex(p => p === path)
+    return this.dataSource.keys[index]
   }
 
   handleChange(event) {
@@ -24,7 +34,8 @@ class PanelNavigatorComponent extends React.Component {
     this.setState({
       ...this.state,
       selectedPath: event.target.props.id,
-      isSelectable: isHaveAChildLeafNode(node.child)
+      isSelectable: isHaveAChildLeafNode(node.child),
+      selectedKey: this.findKey(undefined, event.target.props.id)
     })
   }
 
@@ -33,16 +44,31 @@ class PanelNavigatorComponent extends React.Component {
     windowClose()
   }
 
+  onSearchBoxSelectedListener(evt) {
+    this.setState({
+      ...this.state,
+      selectedKey: this.findKey(evt.dataItem)
+    })
+  }
+
   render() {
     let node = getNode(getSelectedDescription().data, this.state.selectedPath.split("."))
     return <div>
       <PanelBar
         children={this.props.items}
         expandMode={"single"}
+        selected={this.state.selectedKey}
         onSelect={(evt) => this.handleChange(evt)} />
-      <button className="k-button k-primary" disabled={!this.state.isSelectable} onClick={() => this.onAddBtnClickedListener()}>
-        {"Add " + (node ? node.label : "")}
-      </button>
+      <BlankSpace space="75px"/>
+      <div className="page-footer footer-bg-white">
+        <AutoComplete
+          dataSource={this.dataSource.labels}
+          placeholder="search..."
+          select={(evt) => this.onSearchBoxSelectedListener(evt)}/>
+        <button className="k-button k-primary float-right" disabled={!this.state.isSelectable} onClick={() => this.onAddBtnClickedListener()}>
+          {"Add " + (node ? node.label : "")}
+        </button>
+      </div>
     </div>
   }
 }

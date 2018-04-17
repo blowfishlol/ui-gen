@@ -1,6 +1,6 @@
 import ActionList from "./actionList"
 import ComponentType from "../component/ComponentType"
-import { clone, lastElementOf } from "../util/toolbox"
+import { clone } from "../util/toolbox"
 
 function isInteger(arg) {
   return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg

@@ -2,10 +2,10 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { PanelBar, PanelBarItem, PanelBarUtils } from "@progress/kendo-react-layout"
+import { PanelBarUtils } from "@progress/kendo-react-layout"
 import PanelNavigatorComponent from "./PanelNavigatorComponent"
 
-import { transform, isAllChildLeafNode, isLeafNode } from "../../util/panelBarInfo"
+import { descToPanelBarItem } from "../../util/panelBarInfo"
 import { getSelectedDescription } from "../../util/activeDataGet"
 import ActionList from "../../reducer/actionList"
 import { windowOpen } from "../Window"
@@ -14,7 +14,7 @@ class PanelNavigator extends React.Component {
 
 	renderPanelNavigatorComponent() {
     return <div>
-      <PanelNavigatorComponent items={PanelBarUtils.mapItemsToComponents(transform(getSelectedDescription().data))}/>
+      <PanelNavigatorComponent items={PanelBarUtils.mapItemsToComponents(descToPanelBarItem(getSelectedDescription().data))}/>
     </div>
   }
 

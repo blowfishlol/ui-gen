@@ -66,29 +66,6 @@ class ArrayInput extends React.Component {
       return <ErrorBox message={"Invalid content " + this.props.desc.child.toString()} />
     }
 
-    // let elements = get(this.props.path, this.props.desc.element.type).map((element, index) => {
-    //   return <div key={this.props.path + "." + index} className="multipleElementComponent">
-    //     <Form
-    //       path={this.props.path}
-    //       component={
-    //         {
-    //           [index]: {
-    //             label: "",
-    //             type: this.props.desc.element.child,
-    //             value: {},
-    //             layout: {
-    //               mobile: 11,
-    //               tablet: 11,
-    //               desktop: 11
-    //             }
-    //           }
-    //         }
-    //       } />
-    //     <BlankSpace space="35px" />
-    //     <button className="k-button deleteElementButton" onClick={() => this.onDeleteBtnClickedListener(index)}>X</button>
-    //   </div>
-    // })
-
     return <div className="k-form-field">
       <LabelTooltip desc={this.props.desc} />
       <Form

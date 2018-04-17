@@ -6,6 +6,7 @@ import { DropDownList } from "@progress/kendo-react-dropdowns"
 import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
+import BlankSpace from "../BlankSpace";
 
 class ImportConfigForm extends React.Component {
 
@@ -46,7 +47,7 @@ class ImportConfigForm extends React.Component {
     if(this.props.errorMessage !== "") {
       var error = <ErrorBox message={this.props.errorMessage} />
     }
-    return <div className="row k-form importConfigStyle pageRoot">
+    return <div className="row k-form page-root">
       <div className="col-sm-12">
         <center><h1><b> Import Configuration </b></h1></center>
       </div>
@@ -62,7 +63,7 @@ class ImportConfigForm extends React.Component {
       <label className="k-form-field col-sm-12">
         <span>Config Data</span>
         <textarea
-          className={"k-textbox"}
+          className={"k-textbox full-width-text-area"}
           placeholder={"Data"}
           value={this.state.data}
           onChange={evt => this.onDataChangedListener(evt)} />
@@ -82,11 +83,12 @@ class ImportConfigForm extends React.Component {
       </label>
 
       <div className="col-sm-12">
+        <BlankSpace space="20px"/>
         {error}
       </div>
 
       <div className="col-sm-12">
-        <button className="k-button k-primary" onClick={() => this.onImportBtnClickedListener()}> IMPORT </button>
+        <button className="k-button k-primary float-right" onClick={() => this.onImportBtnClickedListener()}> IMPORT </button>
       </div>
     </div>
   }

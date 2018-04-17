@@ -33,10 +33,11 @@ class LoginPage extends React.Component {
     if(this.props.errorMessage !== "") {
       var error = <ErrorBox message={this.props.errorMessage} />
     }
-    return <div className="row pageRoot">
+    return <div className="row page-root">
       <div className="col-md-3 col-sm-3 col-xs-12" />
       <div className="k-form col-md-6 col-sm-6 col-xs-12">
-        <div className="row loginFormStyle">
+        <BlankSpace space="35px"/>
+        <div className="row">
           <div className="col-sm-12">
             <center><h1><b> LOGIN </b></h1></center>
           </div>
@@ -61,10 +62,10 @@ class LoginPage extends React.Component {
 
           <div className="col-sm-12">
             {error}
+            <BlankSpace space="15px"/>
           </div>
-          <BlankSpace space="15px"/>
           <div className="col-sm-12">
-            <button className="k-button k-primary" onClick={() => this.props.login(this.state)}> LOGIN </button>
+            <button className="k-button k-primary float-right" onClick={() => this.props.login(this.state)}> LOGIN </button>
           </div>
         </div>
       </div>

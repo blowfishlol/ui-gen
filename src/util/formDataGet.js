@@ -204,18 +204,14 @@ function set(path, type) {
   let result
   try {
     result = findInConfig(path.split("."), type)
-    console.log("berhasil", result)
   } catch(error) {
     try {
       result = findInTemplate(path.split("."), type)
-      console.log("coba lagi", result)
     } catch(errorAgain) {
       try {
         result = findInDesc(path.split("."), type)
-        console.log("masih gagal", result)
       } catch (errorAgainAndAgain) {
         result = defaultValue(type)
-        console.log("rip", result)
       }
     }
   }
