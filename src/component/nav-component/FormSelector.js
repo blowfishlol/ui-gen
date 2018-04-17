@@ -13,6 +13,7 @@ import { lastElementOf } from "../../util/toolbox"
 import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
 import BlankSpace from "../BlankSpace";
+import {dialogOpen} from "../Dialog";
 
 class FormSelector extends React.Component {
 
@@ -90,6 +91,14 @@ class FormSelector extends React.Component {
   }
 
   onFinishBtnClickedListener() {
+    this.props.setDialogMessage("Save this configuration as \"" + getSelectedConfig().name + "\"?")
+    this.props.setDialogFinishFunction({
+      onFinish: () => this.saveConfig()
+    })
+    dialogOpen()
+  }
+
+  saveConfig() {
     let finalConfig = {
       name: getSelectedConfig().name,
       id: this.props.userId,
@@ -127,7 +136,12 @@ class FormSelector extends React.Component {
 
   render() {
     let forms = this.props.paths.map(path => {
-      return <Form key={path} path={path} component={getNode(getSelectedDescription().data, path.split("."))} />
+      return <Form
+        key={path}
+        path={path}
+        component={getNode(getSelectedDescription().data, path.split("."))}
+        selectedDesc={this.props.selectedDescription}
+        selectedTemp={this.props.selectedTemplate} />
     })
     return <div className="page-root">
       {this.renderHeader()}
@@ -197,6 +211,14 @@ const mapDispatchToProps = (dispatch) => {
     saveConfig: (config) => dispatch({
       type: ActionList.SAVE_CONFIG,
       payload: config
+    }),
+    setDialogMessage: (message) => dispatch({
+      type: ActionList.SET_DIALOG_MESSAGE,
+      payload: message
+    }),
+    setDialogFinishFunction: (methods) => dispatch({
+      type: ActionList.SET_ADDITIONAL_METHOD,
+      payload: methods
     })
   }
 }

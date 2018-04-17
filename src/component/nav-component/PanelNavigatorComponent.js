@@ -56,8 +56,9 @@ class PanelNavigatorComponent extends React.Component {
     return <div>
       <PanelBar
         children={this.props.items}
-        expandMode={"single"}
         selected={this.state.selectedKey}
+        focused={this.state.selectedKey}
+        expanded={[this.state.selectedKey]}
         onSelect={(evt) => this.handleChange(evt)} />
       <BlankSpace space="75px"/>
       <div className="page-footer footer-bg-white">

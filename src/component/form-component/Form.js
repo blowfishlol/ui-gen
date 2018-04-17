@@ -91,6 +91,9 @@ class Form extends Component {
         })}
       </div>
     }
+    if(elements.length === 0) {
+      elements = <div className="col-12 alert alert-warning">No rendered component exist</div>
+    }
     let childStyle = this.props.mapIndex !== undefined ? "map-child" : ""
     return <div className="k-form">
       <div className="k-panel k-header k-state-selected">

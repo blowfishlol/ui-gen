@@ -91,30 +91,13 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       data: set(action.payload.path.split("."), action.payload.value, clone(state.data), action.payload.nullable),
-      notifier: (state.notifier + 1) % 10,
-      isAllowedToJumpFoward: false
-    }
-  } else if(action.type === ActionList.SET_DATA_BY_INDEX) {
-    return {
-      ...state,
-      data: state.data.map((d, index) => {
-        return index === action.payload.index ?
-            set(action.payload.path.split("."), action.payload.value, clone(d)) :
-            d
-       })
+      notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.POP_DATA) {
     return {
       ...state,
       data: pop(action.payload.split("."), clone(state.data)),
       paths: state.paths.filter(path => path !== action.payload)
-    }
-  } else if(action.type === ActionList.POP_DATA_BY_INDEX) {
-    return {
-      ...state,
-      data: state.data.map((d, index) => {
-        return index === action.payload.index ? {} : d
-      })
     }
   } else if(action.type === ActionList.ADD_PATH) {
     return {
@@ -143,16 +126,14 @@ export default function reducer(state = defaultState, action) {
       ...state,
       removed_ext_file_ids: state.removed_ext_file_ids.concat(action.payload)
     }
-  } else if(action.type === ActionList.CLEAR_DATA) {
+  } else if(action.type === ActionList.ASSIGN_TEMPLATE) {
     return {
       ...state,
-      data: {},
-      paths: [],
-      ext_file_ids: [],
-      removed_ext_file_ids: []
+      notifier: (state.notifier + 1) % 10,
     }
   } else if(action.type === ActionList.ON_CONFIG_SAVED || action.type === ActionList.ON_BACK_PRESSED_CONFIG ||
-            action.type === ActionList.ON_LOGOUT) {
+            action.type === ActionList.ON_LOGOUT || action.type === ActionList.CLEAR_DATA ||
+            action.type === ActionList.ASSIGN_DESCRIPTION) {
     return defaultState
   } else {
     return state
