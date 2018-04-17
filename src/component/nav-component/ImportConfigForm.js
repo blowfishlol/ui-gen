@@ -7,6 +7,7 @@ import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
 import BlankSpace from "../BlankSpace";
+import {getSelectedDescription} from "../../util/activeDataGet";
 
 class ImportConfigForm extends React.Component {
 
@@ -31,12 +32,19 @@ class ImportConfigForm extends React.Component {
     })
   }
 
+  onDescriptionVersionSelectedListener(evt) {
+    this.setState({
+      descriptionId: evt.target.value
+    })
+  }
+
   onImportBtnClickedListener() {
     this.props.saveConfig({
       name: this.state.configName,
       id: this.props.userId,
       data: this.state.data,
       description_id: this.state.descriptionId,
+      template_id: getSelectedDescription().templates[0].id,
       file_id: [],
       removed_file_id: [],
       token: this.props.token
@@ -75,11 +83,7 @@ class ImportConfigForm extends React.Component {
           textField={"version"}
           valueField={"id"}
           value={this.state.selectedDescriptionId}
-          onChange={(evt) => {
-            this.setState({
-              descriptionId: evt.target.value
-            })
-          }} />
+          onChange={(evt) => this.onDescriptionVersionSelectedListener(evt)} />
       </label>
 
       <div className="col-sm-12">

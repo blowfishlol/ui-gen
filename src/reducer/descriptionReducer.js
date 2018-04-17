@@ -67,7 +67,8 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ASSIGN_DESCRIPTION) {
     return {
       ...state,
-      selected_id: action.payload
+      selected_id: action.payload,
+      selected_template_id: state.descriptions.find(description => description.id === action.payload).templates[0].id
     }
   } else if(action.type === ActionList.ASSIGN_TEMPLATE) {
     return {

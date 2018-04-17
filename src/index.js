@@ -23,9 +23,6 @@ ReactDOM.render(<Provider store={storage}>
       <Dialog />
       <Window />
     </Ripple>
-
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    <button onClick={() => {alert("HOLD!")}}>HANG</button>
   </div>
 </Provider>, document.getElementById("root"))
 registerServiceWorker()

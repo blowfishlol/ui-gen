@@ -50,26 +50,26 @@ export function getNode(node, path) {
   return getNode(node[path[0]].child, path.slice(1, path.length))
 }
 
-function formatPath(path) {
-  return path.split(".").slice(0, path.split(".").length - 1).join(".")
+function generateTitle(carry, title) {
+  return carry ? carry + " - " + title : title
 }
 
-function filterPanelBarItems(ptr, storage, filter) {
+function filterPanelBarItems(ptr, carryTitle, storage, filter) {
   ptr.forEach(item => {
     if(item.props.title.toLowerCase().includes(filter.toLowerCase())) {
       storage[storage.length] = {
         id: item.props.id,
-        title: formatPath(item.props.id) + ": " + item.props.title
+        title: carryTitle ? carryTitle + ": " + item.props.title : item.props.title
       }
     }
     if(item.props.children) {
-      filterPanelBarItems(item.props.children, storage, filter)
+      filterPanelBarItems(item.props.children, generateTitle(carryTitle, item.props.title), storage, filter)
     }
   })
 }
 
 export function descToPanelBarItemFiltered(items, filter) {
   let output = []
-  filterPanelBarItems(items, output, filter)
+  filterPanelBarItems(items, undefined, output, filter)
   return output
 }

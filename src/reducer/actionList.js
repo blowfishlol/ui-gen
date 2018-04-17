@@ -35,7 +35,7 @@ export default({
   ADD_EXT_FILE_REF:           "add_external_file_reference",
   REMOVE_EXT_FILE_REF:        "remove_external_file_reference",
   ADD_REMOVED_EXT_FILE_REF:   "add_removed_external_file_reference",
-  ADD_ELEMENT_REF:          "add_element_reference",
+  ADD_ELEMENT_REF:            "add_element_reference",
   REMOVE_ELEMENT_REF:         "remove_element_reference",
 
   FETCH_DESCRIPTIONS:         "fetch_descs",

@@ -8,12 +8,11 @@ import Form from "../form-component/Form"
 
 import { mergeAll } from "../../util/formDataGet"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "../../util/activeDataGet"
-import { getNode } from "../../util/panelBarInfo";
+import { getNode } from "../../util/panelBarInfo"
 import { lastElementOf } from "../../util/toolbox"
-import evaluator from "../../util/evaluator"
 import ActionList from "../../reducer/actionList"
-import BlankSpace from "../BlankSpace";
-import {dialogOpen} from "../Dialog";
+import BlankSpace from "../BlankSpace"
+import { dialogOpen } from "../Dialog"
 
 class FormSelector extends React.Component {
 
@@ -24,8 +23,8 @@ class FormSelector extends React.Component {
       configName: getSelectedConfig().name
     }
 
-    this.props.assignDescription(this.getDefaultDescription()) // >.<
-    this.props.assignTemplate(this.getDefaultTemplate()) // x_x
+    this.props.assignDescription(this.getDefaultDescription()) // >.< c a g  l t r
+    this.props.assignTemplate(this.getDefaultTemplate()) // x_x        h n e  a e
   }
 
   getDefaultDescription() {
@@ -52,13 +51,6 @@ class FormSelector extends React.Component {
     return lastElementOf(getSelectedDescription().templates).id
   }
 
-  isRendered(obj) {
-    if(obj.hasOwnProperty("rendered")) {
-      return evaluator(obj.rendered)
-    }
-    return true
-  }
-
   onConfigNameChangedListener(evt) {
     this.setState({
       ...this.state,
@@ -83,10 +75,12 @@ class FormSelector extends React.Component {
   }
 
   onDescriptionDropDownSelectedListener(index) {
-    this.props.assignDescription(this.props.description[index].id)
+    console.log(index)
+    this.props.assignDescription(index)
   }
 
-  onTemplateSelectorSelectedListener(index) {
+  onTemplateDropDownSelectedListener(index) {
+    console.log(index)
     this.props.assignTemplate(index)
   }
 
@@ -153,7 +147,7 @@ class FormSelector extends React.Component {
             textField={"version"}
             valueField={"id"}
             value={this.props.selectedDescription}
-            onChange={evt => this.onDescriptionSelectorSelectedListener(evt.target.value)} />
+            onChange={evt => this.onDescriptionDropDownSelectedListener(evt.target.value)} />
         </div>
         <div className="col-lg-2 col-sm-4 col-12 form-selector-label">Template</div>
         <div className="col-lg-4 col-sm-8 col-12">
@@ -162,7 +156,7 @@ class FormSelector extends React.Component {
             textField={"name"}
             valueField={"id"}
             value={this.props.selectedTemplate}
-            onChange={evt => this.onTemplateSelectorSelectedListener(evt.target.value)} />
+            onChange={evt => this.onTemplateDropDownSelectedListener(evt.target.value)} />
         </div>
       </div>
       {forms.length ? forms : <div className="alert alert-success">No selected form exist</div> }

@@ -1,7 +1,7 @@
 import storage from "../storage"
 import { isObject, mergeDeep } from "./toolbox"
 import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "./activeDataGet"
-import ActionList from "../reducer/actionList"
+// import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
 
 const COLOR_DEFAULT = {
@@ -89,9 +89,21 @@ export function mergeAll() {
  */
 export default function f(path, type) {
   try {
-    return get(fetchAllData(), path.split("."), type)
+    return findInData(path.split("."), type)
   } catch(error) {
-    return set(path, type)
+    try {
+      return findInConfig(path.split("."), type)
+    } catch(errorAgain) {
+      try {
+        return findInTemplate(path.split("."), type)
+      } catch(errorAgainAndAgain) {
+        try {
+          return findInDesc(path.split("."), type)
+        } catch (errorAgainAndAgainAndAgain) {
+          return defaultValue(type)
+        }
+      }
+    }
   }
 }
 
@@ -169,6 +181,10 @@ function validateType(result, type) {
   return result
 }
 
+function findInData(path, type) {
+  return get(fetchAllData(), path, type)
+}
+
 /**
  * find value of given path inside current config (form.config)
  * then validate the value data
@@ -200,30 +216,30 @@ function findInDesc(path, type) {
  * set will be called when get fail to find value for given path inside form.data
  * set will dispatch a value for given path to form reducer
  */
-function set(path, type) {
-  let result
-  try {
-    result = findInConfig(path.split("."), type)
-  } catch(error) {
-    try {
-      result = findInTemplate(path.split("."), type)
-    } catch(errorAgain) {
-      try {
-        result = findInDesc(path.split("."), type)
-      } catch (errorAgainAndAgain) {
-        result = defaultValue(type)
-      }
-    }
-  }
-  storage.dispatch({
-    type: ActionList.SET_DATA,
-    payload: {
-      "path": path,
-      "value": result
-    }
-  })
-  return result
-}
+// function set(path, type) {
+//   let result
+//   try {
+//     result = findInConfig(path.split("."), type)
+//   } catch(error) {
+//     try {
+//       result = findInTemplate(path.split("."), type)
+//     } catch(errorAgain) {
+//       try {
+//         result = findInDesc(path.split("."), type)
+//       } catch (errorAgainAndAgain) {
+//         result = defaultValue(type)
+//       }
+//     }
+//   }
+//   storage.dispatch({
+//     type: ActionList.SET_DATA,
+//     payload: {
+//       "path": path,
+//       "value": result
+//     }
+//   })
+//   return result
+// }
 
 /**
  * Iteratively try to find a value inside form.data with a given path

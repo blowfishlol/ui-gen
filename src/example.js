@@ -9,6 +9,7 @@ export default({
         element: {
           type: "text",
           nullable: true,
+          render: "true",
           value: {
             default: null,
             placeholder: "Name"

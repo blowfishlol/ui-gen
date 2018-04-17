@@ -37,7 +37,7 @@ class LoginPage extends React.Component {
       <div className="col-md-3 col-sm-3 col-xs-12" />
       <div className="k-form col-md-6 col-sm-6 col-xs-12">
         <BlankSpace space="35px"/>
-        <div className="row">
+        <div className="row side-margin">
           <div className="col-sm-12">
             <center><h1><b> LOGIN </b></h1></center>
           </div>
