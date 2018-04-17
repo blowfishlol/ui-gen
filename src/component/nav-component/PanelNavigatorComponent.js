@@ -18,15 +18,38 @@ class PanelNavigatorComponent extends React.Component {
     this.state = {
       selectedPath: "",
       isSelectable: false,
-      selectedKey: ""
+      selectedKey: "",
     }
     this.dataSource = panelBarItemToDataSource(this.props.items)
+    console.log("BOIII ", this.dataSource)
   }
 
   findKey(label, path) {
     let index = label ? this.dataSource.labels.findIndex(l => l === label) : this.dataSource.paths.findIndex(p => p === path)
+
     return this.dataSource.keys[index]
   }
+
+
+  getExpandedKeys(key) {
+    var keyArray = key.split(".");
+    keyArray.splice(0,1);
+    var preparedKeys = [];
+    for(let i = 0 ; i < keyArray.length ; i++) {
+      if(i === 0){
+        preparedKeys.push("." + keyArray[i]);
+      }else{
+        preparedKeys.push(preparedKeys[i-1] + "." + keyArray[i]);
+      }
+    }
+    preparedKeys.pop();
+    console.log("PREPARED",preparedKeys)
+    return preparedKeys;
+
+
+  }
+
+
 
   handleChange(event) {
     let path = event.target.props.id.split(".")
@@ -35,7 +58,7 @@ class PanelNavigatorComponent extends React.Component {
       ...this.state,
       selectedPath: event.target.props.id,
       isSelectable: isHaveAChildLeafNode(node.child),
-      selectedKey: this.findKey(undefined, event.target.props.id)
+      selectedKey: this.findKey(undefined, event.target.props.id),
     })
   }
 
@@ -58,6 +81,7 @@ class PanelNavigatorComponent extends React.Component {
         children={this.props.items}
         expandMode={"single"}
         selected={this.state.selectedKey}
+        expanded={this.getExpandedKeys(this.state.selectedKey)}
         onSelect={(evt) => this.handleChange(evt)} />
       <BlankSpace space="75px"/>
       <div className="page-footer footer-bg-white">

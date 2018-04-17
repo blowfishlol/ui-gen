@@ -55,7 +55,6 @@ function mapPanelBarItems(ptr, carryKey, storage) {
     storage.labels = storage.labels.concat(item.props.title)
     storage.keys = storage.keys.concat(carryKey + "." + index)
     storage.paths = storage.paths.concat(item.props.id)
-
     if(item.props.children) {
       mapPanelBarItems(item.props.children, carryKey + "." + index, storage)
     }
