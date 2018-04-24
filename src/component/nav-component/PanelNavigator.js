@@ -6,7 +6,7 @@ import { PanelBarUtils } from "@progress/kendo-react-layout"
 import PanelNavigatorComponent from "./PanelNavigatorComponent"
 
 import { descToPanelBarItem } from "../../util/panelBarInfo"
-import { getSelectedDescription } from "../../util/activeDataGet"
+import {getSelectedDescriptionContent} from "../../util/descriptionDataGet"
 import ActionList from "../../reducer/actionList"
 import { windowOpen } from "../Window"
 
@@ -14,20 +14,29 @@ class PanelNavigator extends React.Component {
 
 	renderPanelNavigatorComponent() {
     return <div>
-      <PanelNavigatorComponent items={PanelBarUtils.mapItemsToComponents(descToPanelBarItem(getSelectedDescription().data))}/>
+      <PanelNavigatorComponent
+        items={PanelBarUtils.mapItemsToComponents(descToPanelBarItem(getSelectedDescriptionContent().data))}/>
     </div>
   }
 
   onAddBtnClickedListener() {
-    this.props.setWindowTitle("Choose Module")
-    this.props.setWindowContent(this.renderPanelNavigatorComponent())
-    this.props.setWindowSize("100%", "100%")
+    this.props.setWindow({
+      title: "Choose Module",
+      content: this.renderPanelNavigatorComponent(),
+      width: "100%",
+      height: "100%"
+    })
     windowOpen()
   }
 
 	render() {
     return <div>
-      <button className="k-button k-primary" onClick={() => this.onAddBtnClickedListener()}>ADD</button>
+      <button
+        className="k-button k-primary"
+        disabled={this.props.disabled}
+        onClick={() => this.onAddBtnClickedListener()}>
+          ADD
+      </button>
     </div>
 	}
 }
@@ -39,20 +48,9 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setWindowTitle: (title) => dispatch({
-      type: ActionList.SET_WINDOW_TITLE,
-      payload: title
-    }),
-    setWindowContent: (content) => dispatch({
-      type: ActionList.SET_WINDOW_CONTENT,
-      payload: content
-    }),
-    setWindowSize: (width, height) => dispatch({
-      type: ActionList.SET_WINDOW_SIZE,
-      payload: {
-        "width": width,
-        "height": height
-      }
+    setWindow: (bundle) => dispatch({
+      type: ActionList.SET_WINDOW,
+      payload: bundle
     }),
     setWindowOpen: (isOpen) => dispatch({
       type: ActionList.OPEN_WINDOW,

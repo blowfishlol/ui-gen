@@ -1,6 +1,10 @@
 export const WHITE = "#FFFFFF"
 export const BLACK = "#000000"
-const def = {
+const TRESHOLD = 0.179
+const PERCENT_RED = 0.2126
+const PERCENT_GREEN = 0.7152
+const PERCENT_BLUE = 0.722
+const DEFAULT_RGB = {
   r: 255,
   g: 255,
   b: 255
@@ -12,7 +16,7 @@ function hexToRGB(hex) {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
-  } : def;
+  } : DEFAULT_RGB;
 }
 
 function calcLuminance(rgb) {
@@ -24,11 +28,11 @@ function calcLuminance(rgb) {
       rgb[c] = Math.pow(((rgb[c]+0.055)/1.055), 2.4)
     }
   })
-  return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b
+  return PERCENT_RED * rgb.r + PERCENT_GREEN * rgb.g + PERCENT_BLUE * rgb.b
 }
 
 export default function detColor(hex) {
-  if(calcLuminance(hexToRGB(hex)) > 0.179) {
+  if(calcLuminance(hexToRGB(hex)) > TRESHOLD) {
     return BLACK
   } else {
     return WHITE

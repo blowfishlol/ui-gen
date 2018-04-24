@@ -115,23 +115,23 @@ class ColorPickerComponent extends React.Component {
     const preparedPalette = this.isSpecialPalette(data) ? mainPalette : mainPalette.concat(altPalette)
     return <div className="container alert" style={{backgroundColor: "#eeeeee"}}>
       <div className="row">
-        <div className="col-12 paletteStyle">
+        <div className="col-12 palette-style">
           <span>Color: {mainColor.find(color => color.value === data.palette).text}</span>
           <div className="container"><div className="row">{this.generateColorBoxes(data)}</div></div>
         </div>
-        <div className="col-12 paletteStyle">
+        <div className="col-12 palette-style">
           <span>Base Color: {data.base}</span>
           <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "base", data)}</div></div>
         </div>
-        <div className="col-12 paletteStyle">
+        <div className="col-12 palette-style">
           <span>Hue 1 Color: {data.hue1}</span>
           <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue1", data)}</div></div>
         </div>
-        <div className="col-12 paletteStyle">
+        <div className="col-12 palette-style">
           <span>Hue 2 Color: {data.hue2}</span>
           <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue2", data)}</div></div>
         </div>
-        <div className="col-12 paletteStyle">
+        <div className="col-12 palette-style">
           <span>Hue 3 Color: {data.hue3}</span>
           <div className="container"><div className="row">{this.generatePaletteBoxes(preparedPalette, "hue3", data)}</div></div>
         </div>

@@ -36,6 +36,24 @@
   padding-bottom: 20px;
 }
 
+/*.k-menu {*/
+  /*background-color: #007bff !important;*/
+  /*color: #ffffff !important;*/
+/*}*/
+
+/*.k-state-border-down {*/
+  /*color: #ffffff !important;*/
+/*}*/
+
+/*.k-state-active {*/
+  /*color: #ffffff !important;*/
+/*}*/
+
+/*.k-state-hover {*/
+  /*color: #ffffff;*/
+/*}*/
+
+
 .map-child {
   padding-top: 2px;
   padding-bottom: 10px;
@@ -45,7 +63,7 @@
   color: #ffffff;
 }
 
-.transparent-button {
+.k-button.transparent-button {
   height: 35px;
   width: 35px;
   background-color: Transparent;
@@ -56,14 +74,15 @@
   outline:none;
 }
 
-.delete-element-button {
+.k-button.delete-element-button {
   font-size: 12px;
   margin-bottom: 10px;
   margin-top: -5px;
   padding: 0px;
+  color: #ffffff;
 }
 
-.delete-array-button {
+.k-button.delete-array-button {
   font-size: 12px;
   margin-bottom: 0px;
   margin-top: 10px;
@@ -113,11 +132,11 @@
 }
 
 .full-width-text-area {
-  height: 200px;
-  width: 100%;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  height: 200px !important;
+  width: 100% !important;
+  -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box !important;    /* Firefox, other Gecko */
+  box-sizing: border-box !important;         /* Opera/IE 8+ */
 }
 
 .formSelectorHeader {
@@ -164,11 +183,11 @@
     width: 40%;
   }
 
-  .config-button {
-    font-size: 13px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+  /*.config-button {*/
+    /*font-size: 13px;*/
+    /*padding-top: 5px;*/
+    /*padding-bottom: 5px;*/
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+  /*}*/
 }

@@ -1,6 +1,7 @@
 import ActionList from "./actionList"
 import ComponentType from "../component/ComponentType"
 import { clone } from "../util/toolbox"
+import storage from "../storage"
 
 function isInteger(arg) {
   return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
@@ -126,12 +127,18 @@ export default function reducer(state = defaultState, action) {
       ...state,
       removed_ext_file_ids: state.removed_ext_file_ids.concat(action.payload)
     }
+  } else if(action.type === ActionList.ASSIGN_CONFIG) {
+    let configContent = storage.getState().config.configs.find(config => config.id === action.payload).configContent
+    return {
+      ...state,
+      paths: configContent.modifiedPaths
+    }
   } else if(action.type === ActionList.ASSIGN_TEMPLATE) {
     return {
       ...state,
       notifier: (state.notifier + 1) % 10,
     }
-  } else if(action.type === ActionList.ON_CONFIG_SAVED || action.type === ActionList.ON_BACK_PRESSED_CONFIG ||
+  } else if(action.type === ActionList.ON_CONFIG_SAVED || action.type === ActionList.GO_TO_HOMEPAGE ||
             action.type === ActionList.ON_LOGOUT || action.type === ActionList.CLEAR_DATA ||
             action.type === ActionList.ASSIGN_DESCRIPTION) {
     return defaultState

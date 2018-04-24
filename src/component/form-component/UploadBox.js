@@ -182,7 +182,7 @@ class UploadBox extends React.Component {
         select={event => this.selectHandler(event)}
         clear={event => this.clearHandler(event)}
         remove={event => this.removeHandler(event)} />
-      <div className="dropZoneElement col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
+      <div className="drop-zone col-*-3 d-none d-md-block">Drag and drop {this.state.label} here </div>
       <div>{storedFile}</div>
     </div>
   }

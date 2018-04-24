@@ -2,11 +2,12 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
+import { Button } from "@progress/kendo-react-buttons"
 import { GridCell } from "@progress/kendo-react-grid"
 
 import fileDownload from "js-file-download"
-import { dialogOpen } from "../Dialog"
-import ActionList from "../../reducer/actionList"
+import { dialogOpen } from "../../Dialog"
+import ActionList from "../../../reducer/actionList"
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 
@@ -17,10 +18,6 @@ class ConfigurationDisplayCustomColumn extends GridCell {
   }
 
   onDeleteBtnClickedListener() {
-    /**
-     * Open a confirmation dialog
-     * before proceeding to delete existing configuration
-     **/
     this.props.setDialogMessage("Delete configuration \"" + this.props.dataItem.name + "\"?")
     this.props.setDialogFinishFunction({
       onFinish: () => this.props.deleteConfig(this.props.dataItem.id, this.props.userId, this.props.token)
@@ -32,25 +29,30 @@ class ConfigurationDisplayCustomColumn extends GridCell {
     this.props.setSelectedConfig(this.findConfig().id)
   }
 
+  onExportBtnClickedListener() {
+    fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")
+  }
+
   render() {
     return <td>
-      <button
-        className="k-button k-primary config-button"
-        onClick={() => this.onEditBtnClickedListener()}>
-          EDIT
-      </button>
-      &nbsp;
-      <button
-        className="k-button k-primary config-button"
-        onClick={() => this.onDeleteBtnClickedListener()}>
-          DELETE
-      </button>
-      &nbsp;
-      <button
-        className="k-button k-primary config-button"
-        onClick={() => fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")}>
-          EXPORT
-      </button>
+      <div className="d-none d-sm-none d-md-block">
+        <button className="k-button k-primary config-button" onClick={() => this.onEditBtnClickedListener()}>
+            EDIT
+        </button>
+        &nbsp;
+        <button className="k-button k-primary config-button" onClick={() => this.onDeleteBtnClickedListener()}>
+            DELETE
+        </button>
+        &nbsp;
+        <button className="k-button k-primary config-button" onClick={() => this.onExportBtnClickedListener()}>
+            EXPORT
+        </button>
+      </div>
+      <div className="d-sm-block d-md-none">
+        <Button primary={true} icon={"edit"} onClick={() => this.onEditBtnClickedListener()}/>&nbsp;
+        <Button primary={true} icon={"delete"} onClick={() => this.onDeleteBtnClickedListener()}/>&nbsp;
+        <Button primary={true} icon={"download"} onClick={() => this.onExportBtnClickedListener()}/>
+      </div>
     </td>
   }
 }

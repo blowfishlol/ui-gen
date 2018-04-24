@@ -61,8 +61,8 @@ class LoginPage extends React.Component {
           </label>
 
           <div className="col-sm-12">
-            {error}
             <BlankSpace space="15px"/>
+            {error}
           </div>
           <div className="col-sm-12">
             <button className="k-button k-primary float-right" onClick={() => this.props.login(this.state)}> LOGIN </button>

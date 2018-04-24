@@ -12,10 +12,13 @@ export default function reducer(state = defaultState, action) {
    * @param (in action.payload)
    * string containing window title
    */
-  if(action.type === ActionList.SET_WINDOW_TITLE) {
+  if(action.type === ActionList.SET_WINDOW) {
     return {
       ...state,
-      title: action.payload
+      title: action.payload.title,
+      content: action.payload.content,
+      width: action.payload.width,
+      height: action.payload.height
     }
   /**
    * @param (in action.payload)

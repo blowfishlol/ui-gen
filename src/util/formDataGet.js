@@ -1,6 +1,8 @@
 import storage from "../storage"
 import { isObject, mergeDeep } from "./toolbox"
-import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "./activeDataGet"
+import {
+  getSelectedConfig, getSelectedTemplate, getSelectedDescriptionContent
+} from "./descriptionDataGet"
 // import ActionList from "../reducer/actionList"
 import ComponentType from "../component/ComponentType"
 
@@ -207,9 +209,9 @@ function findInDesc(path, type) {
   if(type === ComponentType.CHECKBOX) {
     let childPath = path[path.length - 1]
     path = path.slice(0, path.length - 1)
-    return get(getSelectedDescription().data, path, type).value.contents.find(c => c.value === childPath).checked
+    return get(getSelectedDescriptionContent().data, path, type).value.contents.find(c => c.value === childPath).checked
   }
-  return get(getSelectedDescription().data, path, type).value.default
+  return get(getSelectedDescriptionContent().data, path, type).value.default
 }
 
 /**

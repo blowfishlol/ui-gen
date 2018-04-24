@@ -2,14 +2,16 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import { DropDownList } from "@progress/kendo-react-dropdowns"
 import PanelNavigator from "./PanelNavigator"
 import Form from "../form-component/Form"
+import FormSelectorMenu from "./DescriptionSelector"
 
 import { mergeAll } from "../../util/formDataGet"
-import { getSelectedDescription, getSelectedConfig, getSelectedTemplate } from "../../util/activeDataGet"
+import {
+  getSelectedDescription, getSelectedConfig, getSelectedTemplate,
+  getSelectedDescriptionContent
+} from "../../util/descriptionDataGet"
 import { getNode } from "../../util/panelBarInfo"
-import { lastElementOf } from "../../util/toolbox"
 import ActionList from "../../reducer/actionList"
 import BlankSpace from "../BlankSpace"
 import { dialogOpen } from "../Dialog"
@@ -22,33 +24,12 @@ class FormSelector extends React.Component {
       isEditNameMode: false,
       configName: getSelectedConfig().name
     }
-
-    this.props.assignDescription(this.getDefaultDescription()) // >.< c a g  l t r
-    this.props.assignTemplate(this.getDefaultTemplate()) // x_x        h n e  a e
   }
 
-  getDefaultDescription() {
-    let currentConfig = getSelectedConfig()
-    if(currentConfig.hasOwnProperty("configContent")) {
-      if(currentConfig.configContent.hasOwnProperty("description")) {
-        if(currentConfig.configContent.description.hasOwnProperty("id")) {
-          return currentConfig.configContent.description.id
-        }
-      }
-    }
-    return lastElementOf(this.props.descriptions).id
-  }
-
-  getDefaultTemplate() {
-    let currentConfig = getSelectedConfig()
-    if(currentConfig.hasOwnProperty("configContent")) {
-      if(currentConfig.configContent.hasOwnProperty("template")) {
-        if(currentConfig.configContent.template.hasOwnProperty("id")) {
-          return currentConfig.configContent.template.id
-        }
-      }
-    }
-    return lastElementOf(getSelectedDescription().templates).id
+  isDescriptionDataMissing() {
+    return this.props.selectedDescription === -1 ||
+      this.props.selectedDescContent === -1 ||
+      this.props.selectedTemplate === -1
   }
 
   onConfigNameChangedListener(evt) {
@@ -68,22 +49,6 @@ class FormSelector extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.selectedDescription !== this.props.selectedDescription) {
-      this.props.cleanData()
-    }
-  }
-
-  onDescriptionDropDownSelectedListener(index) {
-    console.log(index)
-    this.props.assignDescription(index)
-  }
-
-  onTemplateDropDownSelectedListener(index) {
-    console.log(index)
-    this.props.assignTemplate(index)
-  }
-
   onFinishBtnClickedListener() {
     this.props.setDialogMessage("Save this configuration as \"" + getSelectedConfig().name + "\"?")
     this.props.setDialogFinishFunction({
@@ -97,7 +62,9 @@ class FormSelector extends React.Component {
       name: getSelectedConfig().name,
       id: this.props.userId,
       data: JSON.stringify(mergeAll()),
+      modifiedPaths: this.props.paths,
       description_id: getSelectedDescription().id,
+      description_content_id: getSelectedDescriptionContent().id,
       template_id: getSelectedTemplate().id,
       file_id: this.props.extFileRef,
       removed_file_id: this.props.removedExtFileRef,
@@ -128,42 +95,37 @@ class FormSelector extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.onExit()
+  }
+
   render() {
-    let forms = this.props.paths.map(path => {
-      return <Form
-        key={path}
-        path={path}
-        component={getNode(getSelectedDescription().data, path.split("."))}
-        selectedDesc={this.props.selectedDescription}
-        selectedTemp={this.props.selectedTemplate} />
-    })
+    let body
+    if(this.isDescriptionDataMissing()) {
+      body = <div className="alert alert-warning">Description, Description Version and Template must be assigned first</div>
+    } else if(!this.props.paths.length) {
+      body = <div className="alert alert-success">No selected form exist</div>
+    } else {
+      body = this.props.paths.map(path => {
+        return <Form
+          key={path}
+          path={path}
+          component={getNode(getSelectedDescriptionContent().data, path.split("."))} />
+      })
+    }
     return <div className="page-root">
       {this.renderHeader()}
-      <div className="row form-selector-padding">
-        <div className="col-lg-2 col-sm-4 col-12 form-selector-label">Description Version</div>
-        <div className="col-lg-4 col-sm-8 col-12">
-          <DropDownList
-            data={this.props.descriptions}
-            textField={"version"}
-            valueField={"id"}
-            value={this.props.selectedDescription}
-            onChange={evt => this.onDescriptionDropDownSelectedListener(evt.target.value)} />
-        </div>
-        <div className="col-lg-2 col-sm-4 col-12 form-selector-label">Template</div>
-        <div className="col-lg-4 col-sm-8 col-12">
-          <DropDownList
-            data={getSelectedDescription().templates}
-            textField={"name"}
-            valueField={"id"}
-            value={this.props.selectedTemplate}
-            onChange={evt => this.onTemplateDropDownSelectedListener(evt.target.value)} />
-        </div>
-      </div>
-      {forms.length ? forms : <div className="alert alert-success">No selected form exist</div> }
+      <FormSelectorMenu showDialog={true} />
+      {body}
       <BlankSpace space="200px"/>
       <div className="k-form-field page-footer footer-bg-style">
-        <button className="k-button k-primary float-right" onClick={() => this.onFinishBtnClickedListener()}>FINISH</button>
-        <PanelNavigator />
+        <button
+          className="k-button k-primary float-right"
+          disabled={this.isDescriptionDataMissing()}
+          onClick={() => this.onFinishBtnClickedListener()}>
+            FINISH
+        </button>
+        <PanelNavigator disabled={this.isDescriptionDataMissing()}/>
       </div>
     </div>
   }
@@ -171,12 +133,10 @@ class FormSelector extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-    configs: storage.config.configs,
-    selectedConfig: storage.config.selected_id,
-    descriptions: storage.description.descriptions,
-    selectedDescription: storage.description.selected_id,
-    selectedTemplate: storage.description.selected_template_id,
     paths: storage.form.paths,
+    selectedDescription: storage.description.selected_id,
+    selectedDescContent: storage.description.selected_desc_content_id,
+    selectedTemplate: storage.description.selected_template_id,
 
     userId: storage.user.id,
     token: storage.user.token,
@@ -194,14 +154,6 @@ const mapDispatchToProps = (dispatch) => {
       type: ActionList.CHANGE_CURRENT_CONFIG_NAME,
       payload: name
     }),
-    assignDescription: (id) => dispatch({
-      type: ActionList.ASSIGN_DESCRIPTION,
-      payload: id
-    }),
-    assignTemplate: (id) => dispatch({
-      type: ActionList.ASSIGN_TEMPLATE,
-      payload: id
-    }),
     saveConfig: (config) => dispatch({
       type: ActionList.SAVE_CONFIG,
       payload: config
@@ -213,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
     setDialogFinishFunction: (methods) => dispatch({
       type: ActionList.SET_ADDITIONAL_METHOD,
       payload: methods
+    }),
+    onExit: () => dispatch({
+      type: ActionList.ON_FORM_EXIT
     })
   }
 }

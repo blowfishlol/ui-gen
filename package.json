@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@progress/kendo-buttons-react-wrapper": "^2018.1.221",
     "@progress/kendo-dateinputs-react-wrapper": "^2018.1.221",
     "@progress/kendo-dialog-react-wrapper": "^2018.1.221",
     "@progress/kendo-dropdowns-react-wrapper": "^2018.1.221",
@@ -10,6 +11,7 @@
     "@progress/kendo-inputs-react-wrapper": "^2018.1.221",
     "@progress/kendo-layout-react-wrapper": "^2018.1.221",
     "@progress/kendo-popups-react-wrapper": "^2018.1.221",
+    "@progress/kendo-react-buttons": "^0.5.1",
     "@progress/kendo-react-dateinputs": "^0.3.0",
     "@progress/kendo-react-dropdowns": "^0.4.0",
     "@progress/kendo-react-grid": "^0.4.0",

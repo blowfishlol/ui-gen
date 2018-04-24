@@ -31,3 +31,14 @@ export function mergeDeep(obj1, obj2) {
 export function clone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
+
+export function concatArrayById(elements, newElement) {
+  if(elements.find(element => element.id === newElement.id)) {
+    return elements.map(element => {
+      return element.id === newElement.id ? newElement : element
+    })
+  } else {
+    return elements.concat(newElement)
+  }
+}
+

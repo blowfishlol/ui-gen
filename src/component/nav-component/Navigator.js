@@ -4,40 +4,34 @@ import { compose } from "recompose"
 
 import Header from "./Header"
 import LoginPage from "./LoginPage"
-import ConfigurationDisplay from "./ConfigurationDisplay"
+import Homepage from "./Homepage"
 import FormSelector from "./FormSelector"
 import ImportConfigForm from "./ImportConfigForm"
+import NewDescriptionContentForm from "./NewDescriptionContentForm"
+import NewTemplateForm from "./NewTemplateForm"
 import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
-import { NavKey } from "../../reducer/actionList"
+import { NavKey } from "../../util/constants"
 
 class Navigator extends React.Component {
 
   render() {
-    if(this.props.location === NavKey.LOGIN_PAGE) {
-      return <LoginPage />
-    } else if(this.props.location === NavKey.CONFIGURATION_MENU) {
-      return <div>
-        <Header />
-        <BlankSpace space="75px" />
-        <ConfigurationDisplay />
-      </div>
-    } else if(this.props.location === NavKey.FORM_PAGE) {
-      return <div>
-        <Header />
-        <BlankSpace space="75px" />
-        <FormSelector />
-      </div>
-    } else if(this.props.location === NavKey.IMPORT_CONFIG_PAGE) {
-      return <div>
-        <Header />
-        <BlankSpace space="75px" />
-        <ImportConfigForm />
-      </div>
-    } else {
-      return <ErrorBox message="Invalid Page" />
+    let body
+    switch(this.props.location) {
+      case NavKey.LOGIN_PAGE:            body = <LoginPage />;                 break
+      case NavKey.HOME_PAGE:             body = <Homepage />;                  break
+      case NavKey.FORM_PAGE:             body = <FormSelector />;              break
+      case NavKey.IMPORT_CONFIG_PAGE:    body = <ImportConfigForm />;          break
+      case NavKey.NEW_DESC_CONTENT_PAGE: body = <NewDescriptionContentForm />; break
+      case NavKey.NEW_TEMPLATE_PAGE:     body = <NewTemplateForm />;           break
+      default: body = <ErrorBox message="Invalid Page" />
     }
+    return <div>
+      <Header />
+      <BlankSpace space="75px" />
+      {body}
+    </div>
   }
 }
 

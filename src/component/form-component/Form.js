@@ -54,17 +54,17 @@ class Form extends Component {
 
       let renderedComponent
       switch(components[key].element.type) {
-        case ComponentType.TEXT:     renderedComponent = <TextBox path={path} desc={components[key]} />;     break
-        case ComponentType.NUMBER:   renderedComponent = <NumberBox path={path} desc={components[key]} />;   break
-        case ComponentType.IMAGE:    renderedComponent = <UploadBox path={path} desc={components[key]} />;   break
+        case ComponentType.TEXT:     renderedComponent = <TextBox     path={path} desc={components[key]} />; break
+        case ComponentType.NUMBER:   renderedComponent = <NumberBox   path={path} desc={components[key]} />; break
+        case ComponentType.IMAGE:    renderedComponent = <UploadBox   path={path} desc={components[key]} />; break
         case ComponentType.DROPDOWN: renderedComponent = <DropDownBox path={path} desc={components[key]} />; break
-        case ComponentType.CHECKBOX: renderedComponent = <CheckBox path={path} desc={components[key]} />;    break
-        case ComponentType.TOGGLE:   renderedComponent = <ToggleBox path={path} desc={components[key]} />;   break
-        case ComponentType.DATE:     renderedComponent = <DateBox path={path} desc={components[key]} />;     break
-        case ComponentType.TIME:     renderedComponent = <TimeBox path={path} desc={components[key]} />;     break
+        case ComponentType.CHECKBOX: renderedComponent = <CheckBox    path={path} desc={components[key]} />; break
+        case ComponentType.TOGGLE:   renderedComponent = <ToggleBox   path={path} desc={components[key]} />; break
+        case ComponentType.DATE:     renderedComponent = <DateBox     path={path} desc={components[key]} />; break
+        case ComponentType.TIME:     renderedComponent = <TimeBox     path={path} desc={components[key]} />; break
         case ComponentType.COLOR:    renderedComponent = <ColorPicker path={path} desc={components[key]} />; break
-        case ComponentType.ARRAY:    renderedComponent = <ArrayInput path={path} desc={components[key]} />;  break
-        case ComponentType.MAP:      renderedComponent = <MapInput path={path} desc={components[key]} />;    break
+        case ComponentType.ARRAY:    renderedComponent = <ArrayInput  path={path} desc={components[key]} />; break
+        case ComponentType.MAP:      renderedComponent = <MapInput    path={path} desc={components[key]} />; break
         default: renderedComponent = <ErrorBox key={path} message={'Unrecognized element type "' + components[key].element.type + '"'} />
       }
 

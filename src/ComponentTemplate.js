@@ -4,7 +4,7 @@ import { compose } from "recompose"
 
 /**
  * [TEMPLATE]
- * Usage: ctrl-a, ctrl-c, crtl-v
+ * Usage: ctrl-a, ctrl-c, ctrl-v
  */
 
 export default class ComponentTemplate extends React.Component{
@@ -21,10 +21,14 @@ export default class ComponentTemplate extends React.Component{
   componentDidMount() {
   }
 
-  componentWillUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
+
   }
 
-  componentDidUpdate() {
+  componentWillUpdate(nextProps, nextState) {
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
   }
 
   componentWillUnmount() {

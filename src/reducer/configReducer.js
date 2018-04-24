@@ -3,13 +3,18 @@ import axios from "axios"
 import storage from "../storage"
 import server from "../util/server"
 import ActionList from "./actionList"
+import {concatArrayById} from "../util/toolbox";
 
-const default_config = {
+const defaultConfig = {
   id: -1,
   name: "New Configuration",
   configContent: {
     data: {}
   }
+}
+
+function filterDataNoId(configs) {
+  return configs.filter(config => config.id !== -1)
 }
 
 const defaultState = {
@@ -21,6 +26,7 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
 
   if(action.type === ActionList.FETCH_CONFIGS) {
+    alert("AAAA SALAH!!!!")
     axios.post(server + "/config/getnewest", action.payload)
       .then((response) => {
         storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
@@ -55,7 +61,7 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ADD_NEW_CONFIG) {
     return {
       ...state,
-      configs: state.configs.concat(default_config),
+      configs: state.configs.concat(defaultConfig),
       selected_id: -1
     }
   } else if(action.type === ActionList.ASSIGN_CONFIG) {
@@ -90,7 +96,7 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.SAVE_CONFIG) {
     axios.post(server + "/config/create", action.payload)
       .then((response) => {
-        storage.dispatch({type: ActionList.ON_CONFIG_SAVED})
+        storage.dispatch({type: ActionList.ON_CONFIG_SAVED, payload: response.data})
       })
       .catch((err) => {
         console.error("ERROR", err)
@@ -100,12 +106,13 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
     return {
       ...state,
-      current_config: {}
+      configs: concatArrayById(state.configs, action.payload)
     }
-  } else if(action.type === ActionList.ON_BACK_PRESSED_CONFIG) {
+  } else if(action.type === ActionList.ON_FORM_EXIT) {
     return {
       ...state,
-      current_config: {}
+      selected_id: -1,
+      configs: filterDataNoId(state.configs)
     }
   } else if(action.type === ActionList.ON_LOGOUT) {
     return defaultState

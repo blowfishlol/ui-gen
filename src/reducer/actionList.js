@@ -1,5 +1,13 @@
 export default({
 
+  GO_TO_DESC_LIST:            "go_to_desc_list",
+  GO_TO_CONFIG_LIST:          "go_to_config_list",
+  GO_TO_IMPORT_CONFIG:        "go_to_import_config",
+  GO_TO_NEW_DESC_CONTENT:     "go_to_new_desc_content",
+  GO_TO_NEW_TEMPLATE:         "go_to_new_template",
+  GO_TO_HOMEPAGE:             "go_to_homepage",
+  ON_FORM_EXIT:               "exiting_form_selector",
+
   FETCH_CONFIGS:              "fetch_configs",
   ON_CONFIGS_FETCHED:         "configs_fetched",
   ON_CONFIGS_FETCH_FAIL:      "fetch_configs_fail",
@@ -11,38 +19,50 @@ export default({
   SAVE_CONFIG:                "save_config",
   ON_CONFIG_SAVED:            "config_saved",
   ON_CONFIG_SAVE_FAIL:        "config_save_fail",
-  ON_BACK_PRESSED_CONFIG:     "cancel_config",
-  ON_GOTO_IMPORT_CONFIG:      "goto_import_config",
-  IMPORT_CONFIG:              "import_config",
-  ON_CONFIG_IMPORTED:         "config_imported",
-  ON_CONFIG_IMPORT_FAIL:      "config_import_fail",
+  // IMPORT_CONFIG:              "import_config",
+  // ON_CONFIG_IMPORTED:         "config_imported",
+  // ON_CONFIG_IMPORT_FAIL:      "config_import_fail",
   ADD_NEW_CONFIG:             "new_config",
 
   SET_DATA:                   "set_data",
-  SET_DATA_BY_INDEX:          "set_data_by_index",
   POP_DATA:                   "remove_data",
-  POP_DATA_BY_INDEX:          "destroy_data",
   ADD_PATH:                   "add_path",
   REMOVE_PATH:                "remove_path",
-  SET_CONFIG:                 "set_config",
-  SET_DESCRIPTION:            "set_page",
-  PUSH_APP_STATE:             "push_state",
-  POP_APP_STATE:              "pop_state",
-  CLEAR_STATE:                "pop_all_state",
-  SET_NEW_FORM_FLAG:          "set_new_form_flag",
-  ALLOW_JUMP:                 "allow_jump",
   CLEAR_DATA:                 "destroy_all_data",
   ADD_EXT_FILE_REF:           "add_external_file_reference",
   REMOVE_EXT_FILE_REF:        "remove_external_file_reference",
   ADD_REMOVED_EXT_FILE_REF:   "add_removed_external_file_reference",
-  ADD_ELEMENT_REF:            "add_element_reference",
-  REMOVE_ELEMENT_REF:         "remove_element_reference",
 
   FETCH_DESCRIPTIONS:         "fetch_descs",
   ON_DESCRIPTIONS_FETCHED:    "descs_fetched",
   ON_DESCRIPTIONS_FETCH_FAIL: "fetch_descs_fail",
   ASSIGN_DESCRIPTION:         "assign_description",
+  ASSIGN_DESC_CONTENT:        "assign_desc_content",
   ASSIGN_TEMPLATE:            "assign_template",
+  ADD_NEW_DESCRIPTION:        "new_description",
+  ADD_NEW_DESC_CONTENT:       "new_description_content",
+  ADD_NEW_TEMPLATE:           "new_template",
+
+  SAVE_DESCRIPTION:           "save_description",
+  ON_DESCRIPTION_SAVED:       "description_saved",
+  ON_DESCRIPTION_SAVE_FAIL:   "description_save_fail",
+  DELETE_DESCRIPTION:         "delete_description",
+  ON_DESCRIPTION_DELETED:     "description_deleted",
+  ON_DESCRIPTION_DELETE_FAIL: "description_delete_fail",
+
+  SAVE_DESCRIPTION_CONTENT:           "save_description_content",
+  ON_DESCRIPTION_CONTENT_SAVED:       "description_content_saved",
+  ON_DESCRIPTION_CONTENT_SAVE_FAIL:   "description_content_save_fail",
+  DELETE_DESCRIPTION_CONTENT:         "delete_description_content",
+  ON_DESCRIPTION_CONTENT_DELETED:     "description_content_deleted",
+  ON_DESCRIPTION_CONTENT_DELETE_FAIL: "description_content_delete_fail",
+
+  SAVE_TEMPLATE:               "save_template",
+  ON_TEMPLATE_SAVED:           "template_saved",
+  ON_TEMPLATE_SAVE_FAIL:       "template_save_fail",
+  DELETE_TEMPLATE:             "delete_template",
+  ON_TEMPLATE_DELETED:         "template_deleted",
+  ON_TEMPLATE_DELETE_FAIL:     "template_delete_fail",
 
   ON_LOGIN:                    "login",
   ON_LOGIN_SUCCESS:            "login_success",
@@ -53,15 +73,8 @@ export default({
   SET_ADDITIONAL_METHOD:       "set_methods",
   SET_DIALOG_DEFAULT:          "revert_default",
 
-  SET_WINDOW_TITLE:            "set_window_title",
+  SET_WINDOW:                  "set_window",
   SET_WINDOW_CONTENT:          "set_window_content",
   SET_WINDOW_SIZE:             "set_window_size",
   SET_WINDOW_DEFAULT:          "set_window_default"
 })
-
-export const NavKey = {
-  CONFIGURATION_MENU: "configuration",
-  FORM_PAGE:          "form",
-  LOGIN_PAGE:         "login",
-  IMPORT_CONFIG_PAGE: "import_config"
-}

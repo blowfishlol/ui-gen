@@ -1,44 +1,81 @@
-.menuBar {
+h4 {
+  padding-top: 5px;
+}
+
+.menu-bar {
   background-color: #007bff;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-bottom: 10px;
   position: fixed;
   top: 0;
   width: 100%;
-  color: #fff;
+  color: #fff!important;
   font-size: 16px;
-  overflow: hidden;
+  overflow: visible;
   z-index: 999;
 }
 
-.menuBar button {
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
+.d-block.d-sm-none .menu-bar .k-button, .k-button:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
-.userDisplay button {
-  float: right;
+.menu-bar .k-state-disabled {
+  color: #ffffff !important;
+  opacity: 1 !important;
 }
 
-.userDisplay label {
-  float: right;
-  padding: 6px 0;
+.k-button.k-primary.k-bare {
+  color: #ffffff;
 }
+
+.k-editor .k-editor-toolbar, .k-gantt-toolbar, .k-grid-toolbar, .k-toolbar {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.user-bar {
+  padding-top: 12px;
+}
+
+.wide-bar-padding {
+  padding-top: 5px;
+}
+
+.k-icon.k-i-user.float-right {
+  padding-top: 3px;
+}
+
+/*.menu-bar button {*/
+  /*padding-left: 50px;*/
+  /*padding-right: 50px;*/
+  /*margin-left: 10px;*/
+  /*margin-right: 10px;*/
+/*}*/
+
+/*.user-display button {*/
+  /*float: right;*/
+/*}*/
+
+/*.user-display label {*/
+  /*float: right;*/
+  /*padding: 6px 0;*/
+/*}*/
 
 .narrow {
   display: none;
 }
 
-.narrow table {
-  width: 100%;
-}
+/*.narrow table {*/
+  /*width: 100%;*/
+/*}*/
 
-.shrinkToFit {
-  width:1%;
-  white-space:nowrap;
-}
+/*.shrink-to-fit {*/
+  /*width:1%;*/
+  /*white-space:nowrap;*/
+/*}*/
 
 @media only screen and (max-width: 575px) {
   .wide {
@@ -49,21 +86,21 @@
     display: inline-block;
   }
 
-  .menuBar button {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    font-size: 14px;
-  }
+  /*.menu-bar button {*/
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+    /*margin-bottom: 5px;*/
+    /*font-size: 14px;*/
+  /*}*/
 
-  .userDisplay button {
-    float: none;
-  }
+  /*.user-display button {*/
+    /*float: none;*/
+  /*}*/
 
-  .userDisplay label {
-    float: none;
-    padding: 6px 0;
-  }
+  /*.user-display label {*/
+    /*float: none;*/
+    /*padding: 6px 0;*/
+  /*}*/
 }

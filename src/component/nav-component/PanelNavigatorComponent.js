@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import { PanelBar, PanelBarUtils } from "@progress/kendo-react-layout"
 
 import { isHaveAChildLeafNode, getNode, descToPanelBarItemFiltered } from "../../util/panelBarInfo"
-import { getSelectedDescription } from "../../util/activeDataGet"
+import {getSelectedDescriptionContent} from "../../util/descriptionDataGet"
 import { windowClose } from "../Window"
 import ActionList from "../../reducer/actionList"
 import BlankSpace from "../BlankSpace";
@@ -24,7 +24,7 @@ class PanelNavigatorComponent extends React.Component {
 
   handleChange(event) {
     let path = event.target.props.id.split(".")
-    let node = getNode(getSelectedDescription().data, path)
+    let node = getNode(getSelectedDescriptionContent().data, path)
     this.setState({
       ...this.state,
       selectedPath: event.target.props.id,
@@ -54,7 +54,7 @@ class PanelNavigatorComponent extends React.Component {
   }
 
   render() {
-    let node = getNode(getSelectedDescription().data, this.state.selectedPath.split("."))
+    let node = getNode(getSelectedDescriptionContent().data, this.state.selectedPath.split("."))
     return <div>
       <PanelBar
         expandMode="single"

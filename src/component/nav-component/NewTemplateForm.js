@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import DescriptionSelector from "./DescriptionSelector"
 import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
@@ -14,29 +13,29 @@ class ImportConfigForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      versionName: "",
-      data: ""
+      id: this.props.userId,
+      token: this.props.token,
+      description_content_id: this.props.selectedDescContent,
+      name: getSelectedTemplate().name,
+      data: JSON.stringify(getSelectedTemplate().data)
+    }
+    if(this.props.selectedTemplate !== -1) {
+      this.state.template_id = this.props.selectedTemplate
     }
   }
 
-  isDescriptionDataMissing() {
-    return this.props.selectedDescription === -1 ||
-      this.props.selectedDescContent === -1 ||
-      this.props.selectedTemplate === -1
-  }
-
   isAllDataReady() {
-    return !(this.state.versionName === "") && !(this.state.data === "") && !this.isDescriptionDataMissing()
+    return !(this.state.name === "") && !(this.state.data === "")
   }
 
-  onConfigNameChangedListener(evt) {
+  onTemplateNameChangedListener(evt) {
     this.setState({
       ...this.state,
-      versionName: evt.target.value
+      name: evt.target.value
     })
   }
 
-  onDataChangedListener(evt) {
+  onConfigChangedListener(evt) {
     this.setState({
       ...this.state,
       data: evt.target.value
@@ -48,17 +47,7 @@ class ImportConfigForm extends React.Component {
       alert("All field must be filled")
       return
     }
-    this.props.saveConfig({
-      name: this.state.versionName,
-      id: this.props.userId,
-      data: this.state.data,
-      description_id: getSelectedDescription().id,
-      description_content_id: getSelectedDescriptionContent().id,
-      template_id: getSelectedTemplate().id,
-      file_id: [],
-      removed_file_id: [],
-      token: this.props.token
-    })
+    this.props.saveTemplate(this.state)
   }
 
   componentWillUnmount() {
@@ -71,27 +60,30 @@ class ImportConfigForm extends React.Component {
     }
     return <div className="row k-form page-root">
       <div className="col-sm-12">
-        <center><h1><b> Import Configuration </b></h1></center>
+        <center><h1><b> Add Description Version </b></h1></center>
       </div>
 
       <label className="k-form-field col-sm-12">
-        <span>Config Name</span>
+        <span>Description Name: {getSelectedDescription().name}</span>
+      </label>
+      <label className="k-form-field col-sm-12">
+        <span>Description Version: {getSelectedDescriptionContent().version}</span>
+      </label>
+      <label className="k-form-field col-sm-12">
+        <span>Version Name</span>
         <input
-          className={"k-textbox"}
-          placeholder={"Configuration name"}
-          value={this.state.versionName}
-          onChange={evt => this.onConfigNameChangedListener(evt)} />
+          className="k-textbox"
+          placeholder="Description version name"
+          value={this.state.name}
+          onChange={evt => this.onTemplateNameChangedListener(evt)} />
       </label>
       <label className="k-form-field col-sm-12">
-        <span>Config Data</span>
+        <span>Template</span>
         <textarea
-          className={"k-textbox full-width-text-area"}
-          placeholder={"Data"}
+          className="k-textbox full-width-text-area"
+          placeholder="Description"
           value={this.state.data}
-          onChange={evt => this.onDataChangedListener(evt)} />
-      </label>
-      <label className="k-form-field col-sm-12">
-        <DescriptionSelector showDialof={false} />
+          onChange={evt => this.onConfigChangedListener(evt)} />
       </label>
 
       <div className="col-sm-12">
@@ -103,7 +95,7 @@ class ImportConfigForm extends React.Component {
         <button className="k-button k-primary float-right"
           disabled={!this.isAllDataReady()}
           onClick={() => this.onImportBtnClickedListener()}>
-            IMPORT
+            SAVE
         </button>
       </div>
     </div>
@@ -112,21 +104,19 @@ class ImportConfigForm extends React.Component {
 
 const mapStateToProps = function(storage) {
   return {
-    selectedDescription: storage.description.selected_id,
     selectedDescContent: storage.description.selected_desc_content_id,
     selectedTemplate: storage.description.selected_template_id,
     errorMessage: storage.nav.error_message,
-
     userId: storage.user.id,
-    token: storage.user.token,
+    token: storage.user.token
   }
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    saveConfig: (config) => dispatch({
-      type: ActionList.SAVE_CONFIG,
-      payload: config
+    saveTemplate: (bundle) => dispatch({
+      type: ActionList.SAVE_TEMPLATE,
+      payload: bundle
     }),
     onExit: () => dispatch({
       type: ActionList.ON_FORM_EXIT
