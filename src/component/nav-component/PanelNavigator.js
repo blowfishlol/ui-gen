@@ -6,9 +6,9 @@ import { PanelBarUtils } from "@progress/kendo-react-layout"
 import PanelNavigatorComponent from "./PanelNavigatorComponent"
 
 import { descToPanelBarItem } from "../../util/panelBarInfo"
-import {getSelectedDescriptionContent} from "../../util/descriptionDataGet"
-import ActionList from "../../reducer/actionList"
+import { getSelectedDescriptionContent } from "../../util/descriptionDataGet"
 import { windowOpen } from "../Window"
+import ActionList from "../../reducer/actionList"
 
 class PanelNavigator extends React.Component {
 

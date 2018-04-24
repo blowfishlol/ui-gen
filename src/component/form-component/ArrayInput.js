@@ -7,7 +7,7 @@ import LabelTooltip from "./LabelTooltip"
 import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
 
-import get, { defaultValue } from "../../util/formDataGet"
+import get, {check, defaultValue} from "../../util/formDataGet"
 import { nullInfo } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
 
@@ -16,6 +16,21 @@ class ArrayInput extends React.Component {
   constructor(props) {
     super(props)
     this.onDeleteBtnClickedListener = this.onDeleteBtnClickedListener.bind(this)
+
+    /**
+     * TEMPORARY WORKAROUND
+     * Need to find a better way to ensure the app don't get confused between data from
+     * template and data from form reducer when array of data is involved
+     * (due to the array from template don't get stored inside form reducer)
+     */
+    if(!check(this.props.path)) {
+      let data = get(this.props.path, this.props.desc.element.type)
+      if(data.length !== 0) {
+        for(let i = 0; i < data.length; i++) {
+          this.props.updateState(this.props.path + "." + i, undefined)
+        }
+      }
+    }
   }
 
   nextPath() {

@@ -3,10 +3,13 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import ErrorBox from "../ErrorBox"
+import BlankSpace from "../BlankSpace"
 
+import {
+  getSelectedDescription, getSelectedDescriptionContent,
+  getSelectedTemplate
+} from "../../util/descriptionDataGet"
 import ActionList from "../../reducer/actionList"
-import BlankSpace from "../BlankSpace";
-import {getSelectedDescription, getSelectedDescriptionContent, getSelectedTemplate} from "../../util/descriptionDataGet";
 
 class ImportConfigForm extends React.Component {
 

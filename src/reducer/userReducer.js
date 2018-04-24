@@ -70,6 +70,21 @@ export default function reducer(state = defaultState, action) {
       roles: action.payload.roles,
       token: action.payload.token
     }
+  } else if(action.type === ActionList.FETCH_CONFIGS) {
+    let request = {
+      id: state.id,
+      token: state.token
+    }
+    fetchConfig(request)
+    fetchDesc(request)
+    return state
+  } else if(action.type === ActionList.FETCH_DESCRIPTIONS) {
+    let request = {
+      id: state.id,
+      token: state.token
+    }
+    fetchDesc(request)
+    return state
   /**
    * @param (in action.payload)
    * [empty]

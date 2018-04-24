@@ -7,8 +7,8 @@ import { GridCell } from "@progress/kendo-react-grid"
 import DescriptionWindowComponent from "./DescriptionWindowComponent"
 
 import { dialogOpen } from "../../Dialog"
+import { windowOpen } from "../../Window"
 import ActionList from "../../../reducer/actionList"
-import {windowOpen} from "../../Window";
 
 class DescriptionDisplayToolColumn extends GridCell {
 
@@ -44,7 +44,7 @@ class DescriptionDisplayToolColumn extends GridCell {
 
   render() {
     return <td>
-      <div className="d-none d-sm-none d-md-block">
+      <div className="d-none d-md-block">
         <button className="k-button k-primary config-button" onClick={() => this.onAddBtnClickedListener()}>
             Add Version
         </button>
@@ -57,9 +57,9 @@ class DescriptionDisplayToolColumn extends GridCell {
             Delete
         </button>
       </div>
-      <div className="d-sm-block d-md-none">
+      <div className="d-block d-md-none">
         <Button primary={true} icon={"plus"} onClick={() => this.onAddBtnClickedListener()}/>&nbsp;
-        <Button primary={true} icon={"egoToDescContentFormdit"} onClick={() => this.onChangeNameBtnClickedListener()}/>&nbsp;
+        <Button primary={true} icon={"edit"} onClick={() => this.onChangeNameBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"delete"} onClick={() => this.onDeleteBtnClickedListener()}/>
       </div>
     </td>

@@ -32,4 +32,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(ConfigurationTable);
+)(ConfigurationTable)

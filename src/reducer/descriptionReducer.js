@@ -45,15 +45,6 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.FETCH_DESCRIPTIONS) {
-    alert("AAA KOK KESINI")
-    axios.post(server + "/description/list", action.payload)
-      .then((response) => {
-        storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCHED, payload: response.data})
-      })
-      .catch((err) => {
-        console.error("ERROR", err)
-        storage.dispatch({type: ActionList.ON_DESCRIPTIONS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
-      })
     return {
       ...state,
       fetched: false

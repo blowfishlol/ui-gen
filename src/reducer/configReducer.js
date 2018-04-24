@@ -26,15 +26,6 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
 
   if(action.type === ActionList.FETCH_CONFIGS) {
-    alert("AAAA SALAH!!!!")
-    axios.post(server + "/config/getnewest", action.payload)
-      .then((response) => {
-        storage.dispatch({type: ActionList.ON_CONFIGS_FETCHED, payload: response.data})
-      })
-      .catch((err) => {
-        console.error("ERROR", err)
-        storage.dispatch({type: ActionList.ON_CONFIGS_FETCH_FAIL, payload: err.response ? err.response.data.message : err.message})
-      })
     return {
       ...state,
       fetched: false
@@ -106,7 +97,13 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ON_CONFIG_SAVED) {
     return {
       ...state,
-      configs: concatArrayById(state.configs, action.payload)
+      configs: concatArrayById(state.configs, {
+        ...action.payload,
+        configContent: {
+          ...action.payload.configContent,
+          data: JSON.parse(action.payload.configContent.data)
+        }
+      })
     }
   } else if(action.type === ActionList.ON_FORM_EXIT) {
     return {

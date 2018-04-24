@@ -43,4 +43,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(DescriptionDisplay);
+)(DescriptionDisplay)

@@ -6,12 +6,12 @@ import { Button } from "@progress/kendo-react-buttons"
 import { GridCell } from "@progress/kendo-react-grid"
 
 import { dialogOpen } from "../../Dialog"
-import ActionList from "../../../reducer/actionList"
+import { clone } from "../../../util/toolbox";
 import {
   findDescContentIdByTemplateId, findDescIdByTemplateId,
   getSelectedDescriptionContent
 } from "../../../util/descriptionDataGet";
-import {clone} from "../../../util/toolbox";
+import ActionList from "../../../reducer/actionList"
 
 class TemplateToolColumn extends GridCell {
 
@@ -44,7 +44,7 @@ class TemplateToolColumn extends GridCell {
 
   render() {
     return <td>
-      <div className="d-none d-sm-none d-md-block">
+      <div className="d-none d-md-block">
         <button className="k-button k-primary config-button" onClick={() => this.onEditBtnClickedListener()}>
           Edit
         </button>
@@ -57,7 +57,7 @@ class TemplateToolColumn extends GridCell {
           Delete
         </button>
       </div>
-      <div className="d-sm-block d-md-none">
+      <div className="d-block d-md-none">
         <Button primary={true} icon={"edit"} onClick={() => this.onEditBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"file-add"} onClick={() => this.onEditNewBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"delete"} onClick={() => this.onDeleteBtnClickedListener()}/>

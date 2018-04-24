@@ -6,13 +6,13 @@ import { Button } from "@progress/kendo-react-buttons"
 import { GridCell } from "@progress/kendo-react-grid"
 
 import { dialogOpen } from "../../Dialog"
-import { clone } from "../../../util/toolbox";
+import { clone } from "../../../util/toolbox"
+import { findDescIdByDescContentId, getSelectedDescription } from "../../../util/descriptionDataGet"
 import ActionList from "../../../reducer/actionList"
-import {findDescIdByDescContentId, getSelectedDescription} from "../../../util/descriptionDataGet";
 
 class DescVersionDisplayToolColumn extends GridCell {
 
-  onTemplateBtnClickedListener() {
+  onTemplateBtnClickedListener() { // ... 4 dispatch..
     this.props.assignDescription(findDescIdByDescContentId(this.props.dataItem.id))
     this.props.assignDescriptionContent(this.props.dataItem.id)
     this.props.newTemplate()
@@ -46,7 +46,7 @@ class DescVersionDisplayToolColumn extends GridCell {
 
   render() {
     return <td>
-      <div className="d-none d-sm-none d-md-block">
+      <div className="d-none d-md-block">
         <button className="k-button k-primary config-button" onClick={() => this.onTemplateBtnClickedListener()}>
           Add Template
         </button>
@@ -63,7 +63,7 @@ class DescVersionDisplayToolColumn extends GridCell {
           Delete
         </button>
       </div>
-      <div className="d-sm-block d-md-none">
+      <div className="d-block d-md-none">
         <Button primary={true} icon={"plus"} onClick={() => this.onTemplateBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"edit"} onClick={() => this.onEditBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"file-add"} onClick={() => this.onEditNewBtnClickedListener()}/>&nbsp;

@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import { PanelBar, PanelBarUtils } from "@progress/kendo-react-layout"
 
 import { isHaveAChildLeafNode, getNode, descToPanelBarItemFiltered } from "../../util/panelBarInfo"
-import {getSelectedDescriptionContent} from "../../util/descriptionDataGet"
+import { getSelectedDescriptionContent } from "../../util/descriptionDataGet"
 import { windowClose } from "../Window"
 import ActionList from "../../reducer/actionList"
 import BlankSpace from "../BlankSpace";

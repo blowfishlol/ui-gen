@@ -140,7 +140,7 @@ export default function reducer(state = defaultState, action) {
     }
   } else if(action.type === ActionList.ON_CONFIG_SAVED || action.type === ActionList.GO_TO_HOMEPAGE ||
             action.type === ActionList.ON_LOGOUT || action.type === ActionList.CLEAR_DATA ||
-            action.type === ActionList.ASSIGN_DESCRIPTION) {
+            action.type === ActionList.ASSIGN_DESCRIPTION || action.type === ActionList.ON_FORM_EXIT) {
     return defaultState
   } else {
     return state

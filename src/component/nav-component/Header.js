@@ -18,11 +18,10 @@ const LOGOUT      = 3
 
 class Header extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.toolbarItems = [{ template: "<label>&nbsp;</label>" }]
+  getToolBarItems() {
+    let toolbarItems = [{ template: "<label>&nbsp;</label>" }]
     if(this.props.isUser) {
-      this.toolbarItems = this.toolbarItems.concat({
+      toolbarItems = toolbarItems.concat({
         type: "button",
         text: "Config",
         id: CONFIG,
@@ -30,19 +29,21 @@ class Header extends React.Component {
       })
     }
     if(this.props.isAdmin) {
-      this.toolbarItems = this.toolbarItems.concat({
+      toolbarItems = toolbarItems.concat({
         type: "button",
         text: "Description",
         id: DESCRIPTION,
         overflow: "always"
       })
     }
-    this.toolbarItems = this.toolbarItems.concat({
+    toolbarItems = toolbarItems.concat({
       type: "button",
       text: "Log Out",
       id: LOGOUT,
       overflow: "always"
     })
+
+    return toolbarItems
   }
 
   onToolBarItemClicked(evt) {
@@ -65,7 +66,7 @@ class Header extends React.Component {
           <div className="col-auto">
             <div className="row">
               <div className="col-auto"><img src={logo} onClick={() => this.props.home()} alt="logo" width="40" height="40"/></div>
-              <div className="col wide-bar-padding"><h4><b>UI-GENERATOR</b></h4></div>
+              <div className="col wide-bar-padding"><h4><b>DEMO APP</b></h4></div>
             </div>
           </div>
           <div className="col">
@@ -118,7 +119,9 @@ class Header extends React.Component {
                 <span className="float-right">&nbsp;{this.props.username}</span>
                 <span className="k-icon k-i-user float-right"/>
               </div>
-              <div className="col-3"><ToolBar items={this.toolbarItems} click={evt => this.onToolBarItemClicked(evt)}/></div>
+              <div className="col-3">
+                <ToolBar items={this.getToolBarItems()} click={evt => this.onToolBarItemClicked(evt)}/>
+              </div>
             </div>
           </div>
         </div>

@@ -6,8 +6,9 @@ import DescriptionTable from "./DescriptionTable"
 import BlankSpace from "../../BlankSpace"
 import ErrorBox from "../../ErrorBox"
 import DescriptionWindowComponent from "./DescriptionWindowComponent"
-import {windowClose, windowOpen} from "../../Window";
-import ActionList from "../../../reducer/actionList";
+
+import { windowClose, windowOpen } from "../../Window"
+import ActionList from "../../../reducer/actionList"
 
 class DescriptionDisplay extends React.Component {
 
@@ -37,7 +38,7 @@ class DescriptionDisplay extends React.Component {
   render() {
     let body
     if(this.props.errorMessage !== "") {
-      body = <ErrorBox message={this.props.errorMessage} />
+      body = <ErrorBox message={this.props.errorMessage} onClick={() => this.props.refreshDescriptions()}/>
     } else if(!this.props.isDescriptionFetched) {
       body = <div className="col-sm-12 alert alert-info">Loading data</div>
     } else {
@@ -68,6 +69,9 @@ const mapDispatchToProps = function(dispatch) {
     setWindow: (bundle) => dispatch({
       type: ActionList.SET_WINDOW,
       payload: bundle
+    }),
+    refreshDescriptions: () => dispatch({
+      type: ActionList.FETCH_DESCRIPTIONS
     })
   }
 }
@@ -77,4 +81,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(DescriptionDisplay);
+)(DescriptionDisplay)

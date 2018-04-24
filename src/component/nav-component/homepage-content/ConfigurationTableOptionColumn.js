@@ -35,7 +35,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
 
   render() {
     return <td>
-      <div className="d-none d-sm-none d-md-block">
+      <div className="d-none d-md-block">
         <button className="k-button k-primary config-button" onClick={() => this.onEditBtnClickedListener()}>
             EDIT
         </button>
@@ -48,7 +48,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
             EXPORT
         </button>
       </div>
-      <div className="d-sm-block d-md-none">
+      <div className="d-block d-md-none">
         <Button primary={true} icon={"edit"} onClick={() => this.onEditBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"delete"} onClick={() => this.onDeleteBtnClickedListener()}/>&nbsp;
         <Button primary={true} icon={"download"} onClick={() => this.onExportBtnClickedListener()}/>

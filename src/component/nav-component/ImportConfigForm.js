@@ -6,8 +6,11 @@ import DescriptionSelector from "./DescriptionSelector"
 import ErrorBox from "../ErrorBox"
 
 import ActionList from "../../reducer/actionList"
-import BlankSpace from "../BlankSpace";
-import {getSelectedDescription, getSelectedDescriptionContent, getSelectedTemplate} from "../../util/descriptionDataGet";
+import BlankSpace from "../BlankSpace"
+import {
+  getSelectedDescription, getSelectedDescriptionContent,
+  getSelectedTemplate
+} from "../../util/descriptionDataGet"
 
 class ImportConfigForm extends React.Component {
 
@@ -52,6 +55,7 @@ class ImportConfigForm extends React.Component {
       name: this.state.versionName,
       id: this.props.userId,
       data: this.state.data,
+      modified_paths: [],
       description_id: getSelectedDescription().id,
       description_content_id: getSelectedDescriptionContent().id,
       template_id: getSelectedTemplate().id,

@@ -10,7 +10,7 @@ export function mergeDeep(obj1, obj2) {
   let output = {...obj1}
   Object.keys(obj2).forEach(key => {
     if(isObject(obj2[key])) {
-      if(!(key in obj1)) {
+      if(!(Object.keys(obj1).find(k => k === key))) {
         output = {
           ...output,
           [key]: obj2[key]

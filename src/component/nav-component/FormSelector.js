@@ -5,6 +5,7 @@ import { compose } from "recompose"
 import PanelNavigator from "./PanelNavigator"
 import Form from "../form-component/Form"
 import FormSelectorMenu from "./DescriptionSelector"
+import ErrorBox from "../ErrorBox"
 
 import { mergeAll } from "../../util/formDataGet"
 import {
@@ -62,7 +63,7 @@ class FormSelector extends React.Component {
       name: getSelectedConfig().name,
       id: this.props.userId,
       data: JSON.stringify(mergeAll()),
-      modifiedPaths: this.props.paths,
+      modified_paths: this.props.paths,
       description_id: getSelectedDescription().id,
       description_content_id: getSelectedDescriptionContent().id,
       template_id: getSelectedTemplate().id,
@@ -113,10 +114,16 @@ class FormSelector extends React.Component {
           component={getNode(getSelectedDescriptionContent().data, path.split("."))} />
       })
     }
+    let error
+    if(this.props.errorMessage !== "") {
+      error = <ErrorBox message={this.props.errorMessage} />
+    }
     return <div className="page-root">
       {this.renderHeader()}
       <FormSelectorMenu showDialog={true} />
       {body}
+      <BlankSpace space="20px"/>
+      {error}
       <BlankSpace space="200px"/>
       <div className="k-form-field page-footer footer-bg-style">
         <button
@@ -140,6 +147,7 @@ const mapStateToProps = function(storage) {
 
     userId: storage.user.id,
     token: storage.user.token,
+    errorMessage: storage.nav.error_message,
     extFileRef: storage.form.ext_file_ids,
     removedExtFileRef: storage.form.removed_ext_file_ids
   }

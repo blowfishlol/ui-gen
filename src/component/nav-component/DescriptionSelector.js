@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "recompose"
 
 import { DropDownList } from "@progress/kendo-react-dropdowns"
-import {getSelectedDescription, getSelectedDescriptionContent} from "../../util/descriptionDataGet"
+import { getSelectedDescription, getSelectedDescriptionContent } from "../../util/descriptionDataGet"
 import ActionList from "../../reducer/actionList"
 import { dialogOpen } from "../Dialog"
 

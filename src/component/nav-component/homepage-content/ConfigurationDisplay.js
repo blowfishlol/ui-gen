@@ -13,7 +13,7 @@ class ConfigurationDisplay extends React.Component {
   render() {
     let body
     if(this.props.errorMessage !== "") {
-      body = <ErrorBox message={this.props.errorMessage} />
+      body = <ErrorBox message={this.props.errorMessage} onClick={() => this.props.refreshConfigs()}/>
     } else if(!this.props.isConfigFetched || !this.props.isDescriptionFetched) {
       body = <div className="col-sm-12 alert alert-info">Loading data</div>
     } else {
@@ -47,6 +47,9 @@ const mapDispatchToProps = function(dispatch) {
     }),
     gotoImportConfigForm: () => dispatch({
       type: ActionList.GO_TO_IMPORT_CONFIG
+    }),
+    refreshConfigs: () => dispatch({
+      type: ActionList.FETCH_CONFIGS
     })
   }
 }

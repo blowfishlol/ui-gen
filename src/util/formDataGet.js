@@ -77,7 +77,7 @@ export function check(path) {
 }
 
 export function mergeAll() {
-  return mergeDeep(mergeDeep(getSelectedTemplate().data, getSelectedConfig().configContent.data), fetchAllData())
+  return mergeDeep(getSelectedConfig().configContent.data, fetchAllData())
 }
 
 /**

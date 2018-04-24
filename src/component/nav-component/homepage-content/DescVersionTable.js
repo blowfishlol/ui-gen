@@ -14,7 +14,6 @@ class DescVersionDisplay extends GridDetailRow {
   }
 
   render() {
-    console.debug(this)
     if(this.props.dataItem.descriptionContents.length === 0) {
       return <div className="alert alert-info"><center>No version available</center></div>
     }
