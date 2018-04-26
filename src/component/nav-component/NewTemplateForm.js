@@ -63,7 +63,7 @@ class ImportConfigForm extends React.Component {
     }
     return <div className="row k-form page-root">
       <div className="col-sm-12">
-        <center><h1><b> Add Description Version </b></h1></center>
+        <center><h1><b> Add New Template </b></h1></center>
       </div>
 
       <label className="k-form-field col-sm-12">

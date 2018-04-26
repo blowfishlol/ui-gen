@@ -223,12 +223,15 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.ASSIGN_DESCRIPTION) {
     return {
       ...state,
-      selected_id: action.payload
+      selected_id: action.payload,
+      selected_desc_content_id: -1,
+      selected_template_id: -1
     }
   } else if(action.type === ActionList.ASSIGN_DESC_CONTENT) {
     return {
       ...state,
-      selected_desc_content_id: action.payload
+      selected_desc_content_id: action.payload,
+      selected_template_id: -1
     }
   } else if(action.type === ActionList.ADD_NEW_DESC_CONTENT) {
     return {

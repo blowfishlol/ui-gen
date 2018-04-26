@@ -1,15 +1,15 @@
 import ActionList from "./actionList"
 import ComponentType from "../component/ComponentType"
-import { clone } from "../util/toolbox"
+import {clone, isArray} from "../util/toolbox"
 import storage from "../storage"
 
-function isInteger(arg) {
-  return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
-}
+// function isInteger(arg) {
+//   return !isNaN(parseInt(arg, 10)) && parseInt(arg, 10).toString() === arg
+// }
 
-function defaultForPath(arg) {
-  return isInteger(arg) ? [] : {}
-}
+// function defaultForPath(arg) {
+//   return isInteger(arg) ? [] : {}
+// }
 
 function isNullValue(value, type) {
   switch (type) {
@@ -35,6 +35,7 @@ function isNullValue(value, type) {
  * by returning new instance of state.data to overwrite the old one
  */
 export function set(path, value, ptr, nullable) {
+  console.log(path, value, ptr)
   if(path.length === 1) {
     if(nullable) {
       if(nullable.isNullable && isNullValue(value, nullable.type)) {
@@ -45,13 +46,13 @@ export function set(path, value, ptr, nullable) {
     ptr[path[0]] = value
     return ptr
   } else {
-    if(isInteger(path[0])) {
-      ptr[parseInt(path[0], 10)] = set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]), nullable)
+    if(isArray(ptr)) {
+      ptr[parseInt(path[0], 10)] = set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : {}, nullable)
       return ptr
     }
     return {
       ...ptr,
-      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : defaultForPath(path[1]), nullable)
+      [path[0]]: set(path.slice(1), value, ptr[path[0]] ? ptr[path[0]] : {}, nullable)
     }
   }
 }
@@ -78,6 +79,15 @@ function pop(path, ptr) {
   }
 }
 
+function rename(path, name, ptr) {
+  if(path.length === 1) {
+    ptr[name] = ptr[path[0]]
+    delete ptr[path[0]]
+  } else {
+    rename(path.slice(1), name, ptr[path[0]])
+  }
+}
+
 const defaultState = {
   data: {},
   paths: [],
@@ -91,7 +101,10 @@ export default function reducer(state = defaultState, action) {
   if(action.type === ActionList.SET_DATA) {
     return {
       ...state,
-      data: set(action.payload.path.split("."), action.payload.value, clone(state.data), action.payload.nullable),
+      data: set(action.payload.path.split("."),
+        action.payload.value,
+        clone(state.data),
+        action.payload.nullable),
       notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.POP_DATA) {
@@ -109,6 +122,12 @@ export default function reducer(state = defaultState, action) {
     return {
       ...state,
       paths: state.paths.filter(path => path !== action.payload)
+    }
+  } else if(action.type === ActionList.RENAME_PATH) {
+    return {
+      ...state,
+      data: rename(action.payload.path, action.payload.name, clone(state.data)),
+      notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.ADD_EXT_FILE_REF) {
     return {

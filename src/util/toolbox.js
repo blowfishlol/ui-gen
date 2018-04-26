@@ -2,6 +2,13 @@ export function isObject(obj) {
   return obj && typeof obj === "object" && !Array.isArray(obj)
 }
 
+export function isArray(arr) {
+  if(arr) {
+    return arr.constructor === Array
+  }
+  return false
+}
+
 export function lastElementOf(arr) {
   return arr[arr.length-1]
 }

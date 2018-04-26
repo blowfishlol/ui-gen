@@ -17,7 +17,6 @@ class MapInput extends React.Component {
   constructor(props) {
     super(props)
     this.onDeleteBtnClickedListener = this.onDeleteBtnClickedListener.bind(this)
-    this.data = get(this.props.path, this.props.desc.element.type)
 
     /**
      * TEMPORARY WORKAROUND
@@ -25,32 +24,20 @@ class MapInput extends React.Component {
      * template and data from form reducer when array of data is involved
      * (due to the array from template don't get stored inside form reducer)
      */
-    console.log(this.props.desc)
+    // console.log(this.props.desc)
     if(!check(this.props.path)) {
-      this.props.updateState(this.props.path, {})
-      Object.keys(this.data).forEach(key => {
-        this.props.updateState(this.props.path + "." + key, {})
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(this.props.notifier !== prevProps.notifier) {
-      this.data = get(this.props.path, this.props.desc.element.type)
-      this.forceUpdate()
+      this.props.updateState(this.props.path, [])
+      let data = get(this.props.path, this.props.desc.element.type)
+      if(data.length !== 0) {
+        for(let i = 0; i < data.length; i++) {
+          this.props.updateState(this.props.path + "." + i, {})
+        }
+      }
     }
   }
 
   nextPath() {
-    let surplus = 0
-    let dataLength = Object.keys(this.data).length
-    while(true) {
-      if(check(this.props.path + ".KEY" + (dataLength+surplus))) {
-        surplus++
-      } else {
-        return this.props.path + ".KEY" + (dataLength+surplus)
-      }
-    }
+    return this.props.path + "." + get(this.props.path, this.props.desc.element.type).length
   }
 
   onAddBtnClickedListener() {
@@ -58,9 +45,10 @@ class MapInput extends React.Component {
   }
 
   onDeleteBtnClickedListener(index) {
-    const currentData = clone(this.data)
-    delete currentData[Object.keys(currentData)[index]]
-    this.props.updateState(this.props.path, currentData, nullInfo(this.props.desc.element))
+    const currentData = get(this.props.path, this.props.desc.element.type)
+    this.props.updateState(this.props.path,
+                           currentData.slice(0, index).concat(currentData.slice(index + 1, currentData.length)),
+                           nullInfo(this.props.desc.element))
   }
 
   render() {
@@ -70,17 +58,17 @@ class MapInput extends React.Component {
       return <ErrorBox message={"Invalid content " + this.props.desc.child.toString()} />
     }
 
-    let elements = Object.keys(this.data).map((key, index) => {
+    let elements = get(this.props.path, this.props.desc.element.type).map((element, index) => {
       let childDesc = clone(this.props.desc.element)
-      childDesc.label = key
+      childDesc.label = this.props.desc.label + " " + (index+1)
 
       return <div key={this.props.path + "." + index} >
         <Form
-          path={this.props.path + "." + key}
+          path={this.props.path + "." + index}
           component={childDesc}
           index={index}
-          onDelete={this.onDeleteBtnClickedListener}
-          isMapInput={true} />
+          isChild={true}
+          onDelete={this.onDeleteBtnClickedListener} />
       </div>
     })
 

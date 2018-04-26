@@ -9,6 +9,7 @@ var ActionList = {
   TIME:     "time",
   COLOR:    "color", //
   ARRAY:    "array",
+  OBJECTS:  "objects",
   MAP:      "map"
 };
 

@@ -2,7 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 import { compose } from "recompose"
 
-import Form from "./Form"
+import TextBox from "./TextBox"
+import DateBox from "./DateBox"
+import TimeBox from "./TimeBox"
+import DropDownBox from "./DropDownBox"
+import ToggleBox from "./ToggleBox"
+import NumberBox from "./NumberBox"
+import UploadBox from "./UploadBox"
+import CheckBox from "./CheckBox"
+import ColorPicker from "./ColorPicker"
 import LabelTooltip from "./LabelTooltip"
 import BlankSpace from "../BlankSpace"
 import ErrorBox from "../ErrorBox"
@@ -10,12 +18,14 @@ import ErrorBox from "../ErrorBox"
 import get, {check, defaultValue} from "../../util/formDataGet"
 import { nullInfo } from "../../util/infoChecker"
 import ActionList from "../../reducer/actionList"
+import ComponentType from "../ComponentType";
 
 class ArrayInput extends React.Component {
 
   constructor(props) {
     super(props)
     this.onDeleteBtnClickedListener = this.onDeleteBtnClickedListener.bind(this)
+    this.data = get(this.props.path, this.props.desc.element.type)
 
     /**
      * TEMPORARY WORKAROUND
@@ -33,12 +43,16 @@ class ArrayInput extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.data = get(this.props.path, this.props.desc.element.type)
+  }
+
   nextPath() {
     return this.props.path + "." + get(this.props.path, this.props.desc.element.type).length
   }
 
   onAddBtnClickedListener() {
-    this.props.updateState(this.nextPath(), defaultValue(this.props.desc.element.child.type))
+    this.props.updateState(this.nextPath(), defaultValue(this.props.desc.element.child), nullInfo(this.props.desc.element))
   }
 
   onDeleteBtnClickedListener(index) {
@@ -48,29 +62,19 @@ class ArrayInput extends React.Component {
                            nullInfo(this.props.desc.element))
   }
 
-  generateComponentObject() {
-    let data = get(this.props.path, this.props.desc.element.type)
-    let childDesc = {}
-    for(let i = 0; i < data.length; i++) {
-      childDesc[i+""] = {
-        label: "",
-        info: "",
-        element: {
-          type: this.props.desc.element.child,
-          nullable: false,
-          value: {},
-          layout: {
-            mobile: 11,
-            tablet: 11,
-            desktop: 11
-          }
-        }
-      }
-    }
+  generateArrayChildDesc(desc) {
     return {
       label: "",
       info: "",
-      child: childDesc
+      element: {
+        type: desc.element.child,
+        nullable: desc.element.nullable,
+        layout: {
+        desktop: 12,
+          tablet: 12,
+          phone: 12
+        }
+      }
     }
   }
 
@@ -81,13 +85,38 @@ class ArrayInput extends React.Component {
       return <ErrorBox message={"Invalid content " + this.props.desc.child.toString()} />
     }
 
+    let inputFields = this.data.map((datum, index) => {
+      let path = this.props.path + "." + index
+
+      let inputField
+      let childProps = {
+        path: path,
+        desc: this.generateArrayChildDesc(this.props.desc)
+      }
+      switch(this.props.desc.element.child) {
+        case ComponentType.TEXT:     inputField = <TextBox     {...childProps} />; break
+        case ComponentType.NUMBER:   inputField = <NumberBox   {...childProps} />; break
+        case ComponentType.IMAGE:    inputField = <UploadBox   {...childProps} />; break
+        case ComponentType.DROPDOWN: inputField = <DropDownBox {...childProps} />; break
+        case ComponentType.CHECKBOX: inputField = <CheckBox    {...childProps} />; break
+        case ComponentType.TOGGLE:   inputField = <ToggleBox   {...childProps} />; break
+        case ComponentType.DATE:     inputField = <DateBox     {...childProps} />; break
+        case ComponentType.TIME:     inputField = <TimeBox     {...childProps} />; break
+        case ComponentType.COLOR:    inputField = <ColorPicker {...childProps} />; break
+        default: inputField = <ErrorBox key={path} message={'Unrecognized element type "' + this.props.desc.element.child + '"'} />
+      }
+
+      return <div key={path} className="row">
+        <div className="col-11">{inputField}</div>
+        <div className="col-1">
+          <button className="k-button transparent-button delete-array-button" onClick={() => this.onDelete(index)}>X</button>
+        </div>
+      </div>
+    })
+
     return <div className="k-form-field">
       <LabelTooltip desc={this.props.desc} />
-      <Form
-        path={this.props.path}
-        component={this.generateComponentObject()}
-        array={true}
-        onDelete={this.onDeleteBtnClickedListener} />
+      {inputFields}
       <BlankSpace space="10px" />
       <button className="k-button k-primary" onClick={() => this.onAddBtnClickedListener()}>ADD</button>
     </div>

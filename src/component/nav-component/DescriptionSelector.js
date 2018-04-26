@@ -32,7 +32,11 @@ class FormSelectorMenu extends React.Component {
     } else {
       this.props.setDialogMessage("Changing description will delete all modified data\nProceed?")
       this.props.setDialogFinishFunction({
-        onFinish: () => this.props.assignDescription(index)
+        onFinish: () => {
+          this.props.assignDescription(index)
+          this.props.assignDescriptionContent(this.filterDescriptionContents(getSelectedDescription().descriptionContents)[0].id)
+          this.props.assignTemplate(getSelectedDescriptionContent().templates[0].id)
+        }
       })
       dialogOpen()
     }
@@ -44,7 +48,10 @@ class FormSelectorMenu extends React.Component {
     } else {
       this.props.setDialogMessage("Changing description version will delete all modified data\nProceed?")
       this.props.setDialogFinishFunction({
-        onFinish: () => this.props.assignDescriptionContent(index)
+        onFinish: () => {
+          this.props.assignDescriptionContent(index)
+          this.props.assignTemplate(getSelectedDescriptionContent().templates[0].id)
+        }
       })
       dialogOpen()
     }
