@@ -211,16 +211,16 @@ class PageNavigator extends Component {
      * Workaround will be implemented later
      */
     return <div>
-      <div className="d-block d-md-none">
-        <PanelBar onSelect={(evt) => this.onPanelBarSeletedListener(evt.target.props.index, panelBar)}>
-            <PanelBarItem expanded={this.state.isPanelExpanded} title="Menu">
-              {panelBar}
-            </PanelBarItem>
-        </PanelBar>
-        <BlankSpace space="15px" />
-        {content}
-      </div>
-      <div className="d-none d-md-block">
+      {/*<div className="d-block d-md-none">*/}
+        {/*<PanelBar onSelect={(evt) => this.onPanelBarSeletedListener(evt.target.props.index, panelBar)}>*/}
+            {/*<PanelBarItem expanded={this.state.isPanelExpanded} title="Menu">*/}
+              {/*{panelBar}*/}
+            {/*</PanelBarItem>*/}
+        {/*</PanelBar>*/}
+        {/*<BlankSpace space="15px" />*/}
+        {/*{content}*/}
+      {/*</div>*/}
+      <div>
         <TabStrip
           selected={navBar.findIndex(navbar => navbar.props.hasOwnProperty("current"))}
           onSelect={(e) => this.onTabStripSelectedListener(e.selected, navBar)}>
