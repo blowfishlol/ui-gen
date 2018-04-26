@@ -9,6 +9,20 @@ import { dialogOpen } from "../Dialog"
 
 class FormSelectorMenu extends React.Component {
 
+  constructor(props) {
+    super(props)
+
+    if(this.props.selectedDescription === -1) {
+      this.props.assignDescription(this.filterDescriptions(this.props.descriptions)[0].id)
+    }
+    if(this.props.selectedDescContent === -1) {
+      this.props.assignDescriptionContent(this.filterDescriptionContents(getSelectedDescription().descriptionContents)[0].id)
+    }
+    if(this.props.selectedTemplate === -1) {
+      this.props.assignTemplate(getSelectedDescriptionContent().templates[0].id)
+    }
+  }
+
   isHaveTemplates(descriptionContents) {
     for(let i = 0; i < descriptionContents.length; i++) {
       if(descriptionContents[i].templates.length !== 0) {

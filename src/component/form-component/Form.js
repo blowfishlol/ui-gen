@@ -119,22 +119,26 @@ class Form extends Component {
     return output
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState)
-    if(this.props.isMapInput) {
-      if(!nextState.isEditTitleMode) {
+  onEditLabelBtnClickedListener() {
+    this.setState({
+      ...this.state,
+      isEditTitleMode: !this.state.isEditTitleMode
+    }, () => {
+      if(!this.state.isEditTitleMode) {
         let path = this.props.path
-        let newPath = path.substring(0, path.lastIndexOf(".") + 1) + nextState.title
-        console.log(newPath)
-        if(check(newPath)) {
-          this.props.renamePath(path, nextState.title)
+        let newPath = path.substring(0, path.lastIndexOf(".") + 1) + this.state.title
+        console.log(this.props.path, newPath)
+        if(!check(newPath)) {
+          this.props.renamePath(path, this.state.title)
         } else {
-          nextState.title = this.props.component.label
           alert("Conflicting name, reverting to previous name")
+          this.setState({
+            ...this.state,
+            title: this.props.component.label
+          })
         }
       }
-    }
-    return true
+    })
   }
 
   render() {
@@ -147,7 +151,7 @@ class Form extends Component {
       var editLabelButton = <Button
         look="bare" primary={true} className={"minimal-button"}
         icon={this.state.isEditTitleMode ? "check" : "edit"}
-        onClick={() => this.setState({...this.state, isEditTitleMode: !this.state.isEditTitleMode})}/>
+        onClick={() => this.onEditLabelBtnClickedListener()} />
     }
 
     let titleBox = this.state.isEditTitleMode ?

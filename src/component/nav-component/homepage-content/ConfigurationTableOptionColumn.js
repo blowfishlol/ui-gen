@@ -8,6 +8,8 @@ import { GridCell } from "@progress/kendo-react-grid"
 import fileDownload from "js-file-download"
 import { dialogOpen } from "../../Dialog"
 import ActionList from "../../../reducer/actionList"
+import {mergeDeep} from "../../../util/toolbox";
+import {getSelectedTemplate} from "../../../util/descriptionDataGet";
 
 class ConfigurationDisplayCustomColumn extends GridCell {
 
@@ -30,7 +32,7 @@ class ConfigurationDisplayCustomColumn extends GridCell {
   }
 
   onExportBtnClickedListener() {
-    fileDownload(JSON.stringify(this.findConfig().configContent.data), this.findConfig().name + ".json")
+    fileDownload(JSON.stringify(mergeDeep(getSelectedTemplate().data, this.findConfig().configContent.data)), this.findConfig().name + ".json")
   }
 
   render() {

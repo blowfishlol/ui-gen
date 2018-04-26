@@ -8,6 +8,9 @@ import ConfigurationDisplayCustomColumn from "./ConfigurationTableOptionColumn"
 class ConfigurationTable extends React.Component {
 
   render() {
+    if(this.props.configs.length === 0) {
+      return <div className="alert alert-info"><center>No saved configuration exist</center></div>
+    }
     return <Grid data={this.props.configs} >
         <Column field="name" width="45%" title="Configuration Name" />
         <Column field="configContent.version" width="10%" title="Version" />

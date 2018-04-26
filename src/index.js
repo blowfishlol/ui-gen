@@ -49,6 +49,3 @@ function isPrintCond(i, j, min, max) {
   return min > max || !(min <= i && i <= max) || !(min <= j && j <= max) ? false : i === min || i === max || j === min || j === max || isPrintCond(i, j, min+2, max-2)
   // return (min > max || !(min <= i && i <= max) || !(min <= j && j <= max)) && !(i === min && j === min-1) ? false : ((i === min || i === max || j === min || j === max || (i === min && j === min-1)) && !(i === min+1 && j === min)) || isPrintCond(i, j, min+2, max-2)
 }
-
-let string = "user.name.first"
-console.log(string.substring(0, string.lastIndexOf(".")))

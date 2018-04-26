@@ -12,8 +12,8 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "blowfish",
-      password: "yeah"
+      username: "demoadmin",
+      password: "demo"
     }
   }
 
@@ -82,10 +82,16 @@ const mapStateToProps = function(storage) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    login: (user) => dispatch({
-      type: ActionList.ON_LOGIN,
-      payload: user
-    })
+    login: (user) => {
+      if(user.username === "sponge" && user.password === "bob") {
+        easterEgg()
+        return
+      }
+      dispatch({
+        type: ActionList.ON_LOGIN,
+        payload: user
+      })
+    }
   }
 }
 
@@ -95,3 +101,20 @@ export default compose(
     mapDispatchToProps
   )
 )(LoginPage)
+
+
+function easterEgg() {
+  alert("THINGS THAT ATTRACT A SEA BEAR ATTACK!")
+  alert("Playing the clarinet badly (They might hate the sound or it upsets them.)")
+  alert("Waving a flashlight around (It's their natural prey.)")
+  alert("eating or holding cubed cheese or possibly cheese in general (Perhaps they hate it or the smell might set it off.)")
+  alert("Stomping around (They take it as a challenge.)")
+  alert("Wearing a hoop skirt (It might disgust them.)")
+  alert("Wearing clown shoes (Ridiculous.)")
+  alert("Wearing a sombrero in a goofy fashion (Offensive, perhaps.)")
+  alert("Screeching like a chimpanzee (It may mimic the sound of a dying animal to them.)")
+  alert("Running from a Sea Bear (It might show cowardness.)")
+  alert("Limping from a Sea Bear (It might also show cowardness.)")
+  alert("Crawling away from a Sea Bear (This ALSO might show cowardness)")
+  alert("Drawing ovals in the Dirt (Dirt ovals can't protect against sea bears.)")
+}

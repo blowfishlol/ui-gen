@@ -80,11 +80,16 @@ function pop(path, ptr) {
 }
 
 function rename(path, name, ptr) {
+  console.log(path, name, ptr)
   if(path.length === 1) {
     ptr[name] = ptr[path[0]]
     delete ptr[path[0]]
+    return ptr
   } else {
-    rename(path.slice(1), name, ptr[path[0]])
+    return {
+      ...ptr,
+      [path[0]]: rename(path.slice(1), name, ptr[path[0]])
+    }
   }
 }
 
@@ -126,7 +131,7 @@ export default function reducer(state = defaultState, action) {
   } else if(action.type === ActionList.RENAME_PATH) {
     return {
       ...state,
-      data: rename(action.payload.path, action.payload.name, clone(state.data)),
+      data: rename(action.payload.path.split("."), action.payload.name, clone(state.data)),
       notifier: (state.notifier + 1) % 10
     }
   } else if(action.type === ActionList.ADD_EXT_FILE_REF) {

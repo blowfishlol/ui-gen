@@ -220,6 +220,12 @@ export default function reducer(state = defaultState, action) {
       selected_desc_content_id: configContent.descriptionContentId,
       selected_template_id: configContent.templateId
     }
+  } else if(action.type === ActionList.ADD_NEW_CONFIG) {
+    return {
+      ...state,
+      // configs: state.configs.concat(defaultConfig),
+      // selected_id: -1
+    }
   } else if(action.type === ActionList.ASSIGN_DESCRIPTION) {
     return {
       ...state,
