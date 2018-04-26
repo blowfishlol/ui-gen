@@ -121,16 +121,20 @@ class Form extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     console.log(nextProps, nextState)
-    if(!nextState.isEditTitleMode) {
-      let path = this.props.path
-      let newPath = path.substring(0, path.lastIndexOf(".") + 1) + nextState.title
-      console.log(newPath)
-      if(check(newPath)) {
-        return true
-      } else {
-        return true
+    if(this.props.isMapInput) {
+      if(!nextState.isEditTitleMode) {
+        let path = this.props.path
+        let newPath = path.substring(0, path.lastIndexOf(".") + 1) + nextState.title
+        console.log(newPath)
+        if(check(newPath)) {
+          this.props.renamePath(path, nextState.title)
+        } else {
+          nextState.title = this.props.component.label
+          alert("Conflicting name, reverting to previous name")
+        }
       }
     }
+    return true
   }
 
   render() {
@@ -252,6 +256,13 @@ const mapDispatchToProps = (dispatch) => {
     removeData: (path) => dispatch({
       type: ActionList.POP_DATA,
       payload: path
+    }),
+    renamePath: (path, newName) => dispatch({
+      type: ActionList.RENAME_PATH,
+      payload: {
+        path: path,
+        name: newName
+      }
     })
   }
 }
